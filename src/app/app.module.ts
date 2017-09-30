@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
+import { Chatbot } from './services/chatbot.service';
+
+
 @NgModule({
   declarations: [
     AppComponent
@@ -10,7 +13,9 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [
+    Chatbot
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
