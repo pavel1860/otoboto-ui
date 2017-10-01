@@ -25,7 +25,7 @@ export class Chatbot {
   }
   
   sendMessage(message){
-    this.socket.emit('add-message', message);    
+    this.socket.emit('POSTBACK', this.sendPostback(message.payload, null).msg);  
   }
   
   getMessages() {
@@ -40,8 +40,6 @@ export class Chatbot {
         observer.next(this.createBotMessageDescriptor(data));   
       });     
       this.socket.on('BACKEND_ACTION', (response) => {
-        console.log('tada');
-        console.log(response);
         let data = this.parseResponse(response); 
         this.doBackendAction(data); 
         observer.next(data);    
@@ -54,7 +52,7 @@ export class Chatbot {
   }  
 
   createBotMessageDescriptor(data) {
-    
+
     let descriptor = {}; 
     
     if (data.sender_action == 'typing_on') {
@@ -63,12 +61,15 @@ export class Chatbot {
       descriptor['duration'] = data.time;
 
     } else if (data.message) {
-
+      
       descriptor['code'] = 'say';
       descriptor['speach'] = {
         caption: data.message.text,
         attachment: data.message.attachment,
-        options: data.message.quick_replies      
+        options: data.message.quick_replies, 
+        input: {
+          type: 'simple'
+        }      
       }
 
     }
@@ -104,6 +105,12 @@ export class Chatbot {
     };
   }
 
+  sendTextResponse(payload) {
+    console.log(payload);
+    console.log(this.sendTextMessage(payload));
+    this.socket.emit('USER_MESSAGE', this.sendTextMessage(payload));
+  }
+
   generateMessageBody(sender: string='1352773691447531', recipient: string='1234455') {
     return {
       sender: { id: sender },
@@ -129,9 +136,22 @@ export class Chatbot {
         };    
 
         this.fb.login(options).then((response: LoginResponse) => { 
-          console.log(response);
           this.socket.emit('POSTBACK', this.sendPostback('facebookAuth', response.authResponse).msg);
         });    
   }
+
+  sendTextMessage(text: string, sender: string='123456', recipient: string='1234455') {
+    let msg = this.generateMessageBody();
+    if (!msg['message']) {
+      msg['message']={};
+    }  
+    msg['message']['text'] = text;
+    return {
+      type: 'SEND_MESSAGE',
+      msg,
+    };
+  }
+
+
 
 }

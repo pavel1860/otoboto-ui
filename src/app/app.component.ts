@@ -17,16 +17,17 @@ export class AppComponent {
 
   ngOnInit() {
     this.chatbotService.getMessages().subscribe(message => {
-      console.log(message);
       this.execute(message); 
     });
   }
 
   execute(message) {
-
     switch (message.code) {
       case "say":
-        this.say(message.speach); 
+        this.chatbot.say(message.speach); 
+        break;
+      case "typing": 
+        this.chatbot.activateTypingMode(); 
         break;
     }
 

@@ -1,21 +1,18 @@
 
-<div>
+<div class='messages-board'>
 
-    <div class='speach-box'> 
-        {{speach}}
+    <div *ngFor='let message of messages' class='message-wrapper'> 
+        <chatbot-message [message]='message' (facebookLogin)='loginWithFB()' (optionSelected)='selectOption($event)' (userInput)='sendUserInput($event)'></chatbot-message>
     </div>
 
-    <div *ngIf='attachment=="login"'>
-        <button class="facebook-login-button self-centered" (click)='loginWithFB()'>
-            כניסה
-        </button>        
-    </div>
+    <div *ngIf='isTyping'> 
+        <div class="typing-indicator">
+        <span></span>
+        <span></span>
+        <span></span>
+        </div>        
+    </div>    
 
-    <div *ngIf='options' class='options-panel'>
-        <button *ngFor='let option of options' md-raised-button color="accent">
-            {{option.title}}
-        </button>            
-    </div>
 
 
 </div>

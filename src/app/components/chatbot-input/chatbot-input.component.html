@@ -1,0 +1,6 @@
+        <div class='input-frame'>            
+            <input class='hidden-input' type='text' #input/>
+            <button md-raised-button color="accent" (click)='send.emit(input.value)'>
+                <md-icon class="icon" (click)='send.emit(inputValue)'>send</md-icon>
+            </button>                 
+        </div>   

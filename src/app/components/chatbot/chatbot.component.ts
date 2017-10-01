@@ -10,8 +10,10 @@ import {Chatbot} from '../../services/chatbot.service';
 export class ChatbotComponent {
   
   speach;
-  attachment; 
-  options;
+  allowInput = true; 
+  isTyping = false;
+  
+  messages = [];
 
   constructor(private chatbotService: Chatbot) {}
 
@@ -19,14 +21,25 @@ export class ChatbotComponent {
 
   }
 
-  say(speach, attachment, options) {
-      this.speach = speach;
-      this.attachment = attachment ? attachment.type : undefined;
-      this.options = options;
+  say(message) {
+    this.messages.push(message); 
+    this.isTyping = false; 
+  }
+
+  activateTypingMode() {
+    this.isTyping = true; 
   }
 
   loginWithFB() {
     this.chatbotService.loginWithFB();
+  }
+
+  selectOption(option) {
+    this.chatbotService.sendMessage(option);
+  }
+
+  sendUserInput(value) {
+    this.chatbotService.sendTextResponse(value);
   }
 
 }

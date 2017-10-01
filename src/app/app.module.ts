@@ -1,10 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppComponent } from './app.component';
-import { TopBarComponent } from './components/top-bar/top-bar.component';
+import {AppComponent} from './app.component';
+import {TopBarComponent} from './components/top-bar/top-bar.component';
 import {ListViewComponent} from './components/list-view/list-view.component';
 import {ChatbotComponent} from './components/chatbot/chatbot.component';
+import {ChatbotMessageComponent} from './components/chatbot-message/chatbot-message.component';
+import {ChatbotInputComponent} from './components/chatbot-input/chatbot-input.component';
+import {FacebookLoginButtonComponent} from './components/facebook-login-button/facebook-login-button.component'
 
 import {Chatbot} from './services/chatbot.service';
 
@@ -26,7 +29,10 @@ import { FacebookModule } from 'ngx-facebook';
     TopBarComponent,
     ListViewComponent,
     NisPipe,
-    ChatbotComponent
+    ChatbotComponent,
+    ChatbotMessageComponent,
+    ChatbotInputComponent,
+    FacebookLoginButtonComponent
   ],
   imports: [
     BrowserModule,
