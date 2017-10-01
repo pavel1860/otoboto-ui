@@ -1,9 +1,5 @@
-import {Component, NgZone, OnInit, ViewChild} from '@angular/core';
-import * as io from 'socket.io-client';
+import {Component, ViewChild} from '@angular/core';
 import {Chatbot} from './services/chatbot.service';
-
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/Rx';
 
 @Component({
   selector: 'app-root',
@@ -13,10 +9,15 @@ import 'rxjs/Rx';
 
 export class AppComponent {
 
-  constructor(private chatbot: Chatbot) {}
+  results; 
+  
+  @ViewChild('chatbot') chatbot;
+
+  constructor(private chatbotService: Chatbot) {}
 
   ngOnInit() {
-    this.chatbot.getMessages().subscribe(message => {
+    this.chatbotService.getMessages().subscribe(message => {
+      console.log(message);
       this.execute(message); 
     });
   }
@@ -25,15 +26,15 @@ export class AppComponent {
 
     switch (message.code) {
       case "say":
-        this.say(message.descriptor); 
+        this.say(message.speach); 
         break;
-      default:
-        console.log(message); 
     }
 
   }
 
-  say(descriptor) {}
+  say(speach) {
+    this.chatbot.say(speach.caption, speach.attachment, speach.options);
+  }
 
 
 
