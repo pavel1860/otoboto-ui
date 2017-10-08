@@ -22,6 +22,7 @@ export class ChatbotComponent {
   }
 
   say(message) {
+    this.messages = [];
     this.messages.push(message); 
     this.isTyping = false; 
   }

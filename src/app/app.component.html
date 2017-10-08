@@ -1,8 +1,8 @@
 
-<top-bar></top-bar>
+<top-bar (tabSelected)='sendAction($event)'></top-bar>
 
 <div class='list-wrapper'> 
-  <list-view [items]='results'></list-view>
+  <list-view [items]='results' (action)='sendAction($event)'></list-view>
 </div>
 
 <div class='chatbot-wrapper'>

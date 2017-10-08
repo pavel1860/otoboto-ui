@@ -11,6 +11,7 @@ export class AppComponent {
 
   results; 
   
+  
   @ViewChild('chatbot') chatbot;
 
   constructor(private chatbotService: Chatbot) {}
@@ -29,13 +30,20 @@ export class AppComponent {
       case "typing": 
         this.chatbot.activateTypingMode(); 
         break;
+      case "queryResults": 
+        this.results = message.items;
+        console.log(message.items);
+        break;
     }
 
   }
 
-  say(speach) {
-    this.chatbot.say(speach.caption, speach.attachment, speach.options);
+  sendAction(action) {
+    console.log(action);
+    this.chatbotService.sendMessage(action);
   }
+
+  
 
 
 

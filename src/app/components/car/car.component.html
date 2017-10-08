@@ -1,0 +1,149 @@
+<div #wrapper class='main-wrapper card assistant' [ngClass]='{hidden:!showMe}' > 
+
+    <div class='card-main-panel'>
+
+            <div class='gallery-panel' (click)='showImages.emit(); show_full_gallery = !show_full_gallery;' (mouseover)='is_over_gallery=true' (mouseleave)='is_over_gallery=false'>
+
+                <div class='gallery-cover' [ngStyle]="{'background-image': 'url(' + data.mobile_pics[0]  + ')'}" >
+
+                </div>
+
+                <div class='show-gallery-icon-panel' *ngIf='is_over_gallery'>
+                    <img class='show-gallery-icon' src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAEJklEQVRoQ+2YjVHUQBTH36tAS8AK1AqECoQKlArECoQKhAo8KhAqECpQKtASsILn/DLvZTabbLLJeafDZGduOC6b3f1/vI9E5YkMfSI4ZAXyvym5KrIqsiMGVmvtiNjFy66KLKZuRzeuiuTEmtlzEXkjIq9E5FBE+J/v6fghIo8icicifL9XVf7femyliB/+rYgc+2fJgW5EhM/tNqAWATGzAxH5ICLvnfkAcO9sw/ijqsJ6O8wMhbg3VEPBGCizEZErVf01l5FZQFyBTyJylm10ISKXcxn19ViLNdNxKSIXc9arBmJmKHCeKcDmWAJrLR5mhrWw6G8ReeYLodC5ql7VLDwJxG30xQOYNbEPjH31DV4MWcHMAAd4Ap+B3WCZv53he/z0H09c8bAd80+n7DYKxMyIgc+uAmydqerGfwfctaoyJz8Y13q/+yTAoGx+D/Hxzg/NHhDBbyiEOh/Zu6ROEYiZpYe55WDh2cQKMNVZ3A8QapX2PcqVScghJTcqegyxPrZjbFT1dGjRHhC/mYOEJWACK7XDzJAb6Xu2Sq6VQPB7e9iY5Bnte+EaCQFnMNj7JE8EHSAO4punR6x0XPC0saKqDhHRXJsaY/cWrpGyAYHVSOuo2hbT9iDOCEqQ5x/cSp06kLC3dyBuNcBgtZc5mAaIK4GsAeJwLIebGQBZ7PVA0QvbjYnSS9mJtR5UNW9tUlvT+rBHB0wAAQQ3o8QoCAceeX8XwT5Zl5z4AHOnqkcBJFjseW+IVjOL4CulX5IDNWRolNJvkNNLLvkiWSw3iSO1Vk+ukjeyAlYqiGQ96kUUNgoplXqqIA6ul8Qn1oqE1DooD/Y0kEhxxebNzKKA3agq1XjxMDOSDAVwUOEsRVPfemEwlH5DGVIbKa6UuUgMXCMdTtphRN2wKen+oJRkPBmgBIr0YrlUEPFrWIK2ZLBxy6p4cd4ICOIoii0OYN/e8IY15mFR6lvngWysRQnrsDAbkKF6T3NJaxHzUGf0ecJjjEodXXMv+yVlASvFvKL1appGmIjGDdavB7JI2uBxGRKwKDWhsaZbg9xPEoiGEjvRw/WUMDMaSPbGSm3DWlK3to3nYGlbDev50x8xQ5biADUDQiCmo7IDRq3o9bASYEdVngSSZAyCkoPGgw8s8ljaSaduGxTiIIBDBQYBymGYT6brHMzMmE/MhI1QgXTdaVgXK5Le6IUIMGmxQxk2ozDNetZ20CgNSWlbMvvRuVqRDBBMszleD4WYAigYb14+4O0sRpiL52GfT3p4FMDCPPvPIoSNFwFJ7Mah4lVQPPzUxEc6h4e25pXQnJcN+SZbARmwXbAcL+giPmIqcZK+oKPh+/cv6OZSv8v5f02RXR6yZu0VSA1L+5yzKrJPtmv2WhWpYWmfc1ZF9sl2zV6rIjUs7XPOH+mY+UJ1C/lQAAAAAElFTkSuQmCC" title="Collage Filled" width="50" height="50">
+                </div>
+                
+            </div>
+
+            <div class='content-panel' >
+                
+                    <div class='right-panel'>
+
+                        <div class='main-info-panel'>
+
+                            <div class='top-panel'>
+
+                                <div class='rank-panel'>
+
+                                    <div class='rank-icon-box' [ngClass]="{'recommended': rankSummary=='recommended', 'unrecommended': rankSummary=='unrecommended', 'neutral': rankSummary=='neutral'}">
+                                        <md-icon *ngIf='rankSummary=="unrecommended"' class="icon sad">sentiment_dissatisfied</md-icon>
+                                        <md-icon *ngIf='rankSummary=="neutral"' class="icon neutral">sentiment_neutral</md-icon>
+                                        <md-icon *ngIf='rankSummary=="recommended"' class="icon happy">sentiment_satisfied</md-icon>
+                                    </div>   
+
+                                    <div class='rank-text' [ngClass]="{'recommended': rankSummary=='recommended', 'unrecommended': rankSummary=='unrecommended', 'neutral': rankSummary=='neutral'}">
+                                        {{data.normalized_rank | number:'.1-1' }} 
+                                    </div>
+                                    
+                                </div>
+
+                                <div class='location-panel assistant'>
+                                    <div class='location-icon'>
+                                        <md-icon class="icon">location_on</md-icon>
+                                    </div>
+                                    <div class='location-token'>
+                                        {{data.city}}
+                                    </div>
+                                </div>    
+
+                            </div>
+
+                            <div class='model-panel'>
+
+                                <div class='model-text'> 
+                                    <div> {{data.manufacturer}} </div>
+                                    <div> &nbsp; </div>
+                                    <div> {{data.model}} </div>
+                                    <div> &nbsp; </div>
+                                    <div> {{data.year}} </div>                
+                                </div>
+
+                                <div class='submodel-text'> 
+                                    {{data.sub_model}}
+                                </div>
+
+                            </div>
+
+                            <div class='properties-div'>
+
+                                <div *ngFor='let property of properties'>
+                                    <div class='icon'>
+                                        <md-icon class="icon">{{property.icon}}</md-icon>
+                                    </div>
+                                    <div class='caption'>
+                                        {{property.caption}}
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                        <div class='props-panel'>
+
+                            <div class='prop-box'>
+
+                                <div class='prop-icon roboto'>
+                                    {{data.hand}}
+                                </div>
+                                <div class='prop-text'>
+                                    יד
+                                </div>
+
+                            </div>
+
+                            <div class='prop-box'>
+
+                                <div class='prop-icon roboto'>
+                                    {{data.km}}
+                                </div>
+                                <div class='prop-text'>
+                                    קילומטרים 
+                                </div>    
+                            </div>
+                        
+                        </div>
+
+                    </div>
+
+                    <div class='seperator'>
+                        
+                    </div>
+
+                    <div class='left-panel'> 
+                        <div class='price-panel roboto'>
+                            {{data.price[0] | nis}}
+                        </div>
+
+                                <div class='manage-actions-panel'>
+                                    <div class='fav-panel'>
+                                        <md-icon class="icon" (click)='action.emit(actions[1])'>cancel</md-icon>
+                                        <md-icon class="icon" (click)='action.emit(actions[0])'>favorite</md-icon>
+                                    </div>
+                                </div>            
+
+                        <div class='actions-panel'>
+                            <div class='phone-panel'>
+                                <img src="https://maxcdn.icons8.com/iOS7/PNG/50/Mobile/cell_phone-50.png" title="Cell Phone" width="30" height="30">
+                            </div>
+                        </div>
+
+                    </div>
+
+            </div>
+
+        </div>
+
+        <div class='full-gallery-panel' *ngIf='show_full_gallery'>
+            <image-gallery class='full-gallery' [images]='data.mobile_pics' [ngClass]='{visible: show_full_gallery}'></image-gallery>
+        </div>
+
+
+        <div class='full-info-panel' *ngIf='show_full_info'>
+
+        
+
+        </div>
+</div>
+
+ 

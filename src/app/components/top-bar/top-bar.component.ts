@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'top-bar',
@@ -8,7 +8,22 @@ import {Component} from '@angular/core';
 
 export class TopBarComponent {
 
-  constructor() {}
+  @Output() tabSelected: EventEmitter<any> = new EventEmitter();
+
+  tabs = [
+    {
+      id: 'favorite', 
+      icon: 'favorite', 
+      payload: 'favorites'
+    }, 
+    {
+      id: 'search', 
+      icon: 'search', 
+      payload: 'car_search'
+    }
+  ] 
+
+  constructor() {}  
 
   ngOnInit() {
 

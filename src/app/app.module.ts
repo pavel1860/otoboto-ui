@@ -8,6 +8,8 @@ import {ChatbotComponent} from './components/chatbot/chatbot.component';
 import {ChatbotMessageComponent} from './components/chatbot-message/chatbot-message.component';
 import {ChatbotInputComponent} from './components/chatbot-input/chatbot-input.component';
 import {FacebookLoginButtonComponent} from './components/facebook-login-button/facebook-login-button.component'
+import {CarComponent} from './components/car/car.component';
+import {ImageGalleryComponent} from './components/image-gallery/image-gallery.component';
 
 import {Chatbot} from './services/chatbot.service';
 
@@ -32,7 +34,9 @@ import { FacebookModule } from 'ngx-facebook';
     ChatbotComponent,
     ChatbotMessageComponent,
     ChatbotInputComponent,
-    FacebookLoginButtonComponent
+    FacebookLoginButtonComponent,
+    CarComponent,
+    ImageGalleryComponent
   ],
   imports: [
     BrowserModule,

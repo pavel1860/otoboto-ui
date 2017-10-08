@@ -1,0 +1,51 @@
+
+<div class="grid">
+
+    <div class="single-item-grid" *ngIf="images.length == 1">
+
+        <div class="item single-item" [ngStyle]="{'background-image': 'url(' + images[0]  + ')'}"></div>
+
+    </div>
+
+    <div class="double-item-grid" *ngIf="images.length == 2">
+
+        <div class="item double-item" [ngStyle]="{'background-image': 'url(' + images[0]  + ')'}"></div>
+        <div class="item double-item" [ngStyle]="{'background-image': 'url(' + images[1]  + ')'}"></div>
+
+    </div>
+
+    <div class="triple-item-grid" *ngIf="images.length == 3">
+
+        <div class="item triple-item wide" [ngStyle]="{'background-image': 'url(' + images[0]  + ')'}"></div>
+        <div class='triple-line'>
+            <div class="item triple-item half" [ngStyle]="{'background-image': 'url(' + images[1]  + ')'}"></div>
+            <div class="item triple-item half" [ngStyle]="{'background-image': 'url(' + images[2]  + ')'}"></div>
+        </div>
+    </div>
+
+    <div class="triple-item-grid" *ngIf="images.length == 4">
+
+        <div class="item triple-item wide" [ngStyle]="{'background-image': 'url(' + images[0]  + ')'}"></div>
+        <div class='triple-line'>
+            <div class="item four-item three" [ngStyle]="{'background-image': 'url(' + images[1]  + ')'}"></div>
+            <div class="item four-item three" [ngStyle]="{'background-image': 'url(' + images[2]  + ')'}"></div>
+            <div class="item four-item three" [ngStyle]="{'background-image': 'url(' + images[3]  + ')'}"></div>
+        </div>
+    </div>
+
+    <div class="triple-item-grid" *ngIf="images.length == 5">
+
+        <div class='triple-line'>
+            <div class="item four-item half" [ngStyle]="{'background-image': 'url(' + images[0]  + ')'}"></div>
+            <div class="item four-item half" [ngStyle]="{'background-image': 'url(' + images[1]  + ')'}"></div>
+        </div>
+
+        <div class='triple-line'>
+            <div class="item four-item three" [ngStyle]="{'background-image': 'url(' + images[2]  + ')'}"></div>
+            <div class="item four-item three" [ngStyle]="{'background-image': 'url(' + images[3]  + ')'}"></div>
+            <div class="item four-item three" [ngStyle]="{'background-image': 'url(' + images[4]  + ')'}"></div>
+        </div>
+    </div>    
+
+</div>
+  

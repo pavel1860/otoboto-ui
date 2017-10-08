@@ -25,6 +25,7 @@ export class Chatbot {
   }
   
   sendMessage(message){
+    console.log(message);
     this.socket.emit('POSTBACK', this.sendPostback(message.payload, null).msg);  
   }
   
@@ -36,7 +37,7 @@ export class Chatbot {
         observer.next(data); 
       });
       this.socket.on('BOT_MESSAGE', (response) => {
-        let data = this.parseResponse(response); 
+        let data = this.parseResponse(response);
         observer.next(this.createBotMessageDescriptor(data));   
       });     
       this.socket.on('BACKEND_ACTION', (response) => {
@@ -55,7 +56,12 @@ export class Chatbot {
 
     let descriptor = {}; 
     
-    if (data.sender_action == 'typing_on') {
+    if ((data.message) && (data.message.attachment) && (data.message.attachment.payload) && (data.message.attachment.payload.template_type == 'custom_list')) {
+
+      descriptor['code'] = 'queryResults'; 
+      descriptor['items'] = data.message.attachment.payload.elements; 
+      
+    } else if (data.sender_action == 'typing_on') {
 
       descriptor['code'] = 'typing';
       descriptor['duration'] = data.time;
@@ -106,8 +112,6 @@ export class Chatbot {
   }
 
   sendTextResponse(payload) {
-    console.log(payload);
-    console.log(this.sendTextMessage(payload));
     this.socket.emit('USER_MESSAGE', this.sendTextMessage(payload));
   }
 
@@ -146,10 +150,7 @@ export class Chatbot {
       msg['message']={};
     }  
     msg['message']['text'] = text;
-    return {
-      type: 'SEND_MESSAGE',
-      msg,
-    };
+    return msg;
   }
 
 
