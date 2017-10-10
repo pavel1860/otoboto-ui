@@ -9,8 +9,9 @@ import {Chatbot} from './services/chatbot.service';
 
 export class AppComponent {
 
+  message;
   results; 
-  
+  displayMode; 
   
   @ViewChild('chatbot') chatbot;
 
@@ -23,24 +24,30 @@ export class AppComponent {
   }
 
   execute(message) {
+
+    this.setDisplay(message); 
+
     switch (message.code) {
       case "say":
-        this.chatbot.say(message.speach); 
+        this.message = message; 
         break;
       case "typing": 
         this.chatbot.activateTypingMode(); 
         break;
       case "queryResults": 
+        this.message = message;
         this.results = message.items;
-        console.log(message.items);
         break;
     }
 
   }
 
   sendAction(action) {
-    console.log(action);
     this.chatbotService.sendMessage(action);
+  }
+
+  setDisplay(data) {
+    this.displayMode = data.mode; 
   }
 
   

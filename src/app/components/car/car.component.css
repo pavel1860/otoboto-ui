@@ -303,3 +303,22 @@
     transition: opacity 8s ease 8s; 
       
 }
+
+/* for ipad */
+@media only screen and (max-width: 1170px) {
+
+    .card-main-panel {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .gallery-panel {
+        height: 500px;
+        width: 100%;
+    }
+
+    .full-gallery-panel {
+        display: none;
+    }
+
+}

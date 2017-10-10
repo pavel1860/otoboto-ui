@@ -9,23 +9,11 @@ import {Chatbot} from '../../services/chatbot.service';
 
 export class ChatbotComponent {
   
-  speach;
-  allowInput = true; 
+  @Input() message; 
+
   isTyping = false;
   
-  messages = [];
-
   constructor(private chatbotService: Chatbot) {}
-
-  ngOnInit() {
-
-  }
-
-  say(message) {
-    this.messages = [];
-    this.messages.push(message); 
-    this.isTyping = false; 
-  }
 
   activateTypingMode() {
     this.isTyping = true; 

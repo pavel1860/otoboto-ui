@@ -35,3 +35,16 @@
     height: 800px;
     transition: all 0.6s ease;
 }
+
+@media only screen and (max-width: 1170px) {
+
+    .item {
+        height: 800px;
+    }
+
+    .list {
+        width: 850px;
+    }
+
+
+}

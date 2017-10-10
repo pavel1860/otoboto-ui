@@ -1,15 +1,20 @@
+
 <div class='wrapper'>
 
-    <div class='speach-panel'>
-        {{message?.caption}}
-    </div>
+   <div class='avatar-panel'>
+        <bot-avatar></bot-avatar>
+   </div>
+
+   <div class='caption-panel assistant'>
+       {{message?.caption}}
+   </div>
 
     <div *ngIf='message?.attachment?.type=="login"' class='single-button-panel'>
         <facebook-login-button (click)='facebookLogin.emit()'></facebook-login-button>       
     </div>    
 
     <div *ngIf='message?.options' class='options-panel'>
-        <button *ngFor='let option of message.options' md-raised-button color="accent" (click)='optionSelected.emit(option)'>
+        <button *ngFor='let option of message.options' class='option-button' md-raised-button color="accent" (click)='optionSelected.emit(option)' assistant>
             {{option.title}}
         </button>            
     </div>
@@ -17,5 +22,5 @@
     <div *ngIf='input !== "NONE"' class='input-panel'>
         <chatbot-input (send)='userInput.emit($event)'></chatbot-input>
     </div>    
-
+    
 </div>

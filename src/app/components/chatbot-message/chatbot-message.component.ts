@@ -9,6 +9,7 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
 export class ChatbotMessageComponent {
 
   @Input() message; 
+  @Input() input;
 
   @Output() facebookLogin: EventEmitter<any> = new EventEmitter();
   @Output() optionSelected: EventEmitter<any> = new EventEmitter();

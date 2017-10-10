@@ -10,6 +10,10 @@ import {ChatbotInputComponent} from './components/chatbot-input/chatbot-input.co
 import {FacebookLoginButtonComponent} from './components/facebook-login-button/facebook-login-button.component'
 import {CarComponent} from './components/car/car.component';
 import {ImageGalleryComponent} from './components/image-gallery/image-gallery.component';
+import {ChatbotFullLayoutComponent} from './components/chatbot-full-layout/chatbot-full-layout.component'; 
+import {BotAvatarComponent} from './components/bot-avatar/bot-avatar.component'; 
+
+import {SwiperModule} from 'angular2-useful-swiper';
 
 import {Chatbot} from './services/chatbot.service';
 
@@ -36,7 +40,9 @@ import { FacebookModule } from 'ngx-facebook';
     ChatbotInputComponent,
     FacebookLoginButtonComponent,
     CarComponent,
-    ImageGalleryComponent
+    ImageGalleryComponent,
+    ChatbotFullLayoutComponent,
+    BotAvatarComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +53,7 @@ import { FacebookModule } from 'ngx-facebook';
     MatCardModule,
     MatListModule,
     MatIconModule,
+    SwiperModule,
     FacebookModule.forRoot()
   ],
   providers: [

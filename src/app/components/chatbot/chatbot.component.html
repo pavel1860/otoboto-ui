@@ -1,8 +1,34 @@
 
-<div class='messages-board'>
+<div class='wrapper' [ngClass]='{minimized: message?.mode == "NONE", alert: message?.mode == "HALF"}'>
+
+   <div class='avatar-panel'>
+        <bot-avatar></bot-avatar>
+   </div>
+
+   <div class='caption-panel assistant'>
+       {{message?.speach?.caption}}
+   </div>
+
+    <div *ngIf='message?.speach?.attachment?.type=="login"' class='single-button-panel'>
+        <facebook-login-button (click)='loginWithFB()'></facebook-login-button>       
+    </div>    
+
+    <div *ngIf='message?.speach?.options' class='options-panel'>
+        <button *ngFor='let option of message?.speach?.options' class='option-button' md-raised-button color="accent" (click)='selectOption(option)' assistant>
+            {{option.title}}
+        </button>            
+    </div>
+
+    <div *ngIf='message?.speach?.input && message?.speach?.input !== "NONE"' class='input-panel'>
+        <chatbot-input (send)='sendUserInput($event)'></chatbot-input>
+    </div>    
+ 
+</div>
+
+<!--div class='messages-board'>
 
     <div *ngFor='let message of messages' class='message-wrapper'> 
-        <chatbot-message [message]='message' (facebookLogin)='loginWithFB()' (optionSelected)='selectOption($event)' (userInput)='sendUserInput($event)'></chatbot-message>
+        <chatbot-message [message]='message' [input]='message.input' (facebookLogin)='loginWithFB()' (optionSelected)='selectOption($event)' (userInput)='sendUserInput($event)'></chatbot-message>
     </div>
 
     <div *ngIf='isTyping'> 
@@ -13,6 +39,5 @@
         </div>        
     </div>    
 
+</div-->
 
-
-</div>

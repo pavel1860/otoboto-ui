@@ -55,6 +55,9 @@ export class Chatbot {
   createBotMessageDescriptor(data) {
 
     let descriptor = {}; 
+
+    descriptor['mode'] = data.sender_action.extend;
+    console.log(descriptor);
     
     if ((data.message) && (data.message.attachment) && (data.message.attachment.payload) && (data.message.attachment.payload.template_type == 'custom_list')) {
 
@@ -72,10 +75,8 @@ export class Chatbot {
       descriptor['speach'] = {
         caption: data.message.text,
         attachment: data.message.attachment,
-        options: data.message.quick_replies, 
-        input: {
-          type: 'simple'
-        }      
+        options: data.message.quick_replies,
+        input: data.sender_action.showInput 
       }
 
     }

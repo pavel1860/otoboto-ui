@@ -15,11 +15,14 @@ export class CarComponent {
   @Output() showImages: EventEmitter<any> = new EventEmitter();
 
   rankSummary; 
+  swiperConfig; 
 
   constructor() {}
 
   ngOnInit() {
       this.rankSummary = this.computeRankSummary(this.data.normalized_rank); 
+
+  
   }
 
   computeRankSummary(rank) {
