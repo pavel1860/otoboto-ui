@@ -4,34 +4,26 @@
 
             <div class='gallery-panel' (mouseover)='is_over_gallery=true' (mouseleave)='is_over_gallery=false'> <!--(click)='showImages.emit(); show_full_gallery = !show_full_gallery;'-->
                 
+                <div class='round-button white-gray-button like-panel'>
+                    <md-icon class="phone-icon">favorite_border</md-icon>
+                </div>
+
                 <swiper class='gallery-swiper' [config]="swiperConfig">
                     <div class='gallery-cover' *ngFor='let image of data.mobile_pics; let i = index' [ngStyle]="{'background-image': 'url(' + image  + ')'}" (click)='showGallery(i, data.mobile_pics)'>
                     </div>                   
-                </swiper>                
+                </swiper>    
+
             </div>
 
-            
-
+        
             <div class='content-panel'>
-
-              
-
-
-
-                    <!--div class='operations-panel'> 
-                            <md-icon class="icon" (click)='action.emit(actions[0])'>favorite_border</md-icon>
-                            <md-icon class="icon" (click)='action.emit(actions[0])'>phone_android</md-icon>
-                    </div-->
-
-               
-
 
                         <div class='remove-icon-frame'>
                             <md-icon class="icon remove-icon" (click)='action.emit(actions[0])'>cancel</md-icon>
                         </div>
                             
-                        <div class='rating-box'>
-                            <div class='rank-icon-box' [ngClass]="{'recommended': rankSummary=='recommended', 'unrecommended': rankSummary=='unrecommended', 'neutral': rankSummary=='neutral'}">
+                        <div class='rating-box' [ngClass]="{'recommended green-text': rankSummary=='recommended', 'unrecommended': rankSummary=='unrecommended', 'neutral': rankSummary=='neutral'}">
+                            <div class='rank-icon-box'>
                                 <md-icon *ngIf='rankSummary=="unrecommended"' class="icon sad rank-face">sentiment_dissatisfied</md-icon>
                                 <md-icon *ngIf='rankSummary=="neutral"' class="icon neutral rank-face">sentiment_neutral</md-icon>
                                 <md-icon *ngIf='rankSummary=="recommended"' class="icon happy rank-face">sentiment_satisfied</md-icon>
@@ -41,18 +33,16 @@
                             </label>
                         </div>   
                         
-                        <md-icon class="icon like-icon" (click)='action.emit(actions[0])'>favorite_border</md-icon>
-
                         <div class='main-details-panel'>
 
                             <div class='location-panel assistant'>
-                                <md-icon class="icon location-icon">location_on</md-icon>
-                                {{data.city}}
+                                <md-icon class="icon location-icon dark-gray-text">location_on</md-icon>
+                                <label class='dark-gray-text'>{{data.city}}</label>
                             </div>                      
 
                             <div class='model-panel'>
 
-                                <div class='model-text'> 
+                                <div class='model-text dark-gray-text'> 
                                     <div> {{data.manufacturer}} </div>
                                     <div> &nbsp; </div>
                                     <div> {{data.model}} </div>
@@ -60,7 +50,7 @@
                                     <div> {{data.year}} </div>                
                                 </div>
 
-                                <div class='submodel-text'> 
+                                <div class='submodel-text light-gray-text'> 
                                     {{data.sub_model}}
                                 </div>
 
@@ -68,7 +58,7 @@
 
                             <div class='seperator-horizontal'></div>
 
-                            <div class='properties-div'>
+                            <div class='properties-div dark-gray-text'>
 
                                 <div class='property-entry'> 
                                     <label class='hand-token'> {{data.hand}} </label>
@@ -94,11 +84,11 @@
 
                             <div class='seperator-horizontal'></div>
 
-                            <div class='price-panel'>
+                            <div class='price-panel dark-gray-text'>
                                 <label class='price-label'> {{data.price[0] | nis}} </label>   
                             </div>
 
-                            <div class='phone-panel'>
+                            <div class='round-button green-white-button phone-panel'>
                                 <md-icon class="phone-icon">phone_android</md-icon>
                             </div>
 

@@ -57,6 +57,7 @@ export class Chatbot {
     let descriptor = {}; 
 
     descriptor['mode'] = data.sender_action.extend;
+    //descriptor['mode'] = 'FULL';
     console.log(descriptor);
     
     if ((data.message) && (data.message.attachment) && (data.message.attachment.payload) && (data.message.attachment.payload.template_type == 'custom_list')) {

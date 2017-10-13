@@ -55,7 +55,7 @@ export class CarComponent {
 
   ngOnInit() {
 
-      this.rankSummary = this.computeRankSummary(this.data.normalized_rank); 
+      this.rankSummary = this.computeRankSummary(this.data.static_rank); 
       this.handCaption = this.handToken + ' ' + this.handCaptionPrefix[this.data.hand - 1];
       this.gearTypeCaption = this.gearTypeHebrewTokens[this.data.gear]; 
 
