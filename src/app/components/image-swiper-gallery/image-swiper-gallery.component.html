@@ -1,0 +1,7 @@
+
+<div class='gallery-wrapper' (click)='close.emit()'>
+    <md-icon class="close-icon" (click)='close.emit()'>close</md-icon>
+    <swiper class='swiper' [config]="swiperConfig">
+        <img *ngFor='let image of ordered' [src]='image' (click)='block($event)'/>                 
+    </swiper>  
+</div>

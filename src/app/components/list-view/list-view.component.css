@@ -1,7 +1,7 @@
 .list {
     display: flex;
     flex-direction: column;
-    width: 1160px;
+    width: 920px;
 }
 
 .card {
@@ -19,7 +19,7 @@
 
 .item {
     transition: all 0.6s ease;
-    height: 300px; 
+    height: 400px; 
     margin-bottom: 20px;
 }
 
@@ -39,7 +39,7 @@
 @media only screen and (max-width: 1170px) {
 
     .item {
-        height: 800px;
+        height: 914px;
     }
 
     .list {

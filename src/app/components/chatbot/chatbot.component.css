@@ -4,7 +4,8 @@
     position: fixed;
     top: 0;
     left: 0; 
-    background: #0084ff;
+    /*background: rgba(0,132,255,1);*/
+    background: white;
     color: white;
     display: flex;
     justify-content: flex-start;
@@ -16,8 +17,9 @@
 
 .minimized {
     width: 300px;
-    background: transparent;
+    background: white;
     color: black;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
 }
 
 .alert {
@@ -59,15 +61,21 @@
 @media only screen and (max-width: 1450px) {
     .wrapper {
         width: 100%;
-        height: 200px;
+        height: 100px;
         justify-content: flex-start;
         flex-direction: row; 
         right: 0;       
         padding-top: 20px;
+        padding-right: 20px;
+        color: white;
     }
     .avatar-panel {
         align-self: flex-start;
-    }      
+    }
+    .caption-panel {
+        margin-top: 0;
+        margin-right: 30px; 
+    }
 }
 
 /* typing indicator */

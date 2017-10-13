@@ -12,8 +12,7 @@ import {CarComponent} from './components/car/car.component';
 import {ImageGalleryComponent} from './components/image-gallery/image-gallery.component';
 import {ChatbotFullLayoutComponent} from './components/chatbot-full-layout/chatbot-full-layout.component'; 
 import {BotAvatarComponent} from './components/bot-avatar/bot-avatar.component'; 
-
-import {SwiperModule} from 'angular2-useful-swiper';
+import {ImageSwiperGalleryComponent} from './components/image-swiper-gallery/image-swiper-gallery.component'; 
 
 import {Chatbot} from './services/chatbot.service';
 
@@ -29,6 +28,15 @@ import {MatIconModule} from '@angular/material';
 
 import { FacebookModule } from 'ngx-facebook';
 
+import { SwiperModule } from 'angular2-swiper-wrapper';
+import { SwiperConfigInterface } from 'angular2-swiper-wrapper';
+
+const SWIPER_CONFIG: SwiperConfigInterface = {
+  direction: 'horizontal',
+  slidesPerView: 'auto',
+  keyboardControl: true
+};
+
 @NgModule({
   declarations: [
     AppComponent, 
@@ -42,7 +50,8 @@ import { FacebookModule } from 'ngx-facebook';
     CarComponent,
     ImageGalleryComponent,
     ChatbotFullLayoutComponent,
-    BotAvatarComponent
+    BotAvatarComponent,
+    ImageSwiperGalleryComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +63,8 @@ import { FacebookModule } from 'ngx-facebook';
     MatListModule,
     MatIconModule,
     SwiperModule,
-    FacebookModule.forRoot()
+    FacebookModule.forRoot(),
+    SwiperModule.forRoot(SWIPER_CONFIG)
   ],
   providers: [
     Chatbot

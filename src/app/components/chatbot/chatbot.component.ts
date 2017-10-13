@@ -10,6 +10,7 @@ import {Chatbot} from '../../services/chatbot.service';
 export class ChatbotComponent {
   
   @Input() message; 
+  @Input() mode; 
 
   isTyping = false;
   

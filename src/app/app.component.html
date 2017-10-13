@@ -2,9 +2,11 @@
 <!--top-bar (tabSelected)='sendAction($event)'></top-bar-->
 
 <div class='list-wrapper'> 
-  <list-view [items]='results' (action)='sendAction($event)'></list-view>
+  <list-view [items]='results' (action)='sendAction($event)' (openGallery)='openGallery($event)'></list-view>
 </div>
 
-<chatbot #chatbot [message]='message'></chatbot>
+<chatbot #chatbot [message]='message' [mode]='mode'></chatbot>
 
-
+<div *ngIf='showGallery' class='image-gallery-panel'>
+  <image-swiper-gallery [images]='images' [index]='imageInitialIndex' (close)='showGallery=false'></image-swiper-gallery>
+</div>

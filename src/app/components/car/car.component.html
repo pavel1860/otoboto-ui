@@ -2,21 +2,111 @@
 
     <div class='card-main-panel'>
 
-            <div class='gallery-panel' (click)='showImages.emit(); show_full_gallery = !show_full_gallery;' (mouseover)='is_over_gallery=true' (mouseleave)='is_over_gallery=false'>
-
-                <div class='gallery-cover' [ngStyle]="{'background-image': 'url(' + data.mobile_pics[0]  + ')'}" >
-
-                </div>
-
-                <div class='show-gallery-icon-panel' *ngIf='is_over_gallery'>
-                    <img class='show-gallery-icon' src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAEJklEQVRoQ+2YjVHUQBTH36tAS8AK1AqECoQKlArECoQKhAo8KhAqECpQKtASsILn/DLvZTabbLLJeafDZGduOC6b3f1/vI9E5YkMfSI4ZAXyvym5KrIqsiMGVmvtiNjFy66KLKZuRzeuiuTEmtlzEXkjIq9E5FBE+J/v6fghIo8icicifL9XVf7femyliB/+rYgc+2fJgW5EhM/tNqAWATGzAxH5ICLvnfkAcO9sw/ijqsJ6O8wMhbg3VEPBGCizEZErVf01l5FZQFyBTyJylm10ISKXcxn19ViLNdNxKSIXc9arBmJmKHCeKcDmWAJrLR5mhrWw6G8ReeYLodC5ql7VLDwJxG30xQOYNbEPjH31DV4MWcHMAAd4Ap+B3WCZv53he/z0H09c8bAd80+n7DYKxMyIgc+uAmydqerGfwfctaoyJz8Y13q/+yTAoGx+D/Hxzg/NHhDBbyiEOh/Zu6ROEYiZpYe55WDh2cQKMNVZ3A8QapX2PcqVScghJTcqegyxPrZjbFT1dGjRHhC/mYOEJWACK7XDzJAb6Xu2Sq6VQPB7e9iY5Bnte+EaCQFnMNj7JE8EHSAO4punR6x0XPC0saKqDhHRXJsaY/cWrpGyAYHVSOuo2hbT9iDOCEqQ5x/cSp06kLC3dyBuNcBgtZc5mAaIK4GsAeJwLIebGQBZ7PVA0QvbjYnSS9mJtR5UNW9tUlvT+rBHB0wAAQQ3o8QoCAceeX8XwT5Zl5z4AHOnqkcBJFjseW+IVjOL4CulX5IDNWRolNJvkNNLLvkiWSw3iSO1Vk+ukjeyAlYqiGQ96kUUNgoplXqqIA6ul8Qn1oqE1DooD/Y0kEhxxebNzKKA3agq1XjxMDOSDAVwUOEsRVPfemEwlH5DGVIbKa6UuUgMXCMdTtphRN2wKen+oJRkPBmgBIr0YrlUEPFrWIK2ZLBxy6p4cd4ICOIoii0OYN/e8IY15mFR6lvngWysRQnrsDAbkKF6T3NJaxHzUGf0ecJjjEodXXMv+yVlASvFvKL1appGmIjGDdavB7JI2uBxGRKwKDWhsaZbg9xPEoiGEjvRw/WUMDMaSPbGSm3DWlK3to3nYGlbDev50x8xQ5biADUDQiCmo7IDRq3o9bASYEdVngSSZAyCkoPGgw8s8ljaSaduGxTiIIBDBQYBymGYT6brHMzMmE/MhI1QgXTdaVgXK5Le6IUIMGmxQxk2ozDNetZ20CgNSWlbMvvRuVqRDBBMszleD4WYAigYb14+4O0sRpiL52GfT3p4FMDCPPvPIoSNFwFJ7Mah4lVQPPzUxEc6h4e25pXQnJcN+SZbARmwXbAcL+giPmIqcZK+oKPh+/cv6OZSv8v5f02RXR6yZu0VSA1L+5yzKrJPtmv2WhWpYWmfc1ZF9sl2zV6rIjUs7XPOH+mY+UJ1C/lQAAAAAElFTkSuQmCC" title="Collage Filled" width="50" height="50">
-                </div>
+            <div class='gallery-panel' (mouseover)='is_over_gallery=true' (mouseleave)='is_over_gallery=false'> <!--(click)='showImages.emit(); show_full_gallery = !show_full_gallery;'-->
                 
+                <swiper class='gallery-swiper' [config]="swiperConfig">
+                    <div class='gallery-cover' *ngFor='let image of data.mobile_pics; let i = index' [ngStyle]="{'background-image': 'url(' + image  + ')'}" (click)='showGallery(i, data.mobile_pics)'>
+                    </div>                   
+                </swiper>                
             </div>
 
-            <div class='content-panel' >
-                
-                    <div class='right-panel'>
+            
+
+            <div class='content-panel'>
+
+              
+
+
+
+                    <!--div class='operations-panel'> 
+                            <md-icon class="icon" (click)='action.emit(actions[0])'>favorite_border</md-icon>
+                            <md-icon class="icon" (click)='action.emit(actions[0])'>phone_android</md-icon>
+                    </div-->
+
+               
+
+
+                        <div class='remove-icon-frame'>
+                            <md-icon class="icon remove-icon" (click)='action.emit(actions[0])'>cancel</md-icon>
+                        </div>
+                            
+                        <div class='rating-box'>
+                            <div class='rank-icon-box' [ngClass]="{'recommended': rankSummary=='recommended', 'unrecommended': rankSummary=='unrecommended', 'neutral': rankSummary=='neutral'}">
+                                <md-icon *ngIf='rankSummary=="unrecommended"' class="icon sad rank-face">sentiment_dissatisfied</md-icon>
+                                <md-icon *ngIf='rankSummary=="neutral"' class="icon neutral rank-face">sentiment_neutral</md-icon>
+                                <md-icon *ngIf='rankSummary=="recommended"' class="icon happy rank-face">sentiment_satisfied</md-icon>
+                            </div>                       
+                            <label class='rating-label'>
+                                {{ data.static_rank | number:'.1-1' }} 
+                            </label>
+                        </div>   
+                        
+                        <md-icon class="icon like-icon" (click)='action.emit(actions[0])'>favorite_border</md-icon>
+
+                        <div class='main-details-panel'>
+
+                            <div class='location-panel assistant'>
+                                <md-icon class="icon location-icon">location_on</md-icon>
+                                {{data.city}}
+                            </div>                      
+
+                            <div class='model-panel'>
+
+                                <div class='model-text'> 
+                                    <div> {{data.manufacturer}} </div>
+                                    <div> &nbsp; </div>
+                                    <div> {{data.model}} </div>
+                                    <div> &nbsp; </div>
+                                    <div> {{data.year}} </div>                
+                                </div>
+
+                                <div class='submodel-text'> 
+                                    {{data.sub_model}}
+                                </div>
+
+                            </div>
+
+                            <div class='seperator-horizontal'></div>
+
+                            <div class='properties-div'>
+
+                                <div class='property-entry'> 
+                                    <label class='hand-token'> {{data.hand}} </label>
+                                    <label> {{handCaption}} </label>                                  
+                                </div>
+
+                                <div class='property-entry'> 
+                                    <md-icon class="prop-icon">settings</md-icon>
+                                    <label> {{gearTypeCaption}} </label>                                    
+                                </div>
+
+                                <div class='property-entry'> 
+                                    <md-icon class="prop-icon">timelapse</md-icon>
+                                    <label> {{milageCaption}} </label>                                  
+                                </div>
+
+                                <div class='property-entry'> 
+                                    <md-icon class="prop-icon">whatshot</md-icon>
+                                    <label> {{volumeCaption}} </label>                                  
+                                </div>
+
+                            </div>
+
+                            <div class='seperator-horizontal'></div>
+
+                            <div class='price-panel'>
+                                <label class='price-label'> {{data.price[0] | nis}} </label>   
+                            </div>
+
+                            <div class='phone-panel'>
+                                <md-icon class="phone-icon">phone_android</md-icon>
+                            </div>
+
+                        </div>
+              
+
+
+                    <!---div class='right-panel'>
 
                         <div class='main-info-panel'>
 
@@ -31,7 +121,7 @@
                                     </div>   
 
                                     <div class='rank-text' [ngClass]="{'recommended': rankSummary=='recommended', 'unrecommended': rankSummary=='unrecommended', 'neutral': rankSummary=='neutral'}">
-                                        {{data.normalized_rank | number:'.1-1' }} 
+                                        {{ data.static_rank | number:'.1-1' }} 
                                     </div>
                                     
                                 </div>
@@ -65,13 +155,29 @@
 
                             <div class='properties-div'>
 
+                                <div class='property-entry'> 
+                                    <md-icon class="prop-icon">person</md-icon>
+                                    <label> {{handCaption}} </label>                                  
+                                </div>
+
+                                <div class='property-entry'> 
+                                    <md-icon class="prop-icon">settings</md-icon>
+                                    <label> {{gearTypeCaption}} </label>                                    
+                                </div>
+
+                                <div class='property-entry'> 
+                                    <md-icon class="prop-icon">timelapse</md-icon>
+                                    <label> {{milageCaption}} </label>                                  
+                                </div>
+
                                 <div *ngFor='let property of properties'>
                                     <div class='icon'>
                                         <md-icon class="icon">{{property.icon}}</md-icon>
-                                    </div>
-                                    <div class='caption'>
                                         {{property.caption}}
                                     </div>
+                                    <div class='caption'>
+                                         {{property.value}}
+                                    </div>
                                 </div>
 
                             </div>
@@ -79,38 +185,15 @@
 
                         </div>
 
-                        <div class='props-panel'>
 
-                            <div class='prop-box'>
 
-                                <div class='prop-icon roboto'>
-                                    {{data.hand}}
-                                </div>
-                                <div class='prop-text'>
-                                    יד
-                                </div>
+                    </div-->
 
-                            </div>
-
-                            <div class='prop-box'>
-
-                                <div class='prop-icon roboto'>
-                                    {{data.km}}
-                                </div>
-                                <div class='prop-text'>
-                                    קילומטרים 
-                                </div>    
-                            </div>
+                    <!--div class='seperator'>
                         
-                        </div>
+                    </div-->
 
-                    </div>
-
-                    <div class='seperator'>
-                        
-                    </div>
-
-                    <div class='left-panel'> 
+                    <!--div class='left-panel'> 
                         <div class='price-panel roboto'>
                             {{data.price[0] | nis}}
                         </div>
@@ -128,7 +211,7 @@
                             </div>
                         </div>
 
-                    </div>
+                    </div-->
 
             </div>
 

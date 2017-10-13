@@ -12,6 +12,11 @@ export class AppComponent {
   message;
   results; 
   displayMode; 
+  mode; 
+  showGallery = false; 
+
+  images;
+  imageInitialIndex; 
   
   @ViewChild('chatbot') chatbot;
 
@@ -29,13 +34,14 @@ export class AppComponent {
 
     switch (message.code) {
       case "say":
-        this.message = message; 
+        this.message = message.speach; 
+        this.mode = message.mode;
         break;
       case "typing": 
         this.chatbot.activateTypingMode(); 
         break;
       case "queryResults": 
-        this.message = message;
+        this.mode = message.mode;
         this.results = message.items;
         break;
     }
@@ -50,10 +56,11 @@ export class AppComponent {
     this.displayMode = data.mode; 
   }
 
+  openGallery(data) {
+    this.images = data.images; 
+    this.imageInitialIndex = data.initialIndex; 
+    this.showGallery = true; 
+    console.log(this.imageInitialIndex);
+  }
   
-
-
-
-
-
 }

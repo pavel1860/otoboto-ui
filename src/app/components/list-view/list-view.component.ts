@@ -11,6 +11,7 @@ export class ListViewComponent {
   
   @Input() items;
   @Output() action: EventEmitter<any> = new EventEmitter();
+  @Output() openGallery: EventEmitter<any> = new EventEmitter();
 
   constructor() {}
 

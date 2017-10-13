@@ -2,7 +2,7 @@
     
     <div *ngFor='let spec of items' class='item' [ngClass]='{"hidden-item": spec.hidden, expended: spec.is_expended}'> 
 
-        <car [data]='spec.fields' [actions]='spec.buttons' (action)='action.emit($event)' (showImages) = 'spec.is_expended =! spec.is_expended'></car>
+        <car [data]='spec.fields' [actions]='spec.buttons' (action)='action.emit($event)' (showImages) = 'spec.is_expended =! spec.is_expended' (openGallery)='openGallery.emit($event)'></car>
 
     </div>
 
