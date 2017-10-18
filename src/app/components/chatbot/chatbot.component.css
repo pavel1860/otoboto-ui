@@ -1,10 +1,10 @@
+/*
 .wrapper {
     width: 100%;
     height: 100%;
     position: fixed;
     top: 0;
     left: 0; 
-    /*background: rgba(0,132,255,1);*/
     background: white;
     color: white;
     display: flex;
@@ -87,7 +87,7 @@
     }
 }
 
-/* typing indicator */
+
 
 .typing-indicator {
   background-color: #e6e7ed;
@@ -155,11 +155,77 @@ body {
   vertical-align: middle;
 }
 
+*/
 
 .wrapper {
-  background-image: url('../../../assets/OTOBOTO.svg');
+  background-image: url('../../../assets/buba.svg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  background-position-x: -2025px;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0; 
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  transition: all 0.5s ease-in-out;
+  z-index: 999; 
+}
 
+.top-bar {
+  position: fixed;
+  top: 0; 
+  left: 0;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  line-height: 60px;
+  background: white;
+
+}
+
+.logo-panel {
+  align-self: center;
+  margin-right: 80px;
+}
+
+.logo-label {
+  text-transform: uppercase;
+}
+
+.caption-panel {
+  align-self: center;
+  padding-top: 250px; 
+}
+
+.caption-text {
+  font-size: 42px;
+  text-align: center;
+}
+
+.option-button {
+  font-size: 15px;
+}
+
+.buttons-panel {
+  display: flex;
+  justify-content: space-around;
+  padding: 50px;
+  width: 250px;
+  align-self: center;
+}
+
+.minimized {
+  width: 300px;
+  background: white;
+  color: black;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+}
+
+.minimized .top-bar {
+  display: none;
 }

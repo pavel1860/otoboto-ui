@@ -4,15 +4,23 @@ import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import { FacebookService, InitParams, LoginResponse, LoginOptions } from 'ngx-facebook';
 
+import { environment } from '../../environments/environment';
+
 import * as io from 'socket.io-client';
 
 @Injectable()
 export class Chatbot {
 
-  private url = 'http://localhost:5000';  
+  private url;  
   private socket;
 
   constructor(private fb: FacebookService) {
+
+    if (environment.production) {
+      this.url = environment['BOT_URI'];
+    } else {
+      this.url = 'http://localhost:5000';
+    }
 
     let initParams: InitParams = {
       appId: '1920807244817016',

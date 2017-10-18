@@ -4,7 +4,7 @@
 
             <div class='gallery-panel' (mouseover)='is_over_gallery=true' (mouseleave)='is_over_gallery=false'> <!--(click)='showImages.emit(); show_full_gallery = !show_full_gallery;'-->
                 
-                <div class='round-button white-gray-button like-panel'>
+                <div class='round-button white-gray-button like-panel' (click)='like.emit(actions[0])'>
                     <md-icon class="phone-icon">favorite_border</md-icon>
                 </div>
 
@@ -19,7 +19,7 @@
             <div class='content-panel'>
 
                         <div class='remove-icon-frame'>
-                            <md-icon class="icon remove-icon" (click)='action.emit(actions[0])'>cancel</md-icon>
+                            <md-icon class="icon remove-icon" (click)='action.emit(actions[1])'>cancel</md-icon>
                         </div>
                             
                         <div class='rating-box' [ngClass]="{'recommended green-text': rankSummary=='recommended', 'unrecommended': rankSummary=='unrecommended', 'neutral': rankSummary=='neutral'}">
@@ -29,7 +29,7 @@
                                 <md-icon *ngIf='rankSummary=="recommended"' class="icon happy rank-face">sentiment_satisfied</md-icon>
                             </div>                       
                             <label class='rating-label'>
-                                {{ data.static_rank | number:'.1-1' }} 
+                                {{ data.rank | number:'.1-1' }} 
                             </label>
                         </div>   
                         
@@ -85,7 +85,7 @@
                             <div class='seperator-horizontal'></div>
 
                             <div class='price-panel dark-gray-text'>
-                                <label class='price-label'> {{data.price[0] | nis}} </label>   
+                                <label class='price-label'> {{data.price | nis}} </label>   
                             </div>
 
                             <div class='round-button green-white-button phone-panel'>

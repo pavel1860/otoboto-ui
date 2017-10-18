@@ -10,7 +10,7 @@ import {Chatbot} from './services/chatbot.service';
 export class AppComponent {
 
   message;
-  results; 
+  results = []; 
   displayMode; 
   mode; 
   showGallery = false; 
@@ -30,6 +30,8 @@ export class AppComponent {
 
   execute(message) {
 
+    console.log(message);
+
     this.setDisplay(message); 
 
     switch (message.code) {
@@ -46,6 +48,33 @@ export class AppComponent {
         break;
     }
 
+  }
+
+  renderList(newList) {
+
+    /*
+    let newListIds = newList.map(item => item.fields.car_document_id.$oid); 
+
+    // remove item which is missing from the new list
+    for (let index = this.results.length - 1; index >= 0; index--) {
+      let id = this.results[index].car_document_id.$oid;
+      if (newListIds.indexOf(id) == -1) {
+        this.results.splice(index,1);
+      }
+    }
+
+    // add item which is missing from the old list
+    let oldListIds = newList.map(item => item.fields.car_document_id.$oid);
+    for (let index = newList.length - 1; index >= 0; index--) {
+      let id = newList[index].fields.car_document_id.$oid;
+      if (oldListIds.indexOf(id) == -1) {
+        this.results.push(newList[index]);
+      }
+    }   
+    */ 
+
+
+      
   }
 
   sendAction(action) {

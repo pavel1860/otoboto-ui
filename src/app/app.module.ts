@@ -31,6 +31,8 @@ import { FacebookModule } from 'ngx-facebook';
 import { SwiperModule } from 'angular2-swiper-wrapper';
 import { SwiperConfigInterface } from 'angular2-swiper-wrapper';
 
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+
 const SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
   slidesPerView: 'auto',
@@ -55,6 +57,7 @@ const SWIPER_CONFIG: SwiperConfigInterface = {
   ],
   imports: [
     BrowserModule,
+    InfiniteScrollModule,
     BrowserAnimationsModule,
     MdButtonModule, 
     MdCheckboxModule,

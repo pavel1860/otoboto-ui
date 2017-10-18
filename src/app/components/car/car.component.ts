@@ -14,6 +14,8 @@ export class CarComponent {
   @Output() action: EventEmitter<any> = new EventEmitter();
   @Output() showImages: EventEmitter<any> = new EventEmitter();
   @Output() openGallery: EventEmitter<any> = new EventEmitter();
+  @Output() like: EventEmitter<any> = new EventEmitter();
+
 
   properties;
   rankSummary; 
@@ -21,6 +23,9 @@ export class CarComponent {
   handCaption; 
   milageCaption;
   volumeCaption;
+
+  state = 'normal';
+  wildState = 'normal';
 
   handToken = 'יד'; 
 
@@ -36,7 +41,8 @@ export class CarComponent {
 
   gearTypeHebrewTokens = {
     'automatic': 'אוטומטי', 
-    'manual': 'ידני'
+    'manual': 'ידני',
+    'robotic': 'רובוטית'
   };
 
   milageUnitToken = 'ק״מ';
@@ -55,7 +61,7 @@ export class CarComponent {
 
   ngOnInit() {
 
-      this.rankSummary = this.computeRankSummary(this.data.static_rank); 
+      this.rankSummary = this.computeRankSummary(this.data.rank); 
       this.handCaption = this.handToken + ' ' + this.handCaptionPrefix[this.data.hand - 1];
       this.gearTypeCaption = this.gearTypeHebrewTokens[this.data.gear]; 
 
@@ -67,9 +73,8 @@ export class CarComponent {
           this.milageCaption = milageCountWithCommas.substring(0, 2) + ' ' + this.milageUnitTokenExtension + ' ' + this.milageUnitToken;
       }
 
-      this.volumeCaption = this.data.engin_capacity + ' ' + this.volumeUnitToken; 
+      this.volumeCaption = this.data.engine_capacity + ' ' + this.volumeUnitToken; 
         
-      console.log(this.data); 
       this.properties = [
           {
               caption: 'יד',
@@ -100,6 +105,7 @@ export class CarComponent {
         this.openGallery.emit({initialIndex: index, images: images});
     }
 
+    
 
 
 }

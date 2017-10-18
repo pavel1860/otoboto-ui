@@ -11,6 +11,10 @@
     width: 80%; 
     max-width: 1200px;
     align-self: center;
+    position: absolute;
+    top: 177px;
+    max-height: 80%;
+    overflow: hidden;    
 }
 
 .close-icon {
