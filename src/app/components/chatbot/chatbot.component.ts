@@ -29,6 +29,7 @@ export class ChatbotComponent {
   }
 
   sendUserInput(value) {
+    console.log(value);
     this.chatbotService.sendTextResponse(value);
   }
 

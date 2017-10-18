@@ -33,6 +33,7 @@ export class Chatbot {
   }
   
   sendMessage(message){
+    console.log('sending...');
     console.log(message);
     this.socket.emit('POSTBACK', this.sendPostback(message.payload, null).msg);  
   }
@@ -122,6 +123,7 @@ export class Chatbot {
   }
 
   sendTextResponse(payload) {
+    console.log('sending this:' + payload);
     this.socket.emit('USER_MESSAGE', this.sendTextMessage(payload));
   }
 
