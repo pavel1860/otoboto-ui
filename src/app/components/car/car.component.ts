@@ -16,7 +16,6 @@ export class CarComponent {
   @Output() openGallery: EventEmitter<any> = new EventEmitter();
   @Output() like: EventEmitter<any> = new EventEmitter();
 
-
   properties;
   rankSummary; 
   gearTypeCaption; 

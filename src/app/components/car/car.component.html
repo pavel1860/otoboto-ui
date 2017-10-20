@@ -1,8 +1,8 @@
-<div #wrapper class='main-wrapper card assistant' [ngClass]='{hidden:!showMe}' > 
+<div #wrapper class='main-wrapper card assistant'> 
 
     <div class='card-main-panel'>
 
-            <div class='gallery-panel' (mouseover)='is_over_gallery=true' (mouseleave)='is_over_gallery=false'> <!--(click)='showImages.emit(); show_full_gallery = !show_full_gallery;'-->
+            <div class='gallery-panel'> <!--(click)='showImages.emit(); show_full_gallery = !show_full_gallery;'-->
                 
                 <div class='round-button white-gray-button like-panel' (click)='like.emit(actions[0])'>
                     <md-icon class="phone-icon">favorite_border</md-icon>
@@ -207,16 +207,10 @@
 
         </div>
 
-        <div class='full-gallery-panel' *ngIf='show_full_gallery'>
+        <!--div class='full-gallery-panel' *ngIf='show_full_gallery'>
             <image-gallery class='full-gallery' [images]='data.mobile_pics' [ngClass]='{visible: show_full_gallery}'></image-gallery>
-        </div>
-
-
-        <div class='full-info-panel' *ngIf='show_full_info'>
-
+        </div-->
         
-
-        </div>
 </div>
 
  
