@@ -26,8 +26,13 @@ export class Chatbot {
     }
     console.log(environment.production);
 
+    // let initParams: InitParams = {
+    //   appId: '1920807244817016',
+    //   xfbml: true,
+    //   version: 'v2.8'
+    // };
     let initParams: InitParams = {
-      appId: '1920807244817016',
+      appId: environment.APP_ID,
       xfbml: true,
       version: 'v2.8'
     };

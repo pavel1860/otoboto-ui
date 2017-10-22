@@ -5,4 +5,5 @@
 
 export const environment = {
   production: false
+  APP_ID: '1920807244817016'
 };
