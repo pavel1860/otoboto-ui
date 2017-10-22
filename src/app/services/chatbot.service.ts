@@ -24,6 +24,7 @@ export class Chatbot {
       console.log('DEVELOPMENT')
       this.url = 'http://localhost:5000';
     }
+    console.log(environment.production);
 
     let initParams: InitParams = {
       appId: '1920807244817016',

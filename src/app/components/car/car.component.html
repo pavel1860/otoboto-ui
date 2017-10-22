@@ -8,7 +8,7 @@
                     <md-icon class="phone-icon">favorite_border</md-icon>
                 </div>
 
-                <swiper class='gallery-swiper' [config]="swiperConfig">
+                <swiper class='gallery-swiper' [config]="config">
                     <div class='gallery-cover' *ngFor='let image of data.mobile_pics; let i = index' [ngStyle]="{'background-image': 'url(' + image  + ')'}" (click)='showGallery(i, data.mobile_pics)'>
                     </div>                   
                 </swiper>    

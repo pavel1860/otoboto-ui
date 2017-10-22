@@ -1,4 +1,5 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
+import { SwiperComponent, SwiperDirective, SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
 @Component({
   selector: 'car',
@@ -48,13 +49,20 @@ export class CarComponent {
   milageUnitTokenExtension = 'אלף';
   volumeUnitToken = 'סמ״ק';  
 
-  swiperConfig = {            
-            pagination: '.swiper-pagination',
-            paginationClickable: true,
-            nextButton: '.swiper-button-next',
-            prevButton: '.swiper-button-prev',
-            spaceBetween: 0
-        } 
+  public config: SwiperConfigInterface = {
+    scrollbar: null,
+    direction: 'horizontal',
+    slidesPerView: 1,
+    scrollbarHide: false,
+    keyboardControl: true,
+    mousewheelControl: false,
+    scrollbarDraggable: true,
+    scrollbarSnapOnRelease: true,
+    pagination: '.swiper-pagination',
+    paginationClickable: true,
+    nextButton: '.swiper-button-next',
+    prevButton: '.swiper-button-prev'
+  };
 
   constructor() {}
 
