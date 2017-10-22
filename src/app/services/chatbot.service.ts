@@ -11,14 +11,17 @@ import * as io from 'socket.io-client';
 @Injectable()
 export class Chatbot {
 
-  private url;  
+  private url;
   private socket;
 
   constructor(private fb: FacebookService) {
-
+    console.log("=================")
+    console.log(environment)
     if (environment.production) {
+      console.log('!!!!!!!!!!!!!!!!!!!!!!')
       this.url = environment['BOT_URI'];
     } else {
+      console.log('DEVELOPMENT')
       this.url = 'http://localhost:5000';
     }
 
@@ -27,9 +30,7 @@ export class Chatbot {
       xfbml: true,
       version: 'v2.8'
     };
-
     this.fb.init(initParams);
-
   }
   
   sendMessage(message){
