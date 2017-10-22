@@ -32,7 +32,7 @@ export class Chatbot {
     //   version: 'v2.8'
     // };
     let initParams: InitParams = {
-      appId: environment.APP_ID,
+      appId: environment['APP_ID'],
       xfbml: true,
       version: 'v2.8'
     };
