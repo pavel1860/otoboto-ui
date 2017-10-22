@@ -29,9 +29,7 @@ export class ImageSwiperGalleryComponent {
                 spaceBetween: 0,
                 initialSlide: this.index
             } 
-            
-            console.log(this.swiperConfig);
-    
+                
     this.ordered = []; 
     this.ordered.push(this.images[this.index]);
 

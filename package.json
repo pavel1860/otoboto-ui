@@ -30,12 +30,12 @@
     "ng2-socket-io": "^0.1.7",
     "ngx-facebook": "^2.4.0",
     "ngx-infinite-scroll": "^0.5.2",
+    "ngx-swiper-wrapper": "^4.6.6",
     "rxjs": "^5.1.0",
-    "swiper": "^4.0.0",
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
-    "@angular/cli": "1.2.0",
+    "@angular/cli": "1.2.6",
     "@angular/compiler-cli": "^4.0.0",
     "@angular/language-service": "^4.0.0",
     "@types/jasmine": "~2.5.53",

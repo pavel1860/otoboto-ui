@@ -28,8 +28,8 @@ import {MatIconModule} from '@angular/material';
 
 import { FacebookModule } from 'ngx-facebook';
 
-import { SwiperModule } from 'angular2-swiper-wrapper';
-import { SwiperConfigInterface } from 'angular2-swiper-wrapper';
+import { SwiperModule } from 'ngx-swiper-wrapper';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
