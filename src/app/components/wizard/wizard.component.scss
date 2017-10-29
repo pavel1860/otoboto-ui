@@ -1,0 +1,53 @@
+$margin-from-caption: 50px;
+
+.wrapper { 
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;    
+}
+
+.pager-panel {
+    display: flex;
+    justify-content: center;
+}
+
+.caption-panel {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.userInputWrapper {
+    margin-top: $margin-from-caption;
+    display: flex;
+    justify-content: center;
+}
+
+.caption-panel label {
+    text-align: center;
+}
+
+.input-selector {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.continue-button-panel {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media only screen and (min-width : 768px) {
+    .continue-button-panel {
+        position: unset;
+        margin-top: 20px;
+    }  
+}

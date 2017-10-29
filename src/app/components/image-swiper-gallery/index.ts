@@ -1,1 +1,0 @@
-export * from './image-swiper-gallery.component';

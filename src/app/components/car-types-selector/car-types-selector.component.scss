@@ -1,0 +1,35 @@
+$option-size: 80px;
+$space-between-options: 20px;
+
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.option-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: $space-between-options;
+    margin-right: $space-between-options;
+    margin-bottom: $space-between-options;
+    cursor: pointer;
+}
+
+.option {
+    width: $option-size;
+    height: $option-size;
+    display: flex;
+    justify-content: center;
+    border-radius: 100%;
+}
+
+.option-caption {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.option-caption label {
+    text-align: center;
+}

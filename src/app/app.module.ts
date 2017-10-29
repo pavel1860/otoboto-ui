@@ -1,33 +1,33 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from "@angular/http";
+import { ReactiveFormsModule } from '@angular/forms';
+import { AppRoutingModule }     from './app-routing.module';
 
-import {AppComponent} from './app.component';
-import {TopBarComponent} from './components/top-bar/top-bar.component';
-import {ListViewComponent} from './components/list-view/list-view.component';
-import {ChatbotComponent} from './components/chatbot/chatbot.component';
-import {ChatbotMessageComponent} from './components/chatbot-message/chatbot-message.component';
-import {ChatbotInputComponent} from './components/chatbot-input/chatbot-input.component';
-import {FacebookLoginButtonComponent} from './components/facebook-login-button/facebook-login-button.component'
-import {CarComponent} from './components/car/car.component';
-import {ImageGalleryComponent} from './components/image-gallery/image-gallery.component';
-import {ChatbotFullLayoutComponent} from './components/chatbot-full-layout/chatbot-full-layout.component'; 
-import {BotAvatarComponent} from './components/bot-avatar/bot-avatar.component'; 
-import {ImageSwiperGalleryComponent} from './components/image-swiper-gallery/image-swiper-gallery.component'; 
+import { AppComponent } from './app.component';
+import { WelcomeComponent } from './components/welcome/welcome.component';
+import { ResultsComponent } from './components/results/results.component';
 
-import {Chatbot} from './services/chatbot.service';
+import { ControlPanelComponent } from './components/control-panel/control-panel.component';
+import { TopBarComponent } from './components/top-bar/top-bar.component';
+import { FacebookLoginButtonComponent } from './components/facebook-login-button/facebook-login-button.component';
+import { WizardComponent } from './components/wizard/wizard.component';
+import { PagerComponent } from './components/pager/pager.component';
+import { InputBoxComponent } from './components/input-box/input-box.component';
+import { PriceSelectorComponent } from './components/price-selector/price-selector.component';
+import { CarTypeSelectorComponent } from './components/car-types-selector/car-types-selector.component';
+import { LocationSelectorComponent } from './components/location-selector/location-selector.component';
+import { GoogleAutocompleteComponent } from './components/google-autocomplete/google-autocomplete.component';
 
-import {NisPipe}  from './pipes/nis.pipe';
+import { Otoboto } from './services/otoboto.service';
 
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { NisPipe }  from './pipes/nis.pipe';
 
-import {MdButtonModule, MdCheckboxModule} from '@angular/material';
-import {MatToolbarModule} from '@angular/material';
-import {MatCardModule} from '@angular/material';
-import {MatListModule} from '@angular/material';
-import {MatIconModule} from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FacebookModule } from 'ngx-facebook';
-
 import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
@@ -41,36 +41,35 @@ const SWIPER_CONFIG: SwiperConfigInterface = {
 
 @NgModule({
   declarations: [
-    AppComponent, 
+    AppComponent,
+    WelcomeComponent,
+    ResultsComponent,
+    ControlPanelComponent,
     TopBarComponent,
-    ListViewComponent,
-    NisPipe,
-    ChatbotComponent,
-    ChatbotMessageComponent,
-    ChatbotInputComponent,
     FacebookLoginButtonComponent,
-    CarComponent,
-    ImageGalleryComponent,
-    ChatbotFullLayoutComponent,
-    BotAvatarComponent,
-    ImageSwiperGalleryComponent
+    NisPipe,
+    WizardComponent,
+    PagerComponent,
+    CarTypeSelectorComponent,
+    LocationSelectorComponent,
+    PriceSelectorComponent,
+    GoogleAutocompleteComponent,
+    InputBoxComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule, 
+    HttpModule,
+    ReactiveFormsModule,   
+    AppRoutingModule,
     InfiniteScrollModule,
     BrowserAnimationsModule,
-    MdButtonModule, 
-    MdCheckboxModule,
-    MatToolbarModule,
-    MatCardModule,
-    MatListModule,
-    MatIconModule,
     SwiperModule,
     FacebookModule.forRoot(),
     SwiperModule.forRoot(SWIPER_CONFIG)
   ],
   providers: [
-    Chatbot
+    Otoboto
   ],
   bootstrap: [AppComponent]
 })

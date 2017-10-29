@@ -1,0 +1,25 @@
+<div class='wrapper'>
+
+    <div class='pager-panel'>
+        <pager class='pager' [length]='steps.length' [activeStep]='step' (selectedStep)='goToStep($event)'></pager>
+    </div>
+
+    <div class='caption-panel'>
+        <label>
+            {{steps[step-1].caption}}
+        </label>
+    </div>
+
+    <div class='userInputWrapper'>
+        <car-types-selector class='input-selector' *ngIf='steps[step-1].inputType == "carTypesSelector"' (selected)='type = $event.id; nextStep(); updateURI();' [@divState]="state"></car-types-selector>
+        <price-selector class='input-selector' *ngIf='steps[step-1].inputType == "priceSelector"' [valueToken]='price' (valueChanged)='price = $event; prepareData(); updateURI();' [@divState]="state"></price-selector>
+        <location-selector class='input-selector' *ngIf='steps[step-1].inputType == "locationSelector"' [value]='location' (selected)='location = $event.token; getData(); updateURI();' [@divState]="state"></location-selector>
+    </div>
+
+    <div *ngIf='steps[step-1].continueButton' class='continue-button-panel'>
+        <div class='button otoboto-blue text-small' (click)='nextStep();'>
+            המשך
+        </div>
+    </div>
+
+</div>

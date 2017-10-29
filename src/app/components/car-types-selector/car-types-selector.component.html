@@ -1,0 +1,10 @@
+<div class='wrapper'>
+    <div *ngFor='let option of options' class='option-wrapper' (click)='selected.emit(option)'>
+        <div class='option otoboto-yellow'>
+            <img [src]='option.icon'>
+        </div>
+        <div class='option-caption'>
+            <label>{{option.caption}}</label>
+        </div>
+    </div>
+</div>

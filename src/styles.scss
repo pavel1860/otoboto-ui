@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik');
+
+$primary: #14C6C6;
+$backdrop: #F6F6F6; 
+$accent: #FFDA80;
+$medium-gray: #B2B2B2;  
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Rubik', sans-serif;
+    background: $backdrop;
+}
+
+.otoboto-medium-gray {
+    background-color: $medium-gray;
+}
+
+.otoboto-blue {
+    background-color: $primary;
+    color: white;
+}
+
+.otoboto-yellow {
+    background-color: $accent;
+}
+
+.text-otoboto-medium-gray {
+    color: $medium-gray;    
+}
+
+.text-small {
+    font-size: 10px;
+}
+
+.button {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* input */
+
+input {
+    text-align: center; 
+    font-family: 'Rubik', sans-serif;
+    color: #B2B2B2; 
+}
+
+input::placeholder {
+    color: #B2B2B2; 
+}
+
+input:focus::-webkit-input-placeholder { color:transparent; }
+input:focus:-moz-placeholder { color:transparent; } /* Firefox 18- */
+input:focus::-moz-placeholder { color:transparent; } /* Firefox 19+ */
+input:focus:-ms-input-placeholder { color:transparent; } /* oldIE ;) */
+
+/* google places */
+
+.pac-container:after {
+    background-image: none !important;
+    height: 0px;
+}
+
+.pac-container {
+    position: absolute !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 50vw !important;
+    max-width: 500px !important;
+    margin-top: 20px;
+}
+
+.pac-container, .pac-item {
+    box-shadow: none !important;
+    border: none !important;
+}
+.pac-item {
+    padding: 10px;
+    text-align: right; 
+    font-family: 'Rubik', sans-serif;
+    cursor: pointer;
+    text-align: center;
+}
+
+.pac-item > span {
+    color: #B2B2B2;  
+    text-align: center;
+}
+
+.pac-item > span:last-child {
+    display: none;
+}
+.pac-item > span:first-child {
+    display: none;
+}

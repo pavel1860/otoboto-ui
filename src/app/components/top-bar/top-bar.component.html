@@ -1,12 +1,8 @@
-<md-toolbar class='top-bar'>
-  <!--span>אוטובוטו</span-->
-  <div class='navigation-panel'>
-    
-    <button md-button *ngFor='let tab of tabs'>
-      <md-icon class="icon" (click)='tabSelected.emit(tab)'>{{tab.icon}}</md-icon>
-    </button>
-    <!--button md-button>
-      <md-icon class="icon" (click)='showSearch.emit()'>search</md-icon>
-    </button-->      
-  </div>
-</md-toolbar>
+<div class='top-bar'>
+    <div class='logo-panel'>
+        
+    </div>
+    <div class='login-panel'>
+        <facebook-login-button></facebook-login-button>
+    </div>    
+</div>

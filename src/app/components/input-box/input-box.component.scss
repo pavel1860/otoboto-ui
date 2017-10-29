@@ -1,0 +1,35 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    height: 45px;
+    width: 50vw;
+    background-color: white;
+    border-radius: 7px;
+}
+
+.icon-box {
+    position: absolute;
+    right: -25px;
+    top: 0;
+    width: 47px;
+    height: 47px;
+    display: flex;
+    justify-content: center;
+    border-radius: 100%;
+    background-color: transparent;
+}
+
+.input-box {
+    width: 80%; 
+}
+
+.input-box-panel {
+    width: 80%;
+}
+
+@media only screen and (min-width : 768px) {
+    .wrapper {
+        width: 500px;
+    } 
+}

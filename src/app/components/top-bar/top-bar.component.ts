@@ -1,38 +1,9 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'top-bar',
   templateUrl: './top-bar.component.html',
-  styleUrls: ['./top-bar.component.css']
+  styleUrls: ['./top-bar.component.scss']
 })
 
-export class TopBarComponent {
-
-  @Output() tabSelected: EventEmitter<any> = new EventEmitter();
-
-  tabs = [
-    {
-      id: 'favorite', 
-      icon: 'favorite', 
-      payload: 'favorites'
-    }, 
-    {
-      id: 'search', 
-      icon: 'search', 
-      payload: 'car_search'
-    }
-  ] 
-
-  constructor() {}  
-
-  ngOnInit() {
-
-  }
-
-
-
-
-
-
-
-}
+export class TopBarComponent {}

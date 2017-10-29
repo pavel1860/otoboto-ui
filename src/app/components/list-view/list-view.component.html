@@ -1,7 +1,0 @@
-<md-list class='list' infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()">
-    <div *ngFor='let spec of items; let i = index;'>
-        <div *ngIf='i < itemsLimit' class='item' [ngClass]='{"hidden-item": spec.hidden, expended: spec.is_expended}' [@divState]="state"> 
-            <car [data]='spec.fields' [actions]='spec.buttons' (action)='action.emit($event)' (like)='removeFromList(i); action.emit($event);' (showImages) = 'spec.is_expended =! spec.is_expended' (openGallery)='openGallery.emit($event)'></car>
-        </div>
-    </div>
-</md-list>
