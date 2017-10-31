@@ -2,8 +2,8 @@
     display: flex;
     justify-content: center;
     position: relative;
-    height: 45px;
-    width: 50vw;
+    height: 42.5px;
+    width: 200px;
     background-color: white;
     border-radius: 7px;
 }
@@ -12,12 +12,13 @@
     position: absolute;
     right: -25px;
     top: 0;
-    width: 47px;
-    height: 47px;
+    width: 42.5px;
+    height: 42.5px;
     display: flex;
     justify-content: center;
     border-radius: 100%;
     background-color: transparent;
+    overflow: hidden;
 }
 
 .input-box {
@@ -29,7 +30,14 @@
 }
 
 @media only screen and (min-width : 768px) {
+    .icon-box {
+        right: -7px;
+        top: 0;
+        width: 34.5px;
+        height: 34.5px;
+    }
     .wrapper {
-        width: 500px;
-    } 
+        width: 164px;
+        height: 34.5px;
+    }
 }

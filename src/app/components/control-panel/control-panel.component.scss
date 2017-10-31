@@ -14,17 +14,40 @@
     width: 100%;
 }
 
+.cover-mobile {
+    display: block;
+}
+
+.cover-desktop {
+    display: none;
+}
+
 @media only screen and (min-width : 768px) {
     .avatar-panel {
         position: absolute;
-        top: 0;
+        top: unset;
+        bottom: 0;
         left: 0;
         right: 0;
         margin-left: auto;
         margin-right: auto;
-        width: 500px;
+        height: 300px;
+        background-image: url('../../../assets/otoboto-buildings-cover.svg');
+        background-size: contain;
+        background-position: bottom;
+        background-repeat: repeat-x;
+        justify-content: center;
+        display: flex;
     }  
     .control-panel {
-        height: 296px;   
+        height: 42vh;  
+    }
+    .cover-mobile {
+        display: none;
+    }
+    .cover-desktop {
+        display: block;
+        margin-bottom: -140px;
+        width: 485px;
     }
 }

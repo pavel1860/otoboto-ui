@@ -1,5 +1,5 @@
 input {
-    height: 40px;
+    height: 42.5px;
     background-color: transparent;
     border: none;
     outline: none;
@@ -18,3 +18,9 @@ input:focus::-webkit-input-placeholder { color:transparent; }
 input:focus:-moz-placeholder { color:transparent; } /* Firefox 18- */
 input:focus::-moz-placeholder { color:transparent; } /* Firefox 19+ */
 input:focus:-ms-input-placeholder { color:transparent; } /* oldIE ;) */
+
+@media only screen and (min-width : 768px) {
+    input {
+        height: 34.5px;
+    }
+}

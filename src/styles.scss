@@ -4,6 +4,7 @@ $primary: #14C6C6;
 $backdrop: #F6F6F6; 
 $accent: #FFDA80;
 $medium-gray: #B2B2B2;  
+$warm-gray: #706f6f;  
 
 body {
     margin: 0;
@@ -14,6 +15,10 @@ body {
 
 .otoboto-medium-gray {
     background-color: $medium-gray;
+}
+
+.otoboto-warm-gray {
+    background-color: $warm-gray;
 }
 
 .otoboto-blue {
@@ -40,7 +45,21 @@ body {
     padding-bottom: 8px;
     border-radius: 5px;
     cursor: pointer;
+    text-align: center;
 }
+
+@media only screen and (min-width : 768px) {
+    .button {
+        width: 60px;
+        height: 22.5px;
+        line-height: 22.5px;
+        padding: 0;
+    }
+}
+
+
+
+
 
 /* input */
 
@@ -75,6 +94,12 @@ input:focus:-ms-input-placeholder { color:transparent; } /* oldIE ;) */
     width: 50vw !important;
     max-width: 500px !important;
     margin-top: 20px;
+}
+
+@media only screen and (min-width : 768px) {
+    .pac-container {
+        width: 164px !important;
+    }
 }
 
 .pac-container, .pac-item {

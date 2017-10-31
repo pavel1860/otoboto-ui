@@ -1,10 +1,11 @@
-$margin-from-caption: 50px;
+$margin-from-caption: 38px;
 
 .wrapper { 
     height: 100%;
     display: flex;
     justify-content: flex-start;
-    flex-direction: column;    
+    flex-direction: column; 
+    overflow-x: hidden;   
 }
 
 .pager-panel {
@@ -15,7 +16,7 @@ $margin-from-caption: 50px;
 .caption-panel {
     display: flex;
     justify-content: center;
-    margin-top: 10px;
+    margin-top: 16px;
 }
 
 .userInputWrapper {
@@ -50,4 +51,15 @@ $margin-from-caption: 50px;
         position: unset;
         margin-top: 20px;
     }  
+    .pager-panel {  
+        order: 3;
+        margin-top: 52px;             
+    }
+    .caption-panel {
+        margin-top: 0;
+    }
+    .userInputWrapper {
+        margin-top: 45px;
+        height: 141px;
+    }
 }

@@ -52,7 +52,7 @@ export class WizardComponent {
         },        
         {
             inputType: "locationSelector", 
-            caption: "בחר את אזור החיפוש",
+            caption: 'באיזה אזור אתה מחפש?',
             continueButton: true,
             data: 'location'
         }
@@ -88,10 +88,12 @@ export class WizardComponent {
 
     nextStep() {
         let value = this[this.steps[this.step-1].data];
+        console.log(value);
         if (!value) {
             return; 
         }
         if (this.step < this.steps.length) {
+            console.log('hey');
             this.step++; 
         } else {
             this.zone.run(() =>  

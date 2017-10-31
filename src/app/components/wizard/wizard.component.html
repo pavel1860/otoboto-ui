@@ -12,14 +12,14 @@
 
     <div class='userInputWrapper'>
         <car-types-selector class='input-selector' *ngIf='steps[step-1].inputType == "carTypesSelector"' (selected)='type = $event.id; nextStep(); updateURI();' [@divState]="state"></car-types-selector>
-        <price-selector class='input-selector' *ngIf='steps[step-1].inputType == "priceSelector"' [valueToken]='price' (valueChanged)='price = $event; prepareData(); updateURI();' [@divState]="state"></price-selector>
-        <location-selector class='input-selector' *ngIf='steps[step-1].inputType == "locationSelector"' [value]='location' (selected)='location = $event.token; getData(); updateURI();' [@divState]="state"></location-selector>
+        <price-selector class='input-selector' *ngIf='steps[step-1].inputType == "priceSelector"' [valueToken]='price' (done)='price = $event; nextStep(); updateURI();' [@divState]="state"></price-selector>
+        <location-selector class='input-selector' *ngIf='steps[step-1].inputType == "locationSelector"' [value]='location' (selected)='location = $event.token; updateURI();' [@divState]="state"></location-selector>
     </div>
-
-    <div *ngIf='steps[step-1].continueButton' class='continue-button-panel'>
+    
+    <!--div *ngIf='steps[step-1].continueButton' class='continue-button-panel'>
         <div class='button otoboto-blue text-small' (click)='nextStep();'>
             המשך
         </div>
-    </div>
+    </div-->
 
 </div>

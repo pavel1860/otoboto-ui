@@ -10,11 +10,15 @@ import { FormControl } from '@angular/forms';
 export class PriceSelectorComponent {
 
     @Input() valueToken = '';
-    @Output() valueChanged: EventEmitter<any> = new EventEmitter();
+    @Output() done: EventEmitter<any> = new EventEmitter();
 
     valueControler = new FormControl();
-
+    value; 
+    
     ngOnInit() {
+        if(!this.valueToken) {
+            this.valueToken = '';
+        }
         this.valueControler.valueChanges.subscribe(token => {
                 let stripped = token.replace(/\₪|,/g, '');
                 if (isNaN(stripped)) {
@@ -25,7 +29,7 @@ export class PriceSelectorComponent {
                     this.valueToken = '';
                     } else {
                         this.valueToken = as_num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                        this.valueChanged.emit(as_num); 
+                        this.value = as_num;
                     }
                 }
             });  

@@ -3,10 +3,17 @@
 }
 
 .step-button {
-    width: 10px;
-    height: 10px;
+    width: 15px;
+    height: 15px;
     border-radius: 100%; 
     margin-left: 5px;
     margin-right: 5px;
     cursor: pointer;
+}
+
+@media only screen and (min-width : 768px) {
+    .step-button {
+        width: 13px;
+        height: 13px;
+    }
 }
