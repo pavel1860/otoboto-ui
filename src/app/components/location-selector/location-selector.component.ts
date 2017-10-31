@@ -9,8 +9,10 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
 export class LocationSelectorComponent {
 
   @Input() value = '';
-  @Output() selected: EventEmitter<any> = new EventEmitter();
+  @Output() done: EventEmitter<any> = new EventEmitter();
 
+  selected; 
+  
   ngOnInit() {
     if (!this.value) {
       this.value = '';

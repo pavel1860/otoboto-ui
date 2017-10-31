@@ -1,10 +1,10 @@
 <div class='wrapper'>
     <input-box class='input-box' [icon]='"../../assets/location-icon-color.svg"'>
-        <google-autocomplete class='input-box text-otoboto-medium-gray' [value]='value' (location)='selected.emit($event)'></google-autocomplete>
+        <google-autocomplete class='input-box text-otoboto-medium-gray' [value]='value' (location)='selected=$event'></google-autocomplete>
     </input-box>
 
     <div class='continue-button-panel'>
-        <div class='button otoboto-blue text-small' (click)='done.emit(value);'>
+        <div class='button otoboto-blue text-small' (click)='done.emit(selected);'>
             המשך
         </div>
     </div>
