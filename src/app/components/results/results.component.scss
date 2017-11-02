@@ -1,4 +1,60 @@
 .wrapper {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+}
+
+.bot-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 134.5px;
+    z-index: 10;
+}
+
+.bot-vertical {
+    display: none;
+}
+
+.bot-vertical {
+    display: flex;
+}
+
+.navigation-panel {
+    height: 62px;
+    margin-top: 134.5px;
+}
+
+.list-view-panel {
+    display: flex;
+    flex-direction: column; 
+}
+
+@media only screen and (min-width : 768px) {
+
+    .wrapper {
+        flex-direction: row;
+    }  
+
+    .bot-panel {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 33vw;
+        height: 100%;
+    }
+
+    .bot-vertical {
+        display: flex;
+    }
+    
+    .bot-vertical {
+        display: none;
+    }
+
+    .list-view-panel {
+        width: 67vw;
+        margin-top: 0px;
+    }
+
 }

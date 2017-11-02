@@ -1,0 +1,62 @@
+.wrapper {
+    display: flex;
+    height: 100%;
+}
+
+.vertical-wrapper {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.horizontal-wrapper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.horizontal-right-panel {
+    width: 128.5px;
+    justify-content: center;
+    display: flex; 
+    margin-right: 27px;   
+}
+
+.horizontal-left-panel {
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+}
+
+.vertical-top-panel {
+    width: 100%;
+    margin-top: 86px;
+    height: 80px;
+}
+
+.vertical-bottom-panel {
+    margin-top: 133.5px;
+    display: flex;
+    justify-content: center;
+}
+
+.bot-avatar {
+    width: 101px;
+    height: 88px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+@media only screen and (min-width : 768px) {
+
+    .vertical-wrapper {
+        display: flex;
+    }
+
+    .horizontal-wrapper {
+        display: none;
+    }
+
+}

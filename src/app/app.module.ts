@@ -20,8 +20,15 @@ import { PriceSelectorComponent } from './components/price-selector/price-select
 import { CarTypeSelectorComponent } from './components/car-types-selector/car-types-selector.component';
 import { LocationSelectorComponent } from './components/location-selector/location-selector.component';
 import { GoogleAutocompleteComponent } from './components/google-autocomplete/google-autocomplete.component';
+import { BotComponent } from './components/bot/bot.component';
+import { ListComponent } from './components/list/list.component';
+import { CardComponent } from './components/card/card.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { ImageGalleryComponent } from './components/image-gallery/image-gallery.component';
 
 import { Otoboto } from './services/otoboto.service';
+import { Bot } from './services/bot.service';
+import { LocalService } from './services/local.service';
 
 import { NisPipe }  from './pipes/nis.pipe';
 
@@ -54,7 +61,12 @@ const SWIPER_CONFIG: SwiperConfigInterface = {
     LocationSelectorComponent,
     PriceSelectorComponent,
     GoogleAutocompleteComponent,
-    InputBoxComponent
+    InputBoxComponent,
+    BotComponent,
+    ListComponent,
+    CardComponent,
+    NavigationComponent,
+    ImageGalleryComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +81,9 @@ const SWIPER_CONFIG: SwiperConfigInterface = {
     SwiperModule.forRoot(SWIPER_CONFIG)
   ],
   providers: [
-    Otoboto
+    Otoboto,
+    Bot,
+    LocalService
   ],
   bootstrap: [AppComponent]
 })

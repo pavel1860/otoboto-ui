@@ -88,19 +88,18 @@ export class WizardComponent {
 
     nextStep() {
         let value = this[this.steps[this.step-1].data];
-        console.log(value);
         if (!value) {
             return; 
         }
         if (this.step < this.steps.length) {
-            console.log('hey');
             this.step++; 
         } else {
             this.zone.run(() =>  
                 this.router.navigate(['./results'],{queryParams : {
                     type: this.type,
                     location: this.location,
-                    price: this.price
+                    price: this.price,
+                    prepared: true
                 }})
             );
         }
@@ -119,27 +118,19 @@ export class WizardComponent {
 
     setLocation(location) {
         this.location = location.token;
-        console.log(this.location);
     }
 
     isFilled(step) {
         let value = this[this.steps[step-1].data];
-        console.log(value);
         if (value == undefined) {
             return false;
         }
         return true;         
     }
 
-    prepareData() {
-        this.api.prepareData().subscribe(response => {
+    prepareData(type, price) {
+        this.api.prepareData(type, price).subscribe(response => {
             this.next = response['next']; 
-        });
-    }
-
-    getData() {
-        this.api.getData(this.next).subscribe(response => {
-            console.log(response);
         });
     }
     

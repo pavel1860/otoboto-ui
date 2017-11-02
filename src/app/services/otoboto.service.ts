@@ -14,6 +14,14 @@ export class Otoboto {
 
   private base;  
 
+  private END_POINTS = {
+    PREPARE_DATA: 'prepare_anonymous_data',
+    GET_DATA: 'set_anonymous_location',
+    SHOW_RESULTS: 'show_anonymous_results'
+  }
+
+  uid;
+
   constructor(private fb: FacebookService, private http: Http) {
 
     if (environment.production) {
@@ -32,16 +40,28 @@ export class Otoboto {
 
   }
 
-	prepareData = (): Observable<Response> => {
+	prepareData = (catagory, price): Observable<Response> => {
+    let request = this.base + this.END_POINTS.PREPARE_DATA + '?' + 'catagory=' + catagory + '&' + 'price=' + price; 
 		return this.http
-			.get(this.base + "prepare_anonymous_data?price=40000&catagory=family")
-			.map(res => res.json());
+			.get(request)
+      .map(res => {
+        let data = res.json(); 
+        this.uid = data.user_id; 
+        console.log('Data is ready, uid is: ', this.uid);
+        return data; 
+      });
+      
   };
   
-  getData = (req): Observable<Response> => {
-		return this.http
-			.get(this.base + req + 'haifa')
-			.map(res => res.json());
+  getData = (location, uid) => {
+    let request = this.base + this.END_POINTS.GET_DATA + '?' + 'user_id=' + this.uid + '&' + 'city=' + location + '&' + 'radius=' + '40';
+    return this.http
+      .get(request)
+      .map(res => res.json());
   };
+
+  getUID() {
+    return this.uid;
+  }
 
 }

@@ -26,12 +26,20 @@ body {
     color: white;
 }
 
+.otoboto-white {
+    background: white;
+}
+
 .otoboto-yellow {
     background-color: $accent;
 }
 
 .text-otoboto-medium-gray {
     color: $medium-gray;    
+}
+
+.border-otoboto-medium-gray {
+    border-color: $backdrop;    
 }
 
 .text-small {
@@ -124,4 +132,51 @@ input:focus:-ms-input-placeholder { color:transparent; } /* oldIE ;) */
 }
 .pac-item > span:first-child {
     display: none;
+}
+
+
+@media only screen and (min-width : 768px) {
+    .image-gallery {
+        
+        .swiper-container-horizontal>.swiper-pagination-bullets {
+            top: 21px;
+            left: -23.5px;
+            width: 100%;
+        }
+    
+        .swiper-pagination {
+            text-align: right;
+            bottom: unset;
+        }
+        
+    }
+}
+
+.image-gallery-mobile {
+
+    .swiper-container-horizontal>.swiper-pagination-bullets {
+        top: 21px;
+        left: -23.5px;
+        width: 100%;
+    }
+
+    .swiper-pagination {
+        text-align: right;
+        bottom: unset;
+    }
+
+}
+
+
+
+.swiper-pagination-bullet {
+    background: white !important;
+    opacity: .6 !important;
+    border-color: white !important;
+}
+
+.swiper-pagination-bullet-active {
+    background: $primary !important;
+    border-color: $primary !important;
+    opacity: 1 !important;
 }

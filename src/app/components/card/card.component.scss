@@ -1,0 +1,31 @@
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.gallery-panel {
+    height: 204.5px; 
+}
+
+.card-body {
+    height: 226.5px;
+}
+
+@media only screen and (min-width : 768px) {
+
+    .wrapper {
+        flex-direction: row;
+    } 
+
+    .gallery-panel {
+        width: 314.5px;
+        height: 312px;
+    }
+
+    .card-body {
+        width: 355.5px;
+        height: 312px;
+    }
+
+}

@@ -12,7 +12,7 @@ export class CarTypeSelectorComponent {
 
     options = [
         {
-            id: 'small', 
+            id: 'mini', 
             caption: 'קטן',
             icon: '../assets/car-type-icon-mini.svg'
         }, 
