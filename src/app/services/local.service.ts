@@ -5,12 +5,40 @@ export class LocalService {
 
     constructor() {}
 
-    saveResults(uid, results) {
-        localStorage.setItem(uid,JSON.stringify(results));
+    saveResults(results) {
+        localStorage.setItem('data',JSON.stringify(results));
     }
 
-    getResults(uid) {
-        return JSON.parse(localStorage.getItem(uid));
+    setAccessToken(token) {
+        localStorage.setItem('access_token',JSON.stringify(token));
+    }
+
+    setUserId(uid) {
+
+    }
+
+    getResults() {
+        return JSON.parse(localStorage.getItem('data'));
+    }
+
+    saveUserFacebookInfo(facebookID, userData) {
+        localStorage.setItem(facebookID,JSON.stringify(userData));
+    }
+
+    getUserFacebookInfo(facebookID) {
+        return JSON.parse(localStorage.getItem(facebookID)); 
+    }
+
+    cookieExists(userLoginData) {
+        let cookieData = JSON.parse(localStorage.getItem('login')); 
+        if (!cookieData) {
+            return false; 
+        } 
+        return ((cookieData['userID'] == userLoginData.userID) && (cookieData['accessToken'] == userLoginData.accessToken))
+    }
+
+    setCookie(userLoginData) {
+        localStorage.setItem('login', JSON.stringify(userLoginData));
     }
 
 }

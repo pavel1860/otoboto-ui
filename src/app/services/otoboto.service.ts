@@ -15,9 +15,12 @@ export class Otoboto {
   private base;  
 
   private END_POINTS = {
+    AUTH: 'authorize',
     PREPARE_DATA: 'prepare_anonymous_data',
     GET_DATA: 'set_anonymous_location',
-    SHOW_RESULTS: 'show_anonymous_results'
+    SHOW_RESULTS: 'show_anonymous_results', 
+    CLEAR_SEARCH: 'clean_user_search', 
+    GET_USERS: 'get_all_users'
   }
 
   uid;
@@ -40,6 +43,26 @@ export class Otoboto {
 
   }
 
+  login = (token, userParams) => {
+    let request = this.base + this.END_POINTS.AUTH + '?' + 'token=' + token; 
+    if (userParams) {
+      if (userParams.type) {
+        request += '&catagory=' + userParams.type
+      }
+      if (userParams.city) {
+        request += '&city=' + userParams.city
+      }
+      if (userParams.price) {
+        request += '&price=' + userParams.price
+      }   
+    }     
+		return this.http
+			.get(request)
+      .map(res => {
+        return res; 
+      });
+  }
+
 	prepareData = (catagory, price): Observable<Response> => {
     let request = this.base + this.END_POINTS.PREPARE_DATA + '?' + 'catagory=' + catagory + '&' + 'price=' + price; 
 		return this.http
@@ -50,7 +73,6 @@ export class Otoboto {
         console.log('Data is ready, uid is: ', this.uid);
         return data; 
       });
-      
   };
   
   getData = (location, uid) => {
@@ -63,5 +85,29 @@ export class Otoboto {
   getUID() {
     return this.uid;
   }
+
+  setUID(uid) {
+    this.uid = uid;
+  }
+
+  clearUserSearch(uid) {
+    let request = this.base + this.END_POINTS.CLEAR_SEARCH + '?' + 'user_id=' + uid; 
+		return this.http
+			.get(request)
+      .map(res => {
+        let data = res.json(); 
+        return data; 
+      });    
+  }
+
+  getAllUsers() {
+    let request = this.base + this.END_POINTS.GET_USERS; 
+		return this.http
+			.get(request)
+      .map(res => {
+        let data = res.json(); 
+        return data; 
+      });    
+  }  
 
 }

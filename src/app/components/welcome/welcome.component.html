@@ -1,7 +1,7 @@
 <div class='wrapper'>
         
-    <control-panel></control-panel>
+    <control-panel [loading]='loading' [userProfileData]='userProfileData' (loginRequest)='loginWithFacebook(wizardResults)'></control-panel>
 
-    <wizard class='wizard'></wizard>
+    <wizard class='wizard' (results)='wizardResults = $event' (done)='goToResults(wizardResults)'></wizard>
 
-</div>
+</div> 

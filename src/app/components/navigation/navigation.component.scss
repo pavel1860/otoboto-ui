@@ -1,6 +1,6 @@
 .wrapper {
     width: 100%; 
-    height: 69px;
+    height: 100%;
     display: flex;
     justify-content: center;
     position: relative;
@@ -8,20 +8,29 @@
 
 .panel {
     height: 35px;
-    width: 90%;
+    width: 100%;
     align-self: center;
     background: white;
+    display: flex;
+    justify-content: space-around;
+    padding-left: 57px;
     
 }
 
 .avatar-outer-frame {
-    width: 35.5px;
-    height: 35.5px;
+    width: 50px;
+    height: 50px;
     border-radius: 100%;
     border-width: 13px;
     border-style: solid;
     position: absolute;
     left: -10px;
-    top: -13px;
+    top: 12px;
+}
 
+.navigation-button {
+    width: 28.5px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }

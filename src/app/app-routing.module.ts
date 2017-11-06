@@ -4,6 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { ResultsComponent } from './components/results/results.component';
 
+import { AuthGuard } from './services/auth-guard.service';
+
 const routes: Routes = [
 
     { path: '', redirectTo: '/welcome', pathMatch: 'full' },

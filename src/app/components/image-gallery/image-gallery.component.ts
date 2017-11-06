@@ -13,11 +13,9 @@ export class ImageGalleryComponent {
     swiperConfig = {            
         pagination: '.swiper-pagination',
         paginationClickable: true,
-        nextButton: '.swiper-button-prev.swiper-button-white',
+        nextButton: '.swiper-button-next',
         prevButton: '.swiper-button-prev',
         spaceBetween: 0
     } 
-
     
-
 }

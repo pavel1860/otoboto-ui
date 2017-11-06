@@ -3,6 +3,10 @@
         
     </div>
     <div class='login-panel'>
-        <facebook-login-button (click)='loginWithFB()'></facebook-login-button>
+        <div *ngIf='loading'>loading...</div>
+        <div *ngIf='!loading'>
+            <facebook-login-button *ngIf='!userProfileData' (click)='loginRequest.emit($event)'></facebook-login-button>
+            <img *ngIf='userProfileData' class='userAvatarImage' [src]='userProfileData.picture.data.url'/>
+        </div>
     </div>    
 </div>

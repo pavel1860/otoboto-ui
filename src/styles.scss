@@ -1,10 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Rubik');
-
-$primary: #14C6C6;
-$backdrop: #F6F6F6; 
-$accent: #FFDA80;
-$medium-gray: #B2B2B2;  
-$warm-gray: #706f6f;  
+@import "app/style/colors";
+@import './app/style/swiper';
+@import './app/style/google-autocomplete';
+@import './app/style/input';
+@import './app/style/buttons';
 
 body {
     margin: 0;
@@ -34,149 +33,38 @@ body {
     background-color: $accent;
 }
 
-.text-otoboto-medium-gray {
-    color: $medium-gray;    
-}
 
 .border-otoboto-medium-gray {
     border-color: $backdrop;    
 }
 
-.text-small {
+
+
+.text-primary {
+    font-size: 15px;
+    color: $dark-gray;
+}
+
+.text-secondary-white {
     font-size: 10px;
+    color: white;     
 }
 
-.button {
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
+.text-secondary {
+    font-size: 10px;
+    color: $dark-gray; 
 }
 
-@media only screen and (min-width : 768px) {
-    .button {
-        width: 60px;
-        height: 22.5px;
-        line-height: 22.5px;
-        padding: 0;
-    }
+.text-weak {
+    font-size: 9.5px;
+    color: $warm-gray;
 }
 
-
-
-
-
-/* input */
-
-input {
-    text-align: center; 
-    font-family: 'Rubik', sans-serif;
-    color: #B2B2B2; 
+.text-major {
+    font-size: 20.5px;
+    color: $primary;
 }
 
-input::placeholder {
-    color: #B2B2B2; 
-}
-
-input:focus::-webkit-input-placeholder { color:transparent; }
-input:focus:-moz-placeholder { color:transparent; } /* Firefox 18- */
-input:focus::-moz-placeholder { color:transparent; } /* Firefox 19+ */
-input:focus:-ms-input-placeholder { color:transparent; } /* oldIE ;) */
-
-/* google places */
-
-.pac-container:after {
-    background-image: none !important;
-    height: 0px;
-}
-
-.pac-container {
-    position: absolute !important;
-    left: 0 !important;
-    right: 0 !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    width: 50vw !important;
-    max-width: 500px !important;
-    margin-top: 20px;
-}
-
-@media only screen and (min-width : 768px) {
-    .pac-container {
-        width: 164px !important;
-    }
-}
-
-.pac-container, .pac-item {
-    box-shadow: none !important;
-    border: none !important;
-}
-.pac-item {
-    padding: 10px;
-    text-align: right; 
-    font-family: 'Rubik', sans-serif;
-    cursor: pointer;
-    text-align: center;
-}
-
-.pac-item > span {
-    color: #B2B2B2;  
-    text-align: center;
-}
-
-.pac-item > span:last-child {
-    display: none;
-}
-.pac-item > span:first-child {
-    display: none;
-}
-
-
-@media only screen and (min-width : 768px) {
-    .image-gallery {
-        
-        .swiper-container-horizontal>.swiper-pagination-bullets {
-            top: 21px;
-            left: -23.5px;
-            width: 100%;
-        }
-    
-        .swiper-pagination {
-            text-align: right;
-            bottom: unset;
-        }
-        
-    }
-}
-
-.image-gallery-mobile {
-
-    .swiper-container-horizontal>.swiper-pagination-bullets {
-        top: 21px;
-        left: -23.5px;
-        width: 100%;
-    }
-
-    .swiper-pagination {
-        text-align: right;
-        bottom: unset;
-    }
-
-}
-
-
-
-.swiper-pagination-bullet {
-    background: white !important;
-    opacity: .6 !important;
-    border-color: white !important;
-}
-
-.swiper-pagination-bullet-active {
-    background: $primary !important;
-    border-color: $primary !important;
-    opacity: 1 !important;
+.bordered-bottom-backdrop {
+    border-bottom: 3px solid $backdrop;
 }

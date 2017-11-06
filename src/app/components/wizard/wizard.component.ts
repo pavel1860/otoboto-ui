@@ -27,6 +27,7 @@ export class WizardComponent {
 
     showLocationPanel;
     
+    @Output() results: EventEmitter<any> = new EventEmitter();
     @Output() done: EventEmitter<any> = new EventEmitter();
 
     step: number = 1; 
@@ -71,19 +72,26 @@ export class WizardComponent {
                 this.step = params.step;
             }
             this.type = params.type; 
-            this.location = params.location;
+            this.location = params.city;
             this.price = params.price; 
         });        
     }
 
     updateURI() {
+
+        let descriptor = {
+            step: this.step,
+            type: this.type,
+            city: this.location,
+            price: this.price
+        };
+
         this.router.navigate(['./welcome'], {
-            queryParams: {
-                step: this.step,
-                type: this.type,
-                location: this.location,
-                price: this.price
-        }});
+            queryParams: descriptor,
+            queryParamsHandling: "merge"
+        });
+
+        this.results.emit(descriptor);
     }
 
     nextStep() {
@@ -94,14 +102,7 @@ export class WizardComponent {
         if (this.step < this.steps.length) {
             this.step++; 
         } else {
-            this.zone.run(() =>  
-                this.router.navigate(['./results'],{queryParams : {
-                    type: this.type,
-                    location: this.location,
-                    price: this.price,
-                    prepared: true
-                }})
-            );
+            this.done.emit();
         }
     }
 

@@ -25,19 +25,22 @@ import { ListComponent } from './components/list/list.component';
 import { CardComponent } from './components/card/card.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { ImageGalleryComponent } from './components/image-gallery/image-gallery.component';
+import { MainDetailsComponent } from './components/main-details/main-details.component';
+import { RankGaugeComponent } from './components/rank-gauge/rank-gauge.component';
 
 import { Otoboto } from './services/otoboto.service';
-import { Bot } from './services/bot.service';
 import { LocalService } from './services/local.service';
 
 import { NisPipe }  from './pipes/nis.pipe';
+import { AuthGuard } from './services/auth-guard.service';
+import { Auth } from './services/auth.service';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FacebookModule } from 'ngx-facebook';
 import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
-
+import { GaugeModule } from "ng-gauge";
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 const SWIPER_CONFIG: SwiperConfigInterface = {
@@ -66,7 +69,9 @@ const SWIPER_CONFIG: SwiperConfigInterface = {
     ListComponent,
     CardComponent,
     NavigationComponent,
-    ImageGalleryComponent
+    ImageGalleryComponent,
+    MainDetailsComponent,
+    RankGaugeComponent
   ],
   imports: [
     BrowserModule,
@@ -77,13 +82,15 @@ const SWIPER_CONFIG: SwiperConfigInterface = {
     InfiniteScrollModule,
     BrowserAnimationsModule,
     SwiperModule,
+    GaugeModule,
     FacebookModule.forRoot(),
     SwiperModule.forRoot(SWIPER_CONFIG)
   ],
   providers: [
     Otoboto,
-    Bot,
-    LocalService
+    LocalService,
+    AuthGuard,
+    Auth
   ],
   bootstrap: [AppComponent]
 })

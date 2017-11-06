@@ -1,12 +1,19 @@
 <div class='wrapper'>
 
    <div class='gallery-panel'>
-        <image-gallery [images]='data.mobile_pics'></image-gallery>
+        <image-gallery class='image-gallery' [images]='data.mobile_pics'></image-gallery>
+        <div class='price-box otoboto-blue text-secondary-white'>
+            {{data.price | nis}}
+        </div>
+        <div class='date-box text-small text-weak'>
+            <!--{{data.date | timeAgo }}-->
+            לפני 20 דקות
+        </div>
    </div>
    <div class='card-body otoboto-white'>
-        <swiper [config]="swiperConfig">
+        <swiper class='content-swiper' [config]="swiperConfig">
             <div>
-               
+                <main-details [data]='data'></main-details>
             </div>   
             <div>
                 

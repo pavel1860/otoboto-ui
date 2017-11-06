@@ -1,9 +1,12 @@
 <div class='control-panel otoboto-blue'>
     <div class='top-bar'>
-        <top-bar></top-bar>
+        <top-bar [loading]='loading' [userProfileData]='userProfileData' (loginRequest)='loginRequest.emit()'></top-bar>
     </div>
     <div class='avatar-panel'>
         <img class='cover-mobile' src='../../assets/otoboto-cover-mobile.svg'/>
         <img class='cover-desktop' src='../../assets/otoboto-avatar-desktop.svg'/>
     </div> 
+
+    <button (click)='getAllUsers()'>get users</button> 
+    <button (click)='clear()'>clear</button> 
 </div>  

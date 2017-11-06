@@ -1,19 +1,15 @@
-import { Component } from '@angular/core';
-import { Auth } from '../../services/auth.service';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'top-bar',
   templateUrl: './top-bar.component.html',
-  styleUrls: ['./top-bar.component.scss'],
-  providers: [ Auth ]
+  styleUrls: ['./top-bar.component.scss']
 })
 
 export class TopBarComponent {
 
-  constructor(private auth: Auth) {}
-
-  loginWithFB() {
-    this.auth.loginWithFB(); 
-  }
+  @Input() userProfileData; 
+  @Input() loading; 
+  @Output() loginRequest: EventEmitter<any> = new EventEmitter();
 
 }

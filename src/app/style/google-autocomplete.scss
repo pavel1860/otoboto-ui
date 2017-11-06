@@ -1,0 +1,45 @@
+.pac-container:after {
+    background-image: none !important;
+    height: 0px;
+}
+
+.pac-container {
+    position: absolute !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 50vw !important;
+    max-width: 500px !important;
+    margin-top: 20px;
+}
+
+@media only screen and (min-width : 768px) {
+    .pac-container {
+        width: 164px !important;
+    }
+}
+
+.pac-container, .pac-item {
+    box-shadow: none !important;
+    border: none !important;
+}
+.pac-item {
+    padding: 10px;
+    text-align: right; 
+    font-family: 'Rubik', sans-serif;
+    cursor: pointer;
+    text-align: center;
+}
+
+.pac-item > span {
+    color: #B2B2B2;  
+    text-align: center;
+}
+
+.pac-item > span:last-child {
+    display: none;
+}
+.pac-item > span:first-child {
+    display: none;
+}

@@ -1,0 +1,66 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+
+.primary-details {
+    position: relative;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.properties {
+    height: 45px;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 22px;
+}
+
+.location {
+
+}
+
+.car-model {
+    display: flex;
+    flex-direction: column;
+    margin-top: 14px;
+}
+
+.model {
+    display: flex;
+}
+
+.action-box {
+    height: 28.5px;
+    width: 28.5px;
+    cursor: pointer;
+}
+
+.rank-gauge {
+    width: 60px;
+    position: absolute;
+    left: 24.5px;
+    top: 20.5px;
+}
+
+.rank-gauge-inner {
+    position: relative;
+}
+
+.rank-gauge-inner label {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 19px;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+
