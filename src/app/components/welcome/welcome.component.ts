@@ -52,8 +52,10 @@ export class WelcomeComponent {
     });
   }
 
-  doOnLoggedIn(response) {    
+  doOnLoggedIn(response) {  
+    this.local.saveUserProfile(response.userInfo);  
     if (response['status'] == "success") {
+      
       this.router.navigate(['./results'],{queryParams: {
         uid: response['user_id']
       }});  
@@ -64,7 +66,7 @@ export class WelcomeComponent {
       console.log(this.userProfileData);
       //this.router.navigate(['./welcome'],{queryParams: {
       //  uid: response['user_id']
-      //}, queryParamsHandling: "merge"});        
+      //}, queryParamsHandling: "merge"});         
     }
   }
 

@@ -4,4 +4,8 @@
 
     <wizard class='wizard' (results)='wizardResults = $event' (done)='goToResults(wizardResults)'></wizard>
 
+    <div *ngIf='loading' class='lock-screen otoboto-blue'>
+        <img [src]='"../../../assets/otoboto-avatar.svg"'/>
+    </div>
+
 </div> 

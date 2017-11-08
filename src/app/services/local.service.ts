@@ -5,8 +5,21 @@ export class LocalService {
 
     constructor() {}
 
+    getResults() {
+        return JSON.parse(localStorage.getItem('data'));
+    }
+
+    getFavorites() {
+        return JSON.parse(localStorage.getItem('favorites'));
+    }
+
     saveResults(results) {
+        console.log('saving',results);
         localStorage.setItem('data',JSON.stringify(results));
+    }
+
+    saveFavorites(favorites) {
+        localStorage.setItem('favorites',JSON.stringify(favorites));
     }
 
     setAccessToken(token) {
@@ -17,16 +30,12 @@ export class LocalService {
 
     }
 
-    getResults() {
-        return JSON.parse(localStorage.getItem('data'));
-    }
-
     saveUserFacebookInfo(facebookID, userData) {
         localStorage.setItem(facebookID,JSON.stringify(userData));
     }
 
-    getUserFacebookInfo(facebookID) {
-        return JSON.parse(localStorage.getItem(facebookID)); 
+    getUserFacebookInfo() {
+        return JSON.parse(localStorage.getItem('login')); 
     }
 
     cookieExists(userLoginData) {
@@ -39,6 +48,28 @@ export class LocalService {
 
     setCookie(userLoginData) {
         localStorage.setItem('login', JSON.stringify(userLoginData));
+    }
+
+    saveUserProfile(data) {
+        localStorage.setItem('profile', JSON.stringify(data));
+    }
+
+    getUserProfile() {
+        return JSON.parse(localStorage.getItem('profile')); 
+    }  
+    
+    likeItem(item) {
+        this.removeItem(item);
+        let favorites = this.getFavorites();
+        favorites.push(item);
+        this.saveFavorites(favorites);
+    }
+
+    removeItem(item) {
+        let results = this.getResults();
+        let index = results.findIndex(element => element.car_document_id.$oid == item.car_document_id.$oid);
+        results.splice(index,1);
+        this.saveResults(results);
     }
 
 }

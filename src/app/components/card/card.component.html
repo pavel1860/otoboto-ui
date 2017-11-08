@@ -13,7 +13,7 @@
    <div class='card-body otoboto-white'>
         <swiper class='content-swiper' [config]="swiperConfig">
             <div>
-                <main-details [data]='data'></main-details>
+                <main-details [data]='data' (like)='like.emit()' (dislike)='dislike.emit()'></main-details>
             </div>   
             <div>
                 

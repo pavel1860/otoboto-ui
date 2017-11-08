@@ -1,19 +1,15 @@
 <div class='wrapper'>
 
-    <button (click)='login()'>התחבר</button>
-
-    <button (click)='clearUserSearch()'>נקה חיפוש</button>
-
     <div class='bot-panel otoboto-blue'>
         <bot class='bot'></bot>
     </div>
 
     <div class='navigation-panel'>
-        <navigation class='navigation'></navigation>
+        <navigation class='navigation' [viewMode]='viewMode' [userProfileData]='userProfileData' (setViewMode)='setViewMode($event)'></navigation>
     </div>
 
     <div class='list-view-panel'>
-        <list [items]='results'></list>
+        <list #list [items]='viewMode=="results" ? results : favorites' (like)='likeItem($event)' (dislike)='dislikeItem($event)' (loadMore)='loadNextPage(viewMode)'></list>
     </div>
 
 </div>

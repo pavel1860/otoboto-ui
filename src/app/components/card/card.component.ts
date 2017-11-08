@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'card',
@@ -9,6 +9,9 @@ import { Component, Input } from '@angular/core';
 export class CardComponent {
 
     @Input() data; 
+
+    @Output() like: EventEmitter<any> = new EventEmitter();
+    @Output() dislike: EventEmitter<any> = new EventEmitter();
 
     swiperConfig = {            
       pagination: '.swiper-pagination',

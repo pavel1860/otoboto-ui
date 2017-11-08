@@ -20,7 +20,12 @@ export class Otoboto {
     GET_DATA: 'set_anonymous_location',
     SHOW_RESULTS: 'show_anonymous_results', 
     CLEAR_SEARCH: 'clean_user_search', 
-    GET_USERS: 'get_all_users'
+    GET_USERS: 'get_all_users',
+    LIKE: 'add_liked_car',
+    FAVORITES: 'favorites',
+    RESET: 'clean_user_decisions',
+    GET_PAGE: 'show_cars',
+    DISLIKE: 'add_ignored_car'
   }
 
   uid;
@@ -43,6 +48,11 @@ export class Otoboto {
 
   }
 
+  init = (uid) => {
+    console.log(uid);
+    this.uid = uid;
+  }
+
   login = (token, userParams) => {
     let request = this.base + this.END_POINTS.AUTH + '?' + 'token=' + token; 
     if (userParams) {
@@ -59,6 +69,7 @@ export class Otoboto {
 		return this.http
 			.get(request)
       .map(res => {
+        console.log(res.json());
         return res; 
       });
   }
@@ -91,7 +102,7 @@ export class Otoboto {
   }
 
   clearUserSearch(uid) {
-    let request = this.base + this.END_POINTS.CLEAR_SEARCH + '?' + 'user_id=' + uid; 
+    let request = this.base + this.END_POINTS.RESET + '?' + 'user_id=' + uid; 
 		return this.http
 			.get(request)
       .map(res => {
@@ -109,5 +120,45 @@ export class Otoboto {
         return data; 
       });    
   }  
+
+  like = (item) => {
+    let request = this.base + this.END_POINTS.LIKE + '?' + 'user_id=' + this.uid + '&' + 'car_id=' + item.car_document_id.$oid; 
+		return this.http
+			.get(request)
+      .map(res => {
+        let data = res.json(); 
+        return data; 
+      });     
+  }
+
+  dislike = (item) => {
+    let request = this.base + this.END_POINTS.DISLIKE + '?' + 'user_id=' + this.uid + '&' + 'car_id=' + item.car_document_id.$oid; 
+		return this.http
+			.get(request)
+      .map(res => {
+        let data = res.json(); 
+        return data; 
+      });     
+  }
+
+  getFavorites = () => {
+    let request = this.base + this.END_POINTS.FAVORITES + '?' + 'user_id=' + this.uid;
+		return this.http
+			.get(request)
+      .map(res => {
+        let data = res.json(); 
+        return data; 
+      });      
+  }
+
+  getPage = (offest) => {
+    let request = this.base + this.END_POINTS.GET_PAGE + '?' + 'user_id=' + this.uid + '&' + 'limit=20' + '&' + 'offset=' + offest;
+		return this.http
+			.get(request)
+      .map(res => {
+        let data = res.json(); 
+        return data; 
+      });      
+  }
 
 }

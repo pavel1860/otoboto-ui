@@ -1,12 +1,17 @@
 .wrapper {
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
 }
 
 .card-panel {
     margin-bottom: 60px;
     width: 85.8%;
     align-self: center;
+}
+
+.hidden {
+    display: none;
 }
 
 @media only screen and (min-width : 768px) {

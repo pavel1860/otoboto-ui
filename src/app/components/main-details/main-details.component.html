@@ -36,10 +36,10 @@
     </div>
 
     <div class='actions'>
-        <div class='action-box like-button'>
+        <div class='action-box like-button' (click)='like.emit()'>
             <img src='../../../assets/like-button.svg'/>
         </div>
-        <div class='action-box dislike-button'>
+        <div class='action-box dislike-button' (click)='dislike.emit()'>
             <img src='../../../assets/dislike-button.svg'/>
         </div>
     </div> 

@@ -18,7 +18,7 @@
 
 .horizontal-right-panel {
     width: 128.5px;
-    justify-content: center;
+    justify-content: flex-start;
     display: flex; 
     margin-right: 27px;   
 }
@@ -49,6 +49,11 @@
     align-self: center;
 }
 
+.bot-avatar-panel {
+    width: 74%;
+    max-width: 380.5px;
+}
+
 @media only screen and (min-width : 768px) {
 
     .vertical-wrapper {
@@ -57,6 +62,10 @@
 
     .horizontal-wrapper {
         display: none;
+    }
+
+    .bot-avatar {
+        width: 100%;
     }
 
 }

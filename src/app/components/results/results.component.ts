@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 
@@ -15,8 +15,15 @@ import { Auth } from '../../services/auth.service';
 
 export class ResultsComponent {
 
+    @ViewChild('list') listComponent;
+
     params;
     results;
+    favorites = [];
+    list;
+    userProfileData;
+    viewMode = 'results';
+    offset = 0; 
 
     constructor(
         private router: Router, 
@@ -27,21 +34,21 @@ export class ResultsComponent {
     ) {}
 
     ngOnInit() {
-
         this.route.queryParams.subscribe((params) => {
-
+            this.params = params;
+            console.log(params);
             if (params.guest) {
-
                 this.getPreparedData(params);
-
             } else {
-
+                this.api.init(params.uid);
+                let initialViewMode = params.mode ? params.mode : this.viewMode;
+                this.offset = params.offset ? params.offset : this.offset;
+                
+                this.setViewMode(initialViewMode);
+                this.loadUserFavorites(params.uid); 
                 this.loadLocalData(params.uid);
-
             }
-
         });
-
     }
 
     getPreparedData = (params) => {
@@ -74,12 +81,85 @@ export class ResultsComponent {
 
     loadLocalData(uid) {
         this.results = this.local.getResults(); 
+        console.log(this.results);
+        this.userProfileData = this.local.getUserProfile();
+        console.log(this.results);
+    }
+
+    loadUserFavorites(uid) {
+        this.api.getFavorites().subscribe(response => {
+            this.favorites = response.data;
+            this.local.saveFavorites(response.data);
+        })
     }
 
     login() {
+        console.log(this.params);
         this.auth.loginWithFB(this.params).then(response => {
             this.results = response['data'];
+            this.userProfileData = this.local.getUserProfile();
         });
+    }
+
+    likeItem(item) {
+        this.removeItemFromResults(item);
+        this.favorites.push(item); 
+        this.local.likeItem(item);
+        this.api.like(item).subscribe(response => {
+            console.log(response);
+        });
+    }
+
+    dislikeItem(item) {
+        this.removeItemFromResults(item);
+        this.local.removeItem(item);
+        this.api.dislike(item).subscribe(response => {
+            console.log(response);
+        });        
+    }
+
+    removeItemFromResults(item) {
+        let index = this.results.findIndex(element => element.car_document_id.$oid == item.car_document_id.$oid);
+        this.results.splice(index,1);
+    }
+
+    getItems(mode) {
+        console.log('mode',mode);
+        if (mode == 'results') {
+            return this.results;
+        } else if (mode == 'favorites') {
+            return this.favorites;
+        }
+    }
+
+    setViewMode(mode) {
+        this.viewMode = mode; 
+        this.router.navigate(['./results'],{
+            queryParams: {mode: mode},
+            queryParamsHandling: "merge"
+          });  
+        this.listComponent.reset();      
+    }
+
+    loadNextPage(mode) {
+       
+        if (mode == 'results') {
+            console.log('bring more');
+            this.offset++;
+            this.api.getPage(this.offset).subscribe(response => {
+                this.results = this.results.concat(response.data);
+                this.local.saveResults(this.results);
+            });
+        }
+       
+    }
+
+    setOffset(offset) {
+        console.log(offset);
+        this.router.navigate(['./results'],{
+            queryParams: {offset: offset},
+            queryParamsHandling: "merge"
+          });            
     }
 
     /*
@@ -147,5 +227,9 @@ export class ResultsComponent {
     }
 
     */
-
+    clearUserSearch() {
+        this.api.clearUserSearch('59ff5509bfd217000ee15e4a').subscribe(response => {
+            console.log(response);
+        })
+    }
 }

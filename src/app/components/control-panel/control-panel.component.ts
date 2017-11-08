@@ -22,7 +22,7 @@ export class ControlPanelComponent {
   }
 
   clear() {
-    this.otoboto.clearUserSearch('59ff5509bfd217000ee15e4a').subscribe(res => {
+    this.otoboto.clearUserSearch('5a02530d89c8cb000c34e6bb').subscribe(res => {
       console.log(res);
     }); 
   }

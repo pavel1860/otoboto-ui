@@ -1,14 +1,14 @@
 <div class='wrapper'>
 
     <div class='panel otoboto-white'>
-        <div class='navigation-button'>
+        <div class='navigation-button' (click)='setViewMode.emit("results")'>
             <img src='../../assets/navigation-button-results.svg'/>
         </div>
-        <div class='navigation-button'>
+        <div class='navigation-button' (click)='setViewMode.emit("favorites")'>
             <img src='../../assets/navigation-button-favorites.svg'/>
         </div>        
     </div>
 
-    <div class='avatar-outer-frame border-otoboto-medium-gray otoboto-white'></div>
+    <div class='avatar-outer-frame border-otoboto-medium-gray otoboto-white' [ngStyle]="{'background-image': 'url(' + userProfileData?.picture?.data?.url + ')'}"></div>
 
 </div>

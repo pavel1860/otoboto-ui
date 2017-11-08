@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'navigation',
@@ -6,4 +6,16 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./navigation.component.scss']
 })
 
-export class NavigationComponent {}
+export class NavigationComponent {
+
+  @Input() userProfileData; 
+  @Input() viewMode; 
+
+  @Output() setViewMode: EventEmitter<any> = new EventEmitter();
+
+  ngOnInit() {
+
+
+  }
+
+}
