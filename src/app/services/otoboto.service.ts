@@ -32,6 +32,8 @@ export class Otoboto {
 
   constructor(private fb: FacebookService, private http: Http) {
 
+    console.log(environment.production);
+    
     if (environment.production) {
       this.base = environment['BOT_URI'];
     } else {
