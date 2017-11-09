@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, HostListener, trigger, state, style, transition, animate, keyframes } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 
@@ -6,16 +6,50 @@ import { Otoboto } from '../../services/otoboto.service';
 import { LocalService } from '../../services/local.service';
 import { Auth } from '../../services/auth.service';
 
+declare var $:any;
+
 @Component({
   selector: 'results',
   templateUrl: './results.component.html',
   styleUrls: ['./results.component.scss'],
-  providers: [ Auth ]
+  providers: [ Auth ],
+  animations: [
+    trigger('divState', [
+      state('in', style({backgroundColor: 'red',transform: 'translateY(0)'})),
+
+      transition('void => *', [
+        animate(300, keyframes([
+          style({opacity: 1, transform: 'translateY(-100%)', offset: 0}),
+          style({opacity: 1, transform: 'translateY(0)',  offset: 1})
+        ]))
+      ]),
+      transition('* => void', [
+        animate(200, keyframes([
+          style({opacity: 1, transform: 'translateY(0)',     offset: 0}),
+          style({opacity: 1, transform: 'translateY(-100%)',  offset: 1})
+        ]))
+      ])
+    ])
+  ]    
 })
 
 export class ResultsComponent {
 
     @ViewChild('list') listComponent;
+
+    @HostListener('window:scroll', ['$event']) onScrollEvent($event){
+        let st = window.pageYOffset || document.documentElement.scrollTop;
+        if (st > this.lastScrollTop){
+            //scroll down 
+            this.showNavigationBar = false;      
+        } else {
+            //scroll up 
+            // Show navigation bar 
+            this.showNavigationBar = true; 
+
+        }
+        this.lastScrollTop = st;        
+    } 
 
     params;
     results;
@@ -24,6 +58,9 @@ export class ResultsComponent {
     userProfileData;
     viewMode = 'results';
     offset = 0; 
+    lastScrollTop = 0;
+    showNavigationBar = false;
+    showBot = false;  
 
     constructor(
         private router: Router, 
@@ -106,7 +143,6 @@ export class ResultsComponent {
         this.favorites.push(item); 
         this.local.likeItem(item);
         this.api.like(item).subscribe(response => {
-            console.log(response);
         });
     }
 

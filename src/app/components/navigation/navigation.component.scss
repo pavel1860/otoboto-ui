@@ -2,30 +2,15 @@
     width: 100%; 
     height: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     position: relative;
 }
 
-.panel {
-    height: 35px;
-    width: 100%;
-    align-self: center;
-    background: white;
-    display: flex;
-    justify-content: space-around;
-    padding-left: 57px;
-    
-}
-
-.avatar-outer-frame {
-    width: 50px;
-    height: 50px;
+.avatar {
+    width: 21px;
+    height: 21px;
     border-radius: 100%;
-    border-width: 13px;
-    border-style: solid;
-    position: absolute;
-    left: -10px;
-    top: 12px;
+    align-self: center;
 }
 
 .navigation-button {
@@ -35,3 +20,13 @@
     flex-direction: column;
     cursor: pointer;
 }
+
+.favorites-icon {
+    width: 17px;
+    align-self: center;
+}
+
+.results-icon {
+    height: 28.5px;
+}
+

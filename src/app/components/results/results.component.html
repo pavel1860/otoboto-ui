@@ -4,8 +4,19 @@
         <bot class='bot'></bot>
     </div>
 
-    <div class='navigation-panel'>
+    <!--div  class='bot-panel otoboto-blue floating'>
+        <bot class='bot'></bot>
+    </div-->    
+
+    <div class='navigation-panel dark-backdrop solid'>
         <navigation class='navigation' [viewMode]='viewMode' [userProfileData]='userProfileData' (setViewMode)='setViewMode($event)'></navigation>
+    </div>
+
+    <div *ngIf='showBot || showNavigationBar' class='navigation-panel floating' [@divState]="state">
+        <div *ngIf='showBot' class='bot-panel otoboto-blue'>
+            <bot class='bot'></bot>
+        </div>
+        <navigation *ngIf='showNavigationBar' class='navigation' [viewMode]='viewMode' [userProfileData]='userProfileData' (setViewMode)='setViewMode($event)' ></navigation>
     </div>
 
     <div class='list-view-panel'>
