@@ -39,7 +39,7 @@ export class Otoboto {
     }
 
     let initParams: InitParams = {
-      appId: environment.production ? environment['APP_ID'] : '312724625876165',
+      appId: environment['APP_ID'],
       xfbml: true,
       version: 'v2.8'
     };

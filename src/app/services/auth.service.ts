@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { FacebookService, InitParams, LoginResponse, LoginOptions } from 'ngx-facebook';
 import { Otoboto } from './otoboto.service';
 import { LocalService } from './local.service';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class Auth {
@@ -9,7 +10,7 @@ export class Auth {
     constructor(private fb: FacebookService, private otoboto: Otoboto, private local: LocalService) {
 
         let initParams: InitParams = {
-            appId: '1920807244817016',
+            appId: environment['APP_ID'],
             xfbml: true,
             version: 'v2.8'
         };
