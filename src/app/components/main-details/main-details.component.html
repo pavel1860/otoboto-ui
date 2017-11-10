@@ -3,6 +3,7 @@
     <div class='primary-details bordered-bottom-backdrop'>
 
         <div class='location text-weak'>
+            <img class='location-icon' src='../../../assets/location-icon-gray.svg'/>
             <label>{{data.city}}</label>
         </div>
 
@@ -32,7 +33,14 @@
     </div>
 
     <div class='properties bordered-bottom-backdrop'>
-        
+        <div *ngFor='let property of properties' class='property-box'>
+            <div class='icon'>
+                <img [src]='property.icon'/>
+            </div>
+            <div class='title xx-small'>
+                {{property.caption}}
+            </div>
+        </div>
     </div>
 
     <div class='actions'>

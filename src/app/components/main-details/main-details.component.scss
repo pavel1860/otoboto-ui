@@ -8,13 +8,13 @@
 
 .primary-details {
     position: relative;
-    padding: 24px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
 }
 
 .properties {
-    height: 45px;
+    height: 54px;
 }
 
 .actions {
@@ -24,17 +24,28 @@
 }
 
 .location {
+    display: flex;
+}
 
+.location-icon {
+    width: 9px;
+    height: 11.5px;
+    margin-left: 3.5px;
 }
 
 .car-model {
     display: flex;
     flex-direction: column;
     margin-top: 14px;
+    margin-right: 5px;
 }
 
 .model {
     display: flex;
+}
+
+.submodel {
+    margin-top: 10.5px;
 }
 
 .action-box {
@@ -64,3 +75,19 @@
     text-align: center;
 }
 
+.properties {
+    display: flex;
+    justify-content: space-around;
+}
+
+.property-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.icon {
+    width: 15px;
+    align-self: center;
+    margin-bottom: 2px;
+}

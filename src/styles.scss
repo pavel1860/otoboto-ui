@@ -69,6 +69,11 @@ body {
     color: $primary;
 }
 
+.xx-small {
+    font-size: 9.5px;
+    color: $warm-gray;
+}
+
 .bordered-bottom-backdrop {
     border-bottom: 3px solid $backdrop;
 }
