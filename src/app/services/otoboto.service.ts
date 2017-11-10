@@ -33,7 +33,7 @@ export class Otoboto {
   constructor(private fb: FacebookService, private http: Http) {
 
     console.log(environment.production ? environment['APP_ID'] : '1920807244817016');
-    
+
     if (environment.production) {
       this.base = environment['BOT_URI'];
     } else {
@@ -71,6 +71,7 @@ export class Otoboto {
 		return this.http
 			.get(request)
       .map(res => {
+        console.log(res);
         console.log(res.json());
         return res; 
       });
