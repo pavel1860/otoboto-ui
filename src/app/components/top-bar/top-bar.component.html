@@ -5,8 +5,10 @@
     <div class='login-panel'>
         <div *ngIf='loading'>loading...</div>
         <div *ngIf='!loading'>
-            <facebook-login-button *ngIf='!userProfileData' (click)='loginRequest.emit($event)'></facebook-login-button>
+            <button *ngIf='!userProfileData' class='facebook-login-button' (click)='loginRequest.emit($event)'>
+                התחבר
+            </button>
             <img *ngIf='userProfileData' class='userAvatarImage' [src]='userProfileData.picture.data.url'/>
         </div>
     </div>    
-</div>
+</div> 

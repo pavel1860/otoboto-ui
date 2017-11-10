@@ -1,6 +1,7 @@
 .control-panel {
     height: 59vw;
     position: relative;
+    display: flex;
 }
 
 .avatar-panel {
@@ -12,10 +13,12 @@
 
 .top-bar {
     width: 100%;
+    z-index: 1;
 }
 
 .cover-mobile {
     display: block;
+    z-index: 0;
 }
 
 .cover-desktop {

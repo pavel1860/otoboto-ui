@@ -8,6 +8,6 @@ import {Component, Output, EventEmitter} from '@angular/core';
 
 export class FacebookLoginButtonComponent {
 
-  @Output() click: EventEmitter<any> = new EventEmitter();
+  @Output() login: EventEmitter<any> = new EventEmitter();
 
 }
