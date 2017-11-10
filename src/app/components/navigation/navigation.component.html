@@ -5,7 +5,7 @@
     <div class='navigation-button' (click)='setViewMode.emit("favorites")'>
         <img class='favorites-icon' src='../../assets/navigation-button-favorites.svg'/>
     </div>     
-    <div class='navigation-button'>
+    <div *ngIf='userProfileData' class='navigation-button'>
         <img class='avatar' [src]="userProfileData?.picture?.data?.url"/>
     </div>
 </div>
