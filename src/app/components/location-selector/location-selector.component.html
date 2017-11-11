@@ -1,9 +1,19 @@
 <div class='wrapper'>
 
     <div class='input-inner-desktop'>
+
         <input-box class='input-box' [icon]='"../../assets/location-icon-color.svg"'>
-           
+            <input type='text' placeholder="הכנס אזור" [value]="valueToken" [formControl]="valueControler"/>
         </input-box>
+
+
+        <div *ngIf='showOptionsMenu' class='options-panel'>
+            <div *ngFor='let option of options' class='option' (click)='valueToken = option; showOptionsMenu = false;'>
+                {{option}}
+            </div>
+        </div>    
+
+
     </div>
 
     <div class='input-inner-mobile'>

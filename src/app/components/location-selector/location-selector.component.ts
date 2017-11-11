@@ -22,6 +22,7 @@ export class LocationSelectorComponent {
       showInputPane = false; 
       isReady = false; 
       options = [];
+      showOptionsMenu = false; 
       
       constructor(private locations: Locations) {
 
@@ -42,6 +43,9 @@ export class LocationSelectorComponent {
                 return; 
               }
               this.options = this.locations.search(token);
+              if (this.options.length > 0) {
+                  this.showOptionsMenu = true; 
+              }
           });  
 
       }
