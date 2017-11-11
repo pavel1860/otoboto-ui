@@ -1,7 +1,7 @@
 <div class='wrapper'>
 
     <div class='input-inner-desktop'>
-        <input-box class='input-box' [icon]='"../../assets/price-icon-color.svg"' (keyup.enter)="value && done.emit(value)g">
+        <input-box class='input-box' [icon]='"../../assets/price-icon-color.svg"' (keyup.enter)="value && done.emit(value)">
             <input type='text' placeholder="הכנס מחיר" onkeypress='return event.charCode >= 48 && event.charCode <= 57' [value]="valueToken" [formControl]="valueControler"/>
         </input-box>
     </div>
