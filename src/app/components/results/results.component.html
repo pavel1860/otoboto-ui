@@ -24,7 +24,7 @@
         <swiper #swiper [config]="swiperConfig" (indexChange)="setViewModeByIndex($event)">
             <list #list class='list' [items]='results' (like)='likeItem($event)' (dislike)='dislikeItem($event)' (loadMore)='loadNextPage(viewMode)'></list>
             <list #list class='list' [items]='favorites' (like)='likeItem($event)' (dislike)='dislikeItem($event)' (loadMore)='loadNextPage(viewMode)'></list>
-            <list *ngIf='userProfileData' #list class='list' [items]='[]' ></list>
+            <user-settings *ngIf='userProfileData'></user-settings>
         </swiper>
     </div>
 
