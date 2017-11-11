@@ -10,6 +10,6 @@
         <img class='avatar' [src]="userProfileData?.picture?.data?.url"/>
     </div>
 
-    <div class='header-line otoboto-blue' [ngClass]='{right: viewMode=="results", center: viewMode=="favorites", left: viewMode=="user"}'></div>
+    <div class='header-line otoboto-blue' [ngClass]='{right: viewMode=="results", center: viewMode=="favorites", left: viewMode=="user", half: userProfileData==undefined, "half-right": userProfileData==undefined && viewMode=="favorites"}'></div>
 
 </div>
