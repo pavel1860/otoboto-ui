@@ -1,10 +1,12 @@
 import { Component, ViewChild, HostListener, trigger, state, style, transition, animate, keyframes } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
+import { SwiperComponent, SwiperDirective, SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
 import { Otoboto } from '../../services/otoboto.service';
 import { LocalService } from '../../services/local.service';
 import { Auth } from '../../services/auth.service';
+
 
 declare var $:any;
 
@@ -36,6 +38,7 @@ declare var $:any;
 export class ResultsComponent {
 
     @ViewChild('list') listComponent;
+    @ViewChild(SwiperComponent) componentRef: SwiperComponent;
 
     @HostListener('window:scroll', ['$event']) onScrollEvent($event){
         let st = window.pageYOffset || document.documentElement.scrollTop;
@@ -62,6 +65,14 @@ export class ResultsComponent {
     showNavigationBar = false;
     showBot = false;  
 
+    swiperConfig = {            
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        spaceBetween: 0,
+        nextButton: '.navigation-button',
+        prevButton: '.swiper-button-prev',
+    } 
+
     constructor(
         private router: Router, 
         private route: ActivatedRoute,
@@ -86,6 +97,7 @@ export class ResultsComponent {
                 this.loadLocalData(params.uid);
             }
         });
+        
     }
 
     getPreparedData = (params) => {
@@ -173,8 +185,24 @@ export class ResultsComponent {
         this.router.navigate(['./results'],{
             queryParams: {mode: mode},
             queryParamsHandling: "merge"
-          });  
-        this.listComponent.reset();      
+          }); 
+        if (mode == 'results') {
+            this.componentRef.directiveRef.setIndex(0); 
+        } else if (mode == 'favorites') {
+            this.componentRef.directiveRef.setIndex(1); 
+        } else if (mode == 'user') {
+            this.componentRef.directiveRef.setIndex(2); 
+        }
+    }
+
+    setViewModeByIndex(index){
+        if (index == 0) {
+            this.setViewMode('results');
+        } else if (index == 1) {
+            this.setViewMode('favorites');
+        } else if (index == 2) {
+            this.setViewMode('user');
+        }        
     }
 
     loadNextPage(mode) {

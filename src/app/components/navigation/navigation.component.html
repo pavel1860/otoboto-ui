@@ -1,14 +1,15 @@
 <div class='wrapper otoboto-white'>
 
     <div class='navigation-button' (click)='setViewMode.emit("results")'>
-        <img *ngIf='viewMode != "results"' class='navigation-icon' src='../../assets/navigation-button-results.svg'/>
-        <img *ngIf='viewMode == "results"' class='navigation-icon' src='../../assets/navigation-button-results-active.svg'/>
+        <img class='navigation-icon' [src]='viewMode=="results" ? "../../assets/navigation-button-results-active.svg" : "../../assets/navigation-button-results.svg"'/>
     </div>
     <div class='navigation-button' (click)='setViewMode.emit("favorites")'>
-        <img *ngIf='viewMode != "favorites"' class='navigation-icon' src='../../assets/navigation-button-favorites.svg'/>
-        <img *ngIf='viewMode == "favorites"' class='navigation-icon' src='../../assets/navigation-button-favorite-active.svg'/>
+        <img class='navigation-icon' [src]='viewMode=="favorites" ? "../../assets/navigation-button-favorites-active.svg" : "../../assets/navigation-button-favorites.svg"'/>
     </div>     
-    <div *ngIf='userProfileData' class='navigation-button'>
+    <div *ngIf='userProfileData' class='navigation-button' (click)='setViewMode.emit("user")'>
         <img class='avatar' [src]="userProfileData?.picture?.data?.url"/>
     </div>
+
+    <div class='header-line otoboto-blue' [ngClass]='{right: viewMode=="results", center: viewMode=="favorites", left: viewMode=="user"}'></div>
+
 </div>

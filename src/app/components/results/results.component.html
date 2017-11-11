@@ -2,6 +2,7 @@
 
     <div class='bot-panel otoboto-blue'>
         <bot class='bot'></bot>
+        
     </div>
 
     <!--div  class='bot-panel otoboto-blue floating'>
@@ -18,9 +19,15 @@
         </div>
         <navigation *ngIf='showNavigationBar' class='navigation' [viewMode]='viewMode' [userProfileData]='userProfileData' (setViewMode)='setViewMode($event)' ></navigation>
     </div>
-
+    
     <div class='list-view-panel'>
-        <list #list [items]='viewMode=="results" ? results : favorites' (like)='likeItem($event)' (dislike)='dislikeItem($event)' (loadMore)='loadNextPage(viewMode)'></list>
+        <swiper #swiper [config]="swiperConfig" (indexChange)="setViewModeByIndex($event)">
+            <list #list class='list' [items]='results' (like)='likeItem($event)' (dislike)='dislikeItem($event)' (loadMore)='loadNextPage(viewMode)'></list>
+            <list #list class='list' [items]='favorites' (like)='likeItem($event)' (dislike)='dislikeItem($event)' (loadMore)='loadNextPage(viewMode)'></list>
+            <list #list class='list' [items]='[]' ></list>
+        </swiper>
     </div>
+
+    
 
 </div>
