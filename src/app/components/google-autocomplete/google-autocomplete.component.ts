@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 
 declare var google: any;
 
@@ -9,6 +9,8 @@ declare var google: any;
 })
 
 export class GoogleAutocompleteComponent {
+
+    @ViewChild('input') input;
 
     @Input() value; 
     @Output() location: EventEmitter<any> = new EventEmitter<any>();
@@ -39,5 +41,9 @@ export class GoogleAutocompleteComponent {
 
         }, 0); 
  
+    }
+
+    focus() {
+        setTimeout(() => this.input.nativeElement.focus(), 0); 
     }
 }

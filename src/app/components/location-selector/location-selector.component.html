@@ -1,7 +1,38 @@
 <div class='wrapper'>
-    <input-box class='input-box' [icon]='"../../assets/location-icon-color.svg"'>
-        <google-autocomplete class='input-box text-otoboto-medium-gray' [value]='value' (location)='selected=$event'></google-autocomplete>
-    </input-box>
+
+    <div class='input-inner-desktop'>
+        <input-box class='input-box' [icon]='"../../assets/location-icon-color.svg"'>
+           
+        </input-box>
+    </div>
+
+    <div class='input-inner-mobile'>
+
+        <div class='input-box-panel'>
+            <input-box class='input-box' [icon]='"../../assets/location-icon-color.svg"' (click)='openInputPane()'>
+                <input type='text' placeholder="הכנס אזור" [value]="valueToken" [formControl]="valueControler" autofocus/>
+            </input-box> 
+        </div>   
+            
+        <input-pane #inputPane (clicked)='inputPane.close()' (keyup.enter)="inputPane.close()">
+
+            <div class='input-pane-inner'>
+                <div class='input-box-panel full-size'>
+                    <input-box class='input-box' (click)='block($event);'>
+                        <input #input type='text' placeholder="הכנס אזור" [value]="valueToken" [formControl]="valueControler" autofocus/>
+                    </input-box>  
+                </div>  
+
+                <div class='options-panel'>
+                    <div *ngFor='let option of options' class='option' (click)='valueToken = option; inputPane.close()'>
+                        {{option}}
+                    </div>
+                </div>
+            </div>
+
+        </input-pane>
+
+    </div>    
 
     <div class='continue-button-panel'>
         <div class='button otoboto-blue text-small' (click)='done.emit(selected);'>

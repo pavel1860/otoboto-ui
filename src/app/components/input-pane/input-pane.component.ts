@@ -12,7 +12,7 @@ import { Component, Input, Output, EventEmitter, NgZone, trigger, state, style, 
           style({opacity: 1, top: '30px', offset: 1})
         ]))
       ])
-    ])
+    ]) 
   ]  
 })
 

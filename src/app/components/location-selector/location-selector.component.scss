@@ -3,10 +3,33 @@
     flex-direction: column;
 }
 
+.input-box-panel {
+    display: flex;
+    justify-content: center;
+    height: 45px;
+    width: 250px;
+    align-self: center;
+}
+
+.input-inner-mobile {
+    display: block;
+}
+
+.input-inner-desktop {
+    display: none;
+}
+
+input {
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+
 .input-box {
     display: flex;
     justify-content: center;
     width: 100%;
+    height: 100%;
 }
 
 .continue-button-panel {
@@ -20,6 +43,36 @@
     margin-right: auto;
 }
 
+.full-size {
+    width: 90%;
+    height: 60px;
+    input {
+        font-size: 32px;
+    }
+}
+
+.options-panel {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    align-self: center;
+    margin-top: 5px;
+}
+
+.input-pane-inner {
+    display: flex;
+    flex-direction: column;
+}
+
+.option {
+    height: 44px;
+    background: white;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 4.5px;
+    line-height: 44px;
+}
+
 @media only screen and (min-width : 768px) {
     .continue-button-panel {
         margin-top: 13.75px;
@@ -28,5 +81,13 @@
         align-self: center;
         position: unset;
     }
-
+    .input-inner-mobile {
+        display: none;
+    }
+    .input-inner-desktop {
+        display: block;
+    }    
 }
+
+
+
