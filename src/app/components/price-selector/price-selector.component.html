@@ -1,11 +1,35 @@
 <div class='wrapper'>
-    <input-box class='input-box' [icon]='"../../assets/price-icon-color.svg"'>
-        <input type='text' placeholder="הכנס מחיר" onkeypress='return event.charCode >= 48 && event.charCode <= 57' [value]="valueToken" [formControl]="valueControler"/>
-    </input-box>
+
+    <div class='input-inner-desktop'>
+        <input-box class='input-box' [icon]='"../../assets/price-icon-color.svg"' (keyup.enter)="value && done.emit(value)g">
+            <input type='text' placeholder="הכנס מחיר" onkeypress='return event.charCode >= 48 && event.charCode <= 57' [value]="valueToken" [formControl]="valueControler"/>
+        </input-box>
+    </div>
+
+    <div class='input-inner-mobile'>
+
+        <div class='input-box-panel'>
+            <input-box class='input-box' [icon]='"../../assets/price-icon-color.svg"' (click)='openInputPane()'>
+                <input type='text' placeholder="הכנס מחיר" [value]="valueToken"/>
+            </input-box> 
+        </div>   
+        
+        <input-pane #inputPane (clicked)='inputPane.close()' (keyup.enter)="inputPane.close()">
+            <div class='input-box-panel full-size'>
+                <input-box class='input-box' (click)='block($event);'>
+                    <input #input type='text' placeholder="הכנס מחיר" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="7" [value]="valueToken" [formControl]="valueControler" autofocus/>
+                </input-box>  
+            </div>  
+        </input-pane>
+
+    </div>
 
     <div class='continue-button-panel'>
         <div class='button otoboto-blue text-small' (click)='value && done.emit(value);'>
             המשך
         </div>
     </div>
+
+
+
 </div>

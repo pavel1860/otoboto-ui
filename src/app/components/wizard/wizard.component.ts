@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter, NgZone, trigger, state, style, transition, animate, keyframes} from '@angular/core';
+import { Component, Input, Output, EventEmitter, NgZone, trigger, state, style, transition, animate, keyframes } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import 'rxjs/add/operator/switchMap';

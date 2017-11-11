@@ -1,5 +1,5 @@
-$option-size: 90px;
-$space-between-options: 22.5px;
+$option-size: 80px;
+$space-between-options: 15px;
 
 .wrapper {
     display: flex;
@@ -13,7 +13,7 @@ $space-between-options: 22.5px;
     flex-direction: column;
     margin-left: $space-between-options;
     margin-right: $space-between-options;
-    margin-bottom: $space-between-options;
+    margin-bottom: 30px;
     cursor: pointer;
 }
 

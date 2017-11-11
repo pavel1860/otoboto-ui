@@ -1,0 +1,5 @@
+<div *ngIf='show' class='wrapper' (click)='clicked.emit()'>
+    <div *ngIf='show' class='content' [@divState]="state" (click)='block($event)'>
+        <ng-content></ng-content>
+    </div>
+</div>

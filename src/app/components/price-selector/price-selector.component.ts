@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -9,11 +9,15 @@ import { FormControl } from '@angular/forms';
 
 export class PriceSelectorComponent {
 
+    @ViewChild('inputPane') inputPane;
+    @ViewChild('input') input;
+
     @Input() valueToken = '';
     @Output() done: EventEmitter<any> = new EventEmitter();
 
     valueControler = new FormControl();
     value; 
+    showInputPane = false; 
     
     ngOnInit() {
         if(!this.valueToken) {
@@ -26,7 +30,7 @@ export class PriceSelectorComponent {
                 } else {
                     let as_num = parseInt(stripped);
                     if (isNaN(as_num)) {
-                    this.valueToken = '';
+                        this.valueToken = '';
                     } else {
                         this.valueToken = as_num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                         this.value = as_num;
@@ -34,6 +38,16 @@ export class PriceSelectorComponent {
                 }
             });  
     }
+
+    block(e) {
+        e.stopPropagation();
+    }
+
+    openInputPane() {
+        this.inputPane.open(); 
+        setTimeout(() => this.input.nativeElement.focus(), 0);        
+    }
+
 
 
 }

@@ -28,6 +28,7 @@ import { ImageGalleryComponent } from './components/image-gallery/image-gallery.
 import { MainDetailsComponent } from './components/main-details/main-details.component';
 import { RankGaugeComponent } from './components/rank-gauge/rank-gauge.component';
 import { BotAvatarComponent } from './components/bot-avatar/bot-avatar.component';
+import { InputPaneComponent } from './components/input-pane/input-pane.component';
 
 import { Otoboto } from './services/otoboto.service';
 import { LocalService } from './services/local.service';
@@ -73,7 +74,8 @@ const SWIPER_CONFIG: SwiperConfigInterface = {
     ImageGalleryComponent,
     MainDetailsComponent,
     RankGaugeComponent,
-    BotAvatarComponent
+    BotAvatarComponent,
+    InputPaneComponent
   ],
   imports: [
     BrowserModule,
