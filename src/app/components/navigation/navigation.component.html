@@ -1,9 +1,12 @@
 <div class='wrapper otoboto-white'>
+
     <div class='navigation-button' (click)='setViewMode.emit("results")'>
-        <img class='results-icon' src='../../assets/navigation-button-results.svg'/>
+        <img *ngIf='viewMode != "results"' class='navigation-icon' src='../../assets/navigation-button-results.svg'/>
+        <img *ngIf='viewMode == "results"' class='navigation-icon' src='../../assets/navigation-button-results-active.svg'/>
     </div>
     <div class='navigation-button' (click)='setViewMode.emit("favorites")'>
-        <img class='favorites-icon' src='../../assets/navigation-button-favorites.svg'/>
+        <img *ngIf='viewMode != "favorites"' class='navigation-icon' src='../../assets/navigation-button-favorites.svg'/>
+        <img *ngIf='viewMode == "favorites"' class='navigation-icon' src='../../assets/navigation-button-favorite-active.svg'/>
     </div>     
     <div *ngIf='userProfileData' class='navigation-button'>
         <img class='avatar' [src]="userProfileData?.picture?.data?.url"/>

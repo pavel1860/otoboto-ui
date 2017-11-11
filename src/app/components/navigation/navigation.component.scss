@@ -7,26 +7,24 @@
 }
 
 .avatar {
-    width: 21px;
-    height: 21px;
+    width: 30px;
     border-radius: 100%;
     align-self: center;
 }
 
 .navigation-button {
-    width: 28.5px;
+    width: 30px;
     display: flex;
     justify-content: center;
     flex-direction: column;
     cursor: pointer;
 }
 
-.favorites-icon {
-    width: 17px;
-    align-self: center;
+.navigation-icon {
+    cursor: pointer;
 }
 
-.results-icon {
-    height: 28.5px;
-}
+
+
+
 

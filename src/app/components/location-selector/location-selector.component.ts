@@ -5,7 +5,8 @@ import { FormControl } from '@angular/forms';
 @Component({
   selector: 'location-selector',
   templateUrl: './location-selector.component.html',
-  styleUrls: ['./location-selector.component.scss']
+  styleUrls: ['./location-selector.component.scss'],
+  providers: [ Locations ]
 })
 
 export class LocationSelectorComponent {
