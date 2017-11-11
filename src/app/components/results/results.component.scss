@@ -77,14 +77,18 @@
     .navigation-panel {
         height: 85.5px;
         width: 67vw;
-        margin-top: 69px;
         margin-bottom: 54px;
+        z-index: 100;
     }
 
     .list-view-panel {
         width: 67vw;
         margin-top: 0px;
     }
+
+    .floating {
+        right: 0;
+    }    
 
 
 }
