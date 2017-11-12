@@ -1,17 +1,16 @@
 <div class='wrapper'>
 
-    <div class='bot-panel otoboto-blue'>
+    <div class='bot-panel bot-panel-side otoboto-blue'>
         <bot class='bot'></bot>
-        
     </div>
 
     <!--div  class='bot-panel otoboto-blue floating'>
         <bot class='bot'></bot>
     </div-->    
 
-    <div class='navigation-panel dark-backdrop solid'>
+    <!--div class='navigation-panel dark-backdrop solid'>
         <navigation class='navigation' [viewMode]='viewMode' [userProfileData]='userProfileData' (setViewMode)='setViewMode($event)'></navigation>
-    </div>
+    </div-->
 
     <div *ngIf='showBot || showNavigationBar' class='navigation-panel floating' [@divState]="state">
         <div *ngIf='showBot' class='bot-panel otoboto-blue'>
@@ -19,14 +18,20 @@
         </div>
         <navigation *ngIf='showNavigationBar' class='navigation' [viewMode]='viewMode' [userProfileData]='userProfileData' (setViewMode)='setViewMode($event)' ></navigation>
     </div>
-    
+
     <div class='list-view-panel'>
-        <swiper #swiper [config]="swiperConfig" (indexChange)="setViewModeByIndex($event)">
+        <list [style.display]="viewMode == 'results' ? 'block' : 'none'" #resultsList class='list' [items]='results' (like)='likeItem($event)' (dislike)='dislikeItem($event)' (loadMore)='loadNextPage(viewMode)'></list>
+        <list [style.display]="viewMode == 'favorites' ? 'block' : 'none'" #favoritesList class='list' [items]='favorites' (like)='likeItem($event)' (dislike)='dislikeItem($event)' (loadMore)='loadNextPage(viewMode)'></list>
+    </div>
+
+    
+      
+        <!--swiper #swiper [config]="swiperConfig" (indexChange)="setViewModeByIndex($event)">
             <list #list class='list' [items]='results' (like)='likeItem($event)' (dislike)='dislikeItem($event)' (loadMore)='loadNextPage(viewMode)'></list>
             <list #list class='list' [items]='favorites' (like)='likeItem($event)' (dislike)='dislikeItem($event)' (loadMore)='loadNextPage(viewMode)'></list>
             <user-settings *ngIf='userProfileData'></user-settings>
-        </swiper>
-    </div>
+        </swiper-->
+   
 
     
 

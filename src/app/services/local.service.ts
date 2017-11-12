@@ -14,7 +14,7 @@ export class LocalService {
     }
 
     saveResults(results) {
-        console.log('saving',results);
+
         localStorage.setItem('data',JSON.stringify(results));
     }
 
@@ -70,6 +70,13 @@ export class LocalService {
         let index = results.findIndex(element => element.car_document_id.$oid == item.car_document_id.$oid);
         results.splice(index,1);
         this.saveResults(results);
+    }
+
+    clear() {
+        localStorage.removeItem('profile');
+        localStorage.removeItem('login');
+        localStorage.removeItem('data');
+        localStorage.removeItem('favorites');
     }
 
 }

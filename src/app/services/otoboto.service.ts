@@ -25,7 +25,8 @@ export class Otoboto {
     FAVORITES: 'favorites',
     RESET: 'clean_user_decisions',
     GET_PAGE: 'show_cars',
-    DISLIKE: 'add_ignored_car'
+    DISLIKE: 'add_ignored_car',
+    GET_GUEST_DATA: 'get_anonymous_data'
   }
 
   uid;
@@ -44,14 +45,14 @@ export class Otoboto {
       version: 'v2.8'
     };
 
-    console.log(initParams); 
+
 
     this.fb.init(initParams);
 
   }
 
   init = (uid) => {
-    console.log(uid);
+
     this.uid = uid;
   }
 
@@ -71,8 +72,7 @@ export class Otoboto {
 		return this.http
 			.get(request)
       .map(res => {
-        console.log(res);
-        console.log(res.json());
+
         return res; 
       });
   }
@@ -84,7 +84,6 @@ export class Otoboto {
       .map(res => {
         let data = res.json(); 
         this.uid = data.user_id; 
-        console.log('Data is ready, uid is: ', this.uid);
         return data; 
       });
   };
@@ -104,8 +103,8 @@ export class Otoboto {
     this.uid = uid;
   }
 
-  clearUserSearch(uid) {
-    let request = this.base + this.END_POINTS.RESET + '?' + 'user_id=' + uid; 
+  resetUser() {
+    let request = this.base + this.END_POINTS.RESET + '?' + 'user_id=' + this.uid; 
 		return this.http
 			.get(request)
       .map(res => {
@@ -162,6 +161,17 @@ export class Otoboto {
         let data = res.json(); 
         return data; 
       });      
+  }
+
+  getGuestData = (params) => {
+    let request = this.base + this.END_POINTS.GET_GUEST_DATA + '?' + 'category=' + params.type + '&' + 'price=' + params.price + '&' + 'city=' + params.city; 
+		return this.http
+			.get(request)
+      .map(res => {
+        let data = res.json(); 
+        this.uid = data.user_id; 
+        return data; 
+      });    
   }
 
 }

@@ -37,8 +37,9 @@ declare var $:any;
 
 export class ResultsComponent {
 
-    @ViewChild('list') listComponent;
-    @ViewChild(SwiperComponent) componentRef: SwiperComponent;
+    @ViewChild('resultsList') resultsListComponent;
+    @ViewChild('favoritesList') favoritesListComponent;
+    //@ViewChild(SwiperComponent) componentRef: SwiperComponent;
 
     @HostListener('window:scroll', ['$event']) onScrollEvent($event){
         let st = window.pageYOffset || document.documentElement.scrollTop;
@@ -62,7 +63,7 @@ export class ResultsComponent {
     viewMode = 'results';
     offset = 0; 
     lastScrollTop = 0;
-    showNavigationBar = false;
+    showNavigationBar = true;
     showBot = false;  
 
     swiperConfig = {            
@@ -84,9 +85,12 @@ export class ResultsComponent {
     ngOnInit() {
         this.route.queryParams.subscribe((params) => {
             this.params = params;
-            console.log(params);
             if (params.guest) {
-                this.getPreparedData(params);
+                //this.getPreparedData(params);
+                this.api.getGuestData(params).subscribe(response => {
+                    this.results = response.data;
+                    this.local.saveResults(this.results); 
+                });
             } else {
                 this.api.init(params.uid);
                 let initialViewMode = params.mode ? params.mode : this.viewMode;
@@ -109,7 +113,7 @@ export class ResultsComponent {
             setTimeout(this.getPreparedData, 250, params);
         }
     }
-    
+
     updateURI(params, uid) {
         let searchArgs = {
             city: params.city,
@@ -181,18 +185,27 @@ export class ResultsComponent {
     }
 
     setViewMode(mode) {
+        this.resetScroller(); 
+        this.resultsListComponent.reset(); 
+        this.favoritesListComponent.reset();
         this.viewMode = mode; 
+        /*
         this.router.navigate(['./results'],{
             queryParams: {mode: mode},
             queryParamsHandling: "merge"
-          }); 
+          });
+        */ 
         if (mode == 'results') {
-            this.componentRef.directiveRef.setIndex(0); 
+            //this.componentRef.directiveRef.setIndex(0); 
         } else if (mode == 'favorites') {
-            this.componentRef.directiveRef.setIndex(1); 
+            //this.componentRef.directiveRef.setIndex(1); 
         } else if (mode == 'user') {
-            this.componentRef.directiveRef.setIndex(2); 
+            //this.componentRef.directiveRef.setIndex(2); 
         }
+    }
+
+    resetScroller() {
+        window.scrollTo(0, 0);
     }
 
     setViewModeByIndex(index){
@@ -292,8 +305,8 @@ export class ResultsComponent {
 
     */
     clearUserSearch() {
-        this.api.clearUserSearch('59ff5509bfd217000ee15e4a').subscribe(response => {
-            console.log(response);
-        })
+        //this.api.clearUserSearch('59ff5509bfd217000ee15e4a').subscribe(response => {
+        //    console.log(response);
+        //})
     }
 }

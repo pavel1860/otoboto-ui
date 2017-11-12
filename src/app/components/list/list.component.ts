@@ -22,7 +22,7 @@ export class ListComponent {
     _items; 
 
     @Input() set items(items: any) {
-      console.log(items);
+    
       this._items = items;  
       this.hasNewData = false; 
     } 
@@ -36,12 +36,12 @@ export class ListComponent {
     
     @Output() loadMore: EventEmitter<any> = new EventEmitter();  
 
-    itemsLimit = 10; 
+    itemsLimit = 5; 
     hasNewData = false;
 
     onScroll() {
 
-      this.itemsLimit += 10; 
+      this.itemsLimit += 5; 
 
       if (this.itemsLimit > this.items.length-20) {
         if (!this.hasNewData) {
@@ -53,7 +53,7 @@ export class ListComponent {
     }
 
     reset() {
-      this.itemsLimit = 10;
+      this.itemsLimit = 5;
     }
 
 }

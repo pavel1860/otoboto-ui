@@ -28,11 +28,11 @@ export class WelcomeComponent {
 
     this.route.queryParams.subscribe((params) => {
       this.uid = params.uid;
-      console.log(this.uid); 
+      
     });   
 
     this.auth.login().then(response => {
-      console.log(response); 
+     
       if (response) {
         this.doOnLoggedIn(response);
       } else {
@@ -47,7 +47,7 @@ export class WelcomeComponent {
 
   loginWithFacebook(wizardResults) {
     this.auth.loginWithFB(wizardResults).then(response => {
-      console.log(response); 
+  
       this.doOnLoggedIn(response);
     });
   }
@@ -63,7 +63,6 @@ export class WelcomeComponent {
       this.router.navigate(['./welcome'],{queryParams: {}});        
       this.userProfileData = response.userInfo;
       this.loading = false; 
-      console.log(this.userProfileData);
       //this.router.navigate(['./welcome'],{queryParams: {
       //  uid: response['user_id']
       //}, queryParamsHandling: "merge"});         
@@ -71,7 +70,6 @@ export class WelcomeComponent {
   }
 
   goToResults(wizardResults) {
-    console.log('sds');
     if (this.userProfileData) {
       this.loginWithFacebook(wizardResults); 
     } else {
