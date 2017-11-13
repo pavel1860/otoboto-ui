@@ -134,9 +134,7 @@ export class ResultsComponent {
 
     loadLocalData(uid) {
         this.results = this.local.getResults(); 
-        console.log(this.results);
         this.userProfileData = this.local.getUserProfile();
-        console.log(this.results);
     }
 
     loadUserFavorites(uid) {
@@ -147,7 +145,6 @@ export class ResultsComponent {
     }
 
     login() {
-        console.log(this.params);
         this.auth.loginWithFB(this.params).then(response => {
             this.results = response['data'];
             this.userProfileData = this.local.getUserProfile();
@@ -176,7 +173,6 @@ export class ResultsComponent {
     }
 
     getItems(mode) {
-        console.log('mode',mode);
         if (mode == 'results') {
             return this.results;
         } else if (mode == 'favorites') {
@@ -221,7 +217,6 @@ export class ResultsComponent {
     loadNextPage(mode) {
        
         if (mode == 'results') {
-            console.log('bring more');
             this.offset++;
             this.api.getPage(this.offset).subscribe(response => {
                 this.results = this.results.concat(response.data);
@@ -231,82 +226,4 @@ export class ResultsComponent {
        
     }
 
-    setOffset(offset) {
-        console.log(offset);
-        this.router.navigate(['./results'],{
-            queryParams: {offset: offset},
-            queryParamsHandling: "merge"
-          });            
-    }
-
-    /*
-    ngOnInit() {
-        this.route.queryParams.subscribe((params) => {
-            this.params = params; 
-            if (!params.uid) {
-                this.getPreparedData();
-            } else {
-                this.api.setUID(params.uid);
-                this.loadLocalData(params.uid); 
-            }
-        });          
-    }
-
-    getPreparedData = () => {
-        let uid = this.api.getUID(); 
-        if (uid) {
-            this.updateURI(this.params, uid); 
-            this.getResults(this.params.city, uid);
-        } else {
-            setTimeout(this.getPreparedData, 250);
-        }
-    }
-
-    updateURI(params, uid) {
-        let searchArgs = {
-            city: params.city,
-            price: params.price, 
-            type: params.type,
-            uid: uid
-        };
-        this.router.navigate(['./results'],{queryParams : searchArgs});       
-    }
-
-    getResults(location, uid) {
-        this.api.getData(location, uid).subscribe(response => {
-            console.log('showing general results');
-            console.log(response.data); 
-            let results = response.data;
-            this.local.saveResults(results); 
-            this.results = results; 
-         })        
-    }
-
-    loadLocalData(uid) {
-        console.log('showing catch results');
-        this.results = this.local.getResults(); 
-        console.log(this.results);
-    }
-
-    login() {
-
-        this.auth.loginWithFB(this.params).then(response => {
-            console.log('showing user saved results');
-            console.log(response['data']);  
-            this.results = response['data'];
-        });
-    }
-
-    clearUserSearch() {
-        this.api.clearUserSearch('59ff5509bfd217000ee15e4a').subscribe(response => {
-            console.log(response);
-        })
-    }
-
-    */
-    clearUserSearch() {
-        //this.api.clearUserSearch('59ff5509bfd217000ee15e4a').subscribe(response => {
-        //    console.log(response);
-        //})
-    }
 }

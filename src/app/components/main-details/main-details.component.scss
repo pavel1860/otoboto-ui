@@ -20,7 +20,9 @@
 .actions {
     display: flex;
     justify-content: space-between;
-    padding: 22px;
+    height: 72.5px;
+    padding-left: 22px;
+    padding-right: 22px;
 }
 
 .location {
@@ -52,6 +54,7 @@
     height: 28.5px;
     width: 28.5px;
     cursor: pointer;
+    align-self: center;
 }
 
 .rank-gauge {
@@ -90,4 +93,21 @@
     width: 15px;
     align-self: center;
     margin-bottom: 2px;
+}
+
+.contact-box {
+    display: flex;
+    justify-content: center;
+    width: 156px;
+    height: 30.5px;
+    border: 2px solid #14C6C6;
+    border-radius: 6px; 
+    align-self: center;
+    line-height: 30.5px;
+}
+
+a {
+    text-decoration: none; 
+    color: #14C6C6;
+    align-self: center;
 }

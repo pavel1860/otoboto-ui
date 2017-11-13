@@ -59,6 +59,11 @@ body {
     color: $dark-gray; 
 }
 
+.text-secondary-prime {
+    font-size: 10px;
+    color: $primary; 
+}
+
 .text-weak {
     font-size: 9.5px;
     color: $warm-gray;
@@ -76,4 +81,24 @@ body {
 
 .bordered-bottom-backdrop {
     border-bottom: 3px solid $backdrop;
+}
+
+.mobile {
+    display: block;
+}
+
+.desktop {
+    display: none;
+}
+
+@media only screen and (min-width : 768px) {
+
+    .mobile {
+        display: none;
+    }
+
+    .desktop {
+        display: block;
+    }
+
 }

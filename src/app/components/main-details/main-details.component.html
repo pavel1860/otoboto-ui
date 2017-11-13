@@ -23,7 +23,7 @@
             
         </div>
 
-        <div class='rank-gauge'>
+        <div *ngIf='data.rank' class='rank-gauge'>
             <div class='rank-gauge-inner'>
                 <rank-gauge [rank]='data.rank'></rank-gauge>
                 <label class='text-major'> {{normalizedRank}} </label>
@@ -43,13 +43,24 @@
         </div>
     </div>
 
-    <div class='actions'>
+    <div class='actions mobile'>
         <div class='action-box like-button' (click)='like.emit()'>
             <img src='../../../assets/like-button.svg'/>
         </div>
+        <a href="tel:{{data.seller_phones[0]}}">
+            <div class='contact-box text-secondary-prime'>
+                {{data.seller_name}} - {{data.seller_phones[0]}}
+            </div>
+        </a>
         <div class='action-box dislike-button' (click)='dislike.emit()'>
             <img src='../../../assets/dislike-button.svg'/>
         </div>
     </div> 
+
+    <div class='desktop'>
+        <div class='contact-box text-secondary-prime'>
+            {{data.seller_name}} - {{data.seller_phones[0]}}
+        </div>        
+    </div>
 
 </div>
