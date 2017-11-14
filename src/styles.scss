@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Rubik');
+
 @import "app/style/colors";
 @import './app/style/swiper';
 @import './app/style/google-autocomplete';
@@ -8,8 +8,12 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Rubik', sans-serif;
+    
     background: $backdrop;
+}
+
+* {
+    font-family: 'Rubik', sans-serif;
 }
 
 .otoboto-medium-gray {
@@ -49,6 +53,11 @@ body {
     color: $dark-gray;
 }
 
+.text-details {
+    font-size: 12px;
+    color: $dark-gray;    
+}
+
 .text-secondary-white {
     font-size: 10px;
     color: white;     
@@ -79,12 +88,8 @@ body {
     color: $warm-gray;
 }
 
-.bordered-bottom-backdrop {
-    border-bottom: 3px solid $backdrop;
-}
-
 .mobile {
-    display: block;
+    display: flex;
 }
 
 .desktop {
@@ -98,7 +103,7 @@ body {
     }
 
     .desktop {
-        display: block;
+        display: flex;
     }
 
 }

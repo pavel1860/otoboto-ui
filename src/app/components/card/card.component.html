@@ -9,16 +9,35 @@
             <!--{{data.date | timeAgo }}-->
             לפני 20 דקות
         </div>
+
+        <div class='actions desktop'>
+            <div class='action-box like-button' (click)='like.emit()'>
+                <img src='../../../assets/like-button.svg'/>
+            </div>
+            <div class='action-box dislike-button' (click)='dislike.emit()'>
+                <img src='../../../assets/dislike-button.svg'/>
+            </div>
+        </div> 
+
    </div>
    <div class='card-body otoboto-white'>
-        <swiper class='content-swiper' [config]="swiperConfig">
-            <div>
-                <main-details [data]='data' (like)='like.emit()' (dislike)='dislike.emit()'></main-details>
-            </div>   
-            <div>
-                
-             </div>                            
-        </swiper>         
+
+        <swiper class='content-swiper mobile' [config]="swiperConfig">
+            <main-details [data]='data' (like)='like.emit()' (dislike)='dislike.emit()'></main-details>
+            <seller-comments [data]='data'></seller-comments>    
+            <car-info [data]='data'></car-info> 
+            <model-info [data]='data'></model-info>                        
+        </swiper>  
+
+        <div class='content desktop'>
+
+            <main-details class='main-details' [data]='data' (like)='like.emit()' (dislike)='dislike.emit()'></main-details>
+
+        </div>
+
+
+
+
    </div>
 
 </div>

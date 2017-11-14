@@ -39,6 +39,10 @@ export class ListComponent {
     itemsLimit = 5; 
     hasNewData = false;
 
+    ngOnInit() {
+      
+    }
+
     onScroll() {
 
       this.itemsLimit += 5; 

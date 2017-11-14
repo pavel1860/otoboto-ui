@@ -60,7 +60,7 @@ export class Otoboto {
     let request = this.base + this.END_POINTS.AUTH + '?' + 'token=' + token; 
     if (userParams) {
       if (userParams.type) {
-        request += '&catagory=' + userParams.type
+        request += '&category=' + userParams.type
       }
       if (userParams.city) {
         request += '&city=' + userParams.city
@@ -78,7 +78,7 @@ export class Otoboto {
   }
 
 	prepareData = (catagory, price): Observable<Response> => {
-    let request = this.base + this.END_POINTS.PREPARE_DATA + '?' + 'catagory=' + catagory + '&' + 'price=' + price; 
+    let request = this.base + this.END_POINTS.PREPARE_DATA + '?' + 'category=' + catagory + '&' + 'price=' + price; 
 		return this.http
 			.get(request)
       .map(res => {
@@ -164,6 +164,7 @@ export class Otoboto {
   }
 
   getGuestData = (params) => {
+    console.log(params);
     let request = this.base + this.END_POINTS.GET_GUEST_DATA + '?' + 'category=' + params.type + '&' + 'price=' + params.price + '&' + 'city=' + params.city; 
 		return this.http
 			.get(request)

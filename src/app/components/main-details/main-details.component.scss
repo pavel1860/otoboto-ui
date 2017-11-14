@@ -11,14 +11,15 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
+    border-bottom: 3px solid #F6F6F6;
 }
 
 .properties {
     height: 54px;
+    border-bottom: 3px solid #F6F6F6;
 }
 
 .actions {
-    display: flex;
     justify-content: space-between;
     height: 72.5px;
     padding-left: 22px;
@@ -110,4 +111,25 @@ a {
     text-decoration: none; 
     color: #14C6C6;
     align-self: center;
+}
+
+.price-box {
+    display: flex;
+    justify-content: center;
+}
+
+.contact-panel {
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+@media only screen and (min-width : 768px) {
+
+    .primary-details {
+        border: none;
+    }
+
+    .properties {
+        border: none; 
+    }
 }

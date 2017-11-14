@@ -30,6 +30,10 @@ import { RankGaugeComponent } from './components/rank-gauge/rank-gauge.component
 import { BotAvatarComponent } from './components/bot-avatar/bot-avatar.component';
 import { InputPaneComponent } from './components/input-pane/input-pane.component';
 import { UserSettingsComponent } from './components/user-settings/user-settings.component';
+import { SellerCommentsComponent } from './components/seller-comments/seller-comments.component';
+import { SectionTitleComponent } from './components/section-title/section-title.component';
+import { CarInfoComponent } from './components/car-info/car-info.component';
+import { ModelInfoComponent } from './components/model-info/model-info.component';
 
 import { Otoboto } from './services/otoboto.service';
 import { LocalService } from './services/local.service';
@@ -78,7 +82,11 @@ const SWIPER_CONFIG: SwiperConfigInterface = {
     RankGaugeComponent,
     BotAvatarComponent,
     InputPaneComponent,
-    UserSettingsComponent
+    UserSettingsComponent,
+    SellerCommentsComponent,
+    SectionTitleComponent,
+    CarInfoComponent,
+    ModelInfoComponent
   ],
   imports: [
     BrowserModule,

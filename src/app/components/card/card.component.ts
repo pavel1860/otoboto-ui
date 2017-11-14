@@ -13,6 +13,8 @@ export class CardComponent {
     @Output() like: EventEmitter<any> = new EventEmitter();
     @Output() dislike: EventEmitter<any> = new EventEmitter();
 
+    carInfoSpec; 
+
     swiperConfig = {            
       pagination: '.swiper-pagination',
       paginationClickable: true,
@@ -21,6 +23,8 @@ export class CardComponent {
 
     ngOnInit() {
       this.computePostDate(); 
+
+      console.log(this.carInfoSpec);
     }
 
     computePostDate() {
@@ -37,5 +41,7 @@ export class CardComponent {
       
       
     }
+
+
 
 }
