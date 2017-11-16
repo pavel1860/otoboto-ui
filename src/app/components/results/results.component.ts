@@ -192,7 +192,6 @@ export class ResultsComponent {
         this.removeItemFromResults(item);
         this.local.removeItem(item);
         this.api.dislike(item).subscribe(response => {
-            this.showBot = true; 
             this.botComponent.react(response,item); 
         });        
     }
