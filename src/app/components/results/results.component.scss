@@ -9,6 +9,7 @@
     height: 134.5px;
     z-index: 11;
     margin-top: -194px;
+    transition: all 0.2s ease-in-out;
 }
 
 
@@ -48,7 +49,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column-reverse;
-    border-bottom: 3px solid #EBEBEB;
+    
 }
 
 .navigation {
@@ -56,6 +57,8 @@
     width: 100%;
     align-self: center;
     display: none;
+    z-index: 12;
+    transition: all 0.2s ease-in-out;
 }
 
 .nav-bar-visible {

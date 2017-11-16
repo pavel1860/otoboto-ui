@@ -27,7 +27,8 @@ export class Otoboto {
     GET_PAGE: 'show_cars',
     DISLIKE: 'add_ignored_car',
     GET_GUEST_DATA: 'get_anonymous_data',
-    HIDE_MANUFACTURER: 'add_ignored_manufacturer'
+    HIDE_MANUFACTURER: 'add_ignored_manufacturer',
+    HIDE_MODEL: 'add_ignored_car'
   }
 
   uid;
@@ -183,5 +184,16 @@ export class Otoboto {
         return res.json(); 
       });  
   }
+
+  hideModel = (itemID, manufacturer, model, year) => {
+    let request = this.base + this.END_POINTS.HIDE_MODEL + '?' + 'user_id=' + this.uid + '&' + 'car_id=' + itemID + '&' + 'manufacturer=' + manufacturer + '&' + 'model=' + model + '&' + 'year=' + year; 
+		return this.http
+			.get(request)
+      .map(res => {
+        return res.json(); 
+      });  
+  }
+
+  
 
 }

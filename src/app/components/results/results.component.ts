@@ -43,22 +43,28 @@ export class ResultsComponent {
     //@ViewChild(SwiperComponent) componentRef: SwiperComponent;
 
     @HostListener('window:scroll', ['$event']) onScrollEvent($event){
+
         let st = window.pageYOffset || document.documentElement.scrollTop;
         
         if (st < 142) {
             this.showBot = true; 
+            this.botInitial = true;
         }
 
         if (st > this.lastScrollTop){
             //scroll down 
-            this.showNavigationBar = false;      
+            this.showNavigationBar = false; 
+            if ((st > 142) && (this.botInitial)) {
+                this.showBot = false;
+                this.botInitial = false; 
+            } 
         } else {
             //scroll up 
             // Show navigation bar 
             this.showNavigationBar = true; 
-
         }
         this.lastScrollTop = st;        
+
     } 
 
     params;
@@ -72,6 +78,9 @@ export class ResultsComponent {
     showNavigationBar = true;
     showBot = false; 
     feedback; 
+    botInitial = true; 
+    lockBot = false;
+    hiddenResults = [];
 
     operations;
 
@@ -93,14 +102,16 @@ export class ResultsComponent {
 
     ngOnInit() {
 
-        this.resetScroller();
         this.showBot = true; 
+        this.resetScroller(); 
 
         this.operations = {
             hideManufacturer: this.hideManufacturer, 
+            hideModel: this.hideModel
         }     
 
         this.route.queryParams.subscribe((params) => {
+            
             this.params = params;
             if (params.guest) {
                 //this.getPreparedData(params);
@@ -109,6 +120,7 @@ export class ResultsComponent {
                     this.local.saveResults(this.results); 
                 });
             } else {
+                this.botComponent.say('הנה הרכבים המתאימים ביותר עבורך', true, null, true); 
                 this.api.init(params.uid);
                 let initialViewMode = params.mode ? params.mode : this.viewMode;
                 this.offset = params.offset ? params.offset : this.offset;
@@ -203,6 +215,7 @@ export class ResultsComponent {
         this.resultsListComponent.reset(); 
         this.favoritesListComponent.reset();
         this.viewMode = mode; 
+        
         /*
         this.router.navigate(['./results'],{
             queryParams: {mode: mode},
@@ -210,9 +223,9 @@ export class ResultsComponent {
           });
         */ 
         if (mode == 'results') {
-            //this.componentRef.directiveRef.setIndex(0); 
+            this.botComponent.say('הנה הרכבים המתאימים ביותר עבורך', true); 
         } else if (mode == 'favorites') {
-            //this.componentRef.directiveRef.setIndex(1); 
+            this.botComponent.say('כאן נמצאים כל הרכבים שאהבת', true); 
         } else if (mode == 'user') {
             //this.componentRef.directiveRef.setIndex(2); 
         }
@@ -246,7 +259,17 @@ export class ResultsComponent {
 
     hideManufacturer = (item) => {
         this.api.hideManufacturer(item.manufacturer).subscribe(response => {
-            console.log(response); 
+            let data = JSON.parse(response.data);
+            this.resultsListComponent.hide(data);
+            this.botComponent.say('הסתרתי את כל רכבי ה' + item.manufacturer, true, 2);
+        });
+    }
+
+    hideModel = (item) => {
+        this.api.hideModel(item.car_document_id.$oid, item.manufacturer, item.model, item.year).subscribe(response => {
+            let data = JSON.parse(response.data);
+            this.resultsListComponent.hide(data);
+            this.botComponent.say('הסתרתי את כל ה' + item.model, true, 2);
         });
     }
 

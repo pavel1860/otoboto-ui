@@ -31,12 +31,14 @@ export class ListComponent {
       return this._items; 
     } 
 
+    @Input() hidden = []; 
+
     @Output() like: EventEmitter<any> = new EventEmitter();
     @Output() dislike: EventEmitter<any> = new EventEmitter();  
     
     @Output() loadMore: EventEmitter<any> = new EventEmitter();  
 
-    itemsLimit = 5; 
+    itemsLimit = 10; 
     hasNewData = false;
 
     ngOnInit() {
@@ -58,6 +60,18 @@ export class ListComponent {
 
     reset() {
       this.itemsLimit = 5;
+    }
+
+    isHidden(item) {
+      let index = this.hidden.findIndex(id => id == item.car_document_id.$oid);
+      if (index!=-1) {
+        console.log('hide',item);
+      }
+      return index != -1; 
+    }
+
+    hide(items) {
+      this.hidden = this.hidden.concat(items);
     }
 
 }
