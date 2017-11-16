@@ -26,7 +26,8 @@ export class Otoboto {
     RESET: 'clean_user_decisions',
     GET_PAGE: 'show_cars',
     DISLIKE: 'add_ignored_car',
-    GET_GUEST_DATA: 'get_anonymous_data'
+    GET_GUEST_DATA: 'get_anonymous_data',
+    HIDE_MANUFACTURER: 'add_ignored_manufacturer'
   }
 
   uid;
@@ -164,7 +165,6 @@ export class Otoboto {
   }
 
   getGuestData = (params) => {
-    console.log(params);
     let request = this.base + this.END_POINTS.GET_GUEST_DATA + '?' + 'category=' + params.type + '&' + 'price=' + params.price + '&' + 'city=' + params.city; 
 		return this.http
 			.get(request)
@@ -173,6 +173,15 @@ export class Otoboto {
         this.uid = data.user_id; 
         return data; 
       });    
+  }
+
+  hideManufacturer = (manufacturer) => {
+    let request = this.base + this.END_POINTS.HIDE_MANUFACTURER + '?' + 'user_id=' + this.uid + '&' + 'manufacturer=' + manufacturer; 
+		return this.http
+			.get(request)
+      .map(res => {
+        return res.json(); 
+      });  
   }
 
 }

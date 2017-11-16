@@ -11,6 +11,7 @@
                 <bot-avatar class='bot-avatar'></bot-avatar>
             </div>
             <div class='speach-panel'>
+                
                 <!--speach></speach-->
             </div>    
         </div>         
@@ -24,10 +25,22 @@
         </div>
 
         <div class='horizontal-left-panel'>
-            <div class='filters-panel'>
+            <div *ngIf='!attention' class='filters-panel'>
                 <!--filters></filters-->
             </div>
-            <div class='speach-panel'>
+            <div class='speach-panel' [ngClass]='{"speach-panel-full": attention}'>
+                <div class='caption-box text-speach'>
+                    {{caption}}
+                </div>
+                <div *ngIf='userResponseType == "yesNoQuestion"' class='user-response-panel'>
+                    <div class='buttons-panel'>
+                        <button class='response-button text-weak' (click)='request.emit({code: operationCode, data: operationData})'>
+                            כן
+                        </button>
+                    </div>
+                </div>
+                    
+
                 <!--speach></speach-->
             </div>            
         </div>

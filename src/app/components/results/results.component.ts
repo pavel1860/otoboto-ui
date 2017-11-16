@@ -39,10 +39,16 @@ export class ResultsComponent {
 
     @ViewChild('resultsList') resultsListComponent;
     @ViewChild('favoritesList') favoritesListComponent;
+    @ViewChild('bot') botComponent;
     //@ViewChild(SwiperComponent) componentRef: SwiperComponent;
 
     @HostListener('window:scroll', ['$event']) onScrollEvent($event){
         let st = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (st < 142) {
+            this.showBot = true; 
+        }
+
         if (st > this.lastScrollTop){
             //scroll down 
             this.showNavigationBar = false;      
@@ -64,7 +70,10 @@ export class ResultsComponent {
     offset = 0; 
     lastScrollTop = 0;
     showNavigationBar = true;
-    showBot = false;  
+    showBot = false; 
+    feedback; 
+
+    operations;
 
     swiperConfig = {            
         pagination: '.swiper-pagination',
@@ -83,6 +92,14 @@ export class ResultsComponent {
     ) {}
 
     ngOnInit() {
+
+        this.resetScroller();
+        this.showBot = true; 
+
+        this.operations = {
+            hideManufacturer: this.hideManufacturer, 
+        }     
+
         this.route.queryParams.subscribe((params) => {
             this.params = params;
             if (params.guest) {
@@ -163,7 +180,8 @@ export class ResultsComponent {
         this.removeItemFromResults(item);
         this.local.removeItem(item);
         this.api.dislike(item).subscribe(response => {
-            console.log(response);
+            this.showBot = true; 
+            this.botComponent.react(response,item); 
         });        
     }
 
@@ -224,6 +242,16 @@ export class ResultsComponent {
             });
         }
        
+    }
+
+    hideManufacturer = (item) => {
+        this.api.hideManufacturer(item.manufacturer).subscribe(response => {
+            console.log(response); 
+        });
+    }
+
+    execute(operation) {
+        this.operations[operation.code](operation.data); 
     }
 
 }

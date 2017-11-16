@@ -1,8 +1,8 @@
 <div class='wrapper'>
 
-    <div class='bot-panel bot-panel-side otoboto-blue'>
-        <bot class='bot'></bot>
-    </div>
+    <!--div class='bot-panel bot-panel-side otoboto-blue'>
+        <bot #bot class='bot'></bot>
+    </div-->
 
     <!--div  class='bot-panel otoboto-blue floating'>
         <bot class='bot'></bot>
@@ -12,11 +12,11 @@
         <navigation class='navigation' [viewMode]='viewMode' [userProfileData]='userProfileData' (setViewMode)='setViewMode($event)'></navigation>
     </div-->
 
-    <div *ngIf='showBot || showNavigationBar' class='navigation-panel floating' [@divState]="state">
-        <div *ngIf='showBot' class='bot-panel otoboto-blue'>
-            <bot class='bot'></bot>
+    <div class='navigation-panel floating' [ngClass]='{"control-panel-visible": showBot || showNavigationBar}'>
+        <div class='bot-panel otoboto-blue' [ngClass]='{showMe: showBot}'>
+            <bot #bot class='bot' (showMe)='showBot==$event' (request)='execute($event)'></bot>
         </div>
-        <navigation *ngIf='showNavigationBar' class='navigation' [viewMode]='viewMode' [userProfileData]='userProfileData' (setViewMode)='setViewMode($event)' ></navigation>
+        <navigation class='navigation' [viewMode]='viewMode' [userProfileData]='userProfileData' (setViewMode)='setViewMode($event)' [ngClass]='{"nav-bar-visible": showNavigationBar}'></navigation>
     </div>
 
     <div class='list-view-panel'>

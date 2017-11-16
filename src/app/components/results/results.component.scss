@@ -8,14 +8,14 @@
     width: 100%;
     height: 134.5px;
     z-index: 11;
-    display: none;
+    margin-top: -194px;
 }
 
 
 
 .floating {
     position: fixed;
-    top: 0;
+    top: -600px;
     left: 0;
     z-index: 10;
     width: 100%;
@@ -25,12 +25,18 @@
  
 }
 
+.showMe {
+    margin-top: 0px;
+}
+
+
+
 .solid {
     z-index: 11;
 }
 
 .bot-vertical {
-    display: none;
+    margin-top: 0px;
 }
 
 .bot-vertical {
@@ -39,25 +45,32 @@
 
 .navigation-panel {
     margin-bottom: 20px;
-    height: 60px;
     display: flex;
     justify-content: center;
-    flex-direction: column;
+    flex-direction: column-reverse;
     border-bottom: 3px solid #EBEBEB;
 }
 
 .navigation {
-    height: 100%;
+    height: 60px;
     width: 100%;
     align-self: center;
+    display: none;
+}
+
+.nav-bar-visible {
+    display: flex;
 }
 
 .list-view-panel {
     display: flex;
     flex-direction: column; 
-    margin-top: 94px;
+    margin-top: 222px;
 }
 
+.control-panel-visible {
+    top: 0px;
+}
 
 
 @media only screen and (min-width : 768px) {
