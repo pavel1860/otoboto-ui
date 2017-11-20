@@ -8,7 +8,7 @@
     margin-bottom: 60px;
     width: 85.8%;
     align-self: center; 
-
+    height: 443px; 
     transition: all 0.3s ease-in-out;  
 }
 
@@ -25,15 +25,18 @@
 @media only screen and (min-width : 768px) {
 
     .card-panel {
-   
+        height: 304px; 
         width: unset;
     }
 
+    .expand {
+        height: 500px;
+    }
+    
     .hidden {
         height: 0px;
         padding: 0px;
         margin: 0px;
         z-index: 0;
     }
-
 }

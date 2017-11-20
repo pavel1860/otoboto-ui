@@ -38,7 +38,7 @@ export class ListComponent {
     
     @Output() loadMore: EventEmitter<any> = new EventEmitter();  
 
-    itemsLimit = 10; 
+    itemsLimit = 16; 
     hasNewData = false;
 
     ngOnInit() {
@@ -47,7 +47,7 @@ export class ListComponent {
 
     onScroll() {
 
-      this.itemsLimit += 5; 
+      this.itemsLimit += 16; 
 
       if (this.itemsLimit > this.items.length-20) {
         if (!this.hasNewData) {
@@ -59,7 +59,7 @@ export class ListComponent {
     }
 
     reset() {
-      this.itemsLimit = 5;
+      this.itemsLimit = 16;
     }
 
     isHidden(item) {

@@ -12,6 +12,7 @@ export class CardComponent {
 
     @Output() like: EventEmitter<any> = new EventEmitter();
     @Output() dislike: EventEmitter<any> = new EventEmitter();
+    @Output() expand: EventEmitter<any> = new EventEmitter();
 
     showInfo = false; 
     carInfoSpec; 
