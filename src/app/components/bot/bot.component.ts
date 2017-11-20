@@ -80,7 +80,7 @@ export class BotComponent {
 
   process(data) {
     let behavior = {
-      code: 'none'
+      code: 'hideManufacturer'
     }; 
     if (data.ask_hide_manufacturer) {
       behavior.code = 'hideManufacturer';

@@ -1,43 +1,74 @@
-<div class='wrapper'>
+<div class='outer-wrapper' (click)='showInfo=!showInfo'>
 
-   <div class='gallery-panel'>
-        <image-gallery class='image-gallery' [images]='data.mobile_pics'></image-gallery>
-        <div class='mobile price-box otoboto-blue text-secondary-white'>
-            {{data.price | nis}}
-        </div>
-        <div class='date-box text-small text-weak'>
-            <!--{{data.date | timeAgo }}-->
-            לפני 20 דקות
-        </div>
+    <div class='wrapper'>
 
-        <div class='actions desktop'>
-            <div class='action-box like-button' (click)='like.emit()'>
-                <img src='../../../assets/like-button.svg'/>
-            </div>
-            <div class='action-box dislike-button' (click)='dislike.emit()'>
-                <img src='../../../assets/dislike-button.svg'/>
-            </div>
-        </div> 
+        <div class='gallery-panel'>
+                <image-gallery class='image-gallery' [images]='data.mobile_pics'></image-gallery>
+                <div class='mobile price-box otoboto-blue text-secondary-white'>
+                    {{data.price | nis}}
+                </div>
+                <div class='date-box text-small text-weak'>
+                    <!--{{data.date | timeAgo }}-->
+                    לפני 20 דקות
+                </div>
 
-   </div>
-   <div class='card-body otoboto-white'>
-
-        <swiper class='content-swiper mobile' [config]="swiperConfig">
-            <main-details [data]='data' (like)='like.emit()' (dislike)='dislike.emit()'></main-details>
-            <seller-comments [data]='data'></seller-comments>    
-            <car-info [data]='data'></car-info> 
-            <model-info [data]='data'></model-info>                        
-        </swiper>  
-
-        <div class='content desktop'>
-
-            <main-details class='main-details' [data]='data' (like)='like.emit()' (dislike)='dislike.emit()'></main-details>
+                <div class='actions-desktop desktop'>
+                    <div class='action-box like-button' (click)='like.emit()'>
+                        <img src='../../../assets/like-button.svg'/>
+                    </div>
+                    <div class='action-box dislike-button' (click)='dislike.emit()'>
+                        <img src='../../../assets/dislike-button.svg'/>
+                    </div>
+                </div> 
 
         </div>
+        <div class='card-body otoboto-white'>
 
+                <swiper class='content-swiper mobile' [config]="swiperConfig">
+                    <main-details [data]='data' (like)='like.emit()' (dislike)='dislike.emit()'></main-details>
+                    <seller-comments [data]='data'></seller-comments>    
+                    <car-info [data]='data'></car-info> 
+                    <model-info [data]='data'></model-info>                        
+                </swiper>  
 
+                <div class='actions-mobile mobile'>
+                    <div class='action-box' (click)='like.emit()'>
+                        <img src='../../../assets/like-button.svg'/>
+                    </div>
+                    <a href="tel:{{data.seller_phones[0]}}">
+                        <div class='contact-box text-secondary-prime'>
+                            {{data.seller_name}}
+                        </div>
+                    </a>
+                    <div class='action-box' (click)='dislike.emit()'>
+                        <img src='../../../assets/dislike-button.svg'/>
+                    </div>
+                </div> 
 
+                <div class='content desktop'>
 
-   </div>
+                    <main-details class='main-details' [data]='data' (like)='like.emit()' (dislike)='dislike.emit()'></main-details>
 
+                </div>
+
+        </div>
+
+    </div>
+
+    <div class='info-panel desktop otoboto-white' [ngClass]='{visible: showInfo}' (click)='block($event)'>
+
+        <div *ngIf='showInfo' class='header'>
+            <section-title class='section-title' [icon]='"../../../assets/seller-comments.svg"' [title]='"דברי המוכר"' (click)='block($event); infoViewMode="sellerComments"'></section-title>
+            <section-title class='section-title' [icon]='"../../../assets/car-info.svg"' [title]='"הרכב"' (click)='block($event); infoViewMode="carInfo"'></section-title>
+            <section-title class='section-title' [icon]='"../../../assets/model-info.svg"' [title]='"הדגם"' (click)='block($event); infoViewMode="modelInfo"'></section-title>
+        </div>
+
+        <div *ngIf='showInfo' class='content'>
+            <seller-comments class='info' *ngIf='infoViewMode=="sellerComments"' [data]='data'></seller-comments>    
+            <car-info class='info' *ngIf='infoViewMode=="carInfo"' [data]='data'></car-info> 
+            <model-info class='info' *ngIf='infoViewMode=="modelInfo"' [data]='data'></model-info>       
+        </div>
+    
+
+    </div>
 </div>

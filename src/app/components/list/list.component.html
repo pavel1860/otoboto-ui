@@ -1,5 +1,5 @@
 <div class='wrapper' infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()">
-    <div *ngFor='let item of items; let i = index;' class='card-panel' [@divState]="state" [ngClass]='{hidden: i >= itemsLimit || isHidden(item)}'>
+    <div *ngFor='let item of items; let i = index;' class='card-panel' [ngClass]='{hidden: i >= itemsLimit || isHidden(item)}'>
         <card *ngIf='i < itemsLimit && !isHidden(item)' class='card' [data]='item' (like)='like.emit(item)' (dislike)='dislike.emit(item)'></card>
     </div>
 </div>

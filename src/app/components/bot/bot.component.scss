@@ -1,6 +1,5 @@
 .wrapper {
     display: flex;
-    height: 100%;
     width: 100%;
     position: absolute;
 }
@@ -74,34 +73,26 @@
     width: 100%;
 }
 
-.user-response-panel {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 21px;
-    width: 180.5px;
-    align-self: center;
-}
 
-.buttons-panel {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
+
+
 
 .speach-panel-full {
     height: 100%;
     justify-content: center;
 }
 
-.caption-box {
-    width: 180.5px;
-    text-align: center;
-    align-self: center;
-}
+
 
 @media only screen and (min-width : 768px) {
 
+    .wrapper {
+        height: 100%;
+        width: 30%;
+        left: 0;
+        position: fixed;
+    }
+    
     .vertical-wrapper {
         display: flex;
     }
@@ -112,6 +103,15 @@
 
     .bot-avatar {
         width: 100%;
+        height: unset;
+    }
+
+    .vertical-bottom-panel {
+        flex-direction: column;
+    }
+    
+    .bot-avatar-panel {
+        align-self: center;
     }
 
 }

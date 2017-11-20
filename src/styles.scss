@@ -65,7 +65,7 @@ body {
 
 .text-secondary {
     font-size: 10px;
-    color: $dark-gray; 
+
 }
 
 .text-secondary-prime {
@@ -101,6 +101,21 @@ body {
     display: none;
 }
 
+.otoboto-frame {
+    border: 3px solid $primary;
+    border-radius: 6px;
+}
+
+.otoboto-fill {
+    background: white;
+    color: $primary;
+}
+
+.otoboto-fill-negative {
+    background: $primary;
+    color: white;
+}
+
 @media only screen and (min-width : 768px) {
 
     .mobile {
@@ -109,6 +124,26 @@ body {
 
     .desktop {
         display: flex;
+    }
+
+    .text-weak {
+        font-size: 14px;
+    }
+
+    .text-primary {
+        font-size: 20px;
+    }
+
+    .text-secondary {
+        font-size: 16px;
+    }
+
+    .text-major {
+        font-size: 29px;
+    }
+
+    .text-speach {
+        font-size: 30px;
     }
 
 }

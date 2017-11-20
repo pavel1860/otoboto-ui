@@ -1,0 +1,12 @@
+<div class='wrapper'>
+    <div class='caption-box text-speach'>
+        {{caption}}
+    </div>
+    <div *ngIf='userResponseType == "yesNoQuestion"' class='user-response-panel'>
+        <div class='buttons-panel'>
+            <button class='response-button text-weak' (click)='userResponse.emit()'>
+                כן
+            </button>
+        </div>
+    </div>
+</div>

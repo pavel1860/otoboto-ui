@@ -37,31 +37,19 @@
             <div class='icon'>
                 <img [src]='property.icon'/>
             </div>
-            <div class='title xx-small'>
+            <div class='title text-weak'>
                 {{property.caption}}
             </div>
         </div>
     </div>
 
-    <div class='actions mobile'>
-        <div class='action-box like-button' (click)='like.emit()'>
-            <img src='../../../assets/like-button.svg'/>
-        </div>
-        <a href="tel:{{data.seller_phones[0]}}">
-            <div class='contact-box text-secondary-prime'>
-                {{data.seller_name}}
-            </div>
-        </a>
-        <div class='action-box dislike-button' (click)='dislike.emit()'>
-            <img src='../../../assets/dislike-button.svg'/>
-        </div>
-    </div> 
+
 
     <div class='contact-panel desktop'>
-        <div class='contact-box text-secondary-prime'>
+        <div class='contact-box text-secondary otoboto-frame otoboto-fill'>
             {{data.seller_name}}
         </div>   
-        <div class='price-box text-secondary-white otoboto-blue'>
+        <div class='price-box text-secondary otoboto-frame otoboto-fill-negative'>
             {{data.price | nis}}
         </div>      
     </div>

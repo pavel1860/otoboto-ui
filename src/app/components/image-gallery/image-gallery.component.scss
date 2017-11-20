@@ -14,7 +14,11 @@
 }
 
 @media only screen and (min-width : 768px) {
-    border-radius: 6px 0px 0px 0px;
+
+    .image { 
+        border-radius: 0px 6px 6px 0;
+    }
+    
 }
 
 

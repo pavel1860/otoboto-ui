@@ -33,13 +33,15 @@
     z-index: 1;
 }
 
-.actions {
+.actions-desktop {
     flex-direction: column;
     width: 30px;
     position: absolute;
     top: 20px;
     z-index: 9;
     right: 20px;    
+    justify-content: space-between;
+    height: 61px;
 }
 
 .info-card {
@@ -48,12 +50,47 @@
     padding-left: 24.5px;    
 }
 
+.actions-mobile {
+    justify-content: space-between;
+    height: 72.5px;
+    padding-left: 22px;
+    padding-right: 22px;
+}
+
+.action-box {
+    height: 28.5px;
+    width: 28.5px;
+    cursor: pointer;
+    align-self: center;
+}
+
+.contact-box {
+    display: flex;
+    justify-content: center;
+    width: 156px;
+    height: 30.5px;
+    border: 2px solid #14C6C6;
+    border-radius: 6px; 
+    align-self: center;
+    line-height: 30.5px;
+}
+
+a {
+    text-decoration: none; 
+    color: #14C6C6;
+    align-self: center;
+}
+
 @media only screen and (min-width : 768px) {
+
+    .outer-wrapper {
+        width: 645px;
+    }
 
     .wrapper {
         flex-direction: row;
-        width: 691px;
-        height: 322.7px;        
+        height: 304px;    
+        cursor: pointer;    
     } 
 
     .gallery-panel {
@@ -64,10 +101,59 @@
     .card-body {
         width: 53%;
         height: 100%;
+        z-index: 2;
     }
 
     .main-details {
         width: 100%;
+    }
+
+    .content {
+        height: 100%;
+        padding-bottom: 21px;
+        box-sizing: border-box;
+    }
+
+    .info-panel {
+
+        display: flex;
+        flex-direction: column;
+        height: 200px;
+        width: 100%;
+        transition: all 0.2s ease-in-out;
+        z-index: 1;
+        margin-top: -200px;
+
+        .header {
+            height: 79px;
+            width: 100%;
+            box-sizing: border-box;
+            border-top: 3px solid #F6F6F6;
+            border-bottom: 3px solid #F6F6F6;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .section-title {
+            align-self: center;
+            cursor: pointer;
+        }
+
+        .content {
+            width: 100%;
+            display: flex;
+            padding-top: 18px;
+            height: 123px;
+            box-sizing: border-box;
+        }
+
+        .info {
+            width: 100%;
+        }
+    }
+
+    .visible {
+        margin-top: 0px;
     }
 
 }

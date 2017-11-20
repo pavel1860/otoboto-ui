@@ -64,14 +64,16 @@ export class ListComponent {
 
     isHidden(item) {
       let index = this.hidden.findIndex(id => id == item.car_document_id.$oid);
+      
       if (index!=-1) {
-        console.log('hide',item);
+
       }
       return index != -1; 
     }
 
     hide(items) {
       this.hidden = this.hidden.concat(items);
+
     }
 
 }

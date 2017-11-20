@@ -10,7 +10,7 @@
             <img class='navigation-icon' [src]='viewMode=="favorites" ? "../../assets/navigation-button-favorites-active.svg" : "../../assets/navigation-button-favorites.svg"'/>
         </div> 
     </div>
-    <div class='navigation-section' *ngIf='userProfileData'>    
+    <div class='navigation-section' *ngIf='userProfileData' (click)='setViewMode.emit("user")'>    
         <div class='navigation-button'>
             <img class='avatar' [src]="userProfileData?.picture?.data?.url"/>
         </div>

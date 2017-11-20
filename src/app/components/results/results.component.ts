@@ -47,21 +47,15 @@ export class ResultsComponent {
         let st = window.pageYOffset || document.documentElement.scrollTop;
         
         if (st < 142) {
-            this.showBot = true; 
-            this.botInitial = true;
+            this.showBot = false; 
         }
 
         if (st > this.lastScrollTop){
-            //scroll down 
-            this.showNavigationBar = false; 
-            if ((st > 142) && (this.botInitial)) {
-                this.showBot = false;
-                this.botInitial = false; 
-            } 
+            //this.showBot = false;
         } else {
             //scroll up 
             // Show navigation bar 
-            this.showNavigationBar = true; 
+            //this.showNavigationBar = true; 
         }
         this.lastScrollTop = st;        
 
@@ -102,7 +96,6 @@ export class ResultsComponent {
 
     ngOnInit() {
 
-        this.showBot = true; 
         this.resetScroller(); 
 
         this.operations = {
@@ -181,7 +174,9 @@ export class ResultsComponent {
     }
 
     likeItem(item) {
-        this.removeItemFromResults(item);
+        this.showBot = true; 
+        this.resultsListComponent.hide([item.car_document_id.$oid]);
+        //this.removeItemFromResults(item);
         this.favorites.push(item); 
         this.local.likeItem(item);
         this.api.like(item).subscribe(response => {
@@ -189,7 +184,8 @@ export class ResultsComponent {
     }
 
     dislikeItem(item) {
-        this.removeItemFromResults(item);
+        this.resultsListComponent.hide([item.car_document_id.$oid]);
+        //this.removeItemFromResults(item);
         this.local.removeItem(item);
         this.api.dislike(item).subscribe(response => {
             this.botComponent.react(response,item); 
@@ -260,6 +256,7 @@ export class ResultsComponent {
         this.api.hideManufacturer(item.manufacturer).subscribe(response => {
             let data = JSON.parse(response.data);
             this.resultsListComponent.hide(data);
+            this.local.removeIds(data); 
             this.botComponent.say('הסתרתי את כל רכבי ה' + item.manufacturer, true, 2);
         });
     }
@@ -268,6 +265,7 @@ export class ResultsComponent {
         this.api.hideModel(item.car_document_id.$oid, item.manufacturer, item.model, item.year).subscribe(response => {
             let data = JSON.parse(response.data);
             this.resultsListComponent.hide(data);
+            this.local.removeIds(data); 
             this.botComponent.say('הסתרתי את כל ה' + item.model, true, 2);
         });
     }

@@ -6,18 +6,25 @@
         <bot class='bot'></bot>
     </div-->    
 
+    <navigation class='navigation' [viewMode]='viewMode' [userProfileData]='userProfileData' (setViewMode)='setViewMode($event)'></navigation>
 
+    <!--bot #bot class='bot floating' (showMe)='lockBot=$event' (hideMe)='showBot=false;lockBot=false' (request)='execute($event)' [ngClass]='{showMe: showBot || lockBot}'></bot-->
 
-    <div class='navigation-panel floating' [ngClass]='{"control-panel-visible": showBot || showNavigationBar || lockBot}'>
+    <!--div class='navigation-panel floating' [ngClass]='{"control-panel-visible": showBot || showNavigationBar || lockBot}'>
         <div class='bot-panel otoboto-blue' [ngClass]='{showMe: showBot || lockBot}'>
             <bot #bot class='bot' (showMe)='lockBot=$event' (hideMe)='showBot=false;lockBot=false' (request)='execute($event)'></bot>
         </div>
         <navigation class='navigation' [viewMode]='viewMode' [userProfileData]='userProfileData' (setViewMode)='setViewMode($event)' [ngClass]='{"nav-bar-visible": showNavigationBar}'></navigation>
-    </div>
+    </div-->
+    <bot #bot class='bot static' (request)='execute($event)' [ngClass]='{floating: showBot}'></bot>
 
     <div class='list-view-panel'>
-        <list [style.display]="viewMode == 'results' ? 'block' : 'none'" #resultsList class='list' [items]='results' [hidden]='hiddenResults' (like)='likeItem($event)' (dislike)='dislikeItem($event)' (loadMore)='loadNextPage(viewMode)'></list>
+        <list [style.display]="viewMode == 'results' ? 'block' : 'none'" #resultsList class='list' [items]='results' [hidden]='hiddenResults' (like)='likeItem($event);' (dislike)='dislikeItem($event)' (loadMore)='loadNextPage(viewMode)'></list>
         <list [style.display]="viewMode == 'favorites' ? 'block' : 'none'" #favoritesList class='list' [items]='favorites' (like)='likeItem($event)' (dislike)='dislikeItem($event)' (loadMore)='loadNextPage(viewMode)'></list>
+    </div>
+
+    <div class='user-settings-panel' [style.display]="viewMode == 'user' ? 'block' : 'none'">
+        <user-settings></user-settings>
     </div>
 
     

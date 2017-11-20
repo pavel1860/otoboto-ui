@@ -42,6 +42,8 @@ input {
     margin-right: auto;
 }
 
+
+
 .full-size {
     width: 90%;
     height: 60px;
@@ -51,19 +53,29 @@ input {
 }
 
 @media only screen and (min-width : 768px) {
+
     .continue-button-panel {
         margin-top: 13.75px;
-        width: 60.25px;
-        height: 22.5px;
         align-self: center;
         position: unset;
     }
+
+    .continue-button-panel {
+        .button {
+            height: 34px;
+            width: 184px;
+            line-height: 34px;
+        }
+    }
+
     .input-inner-mobile {
         display: none;
     }
+
     .input-inner-desktop {
         display: block;
-    }    
+    }  
+
 }
 
 

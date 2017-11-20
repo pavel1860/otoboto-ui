@@ -13,7 +13,9 @@ export class CardComponent {
     @Output() like: EventEmitter<any> = new EventEmitter();
     @Output() dislike: EventEmitter<any> = new EventEmitter();
 
+    showInfo = false; 
     carInfoSpec; 
+    infoViewMode = 'sellerComments'; 
 
     swiperConfig = {            
       pagination: '.swiper-pagination',
@@ -40,6 +42,10 @@ export class CardComponent {
       //let timestamp = DcomputedDate.getMilliseconds - 
       
       
+    }
+
+    block(e) {
+      e.stopPropagation(); 
     }
 
 

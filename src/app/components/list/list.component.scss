@@ -7,17 +7,33 @@
 .card-panel {
     margin-bottom: 60px;
     width: 85.8%;
-    align-self: center;
+    align-self: center; 
+    height: 443px; 
+    transition: all 0.3s ease-in-out;  
 }
 
 .hidden {
-    display: none;
+
+    height: 0px;
+    padding: 0px;
+    margin: 0px;
+    z-index: 0;
+
 }
+
 
 @media only screen and (min-width : 768px) {
 
     .card-panel {
+        height: 304px; 
         width: unset;
+    }
+
+    .hidden {
+        height: 0px;
+        padding: 0px;
+        margin: 0px;
+        z-index: 0;
     }
 
 }

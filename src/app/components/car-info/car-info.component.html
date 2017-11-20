@@ -1,10 +1,10 @@
 <div class='wrapper'>
 
-    <section-title class='section-title' [icon]='"../../../assets/car-info.svg"' [title]='"הרכב"'></section-title>
+    <!--section-title class='section-title' [icon]='"../../../assets/car-info.svg"' [title]='"הרכב"'></section-title-->
 
     <div class='content text-details'>
         <div *ngFor='let record of carInfoSpec' class='record'>
-           <div *ngIf='record.value'>
+           <div *ngIf='record.value' class='text-secondary'>
             {{record.title}} {{' - '}} {{record.value}}
            </div>
         </div>

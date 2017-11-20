@@ -34,6 +34,7 @@ import { SellerCommentsComponent } from './components/seller-comments/seller-com
 import { SectionTitleComponent } from './components/section-title/section-title.component';
 import { CarInfoComponent } from './components/car-info/car-info.component';
 import { ModelInfoComponent } from './components/model-info/model-info.component';
+import { BotSpeachComponent } from './components/bot-speach/bot-speach.component';
 
 import { Otoboto } from './services/otoboto.service';
 import { LocalService } from './services/local.service';
@@ -86,7 +87,8 @@ const SWIPER_CONFIG: SwiperConfigInterface = {
     SellerCommentsComponent,
     SectionTitleComponent,
     CarInfoComponent,
-    ModelInfoComponent
+    ModelInfoComponent,
+    BotSpeachComponent
   ],
   imports: [
     BrowserModule,
