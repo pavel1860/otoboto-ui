@@ -10,9 +10,9 @@
 
 .response-button {
     background: white; 
-    height: 22px;
-    width: 73px;
+    color: $warm-gray;
     border: none;
+    cursor: pointer;
 }
 
 @media only screen and (min-width : 768px) {

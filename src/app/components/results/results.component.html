@@ -16,7 +16,7 @@
         </div>
         <navigation class='navigation' [viewMode]='viewMode' [userProfileData]='userProfileData' (setViewMode)='setViewMode($event)' [ngClass]='{"nav-bar-visible": showNavigationBar}'></navigation>
     </div-->
-    <bot #bot class='bot static' (request)='execute($event)' [ngClass]='{floating: showBot}'></bot>
+    <bot #bot class='bot static' (request)='execute($event)' (showMe)='showBot=true' [ngClass]='{floating: showBot}'></bot>
 
     <div class='list-view-panel'>
         <list [style.display]="viewMode == 'results' ? 'block' : 'none'" #resultsList class='list' [items]='results' [hidden]='hiddenResults' (like)='likeItem($event);' (dislike)='dislikeItem($event)' (loadMore)='loadNextPage(viewMode)'></list>

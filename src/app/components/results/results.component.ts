@@ -174,7 +174,7 @@ export class ResultsComponent {
     }
 
     likeItem(item) {
-        this.showBot = true; 
+       // this.showBot = true; 
         this.resultsListComponent.hide([item.car_document_id.$oid]);
         //this.removeItemFromResults(item);
         this.favorites.push(item); 

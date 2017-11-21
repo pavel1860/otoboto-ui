@@ -13,9 +13,14 @@ export class ImageGalleryComponent {
     swiperConfig = {            
         pagination: '.swiper-pagination',
         paginationClickable: true,
-        nextButton: '.swiper-button-next',
-        prevButton: '.swiper-button-prev',
         spaceBetween: 0
     } 
+
+    ngOnInit() {
+        if (this.images.length > 1) {
+            this.swiperConfig['nextButton'] = '.swiper-button-next';
+            this.swiperConfig['prevButton'] = '.swiper-button-prev';
+        }
+    }
     
 }

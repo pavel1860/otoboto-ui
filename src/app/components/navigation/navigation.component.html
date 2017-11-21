@@ -7,7 +7,7 @@
     </div>
     <div class='navigation-section' (click)='setViewMode.emit("favorites")'>
         <div class='navigation-button'>
-            <img class='navigation-icon' [src]='viewMode=="favorites" ? "../../assets/navigation-button-favorites-active.svg" : "../../assets/navigation-button-favorites.svg"'/>
+            <img class='navigation-icon favorites' [src]='viewMode=="favorites" ? "../../assets/navigation-button-favorites-active.svg" : "../../assets/navigation-button-favorites.svg"'/>
         </div> 
     </div>
     <div class='navigation-section' *ngIf='userProfileData' (click)='setViewMode.emit("user")'>    

@@ -1,6 +1,7 @@
 .wrapper {
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
 
 .caption-box {
@@ -31,6 +32,15 @@
         text-align: center;
         align-self: center;
         margin-top: 29px;
+    }
+
+    .user-response-panel {
+        margin-top: 40px;
+    }
+
+    .response-button {
+        height: 44px;
+        width: 146px;
     }
 
 }
