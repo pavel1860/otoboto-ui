@@ -242,7 +242,7 @@ export class ResultsComponent {
 
     loadNextPage(mode) {
        
-        if (mode == 'results') {
+        if ((mode == 'results') && (this.userProfileData)) {
             this.offset++;
             this.api.getPage(this.offset).subscribe(response => {
                 this.results = this.results.concat(response.data);

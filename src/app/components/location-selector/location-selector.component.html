@@ -3,7 +3,7 @@
     <div class='input-inner-desktop'>
 
         <input-box class='input-box' [icon]='"../../assets/location-icon-color.svg"'>
-            <input type='text' placeholder="הכנס אזור" [value]="valueToken" [formControl]="valueControler"/>
+            <input type='text' class='text-primary' placeholder="הכנס אזור" [value]="valueToken" [formControl]="valueControler"/>
         </input-box>
 
 
@@ -20,7 +20,7 @@
 
         <div class='input-box-panel'>
             <input-box class='input-box' [icon]='"../../assets/location-icon-color.svg"' (click)='openInputPane()'>
-                <input type='text' placeholder="הכנס אזור" [value]="valueToken" [formControl]="valueControler" autofocus/>
+                <input type='text' class='text-primary' placeholder="הכנס אזור" [value]="valueToken" [formControl]="valueControler" autofocus/>
             </input-box> 
         </div>   
             
@@ -29,7 +29,7 @@
             <div class='input-pane-inner'>
                 <div class='input-box-panel full-size'>
                     <input-box class='input-box' (click)='block($event);'>
-                        <input #input type='text' placeholder="הכנס אזור" [value]="valueToken" [formControl]="valueControler" autofocus/>
+                        <input #input class='text-primary' type='text' placeholder="הכנס אזור" [value]="valueToken" [formControl]="valueControler" autofocus/>
                     </input-box>  
                 </div>  
 
@@ -45,7 +45,7 @@
     </div>    
 
     <div class='continue-button-panel'>
-        <div class='button otoboto-blue text-small' (click)='done.emit(valueToken);'>
+        <div class='button button-wizard-next otoboto-blue text-small' (click)='done.emit(valueToken);'>
             המשך
         </div>
     </div>

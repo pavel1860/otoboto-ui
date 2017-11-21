@@ -28,7 +28,7 @@
 
 .date-box {
     position: absolute;
-    top: -19px;
+    top: -18px;
     right: 0;
     z-index: 1;
 }
@@ -79,6 +79,18 @@ a {
     text-decoration: none; 
     color: #14C6C6;
     align-self: center;
+}
+
+.info-block {
+    margin-top: 51px;
+    margin-right: 25.5px;
+    width: 282px;
+    height: 106px;
+}
+
+.section-title {
+    margin-bottom: 11.5px;
+    display: flex;
 }
 
 @media only screen and (min-width : 768px) {
@@ -137,6 +149,7 @@ a {
         .section-title {
             align-self: center;
             cursor: pointer;
+            margin-bottom: unset;
         }
 
         .content {
@@ -154,6 +167,10 @@ a {
 
     .visible {
         margin-top: 0px;
+    }
+
+    .date-box {
+        top: -26px;
     }
 
 }

@@ -56,7 +56,7 @@ input {
     flex-direction: column;
     width: 90%;
     align-self: center;
-    margin-top: 5px;
+    margin-top: 8px;
 }
 
 .input-pane-inner {
@@ -65,31 +65,47 @@ input {
 }
 
 .option {
-    height: 44px;
+    height: 53px;
     background: white;
     display: flex;
     justify-content: center;
-    margin-bottom: 4.5px;
-    line-height: 44px;
+    margin-bottom: 1.5px;
+    line-height: 53px;
+    cursor: pointer;
 }
 
 @media only screen and (min-width : 768px) {
+
     .continue-button-panel {
-        margin-top: 13.75px;
+        margin-top: 36.75px;
         width: 165px;
         height: 22.5px;
         align-self: center;
         position: unset;
     }
+
     .input-inner-mobile {
         display: none;
     }
+
     .input-inner-desktop {
         display: block;
-    }    
+    }  
+
     .options-panel {
-        z-index: 500;
-    }    
+        position: absolute;
+        left: 0;
+        right: 0;
+        width: 272px;
+        margin-left: auto;
+        margin-right: auto;
+        background: #F6F6F6;
+    } 
+
+    .option:hover {
+        background-color: #F6F6F6;
+    }
+    
 }
 
 

@@ -23,12 +23,17 @@ export class Locations {
         });    
     }
 
-	search = (term) => {
+	search = (term, limit) => {
 
         let results = [];
         this.data.forEach(function(a){if (a.indexOf(term)>-1) results.push(a)});
-        return results;
 
+        if (results.length < limit) {
+            return results;
+        } else {
+            return results.slice(0, limit);
+        }
+        
 	};       
 
 }

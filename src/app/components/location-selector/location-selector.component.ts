@@ -42,7 +42,7 @@ export class LocationSelectorComponent {
               if (token.length <= 1) {
                 return; 
               }
-              this.options = this.locations.search(token);
+              this.options = this.locations.search(token,3);
               if (this.options.length > 0) {
                   this.showOptionsMenu = true; 
               }

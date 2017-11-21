@@ -29,11 +29,11 @@ export class CarInfoComponent {
             {
                 title: 'תאריך תפוגת הטסט',
                 value: this.data.test_expires
-            },     
-            {
-                title: 'חודש עלייה לכביש',
-                value: this.data.month_released
-            }                          
+            }    
+            //{
+            //    title: 'חודש עלייה לכביש',
+            //    value: this.data.month_released
+            //}                          
         ];   
     }
 

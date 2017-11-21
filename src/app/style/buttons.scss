@@ -1,11 +1,14 @@
 .button {
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 8px;
-    padding-bottom: 8px;
     border-radius: 5px;
     cursor: pointer;
     text-align: center;
+}
+
+.button-wizard-next {
+    height: 53px;
+    width: 99px;
+    line-height: 53px;
+    box-sizing: border-box;
 }
 
 .response-button {
@@ -16,12 +19,9 @@
 }
 
 @media only screen and (min-width : 768px) {
-    .button {
-        width: 60px;
-        height: 22.5px;
-        line-height: 22.5px;
-        padding: 0;
-    }
+
+
+
 }
 
 .facebook-login-button {

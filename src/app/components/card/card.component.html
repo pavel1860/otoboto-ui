@@ -26,9 +26,25 @@
 
                 <swiper class='content-swiper mobile' [config]="swiperConfig">
                     <main-details [data]='data' (like)='like.emit()' (dislike)='dislike.emit()'></main-details>
-                    <seller-comments [data]='data'></seller-comments>    
-                    <car-info [data]='data'></car-info> 
-                    <model-info [data]='data'></model-info>                        
+                    <div class='info-inner-wrapper'>
+                        <div class='info-block'>
+                            
+                                <section-title class='section-title' [icon]='"../../../assets/seller-comments.svg"' [title]='"דברי המוכר"'></section-title>
+                            <seller-comments [data]='data'></seller-comments> 
+                        </div>    
+                    </div>  
+                    <div class='info-inner-wrapper'>
+                        <div class='info-block'>
+                            <section-title class='section-title' [icon]='"../../../assets/car-info.svg"' [title]='"הרכב"'></section-title>
+                            <car-info [data]='data'></car-info> 
+                        </div>
+                    </div>
+                    <div class='info-inner-wrapper'>
+                        <div class='info-block'>
+                            <section-title class='section-title' [icon]='"../../../assets/model-info.svg"' [title]='"הדגם"'></section-title>
+                            <model-info [data]='data'></model-info>  
+                        </div>
+                    </div>                   
                 </swiper>  
 
                 <div class='actions-mobile mobile'>
