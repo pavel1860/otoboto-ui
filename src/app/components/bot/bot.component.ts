@@ -1,12 +1,11 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { DeviceService } from '../../services/device.service';
 
 @Component({
   selector: 'bot',
   templateUrl: './bot.component.html',
   styleUrls: ['./bot.component.scss'],
-  host: {
-    '(window:resize)': 'onResize($event)'
-  }
+  providers: [ DeviceService ]
 })
 
 export class BotComponent {
@@ -22,11 +21,12 @@ export class BotComponent {
   operationCode; 
   operationData;
   hiddenCountdown; 
+  isMobile = true; 
 
-  width = window.screen.width;
+  constructor(private device: DeviceService) {}
 
-  onResize(event){
-    this.width = event.target.innerWidth;
+  ngOnInit() {
+    this.isMobile = this.device.isMobile();
   }
 
   say(text, importent, duration, setAsDefault) {

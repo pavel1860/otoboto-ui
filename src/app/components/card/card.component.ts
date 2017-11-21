@@ -1,9 +1,11 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { DeviceService } from '../../services/device.service';
 
 @Component({
   selector: 'card',
   templateUrl: './card.component.html',
-  styleUrls: ['./card.component.scss']
+  styleUrls: ['./card.component.scss'],
+  providers: [ DeviceService ]
 })
 
 export class CardComponent {
@@ -13,6 +15,8 @@ export class CardComponent {
     @Output() like: EventEmitter<any> = new EventEmitter();
     @Output() dislike: EventEmitter<any> = new EventEmitter();
     @Output() expand: EventEmitter<any> = new EventEmitter();
+
+    isMobile = true;
 
     showInfo = false; 
     carInfoSpec; 
@@ -24,7 +28,12 @@ export class CardComponent {
       spaceBetween: 0
     } 
 
+    constructor(private device: DeviceService) {}
+
     ngOnInit() {
+
+      this.isMobile = this.device.isMobile(); 
+
       this.computePostDate(); 
 
       console.log(this.carInfoSpec);

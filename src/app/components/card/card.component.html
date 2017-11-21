@@ -12,7 +12,7 @@
                     לפני 20 דקות
                 </div>
 
-                <div class='actions-desktop desktop'>
+                <div *ngIf='!isMobile' class='actions-desktop desktop'>
                     <div class='action-box like-button' (click)='like.emit()'>
                         <img src='../../../assets/like-button.svg'/>
                     </div>
@@ -28,8 +28,7 @@
                     <main-details [data]='data' (like)='like.emit()' (dislike)='dislike.emit()'></main-details>
                     <div class='info-inner-wrapper'>
                         <div class='info-block'>
-                            
-                                <section-title class='section-title' [icon]='"../../../assets/seller-comments.svg"' [title]='"דברי המוכר"'></section-title>
+                            <section-title class='section-title' [icon]='"../../../assets/seller-comments.svg"' [title]='"דברי המוכר"'></section-title>
                             <seller-comments [data]='data'></seller-comments> 
                         </div>    
                     </div>  
@@ -61,7 +60,7 @@
                     </div>
                 </div> 
 
-                <div class='content desktop'>
+                <div *ngIf='!isMobile' class='content desktop'>
 
                     <main-details class='main-details' [data]='data' (like)='like.emit()' (dislike)='dislike.emit()'></main-details>
 
@@ -71,7 +70,7 @@
 
     </div>
 
-    <div class='info-panel desktop otoboto-white' [ngClass]='{visible: showInfo}' (click)='block($event)'>
+    <div *ngIf='!isMobile' class='info-panel desktop otoboto-white' [ngClass]='{visible: showInfo}' (click)='block($event)'>
 
         <div *ngIf='showInfo' class='header'>
             <section-title class='section-title' [icon]='"../../../assets/seller-comments.svg"' [title]='"דברי המוכר"' (click)='block($event); infoViewMode="sellerComments"'></section-title>
@@ -85,6 +84,5 @@
             <model-info class='info' *ngIf='infoViewMode=="modelInfo"' [data]='data'></model-info>       
         </div>
     
-
     </div>
 </div>

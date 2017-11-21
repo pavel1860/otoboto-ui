@@ -39,6 +39,7 @@ import { BotSpeachComponent } from './components/bot-speach/bot-speach.component
 import { Otoboto } from './services/otoboto.service';
 import { LocalService } from './services/local.service';
 import { Locations } from './services/locations.service';
+import { DeviceService } from './services/device.service';
 
 import { NisPipe }  from './pipes/nis.pipe';
 import { AuthGuard } from './services/auth-guard.service';
@@ -108,7 +109,8 @@ const SWIPER_CONFIG: SwiperConfigInterface = {
     LocalService,
     AuthGuard,
     Auth,
-    Locations
+    Locations,
+    DeviceService
   ],
   bootstrap: [AppComponent]
 })

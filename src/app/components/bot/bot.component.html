@@ -1,6 +1,6 @@
 <div class='wrapper otoboto-fill-negative'>
 
-    <div class='vertical-wrapper'>
+    <div *ngIf='!isMobile' class='vertical-wrapper'>
 
         <div class='vertical-top-panel'>
             <!--filters></filters-->
@@ -17,7 +17,7 @@
     
     </div>
 
-    <div class='horizontal-wrapper'>
+    <div *ngIf='isMobile' class='horizontal-wrapper'>
 
         <div class='horizontal-right-panel'>
             <bot-avatar class='bot-avatar'></bot-avatar>
