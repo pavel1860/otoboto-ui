@@ -12,6 +12,10 @@
     
 }
 
+.main-content-panel {
+    margin-top: 181px;
+}
+
 .user-settings-panel {
     display: flex;
     padding: 20px;
@@ -83,7 +87,7 @@
 .list-view-panel {
     display: flex;
     flex-direction: column; 
-    margin-top: 181px;
+    //margin-top: 181px;
     //transition: all 0.3s ease-in-out;
 }
 

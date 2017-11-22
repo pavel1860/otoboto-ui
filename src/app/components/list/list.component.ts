@@ -26,7 +26,6 @@ export class ListComponent {
 
     @Input() set items(items: any) {
       
-      this.loading = true; 
       this._items = items;  
       this.hasNewData = false; 
       console.log('hey');
@@ -63,6 +62,7 @@ export class ListComponent {
     ngAfterViewInit() {
       this.ready.emit();
       this.things.changes.subscribe(t => {
+        this.loading = false;
         this.ready.emit();
       })
     }
@@ -79,6 +79,7 @@ export class ListComponent {
         if (!this.hasNewData) {
           this.loadMore.emit();
           this.hasNewData = true; 
+          this.loading = true;
         }
       }
 

@@ -208,10 +208,13 @@ export class ResultsComponent {
     }
 
     setViewMode(mode) {
-        this.loading = true;
+
+        if (mode == 'results' || mode == 'favorites') {
+            this.loading = true;
+        }
+    
         setTimeout(()=> {
             this.viewMode = mode; 
-            this.resultsListComponent.reset();
             this.resetScroller(); 
         },0);
         

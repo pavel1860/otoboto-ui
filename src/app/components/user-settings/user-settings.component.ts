@@ -16,6 +16,7 @@ export class UserSettingsComponent {
   constructor(private local: LocalService, private router: Router, private api: Otoboto) {}
 
   ngOnInit() {
+
   }
 
   logout() {
