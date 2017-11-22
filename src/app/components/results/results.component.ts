@@ -206,11 +206,10 @@ export class ResultsComponent {
     }
 
     setViewMode(mode) {
+        this.viewMode = mode; 
         this.resetScroller(); 
         this.resultsListComponent.reset(); 
         this.favoritesListComponent.reset();
-        this.viewMode = mode; 
-        
         /*
         this.router.navigate(['./results'],{
             queryParams: {mode: mode},
