@@ -211,9 +211,11 @@ export class ResultsComponent {
         this.loading = true;
         setTimeout(()=> {
             this.viewMode = mode; 
+            this.resultsListComponent.reset();
+            this.resetScroller(); 
         },0);
-        this.resetScroller(); 
-        this.resultsListComponent.reset(); 
+        
+         
         //this.favoritesListComponent.reset();
         /*
         this.router.navigate(['./results'],{
