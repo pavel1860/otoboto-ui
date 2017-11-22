@@ -24,23 +24,25 @@
         </div>
         <div class='card-body otoboto-white'>
 
-                <div id='content-swiper-wrap' class='content-swiper mobile'>
-                    <div class='info-inner-wrapper'>
-                        <div class='info-block'>
-                            <section-title class='section-title' [icon]='"../../../assets/seller-comments.svg"' [title]='"דברי המוכר"'></section-title>
-                            <seller-comments [data]='data'></seller-comments> 
-                        </div>    
-                    </div>  
-                    <div class='info-inner-wrapper'>
-                        <div class='info-block'>
-                            <section-title class='section-title' [icon]='"../../../assets/car-info.svg"' [title]='"הרכב"'></section-title>
-                            <car-info [data]='data'></car-info> 
+                <div id='content-swiper-wrap' class='content-swiper swipe mobile'>
+                    <div class='swipe-wrap'>
+                        <div class='info-inner-wrapper'>
+                            <div class='info-block'>
+                                <section-title class='section-title' [icon]='"../../../assets/seller-comments.svg"' [title]='"דברי המוכר"'></section-title>
+                                <seller-comments [data]='data'></seller-comments> 
+                            </div>    
+                        </div>  
+                        <div class='info-inner-wrapper'>
+                            <div class='info-block'>
+                                <section-title class='section-title' [icon]='"../../../assets/car-info.svg"' [title]='"הרכב"'></section-title>
+                                <car-info [data]='data'></car-info> 
+                            </div>
                         </div>
-                    </div>
-                    <div class='info-inner-wrapper'>
-                        <div class='info-block'>
-                            <section-title class='section-title' [icon]='"../../../assets/model-info.svg"' [title]='"הדגם"'></section-title>
-                            <model-info [data]='data'></model-info>  
+                        <div class='info-inner-wrapper'>
+                            <div class='info-block'>
+                                <section-title class='section-title' [icon]='"../../../assets/model-info.svg"' [title]='"הדגם"'></section-title>
+                                <model-info [data]='data'></model-info>  
+                            </div>
                         </div>
                     </div> 
                 </div>
