@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter, trigger, state, style, transition, animate, keyframes} from '@angular/core';
+import {Component, Input, Output, EventEmitter, ViewChildren, QueryList, trigger, state, style, transition, animate, keyframes} from '@angular/core';
 
 @Component({
   selector: 'list',
@@ -19,12 +19,17 @@ import {Component, Input, Output, EventEmitter, trigger, state, style, transitio
 
 export class ListComponent {
 
+     loading; 
     _items; 
 
+    @ViewChildren('element') things: QueryList<any>;
+
     @Input() set items(items: any) {
-    
+      
+      this.loading = true; 
       this._items = items;  
       this.hasNewData = false; 
+      console.log('hey');
     } 
 
     get items(): any { 
@@ -37,13 +42,34 @@ export class ListComponent {
     @Output() dislike: EventEmitter<any> = new EventEmitter();  
     
     @Output() loadMore: EventEmitter<any> = new EventEmitter();  
+    @Output() ready: EventEmitter<any> = new EventEmitter();  
+    
 
     itemsLimit = 16; 
     hasNewData = false;
 
     ngOnInit() {
-      
+      console.log('ready');
     }
+
+    ngOnChanges(a) {
+; 
+    }
+
+    ngAfterViewChecked(a) {
+
+    }
+
+    ngAfterViewInit() {
+      this.ready.emit();
+      this.things.changes.subscribe(t => {
+        this.ready.emit();
+      })
+    }
+
+    //ngAfterContentChecked() {
+    //  console.log('done2');
+    //}
 
     onScroll() {
 

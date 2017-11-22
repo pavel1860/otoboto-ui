@@ -1,6 +1,6 @@
 <div class='wrapper'>
 
-
+    <div *ngIf='loading' class='spinner'></div>
 
     <!--div  class='bot-panel otoboto-blue floating'>
         <bot class='bot'></bot>
@@ -18,12 +18,16 @@
     </div-->
     <bot #bot class='bot static' (request)='execute($event)' (showMe)='showBot=true' (hideMe)='showBot=false' [ngClass]='{floating: showBot}'></bot>
 
-    <div class='list-view-panel'>
+    <!--div class='list-view-panel'>
         <list [style.display]="viewMode == 'results' ? 'block' : 'none'" #resultsList class='list' [items]='results' [hidden]='hiddenResults' (like)='likeItem($event);' (dislike)='dislikeItem($event)' (loadMore)='loadNextPage(viewMode)'></list>
         <list [style.display]="viewMode == 'favorites' ? 'block' : 'none'" #favoritesList class='list' [items]='favorites' (like)='likeItem($event)' (dislike)='dislikeItem($event)' (loadMore)='loadNextPage(viewMode)'></list>
-    </div>
+    </div-->
 
-    <div class='user-settings-panel' [style.display]="viewMode == 'user' ? 'block' : 'none'">
+    <div class='list-view-panel' [style.opacity]="loading ? '0' : '1'">
+        <list #resultsList class='list' [items]='viewMode == "results" ? results : favorites' [hidden]='hiddenResults' (like)='likeItem($event);' (dislike)='dislikeItem($event)' (loadMore)='loadNextPage(viewMode)' (ready)='loading=false;'></list>
+    </div>    
+
+    <div class='user-settings-panel' [style.opacity]="viewMode == 'user' ? 'block' : 'none'">
         <user-settings></user-settings>
     </div>
 

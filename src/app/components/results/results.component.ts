@@ -8,6 +8,7 @@ import { LocalService } from '../../services/local.service';
 import { Auth } from '../../services/auth.service';
 
 
+
 declare var $:any;
 
 @Component({
@@ -62,6 +63,7 @@ export class ResultsComponent {
     } 
 
     params;
+    loading = false;
     results;
     favorites = [];
     list;
@@ -206,10 +208,13 @@ export class ResultsComponent {
     }
 
     setViewMode(mode) {
-        this.viewMode = mode; 
+        this.loading = true;
+        setTimeout(()=> {
+            this.viewMode = mode; 
+        },0);
         this.resetScroller(); 
         this.resultsListComponent.reset(); 
-        this.favoritesListComponent.reset();
+        //this.favoritesListComponent.reset();
         /*
         this.router.navigate(['./results'],{
             queryParams: {mode: mode},

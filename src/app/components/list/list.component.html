@@ -1,5 +1,6 @@
-<div class='wrapper' infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()">
-    <div *ngFor='let item of items; let i = index;' class='card-panel' [ngClass]='{hidden: i >= itemsLimit || isHidden(item), expand: item["expand"]}'>
-        <card *ngIf='i < itemsLimit && !isHidden(item)' class='card' [data]='item' (like)='like.emit(item)' (dislike)='dislike.emit(item)' (expand)='item["expand"]=$event'></card>
+<div  class='wrapper' infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()">
+    <div *ngFor='let item of items; let i = index; let last = last;' class='card-panel' [ngClass]='{hidden: i >= itemsLimit || isHidden(item), expand: item["expand"]}'>
+        <card #element *ngIf='i < itemsLimit && !isHidden(item)' class='card' [data]='item' (like)='like.emit(item)' (dislike)='dislike.emit(item)' (expand)='item["expand"]=$event'></card>
     </div>
 </div>
+
