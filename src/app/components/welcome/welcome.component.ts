@@ -58,7 +58,6 @@ export class WelcomeComponent {
         uid: response['user_id']
       }});  
     } else {
-      console.log('Login success, but no results yet');
       this.router.navigate(['./welcome'],{queryParams: {}});        
       this.userProfileData = response.userInfo;
       this.loading = false; 

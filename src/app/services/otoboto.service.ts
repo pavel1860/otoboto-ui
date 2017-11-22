@@ -28,7 +28,7 @@ export class Otoboto {
     DISLIKE: 'add_ignored_car',
     GET_GUEST_DATA: 'get_anonymous_data',
     HIDE_MANUFACTURER: 'add_ignored_manufacturer',
-    HIDE_MODEL: 'add_ignored_car'
+    HIDE_MODEL: 'add_ignored_model'
   }
 
   uid;
@@ -136,7 +136,7 @@ export class Otoboto {
   }
 
   dislike = (item) => {
-    let request = this.base + this.END_POINTS.DISLIKE + '?' + 'user_id=' + this.uid + '&' + 'car_id=' + item.car_document_id.$oid; 
+    let request = this.base + this.END_POINTS.DISLIKE + '?' + 'user_id=' + this.uid + '&' + 'car_id=' + item.car_document_id.$oid + '&' + 'manufacturer=' + item.manufacturer + '&' + 'model=' + item.model + '&' + 'year=' + item.year;
 		return this.http
 			.get(request)
       .map(res => {

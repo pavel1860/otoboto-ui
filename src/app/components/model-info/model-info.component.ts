@@ -13,7 +13,7 @@ export class ModelInfoComponent {
     modelInfoSpec;
 
     ngOnInit() {
-      console.log(this.data);
+
       this.modelInfoSpec = [
           {
               title: 'מחיר מחירון',

@@ -35,8 +35,6 @@ export class CardComponent {
       this.isMobile = this.device.isMobile(); 
 
       this.computePostDate(); 
-
-      console.log(this.carInfoSpec);
     }
 
     computePostDate() {

@@ -74,15 +74,11 @@ export class LocalService {
 
     removeIds(ids) {
         let results = this.getResults();
-        console.log(results); 
-        console.log(ids);
         let filtered = results.filter(item => {
             let id = item.car_document_id.$oid; 
             let index = ids.indexOf(id);
-            console.log(index);
             return index == -1;
         }); 
-        console.log(filtered); 
         this.saveResults(filtered);
     }
 

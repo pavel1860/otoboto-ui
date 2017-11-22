@@ -56,7 +56,7 @@ export class BotComponent {
   react(data, item) {
 
     let behavior = this.process(data);
-
+    console.log(behavior['code']);  
     switch (behavior['code']) {
       case 'hideManufacturer':
           this.showMe.emit(true);
@@ -80,7 +80,7 @@ export class BotComponent {
 
   process(data) {
     let behavior = {
-      code: 'hideManufacturer'
+      code: ''
     }; 
     if (data.ask_hide_manufacturer) {
       behavior.code = 'hideManufacturer';
