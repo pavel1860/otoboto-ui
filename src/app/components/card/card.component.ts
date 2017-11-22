@@ -1,6 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { DeviceService } from '../../services/device.service';
 
+declare var Swipe:any;
+
 @Component({
   selector: 'card',
   templateUrl: './card.component.html',
@@ -35,6 +37,18 @@ export class CardComponent {
       this.isMobile = this.device.isMobile(); 
 
       this.computePostDate(); 
+
+      let elem = document.getElementById('content-swiper-wrap');
+      let mySwipe = Swipe(elem, {
+        // startSlide: 4,
+        // auto: 3000,
+        // continuous: true,
+        // disableScroll: true,
+        // stopPropagation: true,
+        // callback: function(index, element) {},
+        // transitionEnd: function(index, element) {}
+      });      
+
     }
 
     computePostDate() {
