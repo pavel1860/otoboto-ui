@@ -1,11 +1,13 @@
-<div class='wrapper'>
+<div *ngIf='!loading' class='wrapper'>
         
     <control-panel [loading]='loading' [userProfileData]='userProfileData' (loginRequest)='loginWithFacebook(wizardResults)'></control-panel>
-
     <wizard class='wizard' (results)='wizardResults = $event' (done)='goToResults(wizardResults)'></wizard>
 
-    <div *ngIf='loading' class='lock-screen otoboto-blue'>
-        <img [src]='"../../../assets/otoboto-avatar.svg"'/>
-    </div>
-
 </div> 
+
+<div *ngIf='loading' class='lock-screen otoboto-blue'>
+    <img class='logo' [src]='"../../../assets/otoboto-avatar.svg"'/>
+    <div class='spinner-box'>
+        <div class='spinner'></div>
+    </div>
+</div>

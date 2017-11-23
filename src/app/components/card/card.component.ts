@@ -38,17 +38,6 @@ export class CardComponent {
 
       this.computePostDate(); 
 
-      let elem = document.getElementById('content-swiper-wrap');
-      let mySwipe = Swipe(elem, {
-        // startSlide: 4,
-        // auto: 3000,
-        // continuous: true,
-        // disableScroll: true,
-        // stopPropagation: true,
-        // callback: function(index, element) {},
-        // transitionEnd: function(index, element) {}
-      });      
-
     }
 
     computePostDate() {

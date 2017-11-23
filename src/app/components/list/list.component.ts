@@ -19,7 +19,9 @@ import {Component, Input, Output, EventEmitter, ViewChildren, QueryList, trigger
 
 export class ListComponent {
 
+     reachedEndOfData = false; 
      loading; 
+     collapseAll = true; 
     _items; 
 
     @ViewChildren('element') things: QueryList<any>;
@@ -73,6 +75,11 @@ export class ListComponent {
 
     onScroll() {
 
+      if (this.reachedEndOfData) {
+        this.loading = false; 
+        return; 
+      }
+
       this.loading = true;
       this.itemsLimit += 10; 
 
@@ -88,6 +95,8 @@ export class ListComponent {
 
     reset() {
       this.itemsLimit = 10;
+      this.collapseAll = true; 
+      this.reachedEndOfData = false; 
     }
 
     isHidden(item) {
@@ -102,6 +111,10 @@ export class ListComponent {
     hide(items) {
       this.hidden = this.hidden.concat(items);
 
+    }
+
+    endOfData() {
+      this.reachedEndOfData = true; 
     }
 
 }

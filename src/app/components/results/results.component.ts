@@ -106,10 +106,11 @@ export class ResultsComponent {
         }     
 
         this.route.queryParams.subscribe((params) => {
-            
+
             this.params = params;
+            this.setViewMode('results');
+            
             if (params.guest) {
-                //this.getPreparedData(params);
                 this.api.getGuestData(params).subscribe(response => {
                     this.results = response.data;
                     this.local.saveResults(this.results); 
@@ -117,10 +118,6 @@ export class ResultsComponent {
             } else {
                 this.botComponent.say('הנה הרכבים המתאימים ביותר עבורך', true, null, true); 
                 this.api.init(params.uid);
-                let initialViewMode = 'results';
-                this.offset = params.offset ? params.offset : this.offset;
-                
-                this.setViewMode(initialViewMode);
                 this.loadUserFavorites(params.uid); 
                 this.loadLocalData(params.uid);
             }
@@ -255,11 +252,16 @@ export class ResultsComponent {
     loadNextPage(mode) {
        
         if ((mode == 'results') && (this.userProfileData)) {
+
             this.offset++;
             this.api.getPage(this.offset).subscribe(response => {
+                
                 this.results = this.results.concat(response.data);
                 this.local.saveResults(this.results);
             });
+
+        } else {
+            this.resultsListComponent.endOfData();
         }
        
     }

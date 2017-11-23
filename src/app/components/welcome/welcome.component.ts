@@ -46,6 +46,7 @@ export class WelcomeComponent {
   }
 
   loginWithFacebook(wizardResults) {
+    this.loading = true; 
     this.auth.loginWithFB(wizardResults).then(response => {
       this.doOnLoggedIn(response);
     });

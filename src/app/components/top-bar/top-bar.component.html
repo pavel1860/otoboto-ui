@@ -3,7 +3,9 @@
         
     </div>
     <div class='login-panel'>
-        <div *ngIf='loading'>loading...</div>
+        <div *ngIf='loading' class='spinner-box'>
+            <div class='spinner'></div>
+        </div>
         <div *ngIf='!loading'>
             <button *ngIf='!userProfileData' class='facebook-login-button' (click)='loginRequest.emit($event)'>
                 התחבר
