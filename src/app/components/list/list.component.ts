@@ -44,11 +44,11 @@ export class ListComponent {
     @Output() ready: EventEmitter<any> = new EventEmitter();  
     
 
-    itemsLimit = 16; 
+    itemsLimit = 10; 
     hasNewData = false;
 
     ngOnInit() {
-      console.log('ready');
+
     }
 
     ngOnChanges(a) {
@@ -62,7 +62,7 @@ export class ListComponent {
     ngAfterViewInit() {
       this.ready.emit();
       this.things.changes.subscribe(t => {
-        this.loading = false;
+        
         this.ready.emit();
       })
     }
@@ -73,20 +73,21 @@ export class ListComponent {
 
     onScroll() {
 
-      this.itemsLimit += 16; 
+      this.loading = true;
+      this.itemsLimit += 10; 
 
       if (this.itemsLimit > this.items.length-20) {
         if (!this.hasNewData) {
           this.loadMore.emit();
           this.hasNewData = true; 
-          this.loading = true;
+          
         }
       }
 
     }
 
     reset() {
-      this.itemsLimit = 16;
+      this.itemsLimit = 10;
     }
 
     isHidden(item) {

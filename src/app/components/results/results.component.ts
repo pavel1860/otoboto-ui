@@ -68,7 +68,7 @@ export class ResultsComponent {
     favorites = [];
     list;
     userProfileData;
-    viewMode = 'results';
+    viewMode;
     offset = 0; 
     lastScrollTop = 0;
     showNavigationBar = true;
@@ -117,7 +117,7 @@ export class ResultsComponent {
             } else {
                 this.botComponent.say('הנה הרכבים המתאימים ביותר עבורך', true, null, true); 
                 this.api.init(params.uid);
-                let initialViewMode = params.mode ? params.mode : this.viewMode;
+                let initialViewMode = 'results';
                 this.offset = params.offset ? params.offset : this.offset;
                 
                 this.setViewMode(initialViewMode);
@@ -211,11 +211,14 @@ export class ResultsComponent {
 
         if (mode == 'results' || mode == 'favorites') {
             this.loading = true;
+            if (this.viewMode == 'results' || this.viewMode == 'favorites') {
+                this.resultsListComponent.reset();
+            }
+            this.resetScroller();
         }
     
         setTimeout(()=> {
             this.viewMode = mode; 
-            this.resetScroller(); 
         },0);
         
          
