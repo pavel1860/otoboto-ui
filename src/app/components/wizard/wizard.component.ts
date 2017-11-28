@@ -32,7 +32,7 @@ export class WizardComponent {
 
     step: number = 1; 
 
-    type; 
+    category; 
     location;
     price;
 
@@ -43,7 +43,7 @@ export class WizardComponent {
             inputType: "carTypesSelector",
             caption: "איזה סוג רכב אתה מחפש?",
             continueButton: false,
-            data: 'type'
+            data: 'category'
         }, 
         {
             inputType: "priceSelector",
@@ -71,7 +71,7 @@ export class WizardComponent {
             if (params.step) {
                 this.step = params.step;
             }
-            this.type = params.type; 
+            this.category = params.category; 
             this.location = params.city;
             this.price = params.price; 
         });        
@@ -81,7 +81,7 @@ export class WizardComponent {
 
         let descriptor = {
             step: this.step,
-            type: this.type,
+            category: this.category,
             city: this.location,
             price: this.price
         };
@@ -129,10 +129,4 @@ export class WizardComponent {
         return true;         
     }
 
-    prepareData(type, price) {
-        this.api.prepareData(type, price).subscribe(response => {
-            this.next = response['next']; 
-        });
-    }
-    
 }

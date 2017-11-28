@@ -12,188 +12,126 @@ import "rxjs/add/operator/catch";
 @Injectable()
 export class Otoboto {
 
-  private base;  
-
-  private END_POINTS = {
-    AUTH: 'authorize',
-    PREPARE_DATA: 'prepare_anonymous_data',
-    GET_DATA: 'set_anonymous_location',
-    SHOW_RESULTS: 'show_anonymous_results', 
-    CLEAR_SEARCH: 'clean_user_search', 
-    GET_USERS: 'get_all_users',
-    LIKE: 'add_liked_car',
-    FAVORITES: 'favorites',
-    RESET: 'clean_user_decisions',
-    GET_PAGE: 'show_cars',
-    DISLIKE: 'add_ignored_car',
-    GET_GUEST_DATA: 'get_anonymous_data',
-    HIDE_MANUFACTURER: 'add_ignored_manufacturer',
-    HIDE_MODEL: 'add_ignored_model'
-  }
-
-  uid;
-
-  constructor(private fb: FacebookService, private http: Http) {
-
-    if (environment.production) {
-      this.base = environment['BOT_URI'];
-    } else {
-      this.base = 'http://localhost:8080/';
+    private base;
+    private requestOptions;  
+    private accessToken;  
+    
+    private END_POINTS = {
+        CONNECT: 'fbconnect',
+        GUEST_DATA: 'anonymous',
+        USER_DATA: 'results',
+        USER_FAVORITES: 'favorites',
+        USER_SEARCH_PARAMS: 'users',
+        DISCONNECT: 'disconnect',
+        OPEN_SESSION: 'tok'
     }
 
-    let initParams: InitParams = {
-      appId: environment['APP_ID'],
-      xfbml: true,
-      version: 'v2.8'
-    };
+    constructor(private fb: FacebookService, private http: Http) {
+        
+        if (environment.production) {
+            this.base = environment['BOT_URI'];
+        } else {
+            this.base = 'http://localhost:8080/';
+        }
+    
+        let initParams: InitParams = {
+            appId: environment['APP_ID'],
+            xfbml: true,
+            version: 'v2.8'
+        };
+    
+        this.fb.init(initParams);
+        
+    }
+
+    setHeadersForAuth = () => {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Authorization', this.accessToken); 
+        this.requestOptions = new RequestOptions({ headers: headers });          
+    }
+
+    setHeaders = () => {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Authorization', 'Bearer ' + this.accessToken); 
+        this.requestOptions = new RequestOptions({ headers: headers, withCredentials: true });          
+    }  
+
+    loginWithFB = () => {
+
+        const options: LoginOptions = {
+            scope: 'public_profile,user_friends,email,pages_show_list',
+            return_scopes: true,
+            enable_profile_selector: true
+        }; 
+
+        return this.fb.login(options).then(userLoginData => {
+            this.accessToken = userLoginData.authResponse.accessToken;
+            this.setHeadersForAuth();
+            return;
+        }).then(this.connect);
+
+    }
+
+    connect = () => {
+        return new Promise((resolve, reject) => {
+            let url = this.base + this.END_POINTS.CONNECT + `?tok=${this.accessToken}`;
+            this.http.post(url, null, this.requestOptions).map(res => res.json()).subscribe(response => {
+                this.setHeaders(); 
+                resolve(response);
+            }); 
+        });  
+    }
+
+    disconnect = () => {
+        let url = this.base + this.END_POINTS.DISCONNECT;
+        return this.http.get(url, this.requestOptions).map(res => res.json());       
+    }
+
+    getUserFacebookProfile = (userData) => {
+        if (userData) {
+            return new Promise((resolve, reject) => {
+                this.fb.api('/me?fields=id,picture').then((userProfileData)=> {
+                    userData.userProfileData = userProfileData; 
+                    resolve(userData);
+                }); 
+            });  
+        }
+    }
+
+    loadGuestData = (category, city, price) => {
+        let url = this.base + this.END_POINTS.GUEST_DATA + `?category=${category}&city=${city}&price=${price}`;
+        return this.http.get(url, this.requestOptions).map(res => res.json());      
+    }
+
+    loadUserData = (page) => {
+        let url = this.base + this.END_POINTS.USER_DATA + `?page=${page}`;
+        return this.http.get(url, this.requestOptions).map(res => res.json());         
+    }
+
+    loadUserFavorites = () => {
+        let url = this.base + this.END_POINTS.USER_FAVORITES; 
+        return this.http.get(url, this.requestOptions).map(res => res.json());         
+    }    
+
+    updateUserSearchParams = (searchParams, isNewUser) => {
+        
+        let url; 
+        if (searchParams.category) {
+            url = this.base + this.END_POINTS.USER_SEARCH_PARAMS + `?category=${searchParams.category}&city=${searchParams.city}&price=${searchParams.price}`;
+        } else if (searchParams.manufacturer) {
+            url = this.base + this.END_POINTS.USER_SEARCH_PARAMS + `?manufacturer=${searchParams.manufacturer}&model=${searchParams.model}&city=${searchParams.city}&price=${searchParams.price}`;
+        }
+
+        if (isNewUser) {
+            return this.http.post(url, null, this.requestOptions).map(res => res.json()); 
+        } else {
+            return this.http.put(url, this.requestOptions).map(res => res.json()); 
+        }
+
+    } 
 
 
-
-    this.fb.init(initParams);
-
-  }
-
-  init = (uid) => {
-
-    this.uid = uid;
-  }
-
-  login = (token, userParams) => {
-    let request = this.base + this.END_POINTS.AUTH + '?' + 'token=' + token; 
-    if (userParams) {
-      if (userParams.type) {
-        request += '&category=' + userParams.type
-      }
-      if (userParams.city) {
-        request += '&city=' + userParams.city
-      }
-      if (userParams.price) {
-        request += '&price=' + userParams.price
-      }   
-    }     
-		return this.http
-			.get(request)
-      .map(res => {
-
-        return res; 
-      });
-  }
-
-	prepareData = (catagory, price): Observable<Response> => {
-    let request = this.base + this.END_POINTS.PREPARE_DATA + '?' + 'category=' + catagory + '&' + 'price=' + price; 
-		return this.http
-			.get(request)
-      .map(res => {
-        let data = res.json(); 
-        this.uid = data.user_id; 
-        return data; 
-      });
-  };
-  
-  getData = (location, uid) => {
-    let request = this.base + this.END_POINTS.GET_DATA + '?' + 'user_id=' + this.uid + '&' + 'city=' + location + '&' + 'radius=' + '40';
-    return this.http
-      .get(request)
-      .map(res => res.json());
-  };
-
-  getUID() {
-    return this.uid;
-  }
-
-  setUID(uid) {
-    this.uid = uid;
-  }
-
-  resetUser() {
-    let request = this.base + this.END_POINTS.RESET + '?' + 'user_id=' + this.uid; 
-		return this.http
-			.get(request)
-      .map(res => {
-        let data = res.json(); 
-        return data; 
-      });    
-  }
-
-  getAllUsers() {
-    let request = this.base + this.END_POINTS.GET_USERS; 
-		return this.http
-			.get(request)
-      .map(res => {
-        let data = res.json(); 
-        return data; 
-      });    
-  }  
-
-  like = (item) => {
-    let request = this.base + this.END_POINTS.LIKE + '?' + 'user_id=' + this.uid + '&' + 'car_id=' + item.car_document_id.$oid; 
-		return this.http
-			.get(request)
-      .map(res => {
-        let data = res.json(); 
-        return data; 
-      });     
-  }
-
-  dislike = (item) => {
-    let request = this.base + this.END_POINTS.DISLIKE + '?' + 'user_id=' + this.uid + '&' + 'car_id=' + item.car_document_id.$oid + '&' + 'manufacturer=' + item.manufacturer + '&' + 'model=' + item.model + '&' + 'year=' + item.year;
-		return this.http
-			.get(request)
-      .map(res => {
-        let data = res.json(); 
-        return data; 
-      });     
-  }
-
-  getFavorites = () => {
-    let request = this.base + this.END_POINTS.FAVORITES + '?' + 'user_id=' + this.uid;
-		return this.http
-			.get(request)
-      .map(res => {
-        let data = res.json(); 
-        return data; 
-      });      
-  }
-
-  getPage = (offest) => {
-    let request = this.base + this.END_POINTS.GET_PAGE + '?' + 'user_id=' + this.uid + '&' + 'limit=20' + '&' + 'offset=' + offest;
-		return this.http
-			.get(request)
-      .map(res => {
-        let data = res.json(); 
-        return data; 
-      });      
-  }
-
-  getGuestData = (params) => {
-    let request = this.base + this.END_POINTS.GET_GUEST_DATA + '?' + 'category=' + params.type + '&' + 'price=' + params.price + '&' + 'city=' + params.city; 
-		return this.http
-			.get(request)
-      .map(res => {
-        let data = res.json(); 
-        this.uid = data.user_id; 
-        return data; 
-      });    
-  }
-
-  hideManufacturer = (manufacturer) => {
-    let request = this.base + this.END_POINTS.HIDE_MANUFACTURER + '?' + 'user_id=' + this.uid + '&' + 'manufacturer=' + manufacturer; 
-		return this.http
-			.get(request)
-      .map(res => {
-        return res.json(); 
-      });  
-  }
-
-  hideModel = (itemID, manufacturer, model, year) => {
-    let request = this.base + this.END_POINTS.HIDE_MODEL + '?' + 'user_id=' + this.uid + '&' + 'car_id=' + itemID + '&' + 'manufacturer=' + manufacturer + '&' + 'model=' + model + '&' + 'year=' + year; 
-		return this.http
-			.get(request)
-      .map(res => {
-        return res.json(); 
-      });  
-  }
-
-  
 
 }

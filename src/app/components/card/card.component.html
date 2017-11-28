@@ -7,13 +7,12 @@
                 <div class='mobile price-box otoboto-blue text-secondary-white'>
                     {{data.price | nis}}
                 </div>
-                <div class='date-box text-small text-weak'>
-                    <!--{{data.date | timeAgo }}-->
-                    לפני 20 דקות
+                <div *ngIf='data.date_created' class='date-box text-small text-weak'>
+                    {{data.date_created | timeAgo }}
                 </div>
 
                 <div *ngIf='!isMobile' class='actions-desktop desktop'>
-                    <div class='action-box like-button' (click)='like.emit()'>
+                    <div *ngIf='!disableLike' class='action-box like-button' (click)='like.emit()'>
                         <img src='../../../assets/like-button.svg'/>
                     </div>
                     <div class='action-box dislike-button' (click)='dislike.emit()'>
@@ -69,7 +68,7 @@
                 </swiper>  
 
                 <div class='actions-mobile mobile'>
-                    <div class='action-box' (click)='like.emit()'>
+                    <div *ngIf='!disableLike' class='action-box' (click)='like.emit()'>
                         <img src='../../../assets/like-button.svg'/>
                     </div>
                     <a href="tel:{{data.seller_phones[0]}}">

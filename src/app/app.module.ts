@@ -35,6 +35,8 @@ import { SectionTitleComponent } from './components/section-title/section-title.
 import { CarInfoComponent } from './components/car-info/car-info.component';
 import { ModelInfoComponent } from './components/model-info/model-info.component';
 import { BotSpeachComponent } from './components/bot-speach/bot-speach.component';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { FavoritesComponent } from './components/favorites/favorites.component';
 
 import { Otoboto } from './services/otoboto.service';
 import { LocalService } from './services/local.service';
@@ -42,6 +44,7 @@ import { Locations } from './services/locations.service';
 import { DeviceService } from './services/device.service';
 
 import { NisPipe }  from './pipes/nis.pipe';
+import { TimeAgoPipe } from './pipes/timeAgo.pipe';
 import { AuthGuard } from './services/auth-guard.service';
 import { Auth } from './services/auth.service';
 
@@ -68,6 +71,7 @@ const SWIPER_CONFIG: SwiperConfigInterface = {
     TopBarComponent,
     FacebookLoginButtonComponent,
     NisPipe,
+    TimeAgoPipe,
     WizardComponent,
     PagerComponent,
     CarTypeSelectorComponent,
@@ -89,7 +93,9 @@ const SWIPER_CONFIG: SwiperConfigInterface = {
     SectionTitleComponent,
     CarInfoComponent,
     ModelInfoComponent,
-    BotSpeachComponent
+    BotSpeachComponent,
+    SearchResultsComponent,
+    FavoritesComponent
   ],
   imports: [
     BrowserModule,

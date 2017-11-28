@@ -14,6 +14,7 @@ export class MainDetailsComponent {
 
     normalizedRank;
     properties; 
+    showPhoneNumber = false;
 
     ngOnInit() {
       this.normalizedRank = Math.round(this.data.rank * 10) / 10;
@@ -36,6 +37,10 @@ export class MainDetailsComponent {
           icon: '../../../assets/property-speed.svg'
         }                        
       ]
+    }
+
+    block(e) {
+      e.stopPropagation(); 
     }
     
 }

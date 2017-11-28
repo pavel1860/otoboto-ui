@@ -1,0 +1,51 @@
+<div class='wrapper'>
+
+    <div *ngIf='loading' class='spinner-box'>
+        <div class='spinner'></div>
+    </div>
+    <!--div  class='bot-panel otoboto-blue floating'>
+        <bot class='bot'></bot>
+    </div-->    
+
+    <navigation class='navigation' [viewMode]='viewMode' [userProfileData]='userProfileData' (setViewMode)='setViewMode($event)'></navigation>
+
+    <!--bot #bot class='bot floating' (showMe)='lockBot=$event' (hideMe)='showBot=false;lockBot=false' (request)='execute($event)' [ngClass]='{showMe: showBot || lockBot}'></bot-->
+
+    <!--div class='navigation-panel floating' [ngClass]='{"control-panel-visible": showBot || showNavigationBar || lockBot}'>
+        <div class='bot-panel otoboto-blue' [ngClass]='{showMe: showBot || lockBot}'>
+            <bot #bot class='bot' (showMe)='lockBot=$event' (hideMe)='showBot=false;lockBot=false' (request)='execute($event)'></bot>
+        </div>
+        <navigation class='navigation' [viewMode]='viewMode' [userProfileData]='userProfileData' (setViewMode)='setViewMode($event)' [ngClass]='{"nav-bar-visible": showNavigationBar}'></navigation>
+    </div-->
+    <bot #bot class='bot static' (request)='execute($event)' (showMe)='showBot=true' (hideMe)='showBot=false' [ngClass]='{floating: showBot}'></bot>
+
+    <!--div class='list-view-panel'>
+        <list [style.display]="viewMode == 'results' ? 'block' : 'none'" #resultsList class='list' [items]='results' [hidden]='hiddenResults' (like)='likeItem($event);' (dislike)='dislikeItem($event)' (loadMore)='loadNextPage(viewMode)'></list>
+        <list [style.display]="viewMode == 'favorites' ? 'block' : 'none'" #favoritesList class='list' [items]='favorites' (like)='likeItem($event)' (dislike)='dislikeItem($event)' (loadMore)='loadNextPage(viewMode)'></list>
+    </div-->
+    <div class='main-content-panel'>
+
+        <div class='list-view-panel' [style.display]='viewMode == "results" ? "block" : "none"'>
+            <list #resultsList class='list' [items]='results' [hidden]='hiddenResults' (like)='likeItem($event);' (dislike)='dislikeItem($event)' (loadMore)='loadResults($event)' (ready)='loading=false'></list>
+        </div>  
+
+        <div class='list-view-panel' [ngClass]='{hiddenList: viewMode != "favorites"}'>
+            <list #favoritesList class='list' [items]='favoritesListItems'  [disableLike]='true' (dislike)='removeFromFavorites($event)' (loadMore)='loadFavorites($event)' ></list>
+        </div>
+
+        <div class='user-settings-panel' [style.display]="viewMode == 'user' ? 'block' : 'none'">
+            <user-settings></user-settings>
+        </div>
+    </div>
+    
+      
+        <!--swiper #swiper [config]="swiperConfig" (indexChange)="setViewModeByIndex($event)">
+            <list #list class='list' [items]='results' (like)='likeItem($event)' (dislike)='dislikeItem($event)' (loadMore)='loadNextPage(viewMode)'></list>
+            <list #list class='list' [items]='favorites' (like)='likeItem($event)' (dislike)='dislikeItem($event)' (loadMore)='loadNextPage(viewMode)'></list>
+            <user-settings *ngIf='userProfileData'></user-settings>
+        </swiper-->
+   
+
+    
+
+</div>

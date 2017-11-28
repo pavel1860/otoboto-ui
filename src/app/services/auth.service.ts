@@ -54,6 +54,7 @@ export class Auth {
             return new Promise((resolve, reject) => {
                 let accessToken = userLoginData.authResponse.accessToken;
                 //this.local.setAccessToken(accessToken);
+                /*
                 this.otoboto.login(accessToken, userLoginData.userParams).subscribe(response => {
                     let userData = response.json(); 
                     let uid = userData.user_id; 
@@ -62,7 +63,8 @@ export class Auth {
                     this.local.setCookie(userLoginData); 
                     userData.fid = userLoginData.authResponse.userID;
                     resolve(userData); 
-                });              
+                });
+                */              
             });
         }
     }

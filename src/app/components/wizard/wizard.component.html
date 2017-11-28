@@ -11,7 +11,7 @@
     </div>
 
     <div class='userInputWrapper'>
-        <car-types-selector class='input-selector' *ngIf='steps[step-1].inputType == "carTypesSelector"' (selected)='type = $event.id; nextStep(); updateURI();' ></car-types-selector>
+        <car-types-selector class='input-selector' *ngIf='steps[step-1].inputType == "carTypesSelector"' (selected)='category = $event.id; nextStep(); updateURI();' ></car-types-selector>
         <price-selector class='input-selector' *ngIf='steps[step-1].inputType == "priceSelector"' [valueToken]='price' (done)='price = $event; nextStep(); updateURI();' ></price-selector>
         <location-selector class='input-selector' *ngIf='steps[step-1].inputType == "locationSelector"' [valueToken]='location' (done)='location = $event; updateURI(); nextStep();' ></location-selector>
     </div>

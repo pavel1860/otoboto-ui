@@ -25,9 +25,11 @@ export class UserSettingsComponent {
   }
 
   reset() {
+    /*
       this.api.resetUser().subscribe(res => {
 
       })
+      */
   }
 
 }

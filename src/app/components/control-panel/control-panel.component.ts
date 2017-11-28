@@ -16,9 +16,7 @@ export class ControlPanelComponent {
   constructor(private otoboto: Otoboto) {}
 
   getAllUsers() {
-    this.otoboto.getAllUsers().subscribe(res => {
-  
-    })
+
   }
 
   clear() {}
