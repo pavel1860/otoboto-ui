@@ -5,17 +5,135 @@ import { SwiperComponent, SwiperDirective, SwiperConfigInterface } from 'ngx-swi
 
 import { Otoboto } from '../../services/otoboto.service';
 import { LocalService } from '../../services/local.service';
-import { Auth } from '../../services/auth.service';
 
 @Component({
   selector: 'results',
   templateUrl: './results.component.html',
-  styleUrls: ['./results.component.scss'],
-  providers: [ Auth ]
+  styleUrls: ['./results.component.scss']
 })
 
 export class ResultsComponent {
 
+    @ViewChild('resultsList') searchResultsList;
+    @ViewChild('favoritesList') favoritesList;
+
+    @HostListener('window:scroll', ['$event']) onScrollEvent($event){
+        let st = window.pageYOffset || document.documentElement.scrollTop;
+        if (st < 142) {
+            this.showBot = false; 
+        }
+        this.lastScrollTop = st;        
+    } 
+
+    searchResults = [];
+    userFavorites = [];
+
+    searchResultsPage = 1;
+    userFavoritesPage = 1;
+
+    viewMode;
+    userProfileData;
+    showBot;
+    operations;
+    lastScrollTop;
+    loading; 
+
+    constructor(private route: ActivatedRoute, private api: Otoboto, private local: LocalService) {
+        api.init(); 
+        this.userProfileData = this.local.getUserProfileData(); 
+    }
+
+    ngOnInit() {
+
+        this.setViewMode('results');
+
+        this.route.queryParams.subscribe((params) => {
+            
+            if (params.isGuest) {
+                this.loadGuestData(params); 
+            } else {
+                //this.loadUserSearchResults(1); 
+                //this.loadUserFavorites(); 
+            }
+
+        });     
+
+        this.operations = {
+            hideManufacturer: this.hideManufacturer, 
+            hideModel: this.hideModel
+        }             
+
+    }
+
+    loadGuestData(params) {
+        this.api.loadGuestData(params).subscribe(response => {
+            this.searchResults = response;
+        });
+    }
+
+    loadUserSearchResults() {
+        this.api.loadUserData(this.searchResultsPage).subscribe(response => {
+            this.searchResults = this.searchResults.concat(response); 
+            this.searchResultsPage++;
+        });        
+    }
+
+    loadUserFavorites() {
+        this.api.loadUserFavorites(this.userFavoritesPage).subscribe(response => {
+            this.userFavorites = this.userFavorites.concat(response); 
+            this.userFavoritesPage++;
+        });         
+    }
+
+    likeItem(item) {
+        this.api.like(item.car_document_id).subscribe(response => {});
+    }
+
+    setViewMode(viewMode) {
+
+        this.viewMode = viewMode;
+
+        if (viewMode != 'user') {
+            this.loading = true; 
+        }
+
+        setTimeout(() => {
+            if (viewMode == 'results') {
+                this.userFavorites = [];
+                this.userFavoritesPage = 1;
+                this.loadUserSearchResults();
+            } else if (viewMode == 'favorites') {
+                this.searchResults = [];
+                this.searchResultsPage = 1;
+                this.loadUserFavorites();
+            }
+        }, 0); 
+
+    }
+
+    execute(operation) {
+        this.operations[operation.code](operation.data); 
+    }
+
+    hideManufacturer = (item) => {
+        /*
+        this.api.hideManufacturer(item.manufacturer).subscribe(response => {
+            let data = JSON.parse(response.data);
+            this.hiddenResults.concat(data);
+            this.botComponent.say('הסתרתי את כל רכבי ה' + item.manufacturer, true, 2);
+        });
+        */
+    }
+
+    hideModel = (item) => {
+        /*
+        this.api.hideModel(item.car_document_id.$oid, item.manufacturer, item.model, item.year).subscribe(response => {
+            let data = JSON.parse(response.data);
+            this.hiddenResults.concat(data);
+            this.botComponent.say('הסתרתי את כל ה' + item.model, true, 2);
+        });
+        */
+    }
 
 }
 

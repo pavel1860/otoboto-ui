@@ -3,39 +3,12 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class LocalService {
 
-    constructor() {}
-
-    getResults() {
-        return JSON.parse(localStorage.getItem('data'));
-    }
-
-    getFavorites() {
-        return JSON.parse(localStorage.getItem('favorites'));
-    }
-
-    saveResults(results) {
-
-        localStorage.setItem('data',JSON.stringify(results));
-    }
-
-    saveFavorites(favorites) {
-        localStorage.setItem('favorites',JSON.stringify(favorites));
-    }
-
     setAccessToken(token) {
-        localStorage.setItem('access_token',JSON.stringify(token));
+        localStorage.setItem('access_token', token);
     }
 
-    setUserId(uid) {
-
-    }
-
-    saveUserFacebookInfo(facebookID, userData) {
-        localStorage.setItem(facebookID,JSON.stringify(userData));
-    }
-
-    getUserFacebookInfo() {
-        return JSON.parse(localStorage.getItem('login')); 
+    getAccessToken() {
+        return localStorage.getItem('access_token');
     }
 
     cookieExists(userLoginData) {
@@ -46,47 +19,17 @@ export class LocalService {
         return ((cookieData['userID'] == userLoginData.userID) && (cookieData['accessToken'] == userLoginData.accessToken))
     }
 
-    setCookie(userLoginData) {
-        localStorage.setItem('login', JSON.stringify(userLoginData));
+    setUserProfileData(userLoginData) {
+        localStorage.setItem('profile', JSON.stringify(userLoginData));
     }
 
-    saveUserProfile(data) {
-        localStorage.setItem('profile', JSON.stringify(data));
+    getUserProfileData() {
+        return JSON.parse(localStorage.getItem('profile'));
     }
-
-    getUserProfile() {
-        return JSON.parse(localStorage.getItem('profile')); 
-    }  
     
-    likeItem(item) {
-        this.removeItem(item);
-        let favorites = this.getFavorites();
-        favorites.push(item);
-        this.saveFavorites(favorites);
-    }
-
-    removeItem(item) {
-        let results = this.getResults();
-        let index = results.findIndex(element => element.car_document_id.$oid == item.car_document_id.$oid);
-        results.splice(index,1);
-        this.saveResults(results);
-    }
-
-    removeIds(ids) {
-        let results = this.getResults();
-        let filtered = results.filter(item => {
-            let id = item.car_document_id.$oid; 
-            let index = ids.indexOf(id);
-            return index == -1;
-        }); 
-        this.saveResults(filtered);
-    }
-
     clear() {
         localStorage.removeItem('profile');
         localStorage.removeItem('login');
-        localStorage.removeItem('data');
-        localStorage.removeItem('favorites');
     }
 
 }

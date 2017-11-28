@@ -31,11 +31,6 @@ export class WelcomeComponent {
       this.isNewUser = params.isNewUser;  
     });   
     
-
-    this.api.loadGuestData('mini', 'haifa', '40000').subscribe(response => {
-      console.log(response);
-    });
-
     /*
     this.route.queryParams.subscribe((params) => {
       this.uid = params.uid;
@@ -84,19 +79,17 @@ export class WelcomeComponent {
   }
 
   processResults = (wizardResults) => {
-    if ((this.userProfileData) || true) {
+    if (this.userProfileData) {
       this.api.updateUserSearchParams(wizardResults, this.isNewUser).subscribe(response => {
-        console.log(response);
         this.router.navigate(['./results']);  
       });
     } else {
-      /*
       this.router.navigate(['./results'], {
         queryParams: {isGuest: true},
         queryParamsHandling: "merge"
-      });
-      */      
+      });     
     }
+    
   }
 
   /*

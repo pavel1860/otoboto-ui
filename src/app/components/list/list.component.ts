@@ -8,6 +8,55 @@ import {Component, Input, Output, EventEmitter, ViewChildren, HostListener, Quer
 
 export class ListComponent {
 
+    _items;
+    hidden = [];
+    hasNewData = false; 
+    collapseAll = true;
+/*
+    @HostListener('window:scroll', ['$event']) onScrollEvent($event){
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 900) {
+        this.loadMoreData();
+      }     
+    } 
+*/
+    @ViewChildren('element') listItem: QueryList<any>;
+
+    @Input() set items(items: any) {
+      this._items = items;  
+      this.hasNewData = false; 
+    } 
+
+    get items(): any { 
+      return this._items; 
+    }
+
+    @Output() like: EventEmitter<any> = new EventEmitter();
+    @Output() dislike: EventEmitter<any> = new EventEmitter(); 
+    @Output() ready: EventEmitter<any> = new EventEmitter();
+    @Output() loadMore: EventEmitter<any> = new EventEmitter();
+
+    ngAfterViewInit() {
+      if (this.items.length == 0) {
+        this.ready.emit();
+      }
+      this.listItem.changes.subscribe(t => {
+        this.ready.emit();
+      })
+    }
+
+    isHidden(item) {
+      let index = this.hidden.findIndex(id => id == item.car_document_id.$oid);
+      return index != -1; 
+    }
+
+    loadMoreData() {
+      if (!this.hasNewData) {
+        this.loadMore.emit();
+        this.hasNewData = true; 
+      }
+    }
+
+    /*
      reachedEndOfData = false; 
      loading; 
      collapseAll = true; 
@@ -93,5 +142,7 @@ export class ListComponent {
     endOfData() {
       this.reachedEndOfData = true; 
     }
+
+    */
 
 }

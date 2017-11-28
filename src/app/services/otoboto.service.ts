@@ -3,6 +3,8 @@ import { Http, Headers, Response, Jsonp, RequestOptions } from "@angular/http";
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import { FacebookService, InitParams, LoginResponse, LoginOptions } from 'ngx-facebook';
+import { LocalService } from './local.service';
+
 import { environment } from '../../environments/environment';
 import "rxjs/Rx";
 import "rxjs/add/operator/map";
@@ -26,7 +28,7 @@ export class Otoboto {
         OPEN_SESSION: 'tok'
     }
 
-    constructor(private fb: FacebookService, private http: Http) {
+    constructor(private fb: FacebookService, private http: Http, private local: LocalService) {
         
         if (environment.production) {
             this.base = environment['BOT_URI'];
@@ -44,17 +46,22 @@ export class Otoboto {
         
     }
 
-    setHeadersForAuth = () => {
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        headers.append('Authorization', this.accessToken); 
-        this.requestOptions = new RequestOptions({ headers: headers });          
+    init() {
+        this.setHeaders(true);
     }
 
-    setHeaders = () => {
+    setHeaders = (asBearer) => {
         let headers = new Headers();
+        let token = this.local.getAccessToken();
+        let authHeader;
+        if (asBearer) {
+            token = 'Bearer ' + token; 
+            authHeader = 'Authorization';
+        } else {
+            authHeader = 'x-fb-token';
+        }
         headers.append('Content-Type', 'application/json');
-        headers.append('Authorization', 'Bearer ' + this.accessToken); 
+        headers.append(authHeader, token); 
         this.requestOptions = new RequestOptions({ headers: headers, withCredentials: true });          
     }  
 
@@ -67,18 +74,18 @@ export class Otoboto {
         }; 
 
         return this.fb.login(options).then(userLoginData => {
-            this.accessToken = userLoginData.authResponse.accessToken;
-            this.setHeadersForAuth();
+            this.local.setAccessToken(userLoginData.authResponse.accessToken);
+            this.setHeaders(false);
             return;
-        }).then(this.connect);
+        }).then(this.connect).then(this.getUserFacebookProfile);
 
     }
 
     connect = () => {
         return new Promise((resolve, reject) => {
-            let url = this.base + this.END_POINTS.CONNECT + `?tok=${this.accessToken}`;
+            let url = this.base + this.END_POINTS.CONNECT + `?tok=${this.local.getAccessToken()}`;
             this.http.post(url, null, this.requestOptions).map(res => res.json()).subscribe(response => {
-                this.setHeaders(); 
+                this.setHeaders(true); 
                 resolve(response);
             }); 
         });  
@@ -93,26 +100,33 @@ export class Otoboto {
         if (userData) {
             return new Promise((resolve, reject) => {
                 this.fb.api('/me?fields=id,picture').then((userProfileData)=> {
-                    userData.userProfileData = userProfileData; 
+                    userData.userProfileData = userProfileData;
+                    this.local.setUserProfileData(userProfileData); 
                     resolve(userData);
                 }); 
             });  
         }
     }
 
-    loadGuestData = (category, city, price) => {
-        let url = this.base + this.END_POINTS.GUEST_DATA + `?category=${category}&city=${city}&price=${price}`;
-        return this.http.get(url, this.requestOptions).map(res => res.json());      
+    loadGuestData = (params) => {
+        let url;
+        if (params.category) {
+            url = this.base + this.END_POINTS.GUEST_DATA + `?category=${params.category}&city=${params.city}&price=${params.price}`;
+        } else if (params.manufacturer) {
+            url = this.base + this.END_POINTS.GUEST_DATA + `?manufacturer=${params.manufacturer}&model=${params.model}&city=${params.city}&price=${params.price}`;
+        }
+        return this.http.get(url, this.requestOptions).map(res => res.json().data);      
     }
 
     loadUserData = (page) => {
         let url = this.base + this.END_POINTS.USER_DATA + `?page=${page}`;
-        return this.http.get(url, this.requestOptions).map(res => res.json());         
+        console.log(this.requestOptions); 
+        return this.http.get(url, this.requestOptions).map(res => res.json().data);         
     }
 
-    loadUserFavorites = () => {
-        let url = this.base + this.END_POINTS.USER_FAVORITES; 
-        return this.http.get(url, this.requestOptions).map(res => res.json());         
+    loadUserFavorites = (page) => {
+        let url = this.base + this.END_POINTS.USER_FAVORITES + `?page=${page}`;
+        return this.http.get(url, this.requestOptions).map(res => res.json().data);         
     }    
 
     updateUserSearchParams = (searchParams, isNewUser) => {
@@ -131,6 +145,11 @@ export class Otoboto {
         }
 
     } 
+
+    like = (id) => {
+        let url = this.base + this.END_POINTS.USER_FAVORITES + `?car_id=${id}`;
+        return this.http.post(url, null, this.requestOptions).map(res => res.json());
+    }
 
 
 
