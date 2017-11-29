@@ -39,6 +39,7 @@ export class ResultsComponent {
 
     viewMode;
     userProfileData;
+    isGuest;
 
     showBot;
     lockBot = false;
@@ -59,7 +60,9 @@ export class ResultsComponent {
         this.route.queryParams.subscribe((params) => {
             
             if (params.isGuest) {
+                this.isGuest = true;
                 this.loadGuestData(params); 
+                this.searchResultsList.close();
                 this.bot.state('welcomeGuest');
             } else {
                 this.bot.state('welcomeUser');
@@ -129,6 +132,9 @@ export class ResultsComponent {
         }
 
         setTimeout(() => {
+            if (this.isGuest) {
+                return; 
+            }
             if (viewMode == 'results') {
                 this.userFavorites = [];
                 this.userFavoritesPage = 1;

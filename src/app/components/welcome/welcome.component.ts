@@ -69,6 +69,7 @@ export class WelcomeComponent {
   }
 
   processResults = (wizardResults) => {
+    console.log(wizardResults);
     if (this.userProfileData) {
       this.api.updateUserSearchParams(wizardResults, this.isNewUser).subscribe(response => {
         this.router.navigate(['./results']);  

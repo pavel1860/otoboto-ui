@@ -1,6 +1,6 @@
 <div *ngIf='!loading' class='wrapper'>  
     <control-panel [loading]='loading' [userProfileData]='userProfileData' (loginRequest)='loginWithFacebook(wizardResults)'></control-panel>
-    <wizard class='wizard' (results)='wizardResults = $event' (done)='processResults(wizardResults)'></wizard>
+    <wizard class='wizard' (done)='processResults($event)'></wizard>
 </div> 
 
 <div *ngIf='loading' class='lock-screen otoboto-blue'>

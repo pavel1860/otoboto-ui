@@ -39,6 +39,7 @@ export class LocationSelectorComponent {
           });  
 
           this.valueControler.valueChanges.subscribe(token => {
+               this.valueToken = token;
               if (token.length <= 1) {
                 return; 
               }

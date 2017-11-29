@@ -7,13 +7,14 @@
     <div class='caption-panel'>
         <label>
             {{steps[step-1].caption}}
+            {{city}}
         </label>
     </div>
 
     <div class='userInputWrapper'>
         <car-types-selector class='input-selector' *ngIf='steps[step-1].inputType == "carTypesSelector"' (selected)='category = $event.id; nextStep(); updateURI();' ></car-types-selector>
         <price-selector class='input-selector' *ngIf='steps[step-1].inputType == "priceSelector"' [valueToken]='price' (done)='price = $event; nextStep(); updateURI();' ></price-selector>
-        <location-selector class='input-selector' *ngIf='steps[step-1].inputType == "locationSelector"' [valueToken]='location' (done)='location = $event; updateURI(); nextStep();' ></location-selector>
+        <location-selector class='input-selector' *ngIf='steps[step-1].inputType == "locationSelector"' [valueToken]='city' (done)='city = $event; updateURI(); nextStep();'></location-selector>
     </div>
 
     

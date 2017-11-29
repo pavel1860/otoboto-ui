@@ -33,7 +33,7 @@ export class WizardComponent {
     step: number = 1; 
 
     category; 
-    location;
+    city;
     price;
 
     next;
@@ -55,7 +55,7 @@ export class WizardComponent {
             inputType: "locationSelector", 
             caption: 'באיזה אזור אתה מחפש?',
             continueButton: true,
-            data: 'location'
+            data: 'city'
         }
     ];
 
@@ -72,7 +72,7 @@ export class WizardComponent {
                 this.step = params.step;
             }
             this.category = params.category; 
-            this.location = params.city;
+            this.city = params.city;
             this.price = params.price; 
         });        
     }
@@ -82,7 +82,7 @@ export class WizardComponent {
         let descriptor = {
             step: this.step,
             category: this.category,
-            city: this.location,
+            city: this.city,
             price: this.price
         };
 
@@ -91,7 +91,6 @@ export class WizardComponent {
             queryParamsHandling: "merge"
         });
 
-        this.results.emit(descriptor);
     }
 
     nextStep() {
@@ -102,7 +101,18 @@ export class WizardComponent {
         if (this.step < this.steps.length) {
             this.step++; 
         } else {
-            this.done.emit();
+            let descriptor = {
+                category: this.category,
+                city: this.city,
+                price: this.price
+            }; 
+            this.router.navigate(['./welcome'], {
+                queryParams: descriptor,
+                queryParamsHandling: "merge"
+            });
+            setTimeout(() => {
+                this.done.emit(descriptor);
+            },0);
         }
     }
 
@@ -117,8 +127,8 @@ export class WizardComponent {
         this.updateURI(); 
     }
 
-    setLocation(location) {
-        this.location = location.token;
+    setLocation(city) {
+        this.city = city.token;
     }
 
     isFilled(step) {
