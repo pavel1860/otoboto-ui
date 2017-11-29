@@ -9,8 +9,6 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class MainDetailsComponent {
 
     @Input() data; 
-    @Output() like: EventEmitter<any> = new EventEmitter();
-    @Output() dislike: EventEmitter<any> = new EventEmitter();
 
     normalizedRank;
     properties; 

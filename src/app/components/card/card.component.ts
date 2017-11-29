@@ -13,7 +13,7 @@ declare var Swipe:any;
 export class CardComponent {
 
     @Input() data; 
-    @Input() disableLike = false; 
+    @Input() allowLike = true; 
 
     @Output() like: EventEmitter<any> = new EventEmitter();
     @Output() dislike: EventEmitter<any> = new EventEmitter();

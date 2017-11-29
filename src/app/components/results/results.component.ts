@@ -97,6 +97,7 @@ export class ResultsComponent {
         }, e => {
             if (e.status == 400) {
                 this.favoritesList.close();
+                this.loading = false;
             }
         });    
     }
@@ -113,6 +114,12 @@ export class ResultsComponent {
         });
         this.hiddenSearchResults.push(item.car_document_id);  
         this.bot.state('welcomeUser');      
+    }
+
+    removeItemFromFavorites(item) {
+        this.api.removeItemFromFavorites(item).subscribe(response => {});
+        this.hiddenFavorites.push(item.car_document_id);  
+        this.bot.state('welcomeUser');           
     }
 
     setViewMode(viewMode) {

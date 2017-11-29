@@ -164,6 +164,11 @@ export class Otoboto {
         return this.http.post(url, null, this.requestOptions).map(res => res.json());        
     }
 
+    removeItemFromFavorites = (item) => {
+        let url = this.base + this.END_POINTS.USER_FAVORITES + `?car_id=${item.car_document_id}`;
+        return this.http.delete(url, this.requestOptions).map(res => res.json());        
+    }
+
     hideModel = (manufacturer, model) => {
         let url = this.base + this.END_POINTS.DISLIKE + `?manufacturer=${manufacturer}&model=${model}`;
         return this.http.post(url, null, this.requestOptions).map(res => res.json());   

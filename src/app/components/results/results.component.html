@@ -8,15 +8,15 @@
         <div *ngIf='loading' class="spinner"></div>
         
         <div class='list-view-panel' [style.display]='viewMode == "favorites" ? "block" : "none"'>
-            <list #favoritesList class='list' [items]='userFavorites' [hidden]='hiddenFavorites' (ready)='viewMode == "favorites" && loading=false' (loadMore)='(viewMode == "favorites" && !isGuest) && loadUserFavorites()'></list>
+            <list #favoritesList class='list' [items]='userFavorites' [hidden]='hiddenFavorites' [allowLike]='false' (dislike)='removeItemFromFavorites($event)' (ready)='viewMode == "favorites" && loading=false' (loadMore)='(viewMode == "favorites" && !isGuest) && loadUserFavorites()'></list>
         </div>
 
         <div class='list-view-panel' [style.display]='viewMode == "results" ? "block" : "none"'>
-            <list #resultsList class='list' [items]='searchResults' [hidden]='hiddenSearchResults' (like)='likeItem($event)' (dislike)='dislikeItem($event)' (ready)='viewMode == "results" && loading=false' (loadMore)='(viewMode == "results" && !isGuest) && loadUserSearchResults()'></list>
+            <list #resultsList class='list' [items]='searchResults' [hidden]='hiddenSearchResults' [allowLike]='true' (like)='likeItem($event)' (dislike)='dislikeItem($event)' (ready)='viewMode == "results" && loading=false' (loadMore)='(viewMode == "results" && !isGuest) && loadUserSearchResults()'></list>
         </div>
 
         <div class='user-settings-panel' [style.display]="viewMode == 'user' ? 'block' : 'none'">
-            <user-settings></user-settings>
+            <user-settings [userProfileData]='userProfileData'></user-settings>
         </div>
     </div>
 

@@ -29,6 +29,7 @@ export class ListComponent {
     } 
 
     @Input() hidden; 
+    @Input() allowLike = true; 
 
     get items(): any { 
       return this._items; 
