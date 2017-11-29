@@ -27,36 +27,23 @@ export class WelcomeComponent {
 
   ngOnInit() {
 
+    if (this.local.getAccessToken()) {
+      this.api.getFacebookLoginStatus().then(response => {
+        if (response.status == 'connected') {
+          this.loginWithFacebook();
+        }
+      });
+    }
+
     this.route.queryParams.subscribe((params) => {
       this.isNewUser = params.isNewUser;  
     });   
     
-    /*
-    this.route.queryParams.subscribe((params) => {
-      this.uid = params.uid;
-      
-    });   
-
-    
-    this.auth.login().then(response => {
-     
-      if (response) {
-        this.doOnLoggedIn(response);
-      } else {
-        this.router.navigate(['./welcome'],{queryParams: {
-          guest: true
-        }, queryParamsHandling: "merge"}); 
-        this.loading = false;   
-      }
-    });
-    */
-
   }
 
   loginWithFacebook = () => {
     this.loading = true; 
     this.api.loginWithFB().then(response => {
-      console.log(response);
       this.userProfileData = response['userProfileData'];
       if (response['get_search_params']) {
         this.loading = false;
@@ -65,16 +52,19 @@ export class WelcomeComponent {
           queryParamsHandling: "merge"
         });
       } else if (response['get_results']) {
-        this.router.navigate(['./results']);          
+        this.router.navigate(['./results']); 
+        this.loading = false;        
       } else {
+        this.loading = false;
         console.log('An unexpected error occured');
       }
+    }, e => {
+      console.log(e);
     });
   }
 
   disconnect = () => {
     this.api.disconnect().subscribe(response => {
-      console.log(response);
     });
   }
 
@@ -91,38 +81,5 @@ export class WelcomeComponent {
     }
     
   }
-
-  /*
-  doOnLoggedIn(response) {  
-    this.local.saveUserProfile(response.userInfo);  
-    if (response['status'] == "success") {
-      this.router.navigate(['./results'],{queryParams: {
-        uid: response['user_id']
-      }});  
-    } else {
-      this.router.navigate(['./welcome'],{queryParams: {}});        
-      this.userProfileData = response.userInfo;
-      this.loading = false; 
-      //this.router.navigate(['./welcome'],{queryParams: {
-      //  uid: response['user_id']
-      //}, queryParamsHandling: "merge"});         
-    }
-  }
-
-  goToResults(wizardResults) {
-    if (this.userProfileData) {
-      this.loginWithFacebook(wizardResults); 
-    } else {
-      this.router.navigate(['./results'],{
-        queryParams: wizardResults,
-        queryParamsHandling: "merge"
-      });
-    }
-    //this.loginWithFacebook(wizardResults); 
-
-  }
-  */
-
-
 
 }

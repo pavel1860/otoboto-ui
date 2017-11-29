@@ -21,19 +21,13 @@
 
 }
 
-.spinner-box{
-    width: 30px;
-    height: 58px;
-    margin-left: auto;
-    margin-right: auto;
-    position: absolute;
-    bottom: 69px;
+.spinner {
+    position: fixed;
+    bottom: 80px;
     left: 0;
     right: 0;
-}
-
-.spinner {
-    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 @media only screen and (min-width : 768px) {
@@ -52,5 +46,14 @@
         padding: 0px;
         margin: 0px;
         z-index: 0;
+    }
+
+    .spinner {
+        left: 31%;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        position: fixed;
+        bottom: 55px;
     }
 }

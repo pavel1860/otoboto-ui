@@ -25,7 +25,8 @@ export class Otoboto {
         USER_FAVORITES: 'favorites',
         USER_SEARCH_PARAMS: 'users',
         DISCONNECT: 'disconnect',
-        OPEN_SESSION: 'tok'
+        OPEN_SESSION: 'tok',
+        DISLIKE: 'dislikes'
     }
 
     constructor(private fb: FacebookService, private http: Http, private local: LocalService) {
@@ -103,9 +104,17 @@ export class Otoboto {
                     userData.userProfileData = userProfileData;
                     this.local.setUserProfileData(userProfileData); 
                     resolve(userData);
-                }); 
+                });  
             });  
         }
+    }
+
+    getFacebookLoginStatus = () => {
+        return this.fb.getLoginStatus();
+    }
+
+    getUserFacebookData = () => {
+        return this.fb.api('/me?fields=id,picture');
     }
 
     loadGuestData = (params) => {
@@ -120,7 +129,6 @@ export class Otoboto {
 
     loadUserData = (page) => {
         let url = this.base + this.END_POINTS.USER_DATA + `?page=${page}`;
-        console.log(this.requestOptions); 
         return this.http.get(url, this.requestOptions).map(res => res.json().data);         
     }
 
@@ -151,6 +159,19 @@ export class Otoboto {
         return this.http.post(url, null, this.requestOptions).map(res => res.json());
     }
 
+    dislike = (item) => {
+        let url = this.base + this.END_POINTS.DISLIKE + `?car_id=${item.car_document_id}&manufacturer=${item.manufacturer}&model=${item.model}&year=${item.year}`;
+        return this.http.post(url, null, this.requestOptions).map(res => res.json());        
+    }
 
+    hideModel = (manufacturer, model) => {
+        let url = this.base + this.END_POINTS.DISLIKE + `?manufacturer=${manufacturer}&model=${model}`;
+        return this.http.post(url, null, this.requestOptions).map(res => res.json());   
+    }
+
+    hideManufacturer = (manufacturer) => {
+        let url = this.base + this.END_POINTS.DISLIKE + `?manufacturer=${manufacturer}`;
+        return this.http.post(url, null, this.requestOptions).map(res => res.json());   
+    }
 
 }

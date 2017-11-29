@@ -35,17 +35,13 @@ export class Auth {
 
     isLoggedIn() {
         return this.fb.getLoginStatus().then((userLoginData)=>{
-            if (this.local.cookieExists(userLoginData)) {
-                return userLoginData; 
-            } 
+
         })        
     }
 
     login() {
         return this.fb.getLoginStatus().then((userLoginData)=>{
-            if (this.local.cookieExists(userLoginData)) {
-                return userLoginData; 
-            } 
+
         }).then(this.systemLogin).then(this.getUserFacebookProfile); 
     }
 

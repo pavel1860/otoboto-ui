@@ -21,6 +21,9 @@ export class UserSettingsComponent {
 
   logout() {
     this.local.clear(); 
+    this.api.disconnect().subscribe(response => {
+      console.log(response);
+    })
     this.router.navigate(['welcome']);
   }
 

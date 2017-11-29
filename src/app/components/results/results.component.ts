@@ -16,11 +16,14 @@ export class ResultsComponent {
 
     @ViewChild('resultsList') searchResultsList;
     @ViewChild('favoritesList') favoritesList;
+    @ViewChild('bot') bot;
 
     @HostListener('window:scroll', ['$event']) onScrollEvent($event){
         let st = window.pageYOffset || document.documentElement.scrollTop;
         if (st < 142) {
             this.showBot = false; 
+        } else {
+            this.showBot = true;
         }
         this.lastScrollTop = st;        
     } 
@@ -28,12 +31,18 @@ export class ResultsComponent {
     searchResults = [];
     userFavorites = [];
 
+    hiddenSearchResults = [];
+    hiddenFavorites = [];
+
     searchResultsPage = 1;
     userFavoritesPage = 1;
 
     viewMode;
     userProfileData;
+
     showBot;
+    lockBot = false;
+
     operations;
     lastScrollTop;
     loading; 
@@ -51,9 +60,9 @@ export class ResultsComponent {
             
             if (params.isGuest) {
                 this.loadGuestData(params); 
+                this.bot.state('welcomeGuest');
             } else {
-                //this.loadUserSearchResults(1); 
-                //this.loadUserFavorites(); 
+                this.bot.state('welcomeUser');
             }
 
         });     
@@ -82,16 +91,38 @@ export class ResultsComponent {
         this.api.loadUserFavorites(this.userFavoritesPage).subscribe(response => {
             this.userFavorites = this.userFavorites.concat(response); 
             this.userFavoritesPage++;
-        });         
+        }, e => {
+            if (e.status == 400) {
+                this.favoritesList.close();
+            }
+        });    
     }
 
     likeItem(item) {
         this.api.like(item.car_document_id).subscribe(response => {});
+        this.hiddenSearchResults.push(item.car_document_id);
+        this.bot.state('welcomeUser');
+    }
+
+    dislikeItem(item) {
+        this.api.dislike(item).subscribe(response => {
+            this.processFeedback(item, response.data); 
+        });
+        this.hiddenSearchResults.push(item.car_document_id);  
+        this.bot.state('welcomeUser');      
     }
 
     setViewMode(viewMode) {
 
         this.viewMode = viewMode;
+        
+        if (viewMode == 'results') {
+            this.bot.state('viewModeSearchResults');
+        } else if (viewMode == 'favorites') {
+            this.bot.state('viewModeSearchFavorites');
+        } else if (viewMode == 'user') {
+            this.bot.state('viewModeUserSettings');
+        }
 
         if (viewMode != 'user') {
             this.loading = true; 
@@ -111,28 +142,45 @@ export class ResultsComponent {
 
     }
 
+    processFeedback(item, feedback) {
+
+        if (feedback.ask_hide_model) {
+            console.log(feedback);
+            this.bot.state('suggestHideModel', {
+                data: item,
+                counter: feedback.dislike_counter
+            });
+        }
+
+        if (feedback.ask_hide_manufacturer) {
+            this.bot.state('suggestHideManufacturer', {
+                data: item,
+                counter: feedback.dislike_counter
+            });
+        }        
+
+    }
+
     execute(operation) {
         this.operations[operation.code](operation.data); 
     }
 
     hideManufacturer = (item) => {
-        /*
         this.api.hideManufacturer(item.manufacturer).subscribe(response => {
-            let data = JSON.parse(response.data);
-            this.hiddenResults.concat(data);
-            this.botComponent.say('הסתרתי את כל רכבי ה' + item.manufacturer, true, 2);
+            this.hiddenSearchResults = this.hiddenSearchResults.concat(response.data);
+            this.bot.state('manufacturerIsHidden', { 
+                data: item
+            });
         });
-        */
     }
 
     hideModel = (item) => {
-        /*
-        this.api.hideModel(item.car_document_id.$oid, item.manufacturer, item.model, item.year).subscribe(response => {
-            let data = JSON.parse(response.data);
-            this.hiddenResults.concat(data);
-            this.botComponent.say('הסתרתי את כל ה' + item.model, true, 2);
+        this.api.hideModel(item.manufacturer, item.model).subscribe(response => {
+            this.hiddenSearchResults = this.hiddenSearchResults.concat(response.data);
+            this.bot.state('modelIsHidden', { 
+                data: item
+            });
         });
-        */
     }
 
 }

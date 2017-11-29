@@ -1,20 +1,18 @@
 <div class='wrapper'>
 
     <navigation class='navigation' [viewMode]='viewMode' [userProfileData]='userProfileData' (setViewMode)='setViewMode($event)'></navigation>
-    <bot #bot class='bot static' (request)='execute($event)' (showMe)='showBot=true' (hideMe)='showBot=false' [ngClass]='{floating: showBot}'></bot>
+    <bot #bot class='bot static' (request)='execute($event)' (showMe)='lockBot=true' (hideMe)='lockBot=false' [ngClass]='{floating: showBot && lockBot}'></bot>
 
     <div class='main-content-panel'>
 
-        <div *ngIf='loading' class='spinner-box'>
-            <div class='spinner'></div>
-        </div>
+        <div *ngIf='loading' class="spinner"></div>
         
         <div class='list-view-panel' [style.display]='viewMode == "favorites" ? "block" : "none"'>
-            <list #favoritesList class='list' [items]='userFavorites' (ready)='viewMode == "favorites" && loading=false' (loadMore)='viewMode == "favorites" && loadUserFavorites()'></list>
+            <list #favoritesList class='list' [items]='userFavorites' [hidden]='hiddenFavorites' (ready)='viewMode == "favorites" && loading=false' (loadMore)='viewMode == "favorites" && loadUserFavorites()'></list>
         </div>
 
         <div class='list-view-panel' [style.display]='viewMode == "results" ? "block" : "none"'>
-            <list #resultsList class='list' [items]='searchResults' (like)='likeItem($event)' (ready)='viewMode == "results" && loading=false' (loadMore)='viewMode == "results" && loadUserSearchResults()'></list>
+            <list #resultsList class='list' [items]='searchResults' [hidden]='hiddenSearchResults' (like)='likeItem($event)' (dislike)='dislikeItem($event)' (ready)='viewMode == "results" && loading=false' (loadMore)='viewMode == "results" && loadUserSearchResults()'></list>
         </div>
 
         <div class='user-settings-panel' [style.display]="viewMode == 'user' ? 'block' : 'none'">

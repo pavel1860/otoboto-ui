@@ -1,16 +1,7 @@
 <div class='wrapper' infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="loadMoreData()">
     <div *ngFor='let item of items' class='card-panel' [ngClass]='{hidden: isHidden(item), expand: !collapseAll && item["expand"]}'>
-        <card #element *ngIf='!isHidden(item)' class='card' [data]='item' (expand)='collapseAll=false; item["expand"]=$event' (like)='like.emit(item)'></card>
+        <card #element *ngIf='!isHidden(item)' class='card' [data]='item' (expand)='collapseAll=false; item["expand"]=$event' (like)='like.emit(item)' (dislike)='dislike.emit(item)'></card>
     </div>
 </div>
 
-<!--div class='wrapper' infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()">
-    <div *ngFor='let item of items; let i = index; let last = last;' class='card-panel' [ngClass]='{hidden: isHidden(item), expand: !collapseAll && item["expand"]}'>
-        <card #element *ngIf='!isHidden(item)' class='card' [data]='item' [disableLike]='disableLike' (like)='like.emit(item)' (dislike)='dislike.emit(item)' (expand)='collapseAll=false; item["expand"]=$event'></card>
-    </div>
-
-</div>
-
-<div *ngIf='loading' class='spinner-box'>
-     <div class='spinner'></div>
-</div-->
+<div *ngIf='loading' class="spinner"></div>

@@ -1,21 +1,31 @@
 <div class='wrapper'>
 
-    <div class='item' (click)='logout()'>
-        <div class='item-icon'>
+    <div *ngIf='userProfileData' class='user-settings-menu'>
 
+        <div class='item' (click)='logout()'>
+            <div class='item-icon'>
+
+            </div>
+            <div class='item-title'>
+                התנתק
+            </div>
         </div>
-        <div class='item-title'>
-            התנתק
+
+        <div class='item' (click)='reset()'>
+            <div class='item-icon'>
+
+            </div>
+            <div class='item-title'>
+                אפס חשבון
+            </div>
         </div>
+
     </div>
 
-    <div class='item' (click)='reset()'>
-        <div class='item-icon'>
-
-        </div>
-        <div class='item-title'>
-            אפס חשבון
-        </div>
+    <div class='guest-menu'>
+        
     </div>
+
+
 
 </div>

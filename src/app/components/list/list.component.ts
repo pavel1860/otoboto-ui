@@ -9,9 +9,10 @@ import {Component, Input, Output, EventEmitter, ViewChildren, HostListener, Quer
 export class ListComponent {
 
     _items;
-    hidden = [];
     hasNewData = false; 
     collapseAll = true;
+    loading = false;
+    endOfData = false; 
 /*
     @HostListener('window:scroll', ['$event']) onScrollEvent($event){
       if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 900) {
@@ -22,9 +23,12 @@ export class ListComponent {
     @ViewChildren('element') listItem: QueryList<any>;
 
     @Input() set items(items: any) {
+      this.loading = false;
       this._items = items;  
       this.hasNewData = false; 
     } 
+
+    @Input() hidden; 
 
     get items(): any { 
       return this._items; 
@@ -41,19 +45,28 @@ export class ListComponent {
       }
       this.listItem.changes.subscribe(t => {
         this.ready.emit();
+        if (t.length == 0) {
+          this.loadMoreData();
+        }
       })
     }
 
     isHidden(item) {
-      let index = this.hidden.findIndex(id => id == item.car_document_id.$oid);
+      let index = this.hidden.findIndex(id => id == item.car_document_id);
       return index != -1; 
     }
 
     loadMoreData() {
-      if (!this.hasNewData) {
+      if (!this.hasNewData && !this.endOfData) {
+        this.loading = true; 
         this.loadMore.emit();
         this.hasNewData = true; 
       }
+    }
+
+    close() {
+      this.endOfData = true; 
+      this.loading = false;
     }
 
     /*

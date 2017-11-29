@@ -17,7 +17,7 @@ export class BotComponent {
   defaultCaption; 
   caption; 
   userResponseType;
-  attention = false; 
+  attention = true; 
   operationCode; 
   operationData;
   hiddenCountdown; 
@@ -29,6 +29,121 @@ export class BotComponent {
     this.isMobile = this.device.isMobile();
   }
 
+  state(state, info) {
+
+    switch (state) {
+    
+      case 'welcomeGuest':
+
+        this.say('הנה הרכבים המתאימים ביותר לחיפוש שלך');
+        break;
+    
+      case 'welcomeUser':
+
+        this.say('הנה תוצאות החיפוש האחרון שלך');
+        break; 
+        
+      case 'viewModeSearchResults':
+
+        this.say('הנה תוצאות החיפוש האחרון שלך');
+        break;         
+
+      case 'viewModeSearchFavorites':
+
+        this.say('כאן נמצאים הרכבים שאהבת');
+        break;   
+
+      case 'viewModeUserSettings':
+
+        this.say('כאן אפשר לשחק עם ההגדרות');
+        break; 
+
+      case 'suggestHideModel':
+
+        var caption = '';
+        caption = '';
+        caption += 'שמתי לב שהסתרת';
+        caption += ' ';
+        caption += info.data.manufacturer + ' ' + info.data.model;
+        caption += ' ';
+        caption += 'כבר';
+        caption += ' ';
+        caption += info.counter;
+        caption += ' ';
+        caption += 'פעמים';
+        caption += '.';
+        caption += ' ';
+        caption += 'להסתיר עבורך את כל הרכבים מדגם זה?';
+
+        this.say(caption, true);
+        this.ask('yesNoQuestion', 'hideModel', info.data); 
+
+        break;   
+
+      case 'suggestHideManufacturer':
+
+        var caption = '';
+        caption = '';
+        caption += 'שמתי לב שהסתרת רכבי';
+        caption += ' ';
+        caption += info.data.manufacturer;
+        caption += ' ';
+        caption += 'כבר';
+        caption += ' ';
+        caption += info.counter;
+        caption += ' ';
+        caption += 'פעמים';
+        caption += '.';
+        caption += ' ';
+        caption += 'להסתיר עבורך את כל הרכבים מיצרן זה?';
+
+        this.say(caption, true);
+        this.ask('yesNoQuestion', 'hideManufacturer', info.data); 
+
+        break;  
+
+      case 'modelIsHidden': 
+
+        var caption = '';
+        caption += 'הסתרתי עבורך את כל רכבי ה';
+        caption += info.data.manufacturer + ' ' + info.data.model;
+        caption += '.';
+        this.say(caption, true);
+
+        break; 
+
+      case 'manufacturerIsHidden': 
+
+        var caption = '';
+        caption += 'הסתרתי עבורך את כל רכבי ה';
+        caption += info.data.manufacturer;
+        caption += '.';
+        this.say(caption, true);
+
+        break;    
+    }    
+  
+  }
+
+  say(caption, attention?) {
+    this.userResponseType = undefined;
+    this.caption = caption;
+    if (attention) {
+      this.showMe.emit();
+    } else {
+      this.hideMe.emit();
+    }
+  }
+
+  ask(inputType, operationCode, operationData) {
+    this.userResponseType = inputType;
+    this.operationCode = operationCode; 
+    this.operationData = operationData;
+  }
+
+
+
+  /*
   say(text, importent, duration, setAsDefault) {
     //clearTimeout(this.hiddenCountdown);
 
@@ -48,6 +163,7 @@ export class BotComponent {
     }
 
   }
+  */
 
   reset() {
     this.caption = this.defaultCaption; 
@@ -56,7 +172,6 @@ export class BotComponent {
   react(data, item) {
 
     let behavior = this.process(data);
-    console.log(behavior['code']);  
     switch (behavior['code']) {
       case 'hideManufacturer':
           this.showMe.emit(true);
@@ -90,4 +205,8 @@ export class BotComponent {
     }
     return behavior; 
   }
+
+
+
+
 }

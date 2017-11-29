@@ -1,12 +1,7 @@
-<div *ngIf='!loading' class='wrapper'>
-        
+<div *ngIf='!loading' class='wrapper'>  
     <control-panel [loading]='loading' [userProfileData]='userProfileData' (loginRequest)='loginWithFacebook(wizardResults)'></control-panel>
     <wizard class='wizard' (results)='wizardResults = $event' (done)='processResults(wizardResults)'></wizard>
-    <button (click)='disconnect()'>disconnect</button>
-
 </div> 
-
-
 
 <div *ngIf='loading' class='lock-screen otoboto-blue'>
     <img class='logo' [src]='"../../../assets/otoboto-avatar.svg"'/>

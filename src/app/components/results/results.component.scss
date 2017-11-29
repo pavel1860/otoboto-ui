@@ -98,22 +98,21 @@
     top: 0px;
 }
 
-.spinner-box{
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 30px;
-    height: 30px;
-    margin-top: -15px;
-    margin-left: -15px;
-}
-
 .hiddenList {
     visibility: hidden;
     height: 0;
     margin: 0;
     padding: 0;
     overflow: hidden;
+}
+
+.spinner {
+    position: fixed;
+    top: 30%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 @media only screen and (min-width : 768px) {
@@ -164,5 +163,19 @@
         height: initial;
         animation: initial;
     }  
+
+    .main-content-panel {
+        margin-top: 145px;
+        width: 70vw;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .spinner {
+        position: fixed;
+        top: 20%;
+        align-self: center;
+    }
 
 }

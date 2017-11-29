@@ -1,3 +1,5 @@
+$swipe-speed: 0.2s;
+
 .wrapper {
     width: 100%; 
     height: 100%;
@@ -37,35 +39,40 @@
     width: 33.3%;
     position: absolute;
     bottom: -2px;
-    transition: all 0.5s ease-in-out;
+    transition: all $swipe-speed ease-in-out;
 }
 
 .right {
     right: 0%;
-    transition: all 0.5s ease-in-out;
+    transition: all $swipe-speed ease-in-out;
 
 }
 
 .left {
     right: 66.6%;
-    transition: all 0.5s ease-in-out;
+    transition: all $swipe-speed ease-in-out;
 
 }
 
 .center {
     right: 34%;
-    transition: all 0.5s ease-in-out;
+    transition: all $swipe-speed ease-in-out;
 
 }
 
 .half {
     width: 50%;
-    transition: all 0.5s ease-in-out;
+    transition: all $swipe-speed ease-in-out;
 }
 
 .half-right {
     right: 50%;
-    transition: all 0.5s ease-in-out;
+    transition: all $swipe-speed ease-in-out;
+}
+
+.adjust {
+    width: 40px;
+    height: 38px;
 }
 
 

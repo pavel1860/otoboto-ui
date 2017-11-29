@@ -11,14 +11,6 @@ export class LocalService {
         return localStorage.getItem('access_token');
     }
 
-    cookieExists(userLoginData) {
-        let cookieData = JSON.parse(localStorage.getItem('login')); 
-        if (!cookieData) {
-            return false; 
-        } 
-        return ((cookieData['userID'] == userLoginData.userID) && (cookieData['accessToken'] == userLoginData.accessToken))
-    }
-
     setUserProfileData(userLoginData) {
         localStorage.setItem('profile', JSON.stringify(userLoginData));
     }
@@ -29,7 +21,7 @@ export class LocalService {
     
     clear() {
         localStorage.removeItem('profile');
-        localStorage.removeItem('login');
+        localStorage.removeItem('access_token');
     }
 
 }
