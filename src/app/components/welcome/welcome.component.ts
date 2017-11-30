@@ -30,7 +30,7 @@ export class WelcomeComponent {
     if (this.local.getAccessToken()) {
       this.api.getFacebookLoginStatus().then(response => {
         if (response.status == 'connected') {
-          this.loginWithFacebook();
+          setTimeout(this.loginWithFacebook,0);
         }
       });
     }
