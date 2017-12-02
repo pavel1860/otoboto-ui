@@ -37,6 +37,7 @@ import { ModelInfoComponent } from './components/model-info/model-info.component
 import { BotSpeachComponent } from './components/bot-speach/bot-speach.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { FavoritesComponent } from './components/favorites/favorites.component';
+import { FullImageGallery } from './components/full-image-gallery/full-image-gallery.component';
 
 import { Otoboto } from './services/otoboto.service';
 import { LocalService } from './services/local.service';
@@ -95,7 +96,8 @@ const SWIPER_CONFIG: SwiperConfigInterface = {
     ModelInfoComponent,
     BotSpeachComponent,
     SearchResultsComponent,
-    FavoritesComponent
+    FavoritesComponent,
+    FullImageGallery
   ],
   imports: [
     BrowserModule,

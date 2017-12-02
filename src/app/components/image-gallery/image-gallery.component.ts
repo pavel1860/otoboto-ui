@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'image-gallery',
@@ -9,7 +9,12 @@ import { Component, Input } from '@angular/core';
 export class ImageGalleryComponent {
 
     @Input() images; 
+    @Input() index = 0;
+    @Input() autoCrop = true;
 
+    @Output() indexChange: EventEmitter<any> = new EventEmitter();
+    @Output() imageClick: EventEmitter<any> = new EventEmitter();
+    
     swiperConfig = {            
         pagination: '.swiper-pagination',
         paginationClickable: true,

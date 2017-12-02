@@ -36,7 +36,8 @@ export class ListComponent {
     @Output() dislike: EventEmitter<any> = new EventEmitter(); 
     @Output() ready: EventEmitter<any> = new EventEmitter();
     @Output() loadMore: EventEmitter<any> = new EventEmitter();
-
+    @Output() gallery: EventEmitter<any> = new EventEmitter();
+    
     ngAfterViewInit() {
       if (this.items.length == 0) {
         this.ready.emit();

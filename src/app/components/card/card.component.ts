@@ -18,9 +18,11 @@ export class CardComponent {
     @Output() like: EventEmitter<any> = new EventEmitter();
     @Output() dislike: EventEmitter<any> = new EventEmitter();
     @Output() expand: EventEmitter<any> = new EventEmitter();
+    @Output() gallery: EventEmitter<any> = new EventEmitter();
 
     isMobile = true;
 
+    imageIndex = 0;
     showInfo = false; 
     carInfoSpec; 
     infoViewMode = 'sellerComments'; 
@@ -41,6 +43,10 @@ export class CardComponent {
 
     block(e) {
       e.stopPropagation(); 
+    }
+
+    imageIndexChange(e) {
+      console.log(e);
     }
 
 

@@ -8,16 +8,19 @@
         <div *ngIf='loading' class="spinner"></div>
         
         <div class='list-view-panel' [style.display]='viewMode == "favorites" ? "block" : "none"'>
-            <list #favoritesList class='list' [items]='userFavorites' [hidden]='hiddenFavorites' [allowLike]='false' (dislike)='removeItemFromFavorites($event)' (ready)='viewMode == "favorites" && loading=false' (loadMore)='(viewMode == "favorites" && !isGuest) && loadUserFavorites()'></list>
+            <list #favoritesList class='list' [items]='userFavorites' [hidden]='hiddenFavorites' [allowLike]='false' (dislike)='removeItemFromFavorites($event)' (ready)='viewMode == "favorites" && loading=false' (loadMore)='(viewMode == "favorites" && !isGuest) && loadUserFavorites()' (gallery)='imageGalleryData=$event'></list>
         </div>
 
         <div class='list-view-panel' [style.display]='viewMode == "results" ? "block" : "none"'>
-            <list #resultsList class='list' [items]='searchResults' [hidden]='hiddenSearchResults' [allowLike]='true' [pager]='isGuest' (like)='likeItem($event)' (dislike)='dislikeItem($event)' (ready)='viewMode == "results" && loading=false' (loadMore)='(viewMode == "results" && !isGuest) && loadUserSearchResults()'></list>
+            <list #resultsList class='list' [items]='searchResults' [hidden]='hiddenSearchResults' [allowLike]='true' [pager]='isGuest' (like)='likeItem($event)' (dislike)='dislikeItem($event)' (ready)='viewMode == "results" && loading=false' (loadMore)='(viewMode == "results" && !isGuest) && loadUserSearchResults()' (gallery)='imageGalleryData=$event'></list>
         </div>
 
         <div class='user-settings-panel' [style.display]="viewMode == 'user' ? 'block' : 'none'">
             <user-settings [userProfileData]='userProfileData'></user-settings>
         </div>
+
+        <full-image-gallery *ngIf='imageGalleryData' [images]='imageGalleryData.data.mobile_pics' [index]='imageGalleryData.index' (close)='imageGalleryData=undefined'></full-image-gallery>
+
     </div>
 
 </div>

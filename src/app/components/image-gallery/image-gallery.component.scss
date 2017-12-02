@@ -13,6 +13,10 @@
     object-fit: cover;
 }
 
+.contain {
+    object-fit: contain;
+}
+
 @media only screen and (min-width : 768px) {
 
     .image { 

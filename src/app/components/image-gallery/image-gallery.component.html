@@ -1,5 +1,5 @@
 <div class='wrapper'>
-    <swiper class='gallery-swiper' [config]="swiperConfig">
-        <img class='image' *ngFor='let image of images; let i = index' [src]='image'/>                 
+    <swiper class='gallery-swiper' [config]="swiperConfig" [(index)]="index" (indexChange)='indexChange.emit($event)'>
+        <img class='image' *ngFor='let image of images; let i = index' [src]='image' [ngClass]='{contain: !autoCrop}' (click)='imageClick.emit()'/>                 
     </swiper> 
 </div>

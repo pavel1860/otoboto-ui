@@ -52,6 +52,8 @@ export class ResultsComponent {
 
     urlParams;
 
+    imageGalleryData;
+
     constructor(
         private route: ActivatedRoute, 
         private api: Otoboto, 

@@ -1,0 +1,27 @@
+.wrapper {
+    position: fixed;
+    top: 0;
+    left: 0; 
+    width: 100vw;
+    height: 100vh;
+    background: rgba(131, 151, 172, .85);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+}
+
+.gallery {
+    width: 80%;
+    height: 80%;
+    align-self: center;
+    background: black;
+    padding: 30px;
+}
+
+.close-button {
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    cursor: pointer;
+    z-index: 9999;
+}
