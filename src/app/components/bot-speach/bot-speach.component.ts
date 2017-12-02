@@ -10,6 +10,7 @@ export class BotSpeachComponent {
 
     @Input() caption; 
     @Input() userResponseType; 
+    @Input() operationCode; 
 
     @Output() userResponse: EventEmitter<any> = new EventEmitter();
 

@@ -48,7 +48,16 @@ export class ResultsComponent {
     lastScrollTop;
     loading; 
 
-    constructor(private route: ActivatedRoute, private api: Otoboto, private local: LocalService) {
+    pendingAction;
+
+    urlParams;
+
+    constructor(
+        private route: ActivatedRoute, 
+        private api: Otoboto, 
+        private local: LocalService,
+        private router: Router
+    ) {
         api.init(); 
         this.userProfileData = this.local.getUserProfileData(); 
     }
@@ -58,22 +67,29 @@ export class ResultsComponent {
         this.setViewMode('results');
 
         this.route.queryParams.subscribe((params) => {
-            
-            if (params.isGuest) {
-                this.isGuest = true;
-                this.loadGuestData(params); 
-                this.searchResultsList.close();
-                this.bot.state('welcomeGuest');
-            } else {
-                this.bot.state('welcomeUser');
-            }
-
+            this.init(params);
         });     
 
         this.operations = {
             hideManufacturer: this.hideManufacturer, 
-            hideModel: this.hideModel
+            hideModel: this.hideModel,
+            login: this.login
         }             
+
+    }
+
+    init(params) { 
+
+        this.urlParams = params;
+        
+        if (params.isGuest) {
+            this.isGuest = true;
+            this.loadGuestData(params); 
+            this.searchResultsList.close();
+            this.bot.state('welcomeGuest');
+        } else {
+            this.bot.state('welcomeUser');
+        }
 
     }
 
@@ -102,13 +118,29 @@ export class ResultsComponent {
         });    
     }
 
-    likeItem(item) {
+    likeItem = (item) => {
+        if (this.isGuest) {
+            this.bot.state('suggestLogin');
+            this.pendingAction = {
+                operation: this.likeItem,
+                data: item
+            }
+            return;
+        }
         this.api.like(item.car_document_id).subscribe(response => {});
         this.hiddenSearchResults.push(item.car_document_id);
         this.bot.state('welcomeUser');
     }
 
-    dislikeItem(item) {
+    dislikeItem = (item) => {
+        if (this.isGuest) {
+            this.bot.state('suggestLogin');
+            this.pendingAction = {
+                operation: this.dislikeItem,
+                data: item
+            }
+            return; 
+        }        
         this.api.dislike(item).subscribe(response => {
             this.processFeedback(item, response.data); 
         });
@@ -139,6 +171,7 @@ export class ResultsComponent {
         }
 
         setTimeout(() => {
+            console.log(this.isGuest);
             if (this.isGuest) {
                 return; 
             }
@@ -194,6 +227,54 @@ export class ResultsComponent {
                 data: item
             });
         });
+    }
+
+    login = () => {
+
+        this.loading = true; 
+
+        this.api.loginWithFB().then(response => {
+
+          this.userProfileData = response['userProfileData'];
+
+          if (response['get_search_params']) {
+              
+            this.api.updateUserSearchParams(this.urlParams, true).subscribe(response => {
+                this.initUserMode(); 
+            });
+
+          } else if (response['get_results']) {
+
+            this.initUserMode(); 
+
+          } else {
+            console.log('An unexpected error occured');
+          }
+
+        }, e => {
+          console.log(e);
+        });        
+    }
+
+    initUserMode = () => {
+        this.router.navigate(['./results'], {
+            queryParams: {}
+        });  
+
+        this.searchResults = [];
+        this.searchResultsPage = 1;
+        this.isGuest = false; 
+        this.searchResultsList.open();
+
+        setTimeout(() => {
+            this.setViewMode('results');
+            if (this.pendingAction) {
+                setTimeout(() => {
+                    console.log(this.pendingAction); 
+                    this.pendingAction.operation(this.pendingAction.data);
+                }, 0);
+            }
+        }, 0);
     }
 
 }

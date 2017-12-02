@@ -13,13 +13,7 @@ export class ListComponent {
     collapseAll = true;
     loading = false;
     endOfData = false; 
-/*
-    @HostListener('window:scroll', ['$event']) onScrollEvent($event){
-      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 900) {
-        this.loadMoreData();
-      }     
-    } 
-*/
+    
     @ViewChildren('element') listItem: QueryList<any>;
 
     @Input() set items(items: any) {
@@ -30,6 +24,9 @@ export class ListComponent {
 
     @Input() hidden; 
     @Input() allowLike = true; 
+
+    @Input() pager = false; 
+    pagerIndex = 10;
 
     get items(): any { 
       return this._items; 
@@ -49,20 +46,35 @@ export class ListComponent {
         if (t.length == 0) {
           this.loadMoreData();
         }
-      })
+      }); 
     }
 
-    isHidden(item) {
-      let index = this.hidden.findIndex(id => id == item.car_document_id);
-      return index != -1; 
+    isHidden(item, index) {
+
+      if (this.pager) {
+        if (index > this.pagerIndex) {
+          return true; 
+        }
+      }
+      return this.hidden.findIndex(id => id == item.car_document_id) != -1; 
+
     }
 
     loadMoreData() {
+
+      if (this.pager) {
+        if (this.pagerIndex < this.items.length - 1) {
+          this.pagerIndex += 10;
+        } 
+        return; 
+      }
+
       if (!this.hasNewData && !this.endOfData) {
         this.loading = true; 
         this.loadMore.emit();
         this.hasNewData = true; 
       }
+
     }
 
     close() {
@@ -70,93 +82,8 @@ export class ListComponent {
       this.loading = false;
     }
 
-    /*
-     reachedEndOfData = false; 
-     loading; 
-     collapseAll = true; 
-     hasNewData = false;
-    _items; 
-
-    page = 0;
-
-    @HostListener('window:scroll', ['$event']) onScrollEvent($event){
-      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 900) {
-        this.loadMoreData();
-      }     
-    } 
-
-    @ViewChildren('element') things: QueryList<any>;
-
-    @Input() set items(items: any) {
-      this._items = items;  
-      this.hasNewData = false; 
-      this.page++;
-    } 
-
-    @Input() disableLike = false; 
-
-    get items(): any { 
-      return this._items; 
-    } 
-
-    @Input() hidden = []; 
-
-    @Output() like: EventEmitter<any> = new EventEmitter();
-    @Output() dislike: EventEmitter<any> = new EventEmitter();  
-    @Output() loadMore: EventEmitter<any> = new EventEmitter();  
-    @Output() ready: EventEmitter<any> = new EventEmitter();  
-    
-    ngOnInit() {
-      //this.loadMoreData();
+    open() {
+      this.endOfData = false;
     }
-
-    ngAfterViewInit() {
-
-      if (this.items.length == 0) {
-        this.loading = false;
-        this.ready.emit();
-      }
-      this.things.changes.subscribe(t => {
-        if ((t.length < 5) && (!this.reachedEndOfData)) {
-          this.loading = true;
-          this.loadMoreData();
-        }
-        this.ready.emit();
-      })
-    }
-
-    onScroll() {
-
-      if (this.reachedEndOfData) {
-        this.loading = false; 
-        return; 
-      }
-      this.loading = true;
-
-    }
-
-    loadMoreData() {
-      if (!this.hasNewData) {
-        this.loadMore.emit(this.page);
-        this.hasNewData = true; 
-      }
-    }
-
-    reset() {
-      this.collapseAll = true; 
-      this.reachedEndOfData = false; 
-      this.page = 0;
-    }
-
-    isHidden(item) {
-      let index = this.hidden.findIndex(id => id == item.car_document_id.$oid);
-      return index != -1; 
-    }
-
-    endOfData() {
-      this.reachedEndOfData = true; 
-    }
-
-    */
 
 }

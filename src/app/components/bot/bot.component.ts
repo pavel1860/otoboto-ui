@@ -121,6 +121,15 @@ export class BotComponent {
         this.say(caption, true);
 
         break;    
+
+        case 'suggestLogin': 
+
+        var caption = '';
+        caption += 'על מנת לבצע פעולה זו, עליך להתחבר אליי';
+        this.say(caption, true);
+        this.ask('singleAction', 'login'); 
+        
+        break;
     }    
   
   }
@@ -135,7 +144,7 @@ export class BotComponent {
     }
   }
 
-  ask(inputType, operationCode, operationData) {
+  ask(inputType, operationCode, operationData?) {
     this.userResponseType = inputType;
     this.operationCode = operationCode; 
     this.operationData = operationData;

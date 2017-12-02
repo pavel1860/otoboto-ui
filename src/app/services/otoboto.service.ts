@@ -94,7 +94,7 @@ export class Otoboto {
 
     disconnect = () => {
         let url = this.base + this.END_POINTS.DISCONNECT;
-        return this.http.get(url, this.requestOptions).map(res => res.json());       
+        return this.http.post(url, this.requestOptions).map(res => res.json());       
     }
 
     getUserFacebookProfile = (userData) => {

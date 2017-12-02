@@ -11,7 +11,7 @@
                 <bot-avatar class='bot-avatar'></bot-avatar>
             </div>
             <div class='speach-panel'>
-                <bot-speach [caption]='caption' [userResponseType]='userResponseType' (userResponse)='request.emit({code: operationCode, data: operationData})'></bot-speach>
+                <bot-speach [caption]='caption' [userResponseType]='userResponseType' [operationCode]='operationCode' (userResponse)='request.emit({code: operationCode, data: operationData})'></bot-speach>
             </div>    
         </div>         
     
@@ -28,7 +28,7 @@
                 <!--filters></filters-->
             </div>
             <div class='speach-panel' [ngClass]='{"speach-panel-full": attention}'>
-                <bot-speach [caption]='caption' [userResponseType]='userResponseType' (userResponse)='request.emit({code: operationCode, data: operationData})'></bot-speach>
+                <bot-speach [caption]='caption' [userResponseType]='userResponseType' [operationCode]='operationCode' (userResponse)='request.emit({code: operationCode, data: operationData})'></bot-speach>
             </div>            
         </div>
             

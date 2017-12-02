@@ -12,7 +12,7 @@
         </div>
 
         <div class='list-view-panel' [style.display]='viewMode == "results" ? "block" : "none"'>
-            <list #resultsList class='list' [items]='searchResults' [hidden]='hiddenSearchResults' [allowLike]='true' (like)='likeItem($event)' (dislike)='dislikeItem($event)' (ready)='viewMode == "results" && loading=false' (loadMore)='(viewMode == "results" && !isGuest) && loadUserSearchResults()'></list>
+            <list #resultsList class='list' [items]='searchResults' [hidden]='hiddenSearchResults' [allowLike]='true' [pager]='isGuest' (like)='likeItem($event)' (dislike)='dislikeItem($event)' (ready)='viewMode == "results" && loading=false' (loadMore)='(viewMode == "results" && !isGuest) && loadUserSearchResults()'></list>
         </div>
 
         <div class='user-settings-panel' [style.display]="viewMode == 'user' ? 'block' : 'none'">
