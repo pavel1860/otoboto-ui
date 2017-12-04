@@ -4,7 +4,7 @@
     left: 0; 
     width: 100vw;
     height: 100vh;
-    background: rgba(131, 151, 172, .85);
+    background: rgba(131, 151, 172, .88);
     z-index: 999;
     display: flex;
     justify-content: center;
@@ -12,16 +12,15 @@
 
 .gallery {
     width: 80%;
-    height: 80%;
+    height: 50%;
     align-self: center;
-    background: black;
     padding: 30px;
 }
 
 .close-button {
     position: absolute;
-    top: 10%;
-    right: 10%;
+    top: 20px;
+    right: 20px;
     cursor: pointer;
     z-index: 9999;
 }

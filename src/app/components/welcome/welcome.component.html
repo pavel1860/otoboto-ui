@@ -1,11 +1,12 @@
-<div *ngIf='!loading' class='wrapper'>  
-    <control-panel [loading]='loading' [userProfileData]='userProfileData' (loginRequest)='loginWithFacebook(wizardResults)'></control-panel>
-    <wizard class='wizard' (done)='processResults($event)'></wizard>
+<div *ngIf='true' class='wrapper'>  
+    <control-panel class='control-panel' [loading]='loading' [userProfileData]='userProfileData' [minimize]='minimizeControlPanel' [viewMode]='resultsViewMode' (loginRequest)='loginWithFacebook(wizardResults)' (viewModeChange)='setViewMode($event)' [ngClass]='{minimized: minimizeControlPanel}'></control-panel>
+    <wizard *ngIf='showWizard' class='wizard' (done)='processResults($event)'></wizard>
+    <results-view #results class='results-view' *ngIf='showResults' [@divState]></results-view>
 </div> 
 
-<div *ngIf='loading' class='lock-screen otoboto-blue'>
+<!--div *ngIf='loading' class='lock-screen otoboto-blue'>
     <img class='logo' [src]='"../../../assets/otoboto-avatar.svg"'/>
     <div class='spinner-box'>
         <div class='spinner'></div>
     </div>
-</div>
+</div-->

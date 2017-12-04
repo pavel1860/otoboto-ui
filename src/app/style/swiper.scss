@@ -67,6 +67,20 @@
     right: 10px;
     left: auto;
 }   
+
+.swiper-pagination-bullet-last {
+    border: unset !important;
+    margin: unset !important;
+}
+
+.swiper-pagination-bullet-first {
+    border: unset !important;
+    margin: unset !important;
+}
+
+.swiper-pagination-handle {
+    margin: 1px !important;
+}
     
 @media only screen and (min-width : 768px) {
 

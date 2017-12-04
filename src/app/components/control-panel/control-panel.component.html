@@ -1,9 +1,25 @@
 <div class='control-panel otoboto-blue'>
+
     <div class='top-bar'>
         <top-bar [loading]='loading' [userProfileData]='userProfileData' (loginRequest)='loginRequest.emit()'></top-bar>
     </div>
-    <div class='avatar-panel'>
-        <img class='cover-mobile' src='../../assets/otoboto-cover-mobile.svg'/>
-        <img class='cover-desktop' src='../../assets/otoboto-avatar-desktop.svg'/>
-    </div> 
+    
+    <img class='cover-desktop desktop' src='../../assets/otoboto-avatar-desktop.svg'/>
+    <img class='cover-mobile' src='../../assets/otoboto-cover-mobile.svg'/>
+
+    <div class='avatar-panel desktop'></div> 
+
+    <div class='navigation-bar desktop' [ngClass]='{visible: minimize}'>
+        <div class='navigation-button otoboto-yellow' (click)='viewModeChange.emit("results")'>
+            <img [src]='viewMode=="results" ? "../../assets/navigation-button-results-active.svg" : "../../assets/navigation-button-results.svg"'>
+        </div>  
+        <div class='navigation-button otoboto-yellow' (click)='viewModeChange.emit("favorites")'>
+            <img [src]='viewMode=="favorites" ? "../../assets/navigation-button-favorites-active.svg" : "../../assets/navigation-button-favorites.svg"'>
+        </div>              
+    </div>
+
+    <div class='fog' [ngClass]='{visible: minimize}'>
+        
+    </div>
+
 </div>  

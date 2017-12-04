@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, NgZone } from '@angular/core';
+import { Component, Input, ViewChild, Output, EventEmitter, NgZone, trigger, state, style, transition, animate, keyframes } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Otoboto } from '../../services/otoboto.service';
 import { LocalService } from '../../services/local.service';
@@ -7,16 +7,37 @@ import { LocalService } from '../../services/local.service';
   selector: 'welcome',
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.scss'],
-  providers: [ Otoboto ]
+  providers: [ Otoboto ],
+  animations: [
+    trigger('divState', [
+      state('in', style({backgroundColor: 'red',transform: 'translateX(0)'})),
+      transition('void => *', [
+        animate(2000, keyframes([
+          style({opacity: 0, offset: 0}),
+          style({opacity: 0.5, offset: 0.3}),
+          style({opacity: 1, offset: 1.0})
+        ]))
+      ])
+    ])
+  ]  
 })
 
 export class WelcomeComponent {
+
+  @ViewChild('results') results;
 
   wizardResults = {};
   userProfileData;
   uid;  
   loading = false; 
   isNewUser;
+  //isGuest;
+
+  showWizard = false;
+  showResults = false; 
+  resultsViewMode = 'results';
+
+  minimizeControlPanel = false; 
   
   constructor(
     private router: Router, 
@@ -31,12 +52,22 @@ export class WelcomeComponent {
       this.api.getFacebookLoginStatus().then(response => {
         if (response.status == 'connected') {
           setTimeout(this.loginWithFacebook,0);
+        } else {
+          this.displayWizard();
         }
       });
+    } else {
+      this.displayWizard();
     }
 
     this.route.queryParams.subscribe((params) => {
-      this.isNewUser = params.isNewUser;  
+
+      this.isNewUser = params.isNewUser; 
+      
+      if (params.isGuest) {
+        this.displayResults();
+      }
+      
     });   
     
   }
@@ -51,9 +82,10 @@ export class WelcomeComponent {
           queryParams: {isNewUser: true},
           queryParamsHandling: "merge"
         });
+        this.displayWizard(); 
       } else if (response['get_results']) {
-        this.router.navigate(['./results']); 
-        this.loading = false;        
+        this.router.navigate(['./welcome']); 
+        this.displayResults();      
       } else {
         this.loading = false;
         console.log('An unexpected error occured');
@@ -69,18 +101,42 @@ export class WelcomeComponent {
   }
 
   processResults = (wizardResults) => {
-    console.log(wizardResults);
     if (this.userProfileData) {
       this.api.updateUserSearchParams(wizardResults, this.isNewUser).subscribe(response => {
-        this.router.navigate(['./results']);  
+        //this.router.navigate(['./results']);  
+        this.displayResults();
       });
     } else {
-      this.router.navigate(['./results'], {
+      this.router.navigate(['./welcome'], {
         queryParams: {isGuest: true},
         queryParamsHandling: "merge"
-      });     
+      });
+      this.displayResults();     
     }
     
+  }
+
+  displayResults = () => {
+
+    this.showResults = false;
+    this.showWizard = false;
+    this.minimizeControlPanel = true; 
+
+    setTimeout(() => {
+      this.showResults = true; 
+    }, 800);
+    
+  }
+
+  displayWizard = () => {
+    this.showWizard = true; 
+    this.showResults = false; 
+    this.minimizeControlPanel = false; 
+  }
+
+  setViewMode = (viewMode) => {
+    this.resultsViewMode = viewMode;
+    this.results.setViewMode(viewMode);
   }
 
 }

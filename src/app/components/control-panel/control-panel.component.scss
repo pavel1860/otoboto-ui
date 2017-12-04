@@ -1,7 +1,7 @@
 .control-panel {
     height: 59vw;
     position: relative;
-    display: flex;
+    display: block;
 }
 
 .avatar-panel {
@@ -14,6 +14,9 @@
 .top-bar {
     width: 100%;
     z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .cover-mobile {
@@ -25,7 +28,33 @@
     display: none;
 }
 
+.fog {
+    background: rgba(246,246,246,1);
+    background: -moz-linear-gradient(top, rgba(246,246,246,1) 0%, rgba(246,246,246,1) 49%, rgba(246,246,246,0) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(246,246,246,1)), color-stop(49%, rgba(246,246,246,1)), color-stop(100%, rgba(246,246,246,0)));
+    background: -webkit-linear-gradient(top, rgba(246,246,246,1) 0%, rgba(246,246,246,1) 49%, rgba(246,246,246,0) 100%);
+    background: -o-linear-gradient(top, rgba(246,246,246,1) 0%, rgba(246,246,246,1) 49%, rgba(246,246,246,0) 100%);
+    background: -ms-linear-gradient(top, rgba(246,246,246,1) 0%, rgba(246,246,246,1) 49%, rgba(246,246,246,0) 100%);
+    background: linear-gradient(to bottom, rgba(246,246,246,1) 0%, rgba(246,246,246,1) 49%, rgba(246,246,246,0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6f6f6', endColorstr='#f6f6f6', GradientType=0 );
+    width: 100%;
+    position: absolute;
+    bottom: -89px;
+    left: 0;
+    right: 0;
+    height: 90px;
+    opacity: 0;
+    z-index: 90;
+}
+
 @media only screen and (min-width : 768px) {
+
+    .control-panel {
+        height: 59vw;
+        position: relative;
+        display: flex;
+    }
+
     .avatar-panel {
         position: absolute;
         top: unset;
@@ -34,7 +63,7 @@
         right: 0;
         margin-left: auto;
         margin-right: auto;
-        height: 300px;
+        height: 40%;
         background-image: url('../../../assets/otoboto-buildings-cover.svg');
         background-size: contain;
         background-position: bottom;
@@ -42,15 +71,60 @@
         justify-content: center;
         display: flex;
     }  
-    .control-panel {
-        height: 42vh;  
-    }
+
     .cover-mobile {
         display: none;
     }
+
     .cover-desktop {
         display: block;
         margin-bottom: -140px;
         width: 485px;
+        position: absolute;
+        right: 0;
+        left: 0;
+        margin-left: auto;
+        margin-right: auto;
+        bottom: 84px;
+        z-index: 100;
+    }
+
+    .otoboto-face {
+        width: 100px;
+        margin-right: 40px;
+        z-index: 100;
+    }
+
+    .navigation-bar {
+        position: absolute;
+        bottom: -30px;
+        right: 0;
+        left: 0;
+        margin-left: auto;
+        margin-right: auto;
+        width: 500px;
+        opacity: 0;
+        display: flex;
+        justify-content: space-between;
+        transition: opacity 1s ease-in-out;
+        z-index: 120;
+    }
+
+    .visible {
+        opacity: 1;
+    }
+
+    .navigation-button {
+        width: 60px;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        border-radius: 100%;
+        cursor: pointer;
+        z-index: 100;
+    }
+
+    .navigation-button img {
+        width: 50%;
     }
 }

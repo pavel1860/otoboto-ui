@@ -1,3 +1,6 @@
+$top-panel-height-desktop: 17vh;
+$top-panel-height-mobile: 17vh;
+
 .wrapper {
     display: flex;
     flex-direction: column;
@@ -6,13 +9,52 @@
 }
 
 .wizard {
-    margin-top: 70px;    
+    margin-top: 42vh;
+    padding-top: 0px;  
+}
+
+.control-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-right: auto;
+    margin-left: auto;
+    height: 42vh;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;    
+    z-index: 100;
+    transition: all 1s ease-in-out;
+}
+
+.results-view {
+    margin-top: $top-panel-height-mobile;
+    padding-top: 72px;
+}
+
+.minimized {
+    height: $top-panel-height-mobile;
+    top: -100px;
 }
 
 @media only screen and (min-width : 768px) {
-    .wizard {
-        margin-top: 55.75px;    
-    }    
+
+    .wizard { 
+        margin-top: 42vh;
+        padding-top: 69px; 
+    }  
+
+    .results-view {
+        margin-top: $top-panel-height-desktop;
+        padding-top: 72px;
+    }
+
+    .minimized {
+        height: $top-panel-height-desktop;
+        top: unset;
+    }
+
 }
 
 .lock-screen {

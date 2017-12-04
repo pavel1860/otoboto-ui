@@ -11,7 +11,11 @@ export class ControlPanelComponent {
 
   @Input() loading; 
   @Input() userProfileData; 
+  @Input() minimize; 
+  @Input() viewMode;
+
   @Output() loginRequest: EventEmitter<any> = new EventEmitter();
+  @Output() viewModeChange: EventEmitter<any> = new EventEmitter();
 
   constructor(private otoboto: Otoboto) {}
 

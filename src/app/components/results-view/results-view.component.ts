@@ -7,12 +7,12 @@ import { Otoboto } from '../../services/otoboto.service';
 import { LocalService } from '../../services/local.service';
 
 @Component({
-  selector: 'results',
-  templateUrl: './results.component.html',
-  styleUrls: ['./results.component.scss']
+  selector: 'results-view',
+  templateUrl: './results-view.component.html',
+  styleUrls: ['./results-view.component.scss']
 })
 
-export class ResultsComponent {
+export class ResultsViewComponent {
 
     @ViewChild('resultsList') searchResultsList;
     @ViewChild('favoritesList') favoritesList;
@@ -83,7 +83,7 @@ export class ResultsComponent {
     init(params) { 
 
         this.urlParams = params;
-
+        
         if (params.isGuest) {
             this.isGuest = true;
             this.loadGuestData(params); 
