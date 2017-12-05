@@ -7,21 +7,15 @@
     <div class='caption-panel'>
         <label>
             {{steps[step-1].caption}}
-            {{city}}
         </label>
     </div>
 
     <div class='userInputWrapper'>
-        <car-types-selector class='input-selector' *ngIf='steps[step-1].inputType == "carTypesSelector"' (selected)='category = $event.id; nextStep(); updateURI();' ></car-types-selector>
+        <car-types-selector class='input-selector' *ngIf='steps[step-1].inputType == "carTypesSelector"' (selected)='category = $event.id; updateWizardByCategory(category); nextStep(); updateURI();'></car-types-selector>
+        <car-manufacturer-selector *ngIf='steps[step-1].inputType == "carManufacturerSelector"' class='input-selector' [initialValue]='manufacturer' (done)='manufacturer = $event; nextStep(); updateURI();'></car-manufacturer-selector>
+        <car-model-selector *ngIf='steps[step-1].inputType == "carModelSelector"' class='input-selector' [initialValue]='model' [manufacturer]='manufacturer' (done)='model = $event; nextStep(); updateURI();'></car-model-selector>
         <price-selector class='input-selector' *ngIf='steps[step-1].inputType == "priceSelector"' [valueToken]='price' (done)='price = $event; nextStep(); updateURI();' ></price-selector>
-        <location-selector class='input-selector' *ngIf='steps[step-1].inputType == "locationSelector"' [valueToken]='city' (done)='city = $event; updateURI(); nextStep();'></location-selector>
+        <location-selector *ngIf='steps[step-1].inputType == "locationSelector"' class='input-selector' [initialValue]='city' (done)='city = $event; updateURI(); nextStep();'></location-selector>
     </div>
-
-    
-    <!--div *ngIf='steps[step-1].continueButton' class='continue-button-panel'>
-        <div class='button otoboto-blue text-small' (click)='nextStep();'>
-            המשך
-        </div>
-    </div-->
 
 </div>

@@ -38,6 +38,16 @@ $top-panel-height-mobile: 17vh;
     top: -100px;
 }
 
+.static {
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 @media only screen and (min-width : 768px) {
 
     .wizard { 

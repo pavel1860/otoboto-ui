@@ -9,13 +9,20 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class PagerComponent {
 
     @Input() activeStep = 1; 
-    @Input() length; 
+
+    _length: boolean;
+    get length(): boolean {
+        return this._length;
+    }
+    
+    @Input('length')
+    set length(value: boolean) {
+        this._length = value;
+        this.steps = Array(this.length);
+    }
+    
     @Output() selectedStep: EventEmitter<any> = new EventEmitter();
 
     steps;
-
-    ngOnInit() {
-        this.steps = Array(this.length);
-    }
 
 }

@@ -39,6 +39,9 @@ import { SearchResultsComponent } from './components/search-results/search-resul
 import { FavoritesComponent } from './components/favorites/favorites.component';
 import { FullImageGallery } from './components/full-image-gallery/full-image-gallery.component';
 import { ResultsViewComponent } from './components/results-view/results-view.component';
+import { WizardSelectorAutocomplete } from './components/wizard-selector-autocomplete/wizard-selector-autocomplete.component';
+import { CarManufacturerSelector } from './components/car-manufacturer-selector/car-manufacturer-selector.component';
+import { CarModelSelector } from './components/car-model-selector/car-model-selector.component';
 
 import { Otoboto } from './services/otoboto.service';
 import { LocalService } from './services/local.service';
@@ -99,7 +102,10 @@ const SWIPER_CONFIG: SwiperConfigInterface = {
     SearchResultsComponent,
     FavoritesComponent,
     FullImageGallery,
-    ResultsViewComponent
+    ResultsViewComponent,
+    WizardSelectorAutocomplete,
+    CarManufacturerSelector,
+    CarModelSelector
   ],
   imports: [
     BrowserModule,

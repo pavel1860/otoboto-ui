@@ -26,7 +26,8 @@ export class Otoboto {
         USER_SEARCH_PARAMS: 'users',
         DISCONNECT: 'disconnect',
         OPEN_SESSION: 'tok',
-        DISLIKE: 'dislikes'
+        DISLIKE: 'dislikes',
+        MODELS_LIST: 'models_list'
     }
 
     constructor(private fb: FacebookService, private http: Http, private local: LocalService) {
@@ -119,10 +120,10 @@ export class Otoboto {
 
     loadGuestData = (params) => {
         let url;
-        if (params.category) {
-            url = this.base + this.END_POINTS.GUEST_DATA + `?category=${params.category}&city=${params.city}&price=${params.price}`;
-        } else if (params.manufacturer) {
+        if ((params.category == 'specific') && (params.manufacturer) && (params.model)) {
             url = this.base + this.END_POINTS.GUEST_DATA + `?manufacturer=${params.manufacturer}&model=${params.model}&city=${params.city}&price=${params.price}`;
+        } else {
+            url = this.base + this.END_POINTS.GUEST_DATA + `?category=${params.category}&city=${params.city}&price=${params.price}`;
         }
         return this.http.get(url, this.requestOptions).map(res => res.json().data);      
     }
@@ -140,6 +141,7 @@ export class Otoboto {
     updateUserSearchParams = (searchParams, isNewUser) => {
         
         let url; 
+        
         if (searchParams.category) {
             url = this.base + this.END_POINTS.USER_SEARCH_PARAMS + `?category=${searchParams.category}&city=${searchParams.city}&price=${searchParams.price}`;
         } else if (searchParams.manufacturer) {
@@ -177,6 +179,11 @@ export class Otoboto {
     hideManufacturer = (manufacturer) => {
         let url = this.base + this.END_POINTS.DISLIKE + `?manufacturer=${manufacturer}`;
         return this.http.post(url, null, this.requestOptions).map(res => res.json());   
+    }
+
+    getModelsList = () => {
+        let url = this.base + this.END_POINTS.MODELS_LIST;
+        return this.http.get(url, this.requestOptions).map(res => res.json().data);          
     }
 
 }

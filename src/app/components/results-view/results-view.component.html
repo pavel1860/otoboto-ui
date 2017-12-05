@@ -1,6 +1,6 @@
 <div class='wrapper'>
 
-    <navigation class='navigation' [viewMode]='viewMode' [userProfileData]='userProfileData' [viewMode]='viewMode' (setViewMode)='setViewMode($event)'></navigation>
+    <!--navigation class='navigation' [viewMode]='viewMode' [userProfileData]='userProfileData' [viewMode]='viewMode' (setViewMode)='setViewMode($event)'></navigation-->
     <bot #bot class='bot static' (request)='execute($event)' (showMe)='lockBot=true' (hideMe)='lockBot=false' [ngClass]='{floating: showBot && lockBot}'></bot>
 
     <div class='main-content-panel'>

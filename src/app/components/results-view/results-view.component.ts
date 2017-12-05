@@ -1,4 +1,4 @@
-import { Component, ViewChild, HostListener, trigger, state, style, transition, animate, keyframes } from '@angular/core';
+import { Component, Output, EventEmitter, ViewChild, HostListener, trigger, state, style, transition, animate, keyframes } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { SwiperComponent, SwiperDirective, SwiperConfigInterface } from 'ngx-swiper-wrapper';
@@ -27,6 +27,8 @@ export class ResultsViewComponent {
         }
         this.lastScrollTop = st;        
     } 
+
+    @Output() botState: EventEmitter<any> = new EventEmitter();
 
     searchResults = [];
     userFavorites = [];
@@ -88,9 +90,9 @@ export class ResultsViewComponent {
             this.isGuest = true;
             this.loadGuestData(params); 
             this.searchResultsList.close();
-            this.bot.state('welcomeGuest');
+            this.setBotState('welcomeGuest');
         } else {
-            this.bot.state('welcomeUser');
+            this.setBotState('welcomeUser');
         }
 
     }
@@ -122,7 +124,7 @@ export class ResultsViewComponent {
 
     likeItem = (item) => {
         if (this.isGuest) {
-            this.bot.state('suggestLogin');
+            this.setBotState('suggestLogin');
             this.pendingAction = {
                 operation: this.likeItem,
                 data: item
@@ -131,12 +133,12 @@ export class ResultsViewComponent {
         }
         this.api.like(item.car_document_id).subscribe(response => {});
         this.hiddenSearchResults.push(item.car_document_id);
-        this.bot.state('welcomeUser');
+        this.setBotState('welcomeUser');
     }
 
     dislikeItem = (item) => {
         if (this.isGuest) {
-            this.bot.state('suggestLogin');
+            this.setBotState('suggestLogin');
             this.pendingAction = {
                 operation: this.dislikeItem,
                 data: item
@@ -147,13 +149,13 @@ export class ResultsViewComponent {
             this.processFeedback(item, response.data); 
         });
         this.hiddenSearchResults.push(item.car_document_id);  
-        this.bot.state('welcomeUser');      
+        this.setBotState('welcomeUser');      
     }
 
     removeItemFromFavorites(item) {
         this.api.removeItemFromFavorites(item).subscribe(response => {});
         this.hiddenFavorites.push(item.car_document_id);  
-        this.bot.state('welcomeUser');           
+        this.setBotState('welcomeUser');           
     }
 
     setViewMode(viewMode) {
@@ -161,11 +163,11 @@ export class ResultsViewComponent {
         this.viewMode = viewMode;
         
         if (viewMode == 'results') {
-            this.bot.state('viewModeSearchResults');
+            this.setBotState('viewModeSearchResults');
         } else if (viewMode == 'favorites') {
-            this.bot.state('viewModeSearchFavorites');
+            this.setBotState('viewModeSearchFavorites');
         } else if (viewMode == 'user') {
-            this.bot.state('viewModeUserSettings');
+            this.setBotState('viewModeUserSettings');
         }
 
         if (viewMode != 'user') {
@@ -194,14 +196,14 @@ export class ResultsViewComponent {
 
         if (feedback.ask_hide_model) {
             console.log(feedback);
-            this.bot.state('suggestHideModel', {
+            this.setBotState('suggestHideModel', {
                 data: item,
                 counter: feedback.dislike_counter
             });
         }
 
         if (feedback.ask_hide_manufacturer) {
-            this.bot.state('suggestHideManufacturer', {
+            this.setBotState('suggestHideManufacturer', {
                 data: item,
                 counter: feedback.dislike_counter
             });
@@ -216,7 +218,7 @@ export class ResultsViewComponent {
     hideManufacturer = (item) => {
         this.api.hideManufacturer(item.manufacturer).subscribe(response => {
             this.hiddenSearchResults = this.hiddenSearchResults.concat(response.data);
-            this.bot.state('manufacturerIsHidden', { 
+            this.setBotState('manufacturerIsHidden', { 
                 data: item
             });
         });
@@ -225,7 +227,7 @@ export class ResultsViewComponent {
     hideModel = (item) => {
         this.api.hideModel(item.manufacturer, item.model).subscribe(response => {
             this.hiddenSearchResults = this.hiddenSearchResults.concat(response.data);
-            this.bot.state('modelIsHidden', { 
+            this.setBotState('modelIsHidden', { 
                 data: item
             });
         });
@@ -277,6 +279,13 @@ export class ResultsViewComponent {
                 }, 0);
             }
         }, 0);
+    }
+
+    setBotState = (state, data?) => {
+        this.botState.emit({
+            state: state,
+            data: data
+        })
     }
 
 }

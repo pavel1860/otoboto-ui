@@ -10,54 +10,23 @@ import { FormControl } from '@angular/forms';
 })
 
 export class LocationSelectorComponent {
-  
-      @ViewChild('inputPane') inputPane;
-      @ViewChild('input') input;
-  
-      @Input() valueToken = '';
-      @Output() done: EventEmitter<any> = new EventEmitter();
-  
-      valueControler = new FormControl();
-      value; 
-      showInputPane = false; 
-      isReady = false; 
-      options = [];
-      showOptionsMenu = false; 
-      
-      constructor(private locations: Locations) {
+    
+      @Input() initialValue = '';
 
-      }
+      @Output() done: EventEmitter<any> = new EventEmitter();
+
+      items = [];
+      icon = '../../assets/location-icon-color.svg';
+      placeholder = 'הכנס עיר';
+      
+      constructor(private locations: Locations) {}
 
       ngOnInit() {
 
-          if(!this.valueToken) {
-              this.valueToken = '';
-          }
+          this.locations.getLocations().subscribe(response => {
+              this.items = response;
+          })
 
-          this.locations.init().subscribe(() => {
-            this.isReady = true; 
-          });  
-
-          this.valueControler.valueChanges.subscribe(token => {
-               this.valueToken = token;
-              if (token.length <= 1) {
-                return; 
-              }
-              this.options = this.locations.search(token,3);
-              if (this.options.length > 0) {
-                  this.showOptionsMenu = true; 
-              }
-          });  
-
-      }
-  
-      block(e) {
-          e.stopPropagation();
-      }
-  
-      openInputPane() {
-          this.inputPane.open(); 
-          setTimeout(() => this.input.nativeElement.focus(), 0);        
       }
   
   }

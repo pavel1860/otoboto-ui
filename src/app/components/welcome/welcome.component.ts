@@ -139,4 +139,10 @@ export class WelcomeComponent {
     this.results.setViewMode(viewMode);
   }
 
+  reset = () => {
+    this.router.navigate(['./welcome'], {
+      queryParams: {}
+    });   
+  }
+
 }

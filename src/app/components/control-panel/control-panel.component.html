@@ -4,7 +4,7 @@
         <top-bar [loading]='loading' [userProfileData]='userProfileData' (loginRequest)='loginRequest.emit()'></top-bar>
     </div>
     
-    <img class='cover-desktop desktop' src='../../assets/otoboto-avatar-desktop.svg'/>
+    <img class='cover-desktop desktop' src='../../assets/otoboto-avatar-desktop.svg' (click)='reset.emit()'/>
     <img class='cover-mobile' src='../../assets/otoboto-cover-mobile.svg'/>
 
     <div class='avatar-panel desktop'></div> 

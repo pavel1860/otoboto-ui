@@ -35,6 +35,12 @@ export class CarTypeSelectorComponent {
             id: 'executive',
             caption: 'מנהלים',
             icon: '../assets/car-type-icon-executive.svg'
+        }, 
+        {
+            id: 'specific',
+            caption: 'דגם ספציפי',
+            icon: '',
+            type: 'system'
         }                               
     ]
 

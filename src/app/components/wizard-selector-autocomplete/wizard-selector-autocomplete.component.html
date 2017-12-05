@@ -1,0 +1,52 @@
+<div class='wrapper'>
+
+    <div class='input-inner-desktop'>
+
+        <input-box class='input-box' [icon]='icon'>
+            <input type='text' class='text-primary' placeholder="{{placeholder}}" [value]="valueToken" [formControl]="valueControler"/>
+        </input-box>
+
+
+        <div *ngIf='showOptionsMenu' class='options-panel'>
+            <div *ngFor='let option of options' class='option' (click)='valueToken = option; showOptionsMenu = false;'>
+                {{option}}
+            </div>
+        </div>    
+
+
+    </div>
+
+    <div class='input-inner-mobile'>
+
+        <div class='input-box-panel'>
+            <input-box class='input-box' [icon]='icon' (click)='openInputPane()'>
+                <input type='text' class='text-primary' placeholder="{{placeholder}}" [value]="valueToken" [formControl]="valueControler" autofocus/>
+            </input-box> 
+        </div>   
+            
+        <input-pane #inputPane (clicked)='inputPane.close()' (keyup.enter)="inputPane.close()">
+
+            <div class='input-pane-inner'>
+                <div class='input-box-panel full-size'>
+                    <input-box class='input-box' (click)='block($event);'>
+                        <input #input class='text-primary' type='text' placeholder="{{placeholder}}" [value]="valueToken" [formControl]="valueControler" autofocus/>
+                    </input-box>  
+                </div>  
+
+                <div class='options-panel'>
+                    <div *ngFor='let option of options' class='option' (click)='valueToken = option; inputPane.close()'>
+                        {{option}}
+                    </div>
+                </div>
+            </div>
+
+        </input-pane>
+
+    </div>    
+
+    <div class='continue-button-panel'>
+        <div class='button button-wizard-next otoboto-blue text-small' (click)='done.emit(valueToken);'>
+            המשך
+        </div>
+    </div>
+</div>

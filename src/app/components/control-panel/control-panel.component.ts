@@ -16,6 +16,7 @@ export class ControlPanelComponent {
 
   @Output() loginRequest: EventEmitter<any> = new EventEmitter();
   @Output() viewModeChange: EventEmitter<any> = new EventEmitter();
+  @Output() reset: EventEmitter<any> = new EventEmitter();
 
   constructor(private otoboto: Otoboto) {}
 

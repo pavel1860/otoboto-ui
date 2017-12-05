@@ -1,9 +1,9 @@
-<div class='wrapper otoboto-fill-negative'>
+<!--div class='wrapper otoboto-fill-negative'>
 
     <div *ngIf='!isMobile' class='vertical-wrapper'>
 
         <div class='vertical-top-panel'>
-            <!--filters></filters-->
+            <filters></filters>
         </div> 
         
         <div class='vertical-bottom-panel'>
@@ -25,7 +25,7 @@
 
         <div class='horizontal-left-panel'>
             <div *ngIf='!attention' class='filters-panel'>
-                <!--filters></filters-->
+          
             </div>
             <div class='speach-panel' [ngClass]='{"speach-panel-full": attention}'>
                 <bot-speach [caption]='caption' [userResponseType]='userResponseType' [operationCode]='operationCode' (userResponse)='request.emit({code: operationCode, data: operationData})'></bot-speach>
@@ -35,10 +35,10 @@
     </div>
 
 
-</div>
+</div-->
 
 
-
+<bot-speach [caption]='caption' [userResponseType]='userResponseType' [operationCode]='operationCode' (userResponse)='request.emit({code: operationCode, data: operationData})'></bot-speach>
 
 
 

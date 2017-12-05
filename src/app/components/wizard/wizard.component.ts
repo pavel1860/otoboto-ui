@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter, NgZone, trigger, state, style, transition, animate, keyframes } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Locations } from '../../services/locations.service';
 
 import 'rxjs/add/operator/switchMap';
 
@@ -9,6 +10,7 @@ import { Otoboto } from '../../services/otoboto.service';
   selector: 'wizard',
   templateUrl: './wizard.component.html',
   styleUrls: ['./wizard.component.scss'],
+  providers: [ Locations ],
   animations: [
     trigger('divState', [
       state('in', style({backgroundColor: 'red',transform: 'translateX(0)'})),
@@ -35,35 +37,19 @@ export class WizardComponent {
     category; 
     city;
     price;
+    manufacturer;
+    model;
 
     next;
 
-    steps = [
-        {
-            inputType: "carTypesSelector",
-            caption: "איזה סוג רכב אתה מחפש?",
-            continueButton: false,
-            data: 'category'
-        }, 
-        {
-            inputType: "priceSelector",
-            caption: "הכנס את התקציב",
-            continueButton: true,
-            data: 'price'
-        },        
-        {
-            inputType: "locationSelector", 
-            caption: 'באיזה אזור אתה מחפש?',
-            continueButton: true,
-            data: 'city'
-        }
-    ];
+    steps;
 
     constructor(
         private router: Router, 
         private route: ActivatedRoute,
         private zone: NgZone,
-        private api: Otoboto
+        private api: Otoboto,
+        private locations: Locations
     ) {}
 
     ngOnInit() {
@@ -74,6 +60,9 @@ export class WizardComponent {
             this.category = params.category; 
             this.city = params.city;
             this.price = params.price; 
+            this.model = params.model; 
+            this.manufacturer = params.manufacturer; 
+            this.updateWizardByCategory(params.category);
         });        
     }
 
@@ -83,7 +72,9 @@ export class WizardComponent {
             step: this.step,
             category: this.category,
             city: this.city,
-            price: this.price
+            price: this.price,
+            manufacturer: this.manufacturer,
+            model: this.model
         };
 
         this.router.navigate(['./welcome'], {
@@ -104,7 +95,9 @@ export class WizardComponent {
             let descriptor = {
                 category: this.category,
                 city: this.city,
-                price: this.price
+                price: this.price,
+                manufacturer: this.manufacturer,
+                model: this.model
             }; 
             this.router.navigate(['./welcome'], {
                 queryParams: descriptor,
@@ -114,6 +107,57 @@ export class WizardComponent {
                 this.done.emit(descriptor);
             },0);
         }
+    }
+
+    updateWizardByCategory(category) {
+
+        console.log(category);
+
+        this.steps = [];
+
+        this.steps.push({
+            inputType: "carTypesSelector",
+            caption: "איזה סוג רכב אתה מחפש?",
+            continueButton: false,
+            data: 'category'            
+        });
+
+        this.steps.push({
+            inputType: "priceSelector",
+            caption: "הכנס את התקציב",
+            continueButton: true,
+            data: 'price'           
+        });
+
+        this.steps.push({
+            inputType: "locationSelector", 
+            caption: 'באיזה אזור אתה מחפש?',
+            continueButton: true,
+            data: 'city',
+            icon: '../../assets/location-icon-color.svg',
+            placeholder: 'הכנס עיר'         
+        });
+
+        if (category == 'specific') {
+
+            this.steps.splice(1, 0, {
+                inputType: "carManufacturerSelector", 
+                caption: 'בחר יצרן מתוך הרשימה',
+                continueButton: true,
+                data: 'manufacturer'     
+            });
+
+            this.steps.splice(2, 0, {        
+                inputType: "carModelSelector", 
+                caption: 'בחר דגם מתוך הרשימה',
+                continueButton: true,
+                data: 'model' 
+            });   
+
+        }
+
+        console.log(this.steps);
+
     }
 
     goToStep(step) {
