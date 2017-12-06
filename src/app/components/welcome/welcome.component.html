@@ -2,7 +2,7 @@
     <control-panel class='control-panel' [loading]='loading' [userProfileData]='userProfileData' [minimize]='minimizeControlPanel' [viewMode]='resultsViewMode' (loginRequest)='loginWithFacebook(wizardResults)' (viewModeChange)='setViewMode($event)' (reset)='reset()' [ngClass]='{minimized: minimizeControlPanel}'></control-panel>
     <wizard *ngIf='showWizard' class='wizard' (done)='processResults($event)'></wizard>
     <results-view #results class='results-view' *ngIf='showResults' (botState)='bot.state($event.state, $event.data)' [@divState]></results-view>
-    <bot #bot class='bot static' (request)='results.execute($event)' (showMe)='lockBot=true' (hideMe)='lockBot=false' [ngClass]='{floating: showBot && lockBot}'></bot>
+    <bot #bot class='bot static' (request)='results.execute($event)' (showMe)='lockBot=true' (hideMe)='lockBot=false' [ngClass]='{floating: showBot && lockBot, hidden: hideBot}'></bot>
 </div> 
 
 <!--div *ngIf='loading' class='lock-screen otoboto-blue'>

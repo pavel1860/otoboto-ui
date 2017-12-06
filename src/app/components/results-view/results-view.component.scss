@@ -1,5 +1,11 @@
 .navigation {
-    display: none;
+    position: fixed;
+    bottom: 0;
+    height: 60px;
+    width: 100%;
+    align-self: center;
+    z-index: 12;
+    transition: all 0.2s ease-in-out;
 }
 
 .bot {

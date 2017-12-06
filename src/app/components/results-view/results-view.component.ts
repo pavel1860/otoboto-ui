@@ -2,6 +2,7 @@ import { Component, Output, EventEmitter, ViewChild, HostListener, trigger, stat
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { SwiperComponent, SwiperDirective, SwiperConfigInterface } from 'ngx-swiper-wrapper';
+import { DeviceService } from '../../services/device.service';
 
 import { Otoboto } from '../../services/otoboto.service';
 import { LocalService } from '../../services/local.service';
@@ -56,11 +57,14 @@ export class ResultsViewComponent {
 
     imageGalleryData;
 
+    isMobile;
+
     constructor(
         private route: ActivatedRoute, 
         private api: Otoboto, 
         private local: LocalService,
-        private router: Router
+        private router: Router,
+        private device: DeviceService
     ) {
         api.init(); 
         this.userProfileData = this.local.getUserProfileData(); 
@@ -68,6 +72,7 @@ export class ResultsViewComponent {
 
     ngOnInit() {
 
+        this.isMobile = this.device.isMobile();
         this.setViewMode('results');
 
         this.route.queryParams.subscribe((params) => {

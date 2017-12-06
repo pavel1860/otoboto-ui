@@ -48,6 +48,10 @@ $top-panel-height-mobile: 17vh;
     margin-right: auto;
 }
 
+.hidden {
+    display: none;
+}
+
 @media only screen and (min-width : 768px) {
 
     .wizard { 

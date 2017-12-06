@@ -1,4 +1,4 @@
-<!--div class='wrapper otoboto-fill-negative'>
+<!--div *ngIf='isMobile' class='wrapper otoboto-fill-negative bot-mobile-wrap'>
 
     <div *ngIf='!isMobile' class='vertical-wrapper'>
 
@@ -17,6 +17,11 @@
     
     </div>
 
+
+
+</div-->
+
+
     <div *ngIf='isMobile' class='horizontal-wrapper'>
 
         <div class='horizontal-right-panel'>
@@ -34,11 +39,7 @@
             
     </div>
 
-
-</div-->
-
-
-<bot-speach [caption]='caption' [userResponseType]='userResponseType' [operationCode]='operationCode' (userResponse)='request.emit({code: operationCode, data: operationData})'></bot-speach>
+<bot-speach *ngIf='!isMobile' [caption]='caption' [userResponseType]='userResponseType' [operationCode]='operationCode' (userResponse)='request.emit({code: operationCode, data: operationData})'></bot-speach>
 
 
 

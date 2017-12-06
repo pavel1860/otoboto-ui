@@ -35,6 +35,7 @@ export class WelcomeComponent {
 
   showWizard = false;
   showResults = false; 
+  hideBot = true;
   resultsViewMode = 'results';
 
   minimizeControlPanel = false; 
@@ -121,9 +122,10 @@ export class WelcomeComponent {
     this.showResults = false;
     this.showWizard = false;
     this.minimizeControlPanel = true; 
-
+    
     setTimeout(() => {
       this.showResults = true; 
+      this.hideBot = false; 
     }, 800);
     
   }
@@ -132,6 +134,7 @@ export class WelcomeComponent {
     this.showWizard = true; 
     this.showResults = false; 
     this.minimizeControlPanel = false; 
+    this.hideBot = true; 
   }
 
   setViewMode = (viewMode) => {
