@@ -95,8 +95,9 @@
         left: 0;
         margin-left: auto;
         margin-right: auto;
-        bottom: 84px;
+        bottom: 82px;
         z-index: 100;
+        transition: all 1s ease-in-out;
     }
 
     .otoboto-face {
@@ -107,17 +108,21 @@
 
     .navigation-bar {
         position: absolute;
-        bottom: -30px;
+        bottom: -60px;
         right: 0;
         left: 0;
         margin-left: auto;
         margin-right: auto;
         width: 500px;
-        opacity: 0;
-        display: flex;
-        justify-content: space-between;
+        height: 60px;
+        -webkit-box-pack: center;
+        -ms-flex-pack: justify;
+        justify-content: center;
         transition: opacity 1s ease-in-out;
         z-index: 120;
+        background: white;
+        width: 100%;
+        opacity: 0;
     }
 
     .navigation-button {
@@ -132,5 +137,35 @@
 
     .navigation-button img {
         width: 50%;
+    }
+
+    .fog {
+        background: white;
+        background: -webkit-gradient(left top,left bottom,color-stop(0,#f6f6f6),color-stop(49%,#f6f6f6),color-stop(100%,hsla(0,0%,96%,0)));
+        /* background: linear-gradient(180deg,#f6f6f6 0,#f6f6f6 49%,hsla(0,0%,96%,0)); */
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f6f6f6",endColorstr="#f6f6f6",GradientType=0);
+        width: 100%;
+        position: absolute;
+        top: 322px;
+        left: 0;
+        right: 0;
+        height: 50px;
+        z-index: 90;
+        opacity: 1;
+
+    }
+
+    .visible {
+        opacity: 1;
+    }
+    
+    .hidden {
+        opacity: 0;
+    }
+
+    .on-side{
+        position: fixed;
+        right: 1046px;
+        bottom: 168px;
     }
 }

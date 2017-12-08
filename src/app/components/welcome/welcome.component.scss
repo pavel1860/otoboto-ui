@@ -61,12 +61,27 @@ $top-panel-height-mobile: 17vh;
 
     .results-view {
         margin-top: $top-panel-height-desktop;
-        padding-top: 72px;
+        padding-top: 137px;
     }
 
     .minimized {
         height: $top-panel-height-desktop;
         top: unset;
+    }
+
+    .figure {
+        z-index: 999;
+        position: fixed;
+        width: 202px;
+        left: 410px;
+        bottom: 26px;
+        opacity: 0;
+        transition: all 1s ease-in-out;
+        transition-delay: 1s;
+    }
+
+    .visible {
+        opacity: 1;
     }
 
 }

@@ -3,6 +3,7 @@
     <wizard *ngIf='showWizard' class='wizard' (done)='processResults($event)'></wizard>
     <results-view #results class='results-view' *ngIf='showResults' (botState)='bot.state($event.state, $event.data)' [@divState]></results-view>
     <bot #bot class='bot static' (request)='results.execute($event)' (showMe)='lockBot=true' (hideMe)='lockBot=false' [ngClass]='{floating: showBot && lockBot, hidden: hideBot}'></bot>
+    <img class='figure desktop' [src]='"../../../assets/otoboto-avatar.svg"' [ngClass]='{"visible": minimizeControlPanel}'/>
 </div> 
 
 <!--div *ngIf='loading' class='lock-screen otoboto-blue'>

@@ -4,22 +4,24 @@
         <top-bar [loading]='loading' [userProfileData]='userProfileData' (loginRequest)='loginRequest.emit()'></top-bar>
     </div>
     
-    <img class='cover-desktop desktop' src='../../assets/otoboto-avatar-desktop.svg' (click)='reset.emit()'/>
+    <img class='cover-desktop desktop' src='../../assets/otoboto-avatar-desktop.svg' (click)='reset.emit()' [ngClass]='{"hidden": minimize}'/>
     <img class='cover-mobile' src='../../assets/otoboto-cover-mobile.svg' [ngClass]='{hidden: minimize}'/>
 
     <div class='avatar-panel desktop'></div> 
 
-    <div class='navigation-bar desktop' [ngClass]='{visible: minimize}'>
-        <div class='navigation-button otoboto-yellow' (click)='viewModeChange.emit("results")'>
+    <!--div class='navigation-bar desktop' [ngClass]='{visible: minimize}'>
+        <div class='navigation-button' (click)='viewModeChange.emit("results")'>
             <img [src]='viewMode=="results" ? "../../assets/navigation-button-results-active.svg" : "../../assets/navigation-button-results.svg"'>
         </div>  
-        <div class='navigation-button otoboto-yellow' (click)='viewModeChange.emit("favorites")'>
+        <div class='navigation-button' (click)='viewModeChange.emit("favorites")'>
             <img [src]='viewMode=="favorites" ? "../../assets/navigation-button-favorites-active.svg" : "../../assets/navigation-button-favorites.svg"'>
         </div>              
-    </div>
+    </div-->
 
-    <div class='fog' [ngClass]='{visible: minimize}'>
+    <navigation class='navigation-bar desktop' [userProfileData]='userProfileData' [viewMode]='viewMode' [ngClass]='{visible: minimize}' (setViewMode)='viewModeChange.emit($event)'></navigation>
+
+    <!--div class='fog' [ngClass]='{visible: minimize}'>
         
-    </div>
+    </div-->
 
 </div>  
