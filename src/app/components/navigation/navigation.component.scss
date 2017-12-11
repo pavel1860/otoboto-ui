@@ -106,6 +106,13 @@ $swipe-speed: 0.2s;
 
 @media only screen and (min-width : 768px) {
 
+    .wrapper {
+        width: 28%; 
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+    }
  
 
 }

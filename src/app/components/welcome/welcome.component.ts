@@ -37,6 +37,7 @@ export class WelcomeComponent {
   showResults = false; 
   hideBot = true;
   resultsViewMode = 'results';
+  parameters;
 
   minimizeControlPanel = false; 
   
@@ -122,7 +123,8 @@ export class WelcomeComponent {
     this.showResults = false;
     this.showWizard = false;
     this.minimizeControlPanel = true; 
-    
+    this.setSearchFilters(); 
+
     setTimeout(() => {
       this.showResults = true; 
       this.hideBot = false; 
@@ -146,6 +148,24 @@ export class WelcomeComponent {
     this.router.navigate(['./welcome'], {
       queryParams: {}
     });   
+  }
+
+  setSearchFilters = () => {
+    // HERE: get user search params from backend. 
+    this.parameters = [
+      {
+        type: 'carType',
+        value: 'mini'
+      },
+      {
+        type: 'price',
+        value: 50000
+      },
+      {
+        type: 'location',
+        value: 'חיפה'
+      }
+    ]
   }
 
 }

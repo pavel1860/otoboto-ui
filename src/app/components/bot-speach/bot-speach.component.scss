@@ -32,11 +32,22 @@
 
 @media only screen and (min-width : 768px) {
 
+    .wrapper {
+
+    }
+
     .caption-box {
-        width: 90%;
-        text-align: center;
-        align-self: center;
-        margin-top: 29px;
+        background: white;
+        border: 1px solid white;
+        border-radius: 22px;
+        //height: 136px;
+        color: gray;
+        font-size: 20px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        padding: 30px;
+        box-sizing: border-box;
     }
 
     .user-response-panel {

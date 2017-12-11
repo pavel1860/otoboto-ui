@@ -33,17 +33,6 @@
     z-index: 1;
 }
 
-.actions-desktop {
-    flex-direction: column;
-    width: 30px;
-    position: absolute;
-    top: 20px;
-    z-index: 9;
-    right: 20px;    
-    justify-content: space-between;
-    height: 61px;
-}
-
 .info-card {
     margin-top: 47.5px;
     padding-right: 24.5px;
@@ -182,12 +171,30 @@ a {
         }
     }
 
-    .visible {
-        margin-top: 0px;
-    }
-
     .date-box {
         top: -26px;
     }
 
+    .actions-desktop {
+        flex-direction: column;
+        width: 30px;
+        position: absolute;
+        top: 20px;
+        z-index: 9;
+        right: 20px;    
+        justify-content: space-between;
+        height: 61px;
+        opacity: 0;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .outer-wrapper:hover .actions-desktop {
+        opacity: 1;
+    }
+
+    .visible {
+        margin-top: 0px;
+    }
+
 }
+

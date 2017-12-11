@@ -46,9 +46,14 @@
 
 
     <div class='contact-panel desktop'>
-        <div class='contact-box text-secondary otoboto-frame otoboto-fill' (click)='block($event); showPhoneNumber=true'>
-            {{data.seller_name}}
-        </div>   
+        <div class='contact-name-phone'>
+            <div class='phone-number' [ngClass]='{"phone-number-visible": showPhoneNumber}'>
+                {{data.seller_phones[0]}}
+            </div>
+            <div class='contact-box text-secondary otoboto-frame otoboto-fill' (click)='block($event); showPhoneNumber=true'>
+                {{data.seller_name}}
+            </div>
+        </div> 
         <div class='price-box text-secondary otoboto-frame otoboto-fill-negative'>
             {{data.price | nis}}
         </div>      

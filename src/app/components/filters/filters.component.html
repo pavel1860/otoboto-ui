@@ -1,0 +1,15 @@
+<div class='wrapper'>
+
+    <div *ngFor='let filter of filters' class='filter'>
+
+        <div class='icon-box'>
+            <img [src]='filter.icon'/>
+        </div>
+
+        <div class='caption'>
+            {{filter.caption}}
+        </div>
+
+    </div>
+
+</div>

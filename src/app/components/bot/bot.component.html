@@ -22,24 +22,36 @@
 </div-->
 
 
-    <div *ngIf='isMobile' class='horizontal-wrapper'>
+<div *ngIf='isMobile' class='horizontal-wrapper'>
 
-        <div class='horizontal-right-panel'>
-            <bot-avatar class='bot-avatar'></bot-avatar>
-        </div>
-
-        <div class='horizontal-left-panel'>
-            <div *ngIf='!attention' class='filters-panel'>
-          
-            </div>
-            <div class='speach-panel' [ngClass]='{"speach-panel-full": attention}'>
-                <bot-speach [caption]='caption' [userResponseType]='userResponseType' [operationCode]='operationCode' (userResponse)='request.emit({code: operationCode, data: operationData})'></bot-speach>
-            </div>            
-        </div>
-            
+    <div class='horizontal-right-panel'>
+        <bot-avatar class='bot-avatar'></bot-avatar>
     </div>
 
-<bot-speach *ngIf='!isMobile' [caption]='caption' [userResponseType]='userResponseType' [operationCode]='operationCode' (userResponse)='request.emit({code: operationCode, data: operationData})'></bot-speach>
+    <div class='horizontal-left-panel'>
+        <div *ngIf='!attention' class='filters-panel'>
+        
+        </div>
+        <div class='speach-panel' [ngClass]='{"speach-panel-full": attention}'>
+            <bot-speach [caption]='caption' [userResponseType]='userResponseType' [operationCode]='operationCode' (userResponse)='request.emit({code: operationCode, data: operationData})'></bot-speach>
+        </div>            
+    </div>
+        
+</div>
+
+<div *ngIf='!isMobile' class='wrapper'>
+
+    <div class='speach-panel'>
+        <bot-speach [caption]='caption' [userResponseType]='userResponseType' [operationCode]='operationCode' (userResponse)='request.emit({code: operationCode, data: operationData})'></bot-speach>
+    </div>
+
+    <div class='figure-panel'>
+        <img class='figure desktop' [src]='"../../../assets/otoboto-avatar.svg"'/>
+    </div>
+
+</div>
+
+
 
 
 

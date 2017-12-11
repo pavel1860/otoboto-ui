@@ -30,7 +30,7 @@ export class ResultsViewComponent {
     } 
 
     @Output() botState: EventEmitter<any> = new EventEmitter();
-
+    
     searchResults = [];
     userFavorites = [];
 
@@ -180,7 +180,6 @@ export class ResultsViewComponent {
         }
 
         setTimeout(() => {
-            console.log(this.isGuest);
             if (this.isGuest) {
                 return; 
             }
@@ -200,7 +199,6 @@ export class ResultsViewComponent {
     processFeedback(item, feedback) {
 
         if (feedback.ask_hide_model) {
-            console.log(feedback);
             this.setBotState('suggestHideModel', {
                 data: item,
                 counter: feedback.dislike_counter
@@ -278,8 +276,7 @@ export class ResultsViewComponent {
         setTimeout(() => {
             this.setViewMode('results');
             if (this.pendingAction) {
-                setTimeout(() => {
-                    console.log(this.pendingAction); 
+                setTimeout(() => { 
                     this.pendingAction.operation(this.pendingAction.data);
                 }, 0);
             }

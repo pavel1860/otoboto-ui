@@ -138,6 +138,7 @@
         justify-content: center;
         line-height: 40px;
         box-sizing: border-box;
+        cursor: pointer;
     }
 
     .price-box {
@@ -160,6 +161,25 @@
         overflow: hidden;
         white-space: nowrap;
         margin-top: 8px;
+    }
+
+    .contact-name-phone {
+        position: relative;
+    }
+
+    .phone-number {
+        position: absolute;
+        top: 0px;
+        transition: all 0.2s ease-in-out;
+        width: 100%;
+        text-align: center;
+        opacity: 0;
+        z-index: -1;
+    }
+
+    .phone-number-visible {
+        top: -28px;
+        opacity: 1;
     }
 
 }

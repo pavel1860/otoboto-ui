@@ -1,0 +1,27 @@
+.wrapper {
+    display: none; /* TEMP */
+}
+
+
+@media only screen and (min-width : 768px) {
+
+    .wrapper {
+        width: 150px;
+        position: fixed;
+        top: 366px;
+        left: 0;
+        right: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .filter {
+        width: 50px;
+        margin-bottom: 20px;
+        align-self: center;
+    }
+
+}
