@@ -30,7 +30,8 @@ export class ResultsViewComponent {
     } 
 
     @Output() botState: EventEmitter<any> = new EventEmitter();
-    
+    @Output() viewModeChanged: EventEmitter<any> = new EventEmitter();
+     
     searchResults = [];
     userFavorites = [];
 
@@ -166,6 +167,7 @@ export class ResultsViewComponent {
     setViewMode(viewMode) {
 
         this.viewMode = viewMode;
+        this.viewModeChanged.emit(viewMode);
         
         if (viewMode == 'results') {
             this.setBotState('viewModeSearchResults');

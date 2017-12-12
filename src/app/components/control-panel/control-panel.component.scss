@@ -57,6 +57,21 @@
     opacity: 0;
 }
 
+.navigation-bar {
+    position: fixed;
+    bottom: 0;
+    height: 60px;
+    width: 100%;
+    align-self: center;
+    z-index: 12;
+    transition: all 0.2s ease-in-out;
+    opacity: 0;
+}
+
+.visible {
+    opacity: 1;
+}
+
 @media only screen and (min-width : 768px) {
 
     .control-panel {
@@ -107,6 +122,7 @@
     }
 
     .navigation-bar {
+        display: flex;
         position: absolute;
         bottom: -60px;
         right: 0;
@@ -163,7 +179,4 @@
         opacity: 0;
     }
 
-    .on-side{
-        
-    }
 }

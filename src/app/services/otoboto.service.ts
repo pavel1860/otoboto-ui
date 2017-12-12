@@ -138,6 +138,11 @@ export class Otoboto {
         return this.http.get(url, this.requestOptions).map(res => res.json().data);         
     }    
 
+    getUserSearchParameters = () => {
+        let url = this.base + this.END_POINTS.USER_SEARCH_PARAMS;
+        return this.http.get(url, this.requestOptions).map(res => res.json()); 
+    }
+
     updateUserSearchParams = (searchParams, isNewUser) => {
         
         let url; 

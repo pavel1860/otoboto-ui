@@ -12,10 +12,24 @@ export class WizardSelectorAutocomplete {
       @ViewChild('inputPane') inputPane;
       @ViewChild('input') input;
     
+      _items;
+      get items() {
+          return this._items;
+      }
+      
+      @Input('items')
+      set items(value) {
+          this._items = value;
+          if (this.showListItems) {
+            this.options = this.items;
+          }
+      }
+
       @Input() icon;
       @Input() placeholder;
-      @Input() items; 
       @Input() valueToken = '';
+      @Input() showListItems = true;
+
       @Output() done: EventEmitter<any> = new EventEmitter();
   
       valueControler = new FormControl();
@@ -32,12 +46,29 @@ export class WizardSelectorAutocomplete {
               this.valueToken = '';
           }
 
+        if (this.showListItems) {
+            console.log(this.items);
+            this.options = this.items;
+        }
+
           this.valueControler.valueChanges.subscribe(token => {
                this.valueToken = token;
               if (token.length <= 0) {
+                  if (this.showListItems) {
+                      this.options = this.items;
+                  }
                 return; 
               }
-              this.options = this.search(token,3);
+
+              let limit; 
+
+              if (this.showListItems) {
+                  limit = undefined;
+              } else {
+                  limit = 3;
+              }
+
+              this.options = this.search(token,limit);
               if (this.options.length > 0) {
                   this.showOptionsMenu = true; 
               }
@@ -54,12 +85,16 @@ export class WizardSelectorAutocomplete {
           setTimeout(() => this.input.nativeElement.focus(), 0);        
       }
 
-        search = (term, limit) => {
+        search = (term, limit?) => {
 
             let results = [];
             this.items.forEach(function(a){if (a.indexOf(term)>-1) results.push(a)});
 
-            if (results.length < limit) {
+            if (!limit && results.length == 0) {
+                return this.items;
+            }
+
+            if ((results.length < limit) || (!limit)) {
                 return results;
             } else {
                 return results.slice(0, limit);

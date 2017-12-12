@@ -12,19 +12,12 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 export class UserSettingsComponent {
 
   @Input() userProfileData; 
+  @Output() logout: EventEmitter<any> = new EventEmitter();
 
   constructor(private local: LocalService, private router: Router, private api: Otoboto) {}
 
   ngOnInit() {
 
-  }
-
-  logout() {
-    this.local.clear(); 
-    this.api.disconnect().subscribe(response => {
-      console.log(response);
-    })
-    this.router.navigate(['welcome']);
   }
 
   reset() {

@@ -1,6 +1,6 @@
 <div class='wrapper'>
 
-    <navigation *ngIf='isMobile' class='navigation' [userProfileData]='userProfileData' [viewMode]='viewMode' (setViewMode)='setViewMode($event)'></navigation>
+    <!--navigation *ngIf='isMobile' class='navigation' [userProfileData]='userProfileData' [viewMode]='viewMode' (setViewMode)='setViewMode($event)'></navigation-->
     <!--bot #bot class='bot static' (request)='execute($event)' (showMe)='lockBot=true' (hideMe)='lockBot=false' [ngClass]='{floating: showBot && lockBot}'></bot-->
 
     <div class='main-content-panel'>
@@ -15,9 +15,9 @@
             <list #resultsList class='list' [items]='searchResults' [hidden]='hiddenSearchResults' [allowLike]='true' [pager]='isGuest' (like)='likeItem($event)' (dislike)='dislikeItem($event)' (ready)='viewMode == "results" && loading=false' (loadMore)='(viewMode == "results" && !isGuest) && loadUserSearchResults()' (gallery)='imageGalleryData=$event'></list>
         </div>
 
-        <div class='user-settings-panel' [style.display]="viewMode == 'user' ? 'block' : 'none'">
-            <user-settings [userProfileData]='userProfileData'></user-settings>
-        </div>
+        <!--div class='user-settings-panel' [style.display]="viewMode == 'user' ? 'block' : 'none'">
+            <user-settings [userProfileData]='userProfileData' (logout)='logout.emit()'></user-settings>
+        </div-->
 
         <full-image-gallery *ngIf='imageGalleryData' [images]='imageGalleryData.data.mobile_pics' [index]='imageGalleryData.index' (close)='imageGalleryData=undefined'></full-image-gallery>
 

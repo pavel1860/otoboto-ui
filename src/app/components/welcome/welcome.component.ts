@@ -102,6 +102,16 @@ export class WelcomeComponent {
     });
   }
 
+  logout = () => {
+    this.local.clear();
+    this.userProfileData = undefined;
+    this.displayWizard();
+    this.api.disconnect().subscribe(response => {
+
+    });
+
+  }
+
   processResults = (wizardResults) => {
     if (this.userProfileData) {
       this.api.updateUserSearchParams(wizardResults, this.isNewUser).subscribe(response => {
@@ -151,6 +161,10 @@ export class WelcomeComponent {
   }
 
   setSearchFilters = () => {
+
+    this.api.getUserSearchParameters().subscribe(response => {
+      console.log(response);
+    });
     // HERE: get user search params from backend. 
     this.parameters = [
       {
