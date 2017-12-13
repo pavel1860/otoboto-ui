@@ -20,6 +20,7 @@ export class BotComponent {
   attention = true; 
   operationCode; 
   operationData;
+  inputPlaceholder;
   hiddenCountdown; 
   isMobile = true; 
 
@@ -122,7 +123,7 @@ export class BotComponent {
 
         break;    
 
-        case 'suggestLogin': 
+      case 'suggestLogin': 
 
         var caption = '';
         caption += 'על מנת לבצע פעולה זו, עליך להתחבר אליי';
@@ -130,6 +131,18 @@ export class BotComponent {
         this.ask('singleAction', 'login'); 
         
         break;
+
+      case 'setFilter': 
+
+        var caption = '';
+        caption += 'לעדכן ';
+        caption += info.title;
+        caption += '?';
+        this.say(caption, true);        
+        this.ask('input', 'setFilter', {filter: info.id}, info.title);
+
+        break;
+
     }    
   
   }
@@ -144,10 +157,11 @@ export class BotComponent {
     }
   }
 
-  ask(inputType, operationCode, operationData?) {
+  ask(inputType, operationCode, operationData?, placeholder?) {
     this.userResponseType = inputType;
     this.operationCode = operationCode; 
     this.operationData = operationData;
+    this.inputPlaceholder = placeholder; 
   }
 
 

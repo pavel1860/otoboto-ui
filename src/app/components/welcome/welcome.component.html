@@ -5,7 +5,7 @@
     <user-settings class='user-settigns' *ngIf='resultsViewMode=="user"' [userProfileData]='userProfileData' (logout)='logout()'></user-settings>
     <div class='is-hidden' [ngClass]='{visible: minimizeControlPanel}'>
         <bot #bot class='bot static' (request)='results.execute($event)' (showMe)='lockBot=true' (hideMe)='lockBot=false' [ngClass]='{floating: showBot && lockBot, hidden: hideBot}'></bot>
-        <filters class='filters show-fast' [parameters]='parameters' [ngClass]='{"hide-fast": resultsViewMode!="results"}'></filters>
+        <filters class='filters show-fast' [parameters]='parameters' [ngClass]='{"hide-fast": resultsViewMode!="results"}' (setFilter)='bot.state("setFilter",$event)'></filters>
     </div>
 </div> 
 

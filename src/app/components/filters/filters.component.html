@@ -1,6 +1,6 @@
 <div class='wrapper'>
 
-    <div *ngFor='let filter of filters' class='filter'>
+    <div *ngFor='let filter of filters' class='filter' (click)='setFilter.emit(filter)' [ngClass]='{allowModify: filter.allowModify}'>
 
         <div class='icon-box'>
             <img [src]='filter?.icon'/>

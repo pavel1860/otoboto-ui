@@ -20,8 +20,16 @@
 
     .filter {
         width: 50px;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
         align-self: center;
+    }
+
+    .caption {
+        text-align: center;
+    }
+
+    .allowModify {
+        cursor: pointer;
     }
 
 }

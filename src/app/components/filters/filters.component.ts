@@ -10,76 +10,78 @@ import { Config } from '../../services/config.service';
 
 export class FiltersComponent {
 
-    _parameters = [];
+    _parameters;
     get parameters() {
         return this._parameters;
     }
     
     @Input('parameters')
     set parameters(value) {
-        this._parameters = value || [];
-        this.setFilters();
-    }
-
-    filters; 
-
-    FILTERS_MAP = {
-
-        category: {
-            id: 'category',
-            title: 'סוג הרכב',
-            icon: "../assets/car-type-icon-mini.svg",
-            allowModify: false
-        },
-
-        price: {
-            id: 'price',
-            title: 'תקציב',
-            icon: "../../assets/price-icon-color.svg",
-            allowModify: true
-        },
-
-        city: {
-            id: 'city',
-            title: 'מיקום',
-            icon: "../../assets/location-icon-color.svg",
-            allowModify: true
-        },
-
-        radius: {
-            id: 'radius',
-            title: 'מרחק ממך',
-            icon: "../../assets/location-icon-color.svg",
-            allowModify: true
+        this._parameters = value || undefined;
+        if (this._parameters) {
+            this.setFilters();
         }
-
     }
+
+    @Output() setFilter: EventEmitter<any> = new EventEmitter();
+
+    filters;
 
     constructor(private otoboto: Otoboto, private config: Config) {}
 
     setFilters() {
 
-        this.filters = Object.keys(this.parameters).map(parameter => {
+        this.filters = [];
 
-            let value = this.parameters[parameter];
-            if (!value) {
-                return;
-            }
-            if (Array.isArray(value)) {
-                value = value[0];
-            }
-            let filter = this.FILTERS_MAP[parameter]; 
-            if (!filter) {
-                return;
-            }
+        if (this.parameters.category) {
 
-            filter.value = value; 
-            return filter; 
-        });
+            this.filters.push({
+                id: 'category',
+                title: 'סוג הרכב',
+                icon: "../assets/car-type-icon-mini.svg",
+                allowModify: true,
+                value: this.config.CAR_TYPES.find(item => item.id == this.parameters.category).caption               
+            });
 
-        this.filters = this.filters.filter(item => item != undefined);
+        }
 
-        console.log(this.filters); 
+        if (this.parameters.price) {
+
+            this.filters.push({
+                id: 'price',
+                title: 'תקציב',
+                icon: "../../assets/price-icon-color.svg",
+                allowModify: true,
+                value: this.parameters.price          
+            });
+
+        }        
+
+        if (this.parameters.city) {
+
+            this.filters.push({
+                id: 'city',
+                title: 'מיקום',
+                icon: "../../assets/location-icon-color.svg",
+                allowModify: true,
+                value: this.parameters.city       
+            });
+
+        }   
+
+        if (this.parameters.radius) {
+
+            this.filters.push({
+                id: 'radius',
+                title: 'מרחק ממך',
+                icon: "../../assets/location-icon-color.svg",
+                allowModify: true,
+                value: this.parameters.radius     
+            });
+
+        }   
+
+        console.log(this.filters);
 
     }
 
