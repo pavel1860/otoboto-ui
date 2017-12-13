@@ -13,6 +13,7 @@ export class UserSettingsComponent {
 
   @Input() userProfileData; 
   @Output() logout: EventEmitter<any> = new EventEmitter();
+  @Output() resetSearch: EventEmitter<any> = new EventEmitter();
 
   constructor(private local: LocalService, private router: Router, private api: Otoboto) {}
 

@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Otoboto } from '../../services/otoboto.service';
+import { Config } from '../../services/config.service';
 
 @Component({
   selector: 'filters',
@@ -24,8 +25,8 @@ export class FiltersComponent {
 
     FILTERS_MAP = {
 
-        carType: {
-            id: 'carType',
+        category: {
+            id: 'category',
             title: 'סוג הרכב',
             icon: "../assets/car-type-icon-mini.svg",
             allowModify: false
@@ -38,24 +39,47 @@ export class FiltersComponent {
             allowModify: true
         },
 
-        location: {
-            id: 'location',
+        city: {
+            id: 'city',
             title: 'מיקום',
+            icon: "../../assets/location-icon-color.svg",
+            allowModify: true
+        },
+
+        radius: {
+            id: 'radius',
+            title: 'מרחק ממך',
             icon: "../../assets/location-icon-color.svg",
             allowModify: true
         }
 
     }
 
-    constructor(private otoboto: Otoboto) {}
+    constructor(private otoboto: Otoboto, private config: Config) {}
 
     setFilters() {
 
-        this.filters = this.parameters.map(parameter => {
-            let filter = this.FILTERS_MAP[parameter.type]; 
-            filter.value = parameter.value; 
+        this.filters = Object.keys(this.parameters).map(parameter => {
+
+            let value = this.parameters[parameter];
+            if (!value) {
+                return;
+            }
+            if (Array.isArray(value)) {
+                value = value[0];
+            }
+            let filter = this.FILTERS_MAP[parameter]; 
+            if (!filter) {
+                return;
+            }
+
+            filter.value = value; 
             return filter; 
         });
+
+        this.filters = this.filters.filter(item => item != undefined);
+
+        console.log(this.filters); 
 
     }
 

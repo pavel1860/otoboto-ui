@@ -114,6 +114,7 @@ export class WelcomeComponent {
 
   processResults = (wizardResults) => {
     if (this.userProfileData) {
+      console.log(wizardResults);
       this.api.updateUserSearchParams(wizardResults, this.isNewUser).subscribe(response => {
         //this.router.navigate(['./results']);  
         this.displayResults();
@@ -163,23 +164,9 @@ export class WelcomeComponent {
   setSearchFilters = () => {
 
     this.api.getUserSearchParameters().subscribe(response => {
-      console.log(response);
+      this.parameters = response.data.search_params; 
     });
-    // HERE: get user search params from backend. 
-    this.parameters = [
-      {
-        type: 'carType',
-        value: 'mini'
-      },
-      {
-        type: 'price',
-        value: 50000
-      },
-      {
-        type: 'location',
-        value: 'חיפה'
-      }
-    ]
+    
   }
 
 }

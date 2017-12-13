@@ -48,6 +48,7 @@ import { Otoboto } from './services/otoboto.service';
 import { LocalService } from './services/local.service';
 import { Locations } from './services/locations.service';
 import { DeviceService } from './services/device.service';
+import { Config } from './services/config.service';
 
 import { NisPipe }  from './pipes/nis.pipe';
 import { TimeAgoPipe } from './pipes/timeAgo.pipe';
@@ -128,7 +129,8 @@ const SWIPER_CONFIG: SwiperConfigInterface = {
     AuthGuard,
     Auth,
     Locations,
-    DeviceService
+    DeviceService,
+    Config
   ],
   bootstrap: [AppComponent]
 })

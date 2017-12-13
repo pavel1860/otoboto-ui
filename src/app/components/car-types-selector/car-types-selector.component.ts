@@ -1,4 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
+import { Config } from '../../services/config.service';
 
 @Component({
   selector: 'car-types-selector',
@@ -10,38 +11,18 @@ export class CarTypeSelectorComponent {
 
     @Output() selected: EventEmitter<any> = new EventEmitter();
 
-    options = [
-        {
-            id: 'mini', 
-            caption: 'קטן',
-            icon: '../assets/car-type-icon-mini.svg'
-        }, 
-        {
-            id: 'family', 
-            caption: 'משפחתי',
-            icon: '../assets/car-type-icon-family.svg'
-        }, 
-        {
-            id: 'sport', 
-            caption: 'ספורט',
-            icon: '../assets/car-type-icon-sport.svg'
-        }, 
-        {
-            id: 'land',
-            caption: 'שטח',
-            icon: '../assets/car-type-icon-jeep.svg'
-        }, 
-        {
-            id: 'executive',
-            caption: 'מנהלים',
-            icon: '../assets/car-type-icon-executive.svg'
-        }, 
-        {
+    options;
+
+    constructor(private config: Config) {
+
+        this.options = config.CAR_TYPES;
+
+        this.options.push({
             id: 'specific',
             caption: 'דגם ספציפי',
             icon: '',
-            type: 'system'
-        }                               
-    ]
-
+            type: 'system'            
+        });
+    }
+    
 }

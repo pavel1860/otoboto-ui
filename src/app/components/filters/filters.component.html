@@ -3,11 +3,11 @@
     <div *ngFor='let filter of filters' class='filter'>
 
         <div class='icon-box'>
-            <img [src]='filter.icon'/>
+            <img [src]='filter?.icon'/>
         </div>
 
         <div class='caption'>
-            {{filter.caption}}
+            {{filter?.value}}
         </div>
 
     </div>

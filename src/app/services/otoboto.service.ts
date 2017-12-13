@@ -143,16 +143,16 @@ export class Otoboto {
         return this.http.get(url, this.requestOptions).map(res => res.json()); 
     }
 
-    updateUserSearchParams = (searchParams, isNewUser) => {
+    updateUserSearchParams = (params, isNewUser) => {
         
         let url; 
-        
-        if (searchParams.category) {
-            url = this.base + this.END_POINTS.USER_SEARCH_PARAMS + `?category=${searchParams.category}&city=${searchParams.city}&price=${searchParams.price}`;
-        } else if (searchParams.manufacturer) {
-            url = this.base + this.END_POINTS.USER_SEARCH_PARAMS + `?manufacturer=${searchParams.manufacturer}&model=${searchParams.model}&city=${searchParams.city}&price=${searchParams.price}`;
-        }
 
+        if ((params.category == 'specific') && (params.manufacturer) && (params.model)) {
+            url = this.base + this.END_POINTS.USER_SEARCH_PARAMS + `?manufacturer=${params.manufacturer}&model=${params.model}&city=${params.city}&price=${params.price}`;
+        } else {
+            url = this.base + this.END_POINTS.USER_SEARCH_PARAMS + `?category=${params.category}&city=${params.city}&price=${params.price}`;
+        }
+        
         if (isNewUser) {
             return this.http.post(url, null, this.requestOptions).map(res => res.json()); 
         } else {
