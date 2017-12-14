@@ -12,9 +12,11 @@ import { FormControl } from '@angular/forms';
 export class LocationSelectorComponent {
     
       @Input() initialValue = '';
+      @Input() submitButton; 
 
       @Output() done: EventEmitter<any> = new EventEmitter();
-
+      @Output() value: EventEmitter<any> = new EventEmitter();
+    
       items = [];
       icon = '../../assets/location-icon-color.svg';
       placeholder = 'הכנס עיר';

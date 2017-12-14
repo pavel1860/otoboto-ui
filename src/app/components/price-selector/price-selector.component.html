@@ -20,6 +20,13 @@
                     <input #input class='text-primary' type='text' placeholder="הכנס מחיר" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="7" [value]="valueToken" [formControl]="valueControler" autofocus/>
                 </input-box>  
             </div>  
+
+            <div class='continue-button-panel input-pane-button'>
+                <div class='button button-wizard-next otoboto-blue text-small' (click)='value && done.emit(value);'>
+                    המשך
+                </div>
+            </div>
+
         </input-pane>
 
     </div>
@@ -32,4 +39,4 @@
 
 
 
-</div>
+</div> 

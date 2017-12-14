@@ -12,7 +12,7 @@ export class PriceSelectorComponent {
     @ViewChild('inputPane') inputPane;
     @ViewChild('input') input;
 
-    @Input() valueToken = '';
+    @Input() valueToken;
     @Output() done: EventEmitter<any> = new EventEmitter();
 
     valueControler = new FormControl();
@@ -20,6 +20,9 @@ export class PriceSelectorComponent {
     showInputPane = false; 
     
     ngOnInit() {
+        if (this.valueToken){
+            this.value = parseInt(this.valueToken.replace(/\₪|,/g, ''));
+        }
         if(!this.valueToken) {
             this.valueToken = '';
         }

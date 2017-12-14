@@ -139,7 +139,7 @@ export class BotComponent {
         caption += info.title;
         caption += '?';
         this.say(caption, true);        
-        this.ask('input', 'setFilter', {filter: info.id}, info.title);
+        this.ask(info.id, 'setFilter', {filter: info.id}, info.title);
 
         break;
 
@@ -158,6 +158,7 @@ export class BotComponent {
   }
 
   ask(inputType, operationCode, operationData?, placeholder?) {
+    console.log(inputType);
     this.userResponseType = inputType;
     this.operationCode = operationCode; 
     this.operationData = operationData;

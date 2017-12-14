@@ -52,11 +52,22 @@
 
     .user-response-panel {
         margin-top: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .buttons-panel {
+            margin-top: 30px;
+        }
     }
 
     .response-button {
         height: 44px;
         width: 146px;
+    }
+
+    .input-panel {
+        width: inherit;
     }
 
     input {

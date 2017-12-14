@@ -29,6 +29,7 @@ export class WizardSelectorAutocomplete {
       @Input() placeholder;
       @Input() valueToken = '';
       @Input() showListItems = true;
+      @Input() submitButton = true;
 
       @Output() done: EventEmitter<any> = new EventEmitter();
   

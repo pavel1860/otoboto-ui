@@ -156,11 +156,27 @@
     }
 
     .model {
-        max-width: 194px;
+        max-width: 186px;
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
         margin-top: 8px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        display: block;
+        overflow: hidden;
+    }
+
+    .submodel {
+        max-width: 186px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        margin-top: 8px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        display: block;
+        overflow: hidden;
     }
 
     .contact-name-phone {

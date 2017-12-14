@@ -9,13 +9,9 @@
 
         <div class='car-model'>
             
-            <div class='model text-primary'> 
-                <div> {{data.manufacturer}} </div>
-                <div> &nbsp; </div>
-                <div> {{data.model}} </div>
-                <div> &nbsp; </div>
-                <div> {{data.year}} </div>                
-            </div>
+            <span class='model text-primary'> 
+                {{data.manufacturer}} {{' '}} {{data.model}} {{' '}} {{data.year}}            
+            </span>
 
             <div class='submodel text-secondary'> 
                 {{data.sub_model}}

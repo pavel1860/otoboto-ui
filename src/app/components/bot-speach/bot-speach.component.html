@@ -19,12 +19,13 @@
         </div>
     </div>
 
-    <div *ngIf='userResponseType == "input"' class='user-response-panel'>
+    <div *ngIf='userResponseType == "city"' class='user-response-panel'>
         <div class='input-panel'>
-            <input-box class='input-box'>
+            <location-selector class='input-selector' [initialValue]='' [submitButton]='false' (value)='city = $event'></location-selector>
+            <!--input-box class='input-box'>
                 <input type='text' class='text-primary' placeholder="{{placeholder}}"/>
-            </input-box>
-        </div>
+            </input-box-->
+        </div>     
     </div>
     
 </div>
