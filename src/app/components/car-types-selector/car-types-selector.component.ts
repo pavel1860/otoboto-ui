@@ -17,12 +17,6 @@ export class CarTypeSelectorComponent {
 
         this.options = config.CAR_TYPES;
 
-        this.options.push({
-            id: 'specific',
-            caption: 'דגם ספציפי',
-            icon: '',
-            type: 'system'            
-        });
     }
     
 }
