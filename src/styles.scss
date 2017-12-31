@@ -9,7 +9,7 @@
 body {
     margin: 0;
     padding: 0;
-    
+    overflow-y: scroll;
     background: $backdrop;
 }
 
@@ -114,6 +114,12 @@ body {
 .otoboto-fill-negative {
     background: $primary;
     color: white;
+}
+
+.disabled {
+    border: $medium-gray;
+    color: white;
+    background: $medium-gray;
 }
 
 @media only screen and (min-width : 768px) {

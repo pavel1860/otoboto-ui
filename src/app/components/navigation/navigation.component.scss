@@ -107,14 +107,40 @@ $swipe-speed: 0.2s;
 @media only screen and (min-width : 768px) {
 
     .wrapper {
-        width: 28%; 
+        width: 645px; 
         height: 100%;
         display: flex;
         justify-content: space-between;
         position: relative;
     }
  
+    .navigation-button {
+        flex-direction: row;
+        color: #706f6f;
+        width: 100%;
+        img {
+            width: 30px;
+        }
+    }
 
+    .navigation-caption {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        margin-right: 10px;
+    }
+
+    .active {
+        color: #14C6C6;
+    }
+
+    .to-right {
+        justify-content: flex-start;
+    }
+
+    .to-end {
+        justify-content: flex-end;
+    }
 }
 
  

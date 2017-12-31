@@ -8,11 +8,13 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 export class BotSpeachComponent {
 
+    @Input() captionType; 
     @Input() caption; 
     @Input() userResponseType; 
     @Input() operationCode; 
     @Input() placeholder; 
 
     @Output() userResponse: EventEmitter<any> = new EventEmitter();
+    @Output() request: EventEmitter<any> = new EventEmitter();
 
 }

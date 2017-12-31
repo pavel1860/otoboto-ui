@@ -2,6 +2,7 @@ import { Component, Input, ViewChild, Output, EventEmitter, NgZone, trigger, sta
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Otoboto } from '../../services/otoboto.service';
 import { LocalService } from '../../services/local.service';
+import { DeviceService } from 'app/services/device.service';
 
 @Component({
   selector: 'welcome',
@@ -38,15 +39,20 @@ export class WelcomeComponent {
   hideBot = true;
   resultsViewMode = 'results';
   parameters;
+  isMobile = true; 
 
   minimizeControlPanel = false; 
+  showUserSettings = false;
   
   constructor(
     private router: Router, 
     private route: ActivatedRoute,
     private api: Otoboto,
-    private local: LocalService
-  ) {}
+    private local: LocalService,
+    private device: DeviceService
+  ) {
+    this.isMobile = device.isMobile();
+  }
 
   ngOnInit() {
 
@@ -112,6 +118,11 @@ export class WelcomeComponent {
 
   }
 
+  newSearch = () => {
+    this.displayWizard();
+    this.resultsViewMode = undefined;
+  }
+
   processResults = (wizardResults) => {
     if (this.userProfileData) {
       console.log(wizardResults);
@@ -167,6 +178,15 @@ export class WelcomeComponent {
       this.parameters = response.data.search_params; 
     });
     
+  }
+
+  processBotRequest = (request) => {
+
+    if (request.code == 'newSearch') {
+      this.newSearch(); 
+      return;
+    }
+
   }
 
 }

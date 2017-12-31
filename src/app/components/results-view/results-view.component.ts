@@ -217,6 +217,9 @@ export class ResultsViewComponent {
     }
 
     execute(operation) {
+        if (!operation.code || !this.operations[operation.code]) {
+            return;
+        }
         this.operations[operation.code](operation.data); 
     }
 

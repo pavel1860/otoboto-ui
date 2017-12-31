@@ -17,7 +17,7 @@ export class CarManufacturerSelector {
 
     items = [];
     icon = '../../assets/location-icon-color.svg';
-    placeholder = 'הכנס יצרן';
+    placeholder = 'חפש יצרן';
     
     constructor(private models: Models) {}
 

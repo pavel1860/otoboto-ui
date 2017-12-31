@@ -1,11 +1,11 @@
 <div *ngIf='true' class='wrapper'>  
-    <control-panel class='control-panel' [loading]='loading' [userProfileData]='userProfileData' [minimize]='minimizeControlPanel' [viewMode]='resultsViewMode' (loginRequest)='loginWithFacebook(wizardResults)' (viewModeChange)='setViewMode($event)' (reset)='reset()' [ngClass]='{minimized: minimizeControlPanel}'></control-panel>
+    <control-panel class='control-panel' [loading]='loading' [userProfileData]='userProfileData' [minimize]='minimizeControlPanel' [viewMode]='resultsViewMode' (loginRequest)='loginWithFacebook(wizardResults)' (showUserSettingsDropDown)='bot.state("userSettings")' (viewModeChange)='setViewMode($event)' (reset)='reset()' [ngClass]='{minimized: minimizeControlPanel}'></control-panel>
     <wizard *ngIf='showWizard' class='wizard' (done)='processResults($event)'></wizard>
     <results-view #results class='results-view' *ngIf='showResults' (botState)='bot.state($event.state, $event.data)' [@divState]></results-view>
-    <user-settings class='user-settigns' *ngIf='resultsViewMode=="user"' [userProfileData]='userProfileData' (logout)='logout()'></user-settings>
+    <!--user-settings class='user-settigns' [ngClass]='{"user-settings-visible": showUserSettings}' [userProfileData]='userProfileData' (logout)='logout()' (newSearch)='newSearch()'></user-settings-->
     <div class='is-hidden' [ngClass]='{visible: minimizeControlPanel}'>
-        <bot #bot class='bot static' (request)='results.execute($event)' (showMe)='lockBot=true' (hideMe)='lockBot=false' [ngClass]='{floating: showBot && lockBot, hidden: hideBot}'></bot>
-        <filters class='filters show-fast' [parameters]='parameters' [ngClass]='{"hide-fast": resultsViewMode!="results"}' (setFilter)='bot.state("setFilter",$event)'></filters>
+        <bot #bot class='bot static' (request)='processBotRequest($event); results.execute($event)' (showMe)='lockBot=true' (hideMe)='lockBot=false' [ngClass]='{floating: showBot && lockBot, hidden: hideBot}'></bot>
+        <!--filters class='filters show-fast' [parameters]='parameters' [ngClass]='{"hide-fast": resultsViewMode!="results"}' (setFilter)='bot.state("setFilter",$event)'></filters-->
     </div>
 </div> 
 

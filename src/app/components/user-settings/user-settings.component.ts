@@ -13,20 +13,20 @@ export class UserSettingsComponent {
 
   @Input() userProfileData; 
   @Output() logout: EventEmitter<any> = new EventEmitter();
+  @Output() newSearch: EventEmitter<any> = new EventEmitter();
   @Output() resetSearch: EventEmitter<any> = new EventEmitter();
 
-  constructor(private local: LocalService, private router: Router, private api: Otoboto) {}
+  isGuest;
+
+  constructor(private api: Otoboto, private route: ActivatedRoute) {}
 
   ngOnInit() {
 
-  }
+      this.route.queryParams.subscribe((params) => {
+        
+        this.isGuest = params.isGuest;
 
-  reset() {
-    /*
-      this.api.resetUser().subscribe(res => {
-
-      })
-      */
+      });           
   }
 
 }

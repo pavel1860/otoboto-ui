@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Otoboto } from '../../services/otoboto.service';
 import { Config } from '../../services/config.service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'filters',
@@ -10,7 +11,10 @@ import { Config } from '../../services/config.service';
 
 export class FiltersComponent {
 
-    _parameters;
+    //_parameters;
+    isGuest;
+
+    /*
     get parameters() {
         return this._parameters;
     }
@@ -22,64 +26,82 @@ export class FiltersComponent {
             this.setFilters();
         }
     }
+    */
 
     @Output() setFilter: EventEmitter<any> = new EventEmitter();
 
     filters;
 
-    constructor(private otoboto: Otoboto, private config: Config) {}
+    constructor(private api: Otoboto, private config: Config, private route: ActivatedRoute) {}
 
-    setFilters() {
+    ngOnInit() {
+
+        this.route.queryParams.subscribe((params) => {
+
+            if (params.isGuest) {
+                this.setFilters(params);
+            } else {
+                this.api.getUserSearchParameters().subscribe(response => {
+                    this.setFilters(response.data.search_params);
+                });                
+            }
+        
+        });           
+    }
+
+    setFilters(parameters) {
 
         this.filters = [];
 
-        if (this.parameters.category) {
+        if (parameters.category) {
 
             this.filters.push({
                 id: 'category',
                 title: 'סוג הרכב',
                 icon: "../assets/car-type-icon-mini.svg",
                 allowModify: true,
-                value: this.config.CAR_TYPES.find(item => item.id == this.parameters.category).caption               
+                value: this.config.CAR_TYPES.find(item => item.id == parameters.category).caption               
             });
 
         }
 
-        if (this.parameters.price) {
+        if (parameters.price) {
 
             this.filters.push({
                 id: 'price',
                 title: 'תקציב',
                 icon: "../../assets/price-icon-color.svg",
                 allowModify: true,
-                value: this.parameters.price          
+                value: parameters.price          
             });
 
         }        
 
-        if (this.parameters.city) {
+        if (parameters.city) {
 
             this.filters.push({
                 id: 'city',
                 title: 'מיקום',
                 icon: "../../assets/location-icon-color.svg",
                 allowModify: true,
-                value: this.parameters.city       
+                value: parameters.city       
             });
 
         }   
 
-        if (this.parameters.radius) {
+        /*
+        if (parameters.radius) {
 
             this.filters.push({
                 id: 'radius',
                 title: 'מרחק ממך',
                 icon: "../../assets/location-icon-color.svg",
                 allowModify: true,
-                value: this.parameters.radius     
+                value: parameters.radius     
             });
 
-        }   
+        } 
+        */  
 
         console.log(this.filters);
 

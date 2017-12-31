@@ -1,4 +1,4 @@
-<div class='wrapper otoboto-white'>
+<div *ngIf='isMobile' class='wrapper otoboto-white'>
 
     <div class='navigation-section' (click)='viewMode!="results" && setViewMode.emit("results")'>
         <div class='navigation-button'>
@@ -17,5 +17,33 @@
     </div>
 
     <div class='header-line otoboto-blue' [ngClass]='{right: viewMode=="results", center: viewMode=="favorites", left: viewMode=="user"}'></div>
+
+</div>
+
+<div *ngIf='!isMobile' class='wrapper otoboto-white'>
+
+    <div class='navigation-section' (click)='viewMode!="results" && setViewMode.emit("results")'>
+        <div class='navigation-button to-right'>
+            <img class='navigation-icon' [src]='viewMode=="results" ? "../../assets/navigation-button-results-active.svg" : "../../assets/navigation-button-results.svg"'/>
+            <div class='navigation-caption' [ngClass]='{active: viewMode=="results"}'>
+                תוצאות
+            </div>
+        </div>
+    </div>
+
+    <div class='navigation-section' (click)='viewMode!="user" && showUserSettingsDropDown.emit()'>    
+        <div class='navigation-button'>
+            <img class='avatar' [src]="userProfileData ? userProfileData?.picture?.data?.url : '../../assets/avatar-159236_640.png'" [ngClass]='{adjust: !userProfileData}'/>
+        </div>
+    </div>
+
+    <div class='navigation-section' (click)='viewMode!="favorites" && setViewMode.emit("favorites")'>
+        <div class='navigation-button to-end'>
+            <img class='navigation-icon favorites' [src]='viewMode=="favorites" ? "../../assets/navigation-button-favorites-active.svg" : "../../assets/navigation-button-favorites.svg"'/>
+            <div class='navigation-caption' [ngClass]='{active: viewMode=="favorites"}'>
+                מועדפים
+            </div>
+        </div> 
+    </div>
 
 </div>

@@ -66,7 +66,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 const SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
   slidesPerView: 'auto',
-  keyboardControl: true
+  keyboardControl: false
 };
 
 @NgModule({

@@ -82,5 +82,20 @@
         width: 100%;
         height: 100%;
     }
-    
+
+    .default-board {
+        background: white;
+        border-radius: 8px;
+        padding: 24px;
+    }
+
+    .new-search-section {
+        display: flex;
+        justify-content: center;
+        button {
+            width: 50%;
+            height: 35px;
+            cursor: pointer;
+        }
+    }
 }

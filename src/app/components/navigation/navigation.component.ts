@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { DeviceService } from '../../services/device.service';
 
 @Component({
   selector: 'navigation',
@@ -12,9 +13,15 @@ export class NavigationComponent {
   @Input() viewMode; 
 
   @Output() setViewMode: EventEmitter<any> = new EventEmitter();
+  @Output() showUserSettingsDropDown: EventEmitter<any> = new EventEmitter();
+
+  isMobile;
+
+  constructor(private device: DeviceService) {}
 
   ngOnInit() {
 
+    this.isMobile = this.device.isMobile();
 
   }
 

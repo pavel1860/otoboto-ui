@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Otoboto } from '../../services/otoboto.service';
+import { DeviceService } from 'app/services/device.service';
 
 @Component({
   selector: 'control-panel',
@@ -9,6 +10,8 @@ import { Otoboto } from '../../services/otoboto.service';
 
 export class ControlPanelComponent {
 
+  isMobile;
+  
   @Input() loading; 
   @Input() userProfileData; 
   @Input() minimize; 
@@ -17,8 +20,11 @@ export class ControlPanelComponent {
   @Output() loginRequest: EventEmitter<any> = new EventEmitter();
   @Output() viewModeChange: EventEmitter<any> = new EventEmitter();
   @Output() reset: EventEmitter<any> = new EventEmitter();
-
-  constructor(private otoboto: Otoboto) {}
+  @Output() showUserSettingsDropDown: EventEmitter<any> = new EventEmitter();
+  
+  constructor(private otoboto: Otoboto, private device: DeviceService) {
+    this.isMobile = device.isMobile();
+  }
 
   getAllUsers() {
 

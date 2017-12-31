@@ -15,7 +15,8 @@ export class BotComponent {
   @Output() request: EventEmitter<any> = new EventEmitter();
 
   defaultCaption; 
-  caption; 
+  caption;
+  captionType; 
   userResponseType;
   attention = true; 
   operationCode; 
@@ -36,17 +37,17 @@ export class BotComponent {
     
       case 'welcomeGuest':
 
-        this.say('הנה הרכבים המתאימים ביותר לחיפוש שלך');
+        this.show('defaultBoard');
         break;
     
       case 'welcomeUser':
 
-        this.say('הנה תוצאות החיפוש האחרון שלך');
+        this.show('defaultBoard');
         break; 
         
       case 'viewModeSearchResults':
 
-        this.say('הנה תוצאות החיפוש האחרון שלך');
+        this.show('defaultBoard');
         break;         
 
       case 'viewModeSearchFavorites':
@@ -58,6 +59,10 @@ export class BotComponent {
 
         this.say('כאן אפשר לשחק עם ההגדרות');
         break; 
+
+      case 'userSettings': 
+        this.show('userSettings');
+        break;
 
       case 'suggestHideModel':
 
@@ -157,12 +162,16 @@ export class BotComponent {
     }
   }
 
-  ask(inputType, operationCode, operationData?, placeholder?) {
+  ask(inputType, operationCode?, operationData?, placeholder?) {
     console.log(inputType);
     this.userResponseType = inputType;
     this.operationCode = operationCode; 
     this.operationData = operationData;
     this.inputPlaceholder = placeholder; 
+  }
+
+  show(captionType) {
+    this.captionType = captionType;
   }
 
 

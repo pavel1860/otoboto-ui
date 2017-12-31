@@ -1,26 +1,3 @@
-<!--div *ngIf='isMobile' class='wrapper otoboto-fill-negative bot-mobile-wrap'>
-
-    <div *ngIf='!isMobile' class='vertical-wrapper'>
-
-        <div class='vertical-top-panel'>
-            <filters></filters>
-        </div> 
-        
-        <div class='vertical-bottom-panel'>
-            <div class='bot-avatar-panel'>
-                <bot-avatar class='bot-avatar'></bot-avatar>
-            </div>
-            <div class='speach-panel'>
-                <bot-speach [caption]='caption' [userResponseType]='userResponseType' [operationCode]='operationCode' (userResponse)='request.emit({code: operationCode, data: operationData})'></bot-speach>
-            </div>    
-        </div>         
-    
-    </div>
-
-
-
-</div-->
-
 
 <div *ngIf='isMobile' class='horizontal-wrapper'>
 
@@ -42,48 +19,12 @@
 <div *ngIf='!isMobile' class='wrapper'>
 
     <div class='speach-panel'>
-        <bot-speach [caption]='caption' [userResponseType]='userResponseType' [operationCode]='operationCode' [placeholder]='inputPlaceholder' (userResponse)='request.emit({code: operationCode, data: operationData})'></bot-speach>
+        <bot-speach [caption]='caption' [captionType]='captionType' [userResponseType]='userResponseType' [operationCode]='operationCode' [placeholder]='inputPlaceholder' (request)='request.emit({code: $event})' (userResponse)='request.emit({code: operationCode, data: operationData})'></bot-speach>
     </div>
 
     <div class='figure-panel'>
-        <img class='figure desktop' [src]='"../../../assets/otoboto-avatar.svg"'/>
+        <img class='figure desktop' [src]='"../../../assets/48-58-47.svg"'/>
     </div>
 
 </div>
 
-
-
-
-
-
-<!--
-    <div *ngIf='width<768' class='inner-wrapper-mobile'>
-
-        <div class='bot-avater-panel'>
-            <bot-avatar class='bot-avatar'></bot-avatar>
-        </div>
-
-        <div class='control-panel'>
-            <div class='filters-panel'>
-                <filters></filters>
-            </div>
-            <div class='speach-panel'>
-                <speach></speach>
-            </div>
-        </div>
-    </div>
-
-    <div *ngIf='width>=768' class='inner-wrapper'>
-        <div class='filters-panel'>
-            <filters></filters>
-        </div>    
-        <div class='bot-figure-panel'>
-            <div class='bot-avater-panel'>
-                <bot-avatar class='bot-avatar'></bot-avatar>
-            </div>
-            <div class='speach-panel'>
-                <speach></speach>
-            </div>              
-        </div>
-    </div>
--->

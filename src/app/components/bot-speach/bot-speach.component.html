@@ -1,8 +1,24 @@
 <div class='wrapper'>
-    <div class='caption-box text-speach'>
+
+    <div *ngIf='!captionType' class='caption-box text-speach'>
         {{caption}}
     </div>
 
+    <div *ngIf='captionType == "defaultBoard"' class='default-board'>
+        <div class='filters-section'>
+            <filters></filters>
+        </div>
+        <div class='new-search-section'>
+            <button class='new-search-button text-secondary otoboto-frame otoboto-fill-negative' (click)='request.emit("newSearch")'>
+                חיפוש חדש
+            </button>
+        </div>
+    </div>
+
+    <div *ngIf='captionType == "userSettings"' class='default-board'>
+        <user-settings></user-settings>
+    </div>
+    
     <div *ngIf='userResponseType == "yesNoQuestion"' class='user-response-panel'>
         <div class='buttons-panel'>
             <button class='response-button text-weak' (click)='userResponse.emit()'>
@@ -27,5 +43,7 @@
             </input-box-->
         </div>     
     </div>
+
+
     
 </div>

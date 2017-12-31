@@ -1,40 +1,27 @@
 <div class='wrapper'>
 
-    <div *ngIf='userProfileData' class='user-settings-menu'>
+    <div *ngIf='!isGuest' class='user-settings-menu'>
 
-        <div class='item' (click)='logout.emit()'>
-            <div class='item-icon'>
-
+        <div class='item text-secondary otoboto-frame otoboto-fill-negative disabled' (click)='newSearch.emit()'>
+            <div class='item-title'>
+                פרסם מודעה
             </div>
+        </div>
+        
+        <div class='item text-secondary otoboto-frame otoboto-fill-negative' (click)='logout.emit()'>
             <div class='item-title'>
                 התנתק
             </div>
         </div>
 
-        <div class='item' (click)='reset()'>
-            <div class='item-icon'>
-
-            </div>
+        <div class='item text-secondary otoboto-frame otoboto-fill-negative' (click)='reset()'>
             <div class='item-title'>
                 אפס חשבון
             </div>
         </div>
 
-        <div class='item' (click)='reset()'>
-            <div class='item-icon'>
 
-            </div>
-            <div class='item-title'>
-                חיפוש חדש
-            </div>
-        </div>
 
     </div>
-
-    <div class='guest-menu'>
-        
-    </div>
-
-
 
 </div>
