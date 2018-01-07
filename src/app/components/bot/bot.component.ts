@@ -155,6 +155,7 @@ export class BotComponent {
   say(caption, attention?) {
     this.userResponseType = undefined;
     this.caption = caption;
+    this.captionType = 'question';
     if (attention) {
       this.showMe.emit();
     } else {
@@ -165,6 +166,7 @@ export class BotComponent {
   ask(inputType, operationCode?, operationData?, placeholder?) {
     console.log(inputType);
     this.userResponseType = inputType;
+    this.captionType = 'question';
     this.operationCode = operationCode; 
     this.operationData = operationData;
     this.inputPlaceholder = placeholder; 
@@ -211,6 +213,7 @@ export class BotComponent {
           this.attention = true; 
           this.caption = 'להסתיר את כל רכבי ה' + item.manufacturer + '?'; 
           this.userResponseType = 'yesNoQuestion'; 
+          this.captionType = 'question';
           this.operationCode = 'hideManufacturer'; 
           this.operationData = item; 
           break;
@@ -219,6 +222,7 @@ export class BotComponent {
           this.attention = true; 
           this.caption = 'להסתיר את כל ה' + item.manufacturer + ' ' + item.model + '?'; 
           this.userResponseType = 'yesNoQuestion'; 
+          this.captionType = 'question';
           this.operationCode = 'hideModel'; 
           this.operationData = item; 
           break;      

@@ -181,12 +181,15 @@ export class WelcomeComponent {
   }
 
   processBotRequest = (request) => {
-
+    console.log(request);
     if (request.code == 'newSearch') {
       this.newSearch(); 
       return;
     }
-
+    if (request.code == 'logout') {
+      this.logout(); 
+      return;
+    }
   }
 
 }

@@ -1,6 +1,6 @@
 <div class='wrapper'>
 
-    <div *ngIf='!captionType' class='caption-box text-speach'>
+    <div *ngIf='captionType == "question"' class='caption-box text-speach'>
         {{caption}}
     </div>
 
@@ -16,7 +16,7 @@
     </div>
 
     <div *ngIf='captionType == "userSettings"' class='default-board'>
-        <user-settings></user-settings>
+        <user-settings (logout)='request.emit("logout")'></user-settings>
     </div>
     
     <div *ngIf='userResponseType == "yesNoQuestion"' class='user-response-panel'>
