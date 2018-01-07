@@ -2,9 +2,16 @@
 
     <div *ngIf='captionType == "question"' class='caption-box text-speach'>
         {{caption}}
+        <div *ngIf='userResponseType == "singleAction" && operationCode == "login"' class='user-response-panel nerrow'>
+            <div class='buttons-panel'>
+                <button class="loginBtn loginBtn--facebook" (click)='userResponse.emit()'>
+                    התחבר
+                </button>
+            </div>
+        </div>
     </div>
 
-    <div *ngIf='captionType == "defaultBoard"' class='default-board'>
+    <div *ngIf='captionType == "defaultBoard" && !isMobile' class='default-board'>
         <div class='filters-section'>
             <filters></filters>
         </div>
@@ -27,13 +34,7 @@
         </div>
     </div>
 
-    <div *ngIf='userResponseType == "singleAction" && operationCode == "login"' class='user-response-panel'>
-        <div class='buttons-panel'>
-            <button class='response-button text-weak' (click)='userResponse.emit()'>
-                התחבר
-            </button>
-        </div>
-    </div>
+
 
     <div *ngIf='userResponseType == "city"' class='user-response-panel'>
         <div class='input-panel'>

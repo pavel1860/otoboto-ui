@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { DeviceService } from '../../services/device.service';
 
 @Component({
   selector: 'bot-speach',
@@ -16,5 +17,13 @@ export class BotSpeachComponent {
 
     @Output() userResponse: EventEmitter<any> = new EventEmitter();
     @Output() request: EventEmitter<any> = new EventEmitter();
+
+    isMobile;
+
+    constructor (private device: DeviceService) {}
+
+    ngOnInit() {
+      this.isMobile = this.device.isMobile(); 
+    }
 
 }

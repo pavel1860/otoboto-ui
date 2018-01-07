@@ -32,7 +32,7 @@ export class WelcomeComponent {
   uid;  
   loading = false; 
   isNewUser;
-  //isGuest;
+  isGuest;
 
   showWizard = false;
   showResults = false; 
@@ -73,6 +73,7 @@ export class WelcomeComponent {
       this.isNewUser = params.isNewUser; 
       
       if (params.isGuest) {
+        this.isGuest = params.isGuest;
         this.displayResults();
       }
       
@@ -111,6 +112,7 @@ export class WelcomeComponent {
   logout = () => {
     this.local.clear();
     this.userProfileData = undefined;
+    this.resultsViewMode = undefined;
     this.displayWizard();
     this.api.disconnect().subscribe(response => {
 
@@ -119,8 +121,15 @@ export class WelcomeComponent {
   }
 
   newSearch = () => {
+    
+
     this.displayWizard();
     this.resultsViewMode = undefined;
+    if (this.isGuest) {
+      this.router.navigate(['./welcome'], {
+        queryParams: {}
+      });      
+    }    
   }
 
   processResults = (wizardResults) => {

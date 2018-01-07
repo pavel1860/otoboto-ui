@@ -32,8 +32,9 @@ export class Config {
         {
             id: 'specific',
             caption: 'דגם ספציפי',
-            icon: '',
-            type: 'system'            
+            icon: '../assets/specific-model.svg',
+            type: 'system',
+            width: '50px'         
         }
     ];
 

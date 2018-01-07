@@ -31,12 +31,15 @@ export class ResultsViewComponent {
 
     @Output() botState: EventEmitter<any> = new EventEmitter();
     @Output() viewModeChanged: EventEmitter<any> = new EventEmitter();
+    @Output() userProfileDataChanged: EventEmitter<any> = new EventEmitter();
      
     searchResults = [];
     userFavorites = [];
 
     hiddenSearchResults = [];
     hiddenFavorites = [];
+
+    noResults;
 
     searchResultsPage = 1;
     userFavoritesPage = 1;
@@ -106,6 +109,7 @@ export class ResultsViewComponent {
     loadGuestData(params) {
         this.api.loadGuestData(params).subscribe(response => {
             this.searchResults = response;
+            this.noResults = !response || response.length == 0;
         });
     }
 
@@ -113,6 +117,7 @@ export class ResultsViewComponent {
         this.api.loadUserData(this.searchResultsPage).subscribe(response => {
             this.searchResults = this.searchResults.concat(response); 
             this.searchResultsPage++;
+            this.noResults = !response || response.length == 0;
         });        
     }
 
@@ -249,6 +254,8 @@ export class ResultsViewComponent {
 
           this.userProfileData = response['userProfileData'];
 
+          this.userProfileDataChanged.emit(this.userProfileData); 
+
           if (response['get_search_params']) {
               
             this.api.updateUserSearchParams(this.urlParams, true).subscribe(response => {
@@ -269,7 +276,7 @@ export class ResultsViewComponent {
     }
 
     initUserMode = () => {
-        this.router.navigate(['./results'], {
+        this.router.navigate(['./welcome'], {
             queryParams: {}
         });  
 

@@ -1,7 +1,7 @@
 <div class='wrapper'>
     <div *ngFor='let option of options' class='option-wrapper' (click)='selected.emit(option)'>
         <div class='option' [ngClass]='{"otoboto-blue system": option.type == "system", "otoboto-yellow": !option.type}'>
-            <img [src]='option.icon'>
+            <img [src]='option.icon' [style.width]='option.width'>
         </div>
         <div class='option-caption'>
             <label>{{option.caption}}</label>
