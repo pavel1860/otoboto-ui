@@ -94,7 +94,8 @@ export class WelcomeComponent {
         this.displayWizard(); 
       } else if (response['get_results']) {
         this.router.navigate(['./welcome']); 
-        this.displayResults();      
+        this.displayResults();  
+        this.loading = false;    
       } else {
         this.loading = false;
         console.log('An unexpected error occured');

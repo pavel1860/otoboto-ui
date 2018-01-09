@@ -8,9 +8,10 @@
         </div>
         <div *ngIf='!loading'>
             <button *ngIf='!userProfileData' class='facebook-login-button' (click)='loginRequest.emit($event)'>
+                <img class='facebook-login-icon' [src]='"../../assets/facebook.svg"'/>
                 התחבר
             </button>
-            <img *ngIf='userProfileData' class='userAvatarImage' [src]='userProfileData.picture.data.url'/>
+            <!--img *ngIf='userProfileData' class='userAvatarImage' [src]='userProfileData.picture.data.url'/-->
         </div>
     </div>    
 </div> 
