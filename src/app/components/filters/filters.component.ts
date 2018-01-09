@@ -58,7 +58,7 @@ export class FiltersComponent {
             this.filters.push({
                 id: 'category',
                 title: 'סוג הרכב',
-                icon: "../assets/car-type-icon-mini.svg",
+                icon: "../assets/filter-car.svg",
                 allowModify: true,
                 value: this.config.CAR_TYPES.find(item => item.id == parameters.category).caption               
             });
@@ -70,7 +70,7 @@ export class FiltersComponent {
             this.filters.push({
                 id: 'price',
                 title: 'תקציב',
-                icon: "../../assets/price-icon-color.svg",
+                icon: "../../assets/filter-price.svg",
                 allowModify: true,
                 value: parameters.price          
             });
@@ -82,7 +82,7 @@ export class FiltersComponent {
             this.filters.push({
                 id: 'city',
                 title: 'מיקום',
-                icon: "../../assets/location-icon-color.svg",
+                icon: "../../assets/filter-location.svg",
                 allowModify: true,
                 value: parameters.city       
             });
