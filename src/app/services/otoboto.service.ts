@@ -156,7 +156,7 @@ export class Otoboto {
         if (isNewUser) {
             return this.http.post(url, null, this.requestOptions).map(res => res.json()); 
         } else {
-            return this.http.put(url, this.requestOptions).map(res => res.json()); 
+            return this.http.put(url, null, this.requestOptions).map(res => res.json()); 
         }
 
     } 
