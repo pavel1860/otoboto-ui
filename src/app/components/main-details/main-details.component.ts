@@ -20,19 +20,19 @@ export class MainDetailsComponent {
       this.properties = [
         {
           caption: 'יד ' + this.data.hand,
-          icon: '../../../assets/property-speed.svg'
+          icon: '../../../assets/hand.svg'
         }, 
         {
           caption: this.data.km/1000 + ' אלף ק״מ',
-          icon: '../../../assets/property-speed.svg'
+          icon: '../../../assets/km.svg'
         }, 
         {
           caption: 'אוטומטי',
-          icon: '../../../assets/property-speed.svg'
+          icon: '../../../assets/gear.svg'
         }, 
         {
           caption: '1500 סמ״ק',
-          icon: '../../../assets/property-speed.svg'
+          icon: '../../../assets/volume.svg'
         }                        
       ]
     }
