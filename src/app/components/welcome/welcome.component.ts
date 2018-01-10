@@ -134,10 +134,12 @@ export class WelcomeComponent {
   }
 
   processResults = (wizardResults) => {
+    this.loading = true;
     if (this.userProfileData) {
       console.log(wizardResults);
       this.api.updateUserSearchParams(wizardResults, this.isNewUser).subscribe(response => {
         //this.router.navigate(['./results']);  
+        this.loading = false;
         this.displayResults();
       });
     } else {
@@ -145,6 +147,7 @@ export class WelcomeComponent {
         queryParams: {isGuest: true},
         queryParamsHandling: "merge"
       });
+      this.loading = false;
       this.displayResults();     
     }
     

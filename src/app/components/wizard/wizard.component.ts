@@ -44,6 +44,8 @@ export class WizardComponent {
 
     steps;
 
+    @Input() loading = false;
+
     constructor(
         private router: Router, 
         private route: ActivatedRoute,

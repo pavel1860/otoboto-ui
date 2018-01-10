@@ -6,8 +6,8 @@
             <input type='text' class='text-primary' placeholder="{{placeholder}}" [value]="valueToken" [formControl]="valueControler"/>
         </input-box>
 
-        <div class='list-items-panel' [ngClass]='{"show-list": options.length > 0}'>
-            <div *ngFor='let option of options' class='option' (click)='valueToken = option; done.emit(valueToken)'>
+        <div class='list-items-panel' [ngClass]='{"show-list": options.length > 0 && showList}'>
+            <div *ngFor='let option of options' class='option' (click)='valueToken = option; done.emit(valueToken); showList = false;'>
                 {{option}}
             </div>
         </div>
@@ -18,7 +18,6 @@
                 {{option}}
             </div>
         </div>    
-
 
     </div>
 

@@ -38,6 +38,7 @@ export class WizardSelectorAutocomplete {
       showInputPane = false; 
       options = [];
       showOptionsMenu = false; 
+      showList = true;
       
       constructor() {}
 
@@ -53,6 +54,7 @@ export class WizardSelectorAutocomplete {
         }
 
           this.valueControler.valueChanges.subscribe(token => {
+              this.showList = true;
                this.valueToken = token;
               if (token.length <= 0) {
                   if (this.showListItems) {
