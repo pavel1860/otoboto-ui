@@ -19,7 +19,7 @@
 <div *ngIf='!isMobile' class='wrapper'>
 
     <div class='speach-panel'>
-        <bot-speach [caption]='caption' [captionType]='captionType' [userResponseType]='userResponseType' [operationCode]='operationCode' [placeholder]='inputPlaceholder' (request)='request.emit({code: $event})' (userResponse)='request.emit({code: operationCode, data: operationData})'></bot-speach>
+        <bot-speach [caption]='caption' [captionType]='captionType' [userResponseType]='userResponseType' [operationCode]='operationCode' [placeholder]='inputPlaceholder' (request)='request.emit({code: $event})' (userResponse)='processUserResponse($event)'></bot-speach>
     </div>
 
     <div class='figure-panel angry' [ngClass]='{angry: jump}'>

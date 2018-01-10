@@ -30,10 +30,13 @@
         <user-settings (logout)='request.emit("logout")'></user-settings>
     </div>
     
-    <div *ngIf='userResponseType == "yesNoQuestion"' class='user-response-panel'>
-        <div class='buttons-panel'>
-            <button class='response-button text-weak' (click)='userResponse.emit()'>
+    <div *ngIf='userResponseType == "yesNoQuestion"' class='yes-no-question-panel'>
+        <div class='buttons-panel-double'>
+            <button class='response-button text-weak' (click)='userResponse.emit("yes")'>
                 כן
+            </button>
+            <button class='response-button text-weak' (click)='userResponse.emit("no")'>
+                לא
             </button>
         </div>
     </div>

@@ -41,7 +41,17 @@ export class BotComponent {
     },1500);
   }
 
-  state(state, info) {
+  processUserResponse(answare) {
+    if (answare == 'yes') {
+      this.request.emit({code: this.operationCode, data: this.operationData}); 
+    }
+    if (answare == 'no') {
+      this.state('welcomeGuest');
+    }
+    
+  }
+
+  state(state, info?) {
 
     if (state == this.currentState) {
       
@@ -191,6 +201,8 @@ export class BotComponent {
 
   show(captionType) {
     this.captionType = captionType;
+    this.userResponseType = undefined; 
+    this.caption = undefined;
   }
 
   reset() {

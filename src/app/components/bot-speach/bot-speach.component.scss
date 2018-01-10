@@ -35,6 +35,20 @@
     .wrapper {
 
     }
+    
+    .buttons-panel-double {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100px;
+        margin-top: 20px;
+        align-self: center;
+    }
+
+    .yes-no-question-panel {
+        display: flex;
+        justify-content: center;
+    }
 
     .caption-box {
         background: white;
@@ -58,6 +72,9 @@
 
         .buttons-panel {
             margin-top: 30px;
+            & .col {
+                flex-direction: column;
+            }
         }
     }
 
