@@ -10,14 +10,14 @@
 
 .content {
     max-height: 127px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 @media only screen and (min-width : 768px) {
 
     .content {
         max-height: 78px;
-        overflow-y: scroll;
+        overflow-y: auto;
     }
 
     .wrapper {

@@ -20,6 +20,9 @@ $swipe-speed: 0.2s;
     display: flex;
     justify-content: center;
     overflow: hidden;
+    & .blocked {
+        opacity: 0.3;
+    }
 }
 
 .navigation-button {

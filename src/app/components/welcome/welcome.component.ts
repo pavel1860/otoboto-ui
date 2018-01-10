@@ -173,6 +173,10 @@ export class WelcomeComponent {
   }
 
   setViewMode = (viewMode) => {
+    if ((!this.userProfileData) && (viewMode == 'favorites')) {
+      this.bot.state('suggestLogin');
+      return;
+    }
     this.resultsViewMode = viewMode;
     this.results.setViewMode(viewMode);
   }

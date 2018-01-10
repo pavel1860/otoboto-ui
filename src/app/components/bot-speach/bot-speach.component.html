@@ -4,9 +4,13 @@
         {{caption}}
         <div *ngIf='userResponseType == "singleAction" && operationCode == "login"' class='user-response-panel nerrow'>
             <div class='buttons-panel'>
-                <button class="loginBtn loginBtn--facebook" (click)='userResponse.emit()'>
+                <button class='facebook-login-button' (click)='userResponse.emit()'>
+                    <img class='facebook-login-icon' [src]='"../../assets/facebook.svg"'/>
                     התחבר
                 </button>
+                <!--button class="loginBtn loginBtn--facebook" (click)='userResponse.emit()'>
+                    התחבר
+                </button-->
             </div>
         </div>
     </div>

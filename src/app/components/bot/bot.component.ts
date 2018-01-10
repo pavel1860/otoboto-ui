@@ -24,6 +24,9 @@ export class BotComponent {
   inputPlaceholder;
   hiddenCountdown; 
   isMobile = true; 
+  currentState; 
+
+  jump = false;
 
   constructor(private device: DeviceService) {}
 
@@ -31,7 +34,22 @@ export class BotComponent {
     this.isMobile = this.device.isMobile();
   }
 
+  alert() {
+    this.jump = true; 
+    setTimeout(() => {
+      this.jump = false;
+    },1500);
+  }
+
   state(state, info) {
+
+    if (state == this.currentState) {
+      
+      this.alert();  
+      console.log(this.jump);
+    } 
+
+    this.currentState = state; 
 
     switch (state) {
     

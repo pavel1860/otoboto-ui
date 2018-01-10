@@ -22,7 +22,7 @@
         <bot-speach [caption]='caption' [captionType]='captionType' [userResponseType]='userResponseType' [operationCode]='operationCode' [placeholder]='inputPlaceholder' (request)='request.emit({code: $event})' (userResponse)='request.emit({code: operationCode, data: operationData})'></bot-speach>
     </div>
 
-    <div class='figure-panel'>
+    <div class='figure-panel angry' [ngClass]='{angry: jump}'>
         <img class='figure desktop' [src]='"../../../assets/48-58-47.svg"'/>
     </div>
 
