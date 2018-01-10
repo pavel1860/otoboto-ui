@@ -26,6 +26,7 @@ import { DeviceService } from 'app/services/device.service';
 export class WelcomeComponent {
 
   @ViewChild('results') results;
+  @ViewChild('bot') bot;
 
   wizardResults = {};
   userProfileData;
@@ -122,8 +123,7 @@ export class WelcomeComponent {
   }
 
   newSearch = () => {
-    
-
+    this.bot.reset();
     this.displayWizard();
     this.resultsViewMode = undefined;
     if (this.isGuest) {

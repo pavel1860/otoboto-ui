@@ -164,7 +164,6 @@ export class BotComponent {
   }
 
   ask(inputType, operationCode?, operationData?, placeholder?) {
-    console.log(inputType);
     this.userResponseType = inputType;
     this.captionType = 'question';
     this.operationCode = operationCode; 
@@ -176,7 +175,11 @@ export class BotComponent {
     this.captionType = captionType;
   }
 
-
+  reset() {
+    this.caption = undefined;
+    this.captionType = undefined;
+    this.userResponseType = undefined; 
+  }
 
   /*
   say(text, importent, duration, setAsDefault) {
@@ -200,9 +203,7 @@ export class BotComponent {
   }
   */
 
-  reset() {
-    this.caption = this.defaultCaption; 
-  }
+
 
   react(data, item) {
 

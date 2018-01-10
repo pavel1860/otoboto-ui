@@ -87,7 +87,21 @@ export class FiltersComponent {
                 value: parameters.city       
             });
 
-        }   
+        } 
+
+        if (parameters.manufacturer) {
+
+            this.filters.push({
+                id: 'specific',
+                title: parameters.manufacturer[0] + ' ' + parameters.model[0],
+                icon: "../assets/filter-car.svg",
+                allowModify: true,
+                value: parameters.manufacturer[0] + ' ' + parameters.model[0]       
+            });
+
+        }  
+
+
 
         /*
         if (parameters.radius) {
