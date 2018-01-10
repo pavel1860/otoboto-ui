@@ -1,7 +1,7 @@
 <div class='control-panel otoboto-blue'>
 
     <div class='top-bar'>
-        <top-bar [loading]='loading' [userProfileData]='userProfileData' (loginRequest)='loginRequest.emit()'></top-bar>
+        <top-bar [loading]='loading' [userProfileData]='userProfileData' [viewMode]='globalViewMode' (loginRequest)='loginRequest.emit()' (showResults)='showResults.emit()'></top-bar>
     </div>
     
     <img class='cover-desktop desktop' src='../../assets/otoboto-avatar-desktop.svg' (click)='reset.emit()' [ngClass]='{"hidden": minimize}'/>

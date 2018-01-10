@@ -11,6 +11,9 @@
                 <img class='facebook-login-icon' [src]='"../../assets/facebook.svg"'/>
                 התחבר
             </button>
+            <button *ngIf='userProfileData && viewMode=="wizard"' class='white-button back-button' (click)='showResults.emit($event)'>
+                חזור לתוצאות 
+            </button>            
             <!--img *ngIf='userProfileData' class='userAvatarImage' [src]='userProfileData.picture.data.url'/-->
         </div>
     </div>    

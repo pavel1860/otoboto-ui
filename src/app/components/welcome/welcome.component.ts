@@ -34,6 +34,7 @@ export class WelcomeComponent {
   loading = false; 
   isNewUser;
   isGuest;
+  globalViewMode; 
 
   showWizard = false;
   showResults = false; 
@@ -163,6 +164,7 @@ export class WelcomeComponent {
     setTimeout(() => {
       this.showResults = true; 
       this.resultsViewMode = 'results';
+      this.globalViewMode = 'searchResults';
       this.hideBot = false; 
     }, 800);
     
@@ -173,6 +175,7 @@ export class WelcomeComponent {
     this.showResults = false; 
     this.minimizeControlPanel = false; 
     this.hideBot = true; 
+    this.globalViewMode = 'wizard';
   }
 
   setViewMode = (viewMode) => {
