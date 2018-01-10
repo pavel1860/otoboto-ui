@@ -42,7 +42,10 @@ export class FiltersComponent {
                 this.setFilters(params);
             } else {
                 this.api.getUserSearchParameters().subscribe(response => {
-                    this.setFilters(response.data.search_params);
+                    let params = response.data.search_params;
+                    params.manufacturer = params.manufacturer ? params.manufacturer[0] : undefined;
+                    params.model = params.model ? params.model[0] : undefined;
+                    this.setFilters(params);
                 });                
             }
         
@@ -53,7 +56,7 @@ export class FiltersComponent {
 
         this.filters = [];
 
-        if (parameters.category) {
+        if (parameters.category && !parameters.manufacturer) {
 
             this.filters.push({
                 id: 'category',
@@ -93,10 +96,10 @@ export class FiltersComponent {
 
             this.filters.push({
                 id: 'specific',
-                title: parameters.manufacturer[0] + ' ' + parameters.model[0],
+                title: parameters.manufacturer + ' ' + parameters.model,
                 icon: "../assets/filter-car.svg",
                 allowModify: true,
-                value: parameters.manufacturer[0] + ' ' + parameters.model[0]       
+                value: parameters.manufacturer + ' ' + parameters.model       
             });
 
         }  

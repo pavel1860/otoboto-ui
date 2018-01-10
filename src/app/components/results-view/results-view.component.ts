@@ -110,7 +110,11 @@ export class ResultsViewComponent {
         this.api.loadGuestData(params).subscribe(response => {
             this.searchResults = response;
             this.noResults = !response || response.length == 0;
-        });
+            this.loading = false;
+        }, e => {
+            this.noResults = true;
+            this.loading = false;
+        }); 
     }
 
     loadUserSearchResults() {
@@ -118,13 +122,19 @@ export class ResultsViewComponent {
             this.searchResults = this.searchResults.concat(response); 
             this.searchResultsPage++;
             this.noResults = !response || response.length == 0;
+            this.loading = false;
+        }, e => {
+            this.noResults = true;
+            this.loading = false;
         });        
     }
 
     loadUserFavorites() {
+        this.noResults = false;
         this.api.loadUserFavorites(this.userFavoritesPage).subscribe(response => {
             this.userFavorites = this.userFavorites.concat(response); 
             this.userFavoritesPage++;
+            this.loading = false;
         }, e => {
             if (e.status == 400) {
                 this.favoritesList.close();
@@ -184,6 +194,8 @@ export class ResultsViewComponent {
 
         if (viewMode != 'user') {
             this.loading = true; 
+        } else {
+            this.noResults = false;
         }
 
         setTimeout(() => {

@@ -119,18 +119,18 @@ export class WelcomeComponent {
     this.api.disconnect().subscribe(response => {
 
     });
-
+    this.router.navigate(['./welcome'], {
+      queryParams: {}
+    });  
   }
 
   newSearch = () => {
     this.bot.reset();
     this.displayWizard();
     this.resultsViewMode = undefined;
-    if (this.isGuest) {
-      this.router.navigate(['./welcome'], {
-        queryParams: {}
-      });      
-    }    
+    this.router.navigate(['./welcome'], {
+      queryParams: {}
+    });   
   }
 
   processResults = (wizardResults) => {
@@ -159,6 +159,7 @@ export class WelcomeComponent {
 
     setTimeout(() => {
       this.showResults = true; 
+      this.resultsViewMode = 'results';
       this.hideBot = false; 
     }, 800);
     
