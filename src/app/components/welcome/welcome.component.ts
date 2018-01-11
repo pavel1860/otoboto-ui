@@ -60,6 +60,7 @@ export class WelcomeComponent {
 
     if (this.local.getAccessToken()) {
       this.api.getFacebookLoginStatus().then(response => {
+        console.log(response);
         if (response.status == 'connected') {
           setTimeout(this.loginWithFacebook,0);
         } else {
