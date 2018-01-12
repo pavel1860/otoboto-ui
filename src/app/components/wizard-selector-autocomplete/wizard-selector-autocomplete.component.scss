@@ -110,6 +110,16 @@ input {
         height: 30px;
         justify-content: center;
         line-height: 30px;
+        
+    }
+
+    .tag {
+        background: #FFDA80;
+        border-radius: 10px; 
+        margin-left: 10px;
+        margin-bottom: 10px;
+        padding-left: 15px;
+        padding-right: 15px;
     }
 
     .option:hover {
@@ -118,24 +128,63 @@ input {
     }
 
     .list-items-panel {
-        height: 45vh;
+        max-height: 45vh;
         margin-top: 30px;
-        overflow: auto;
+        overflow: hidden;
         position: absolute;
-        left: -461px;
+        left: -573px;
         margin-top: 500px;
-        width: 211px;
+        width: 300px;
         right: 0;
         margin-left: auto;
         margin-right: auto;
         transition: all 1s ease-in-out;
+        display: flex;
+        flex-wrap: wrap;
     }
 
     .show-list {
         margin-top: -53px;
         transition: all 0.3s ease-out;
     }
+
+    .tags-list {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        overflow: hidden; 
+    }
+
+    .arrow-down {
+        position: absolute;
+        bottom: -40px;
+        right: 0;
+        left: 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .fog {
+        width: 300px;
+        left: -573px;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        height: 135px;
+        position: fixed;
+        bottom: 39px;
+        opacity: 0;
+        animation: 1s fadeIn;
+        animation-fill-mode: forwards;
+    }
     
 }
 
-
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+       opacity: 1;
+    }
+  }
