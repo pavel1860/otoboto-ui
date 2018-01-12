@@ -12,6 +12,7 @@ import { Models } from '../../services/models.service';
 export class CarManufacturerSelector {
     
     @Input() initialValue = '';
+    @Input() submitButton; 
 
     @Output() done: EventEmitter<any> = new EventEmitter();
 

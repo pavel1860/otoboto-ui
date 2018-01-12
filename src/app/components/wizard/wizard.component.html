@@ -13,10 +13,10 @@
 
     <div class='userInputWrapper'>
         <car-types-selector class='input-selector' *ngIf='steps[step-1].inputType == "carTypesSelector"' (selected)='category = $event.id; updateWizardByCategory(category); nextStep(); updateURI();'></car-types-selector>
-        <car-manufacturer-selector *ngIf='steps[step-1].inputType == "carManufacturerSelector"' class='input-selector' [initialValue]='manufacturer' (done)='manufacturer = $event; nextStep(); updateURI();'></car-manufacturer-selector>
-        <car-model-selector *ngIf='steps[step-1].inputType == "carModelSelector"' class='input-selector' [initialValue]='model' [manufacturer]='manufacturer' (done)='model = $event; nextStep(); updateURI();'></car-model-selector>
+        <car-manufacturer-selector *ngIf='steps[step-1].inputType == "carManufacturerSelector"' class='input-selector' [submitButton]='isMobile' [initialValue]='manufacturer' (done)='manufacturer = $event; nextStep(); updateURI();'></car-manufacturer-selector>
+        <car-model-selector *ngIf='steps[step-1].inputType == "carModelSelector"' class='input-selector' [submitButton]='isMobile' [initialValue]='model' [manufacturer]='manufacturer' (done)='model = $event; nextStep(); updateURI();'></car-model-selector>
         <price-selector class='input-selector' *ngIf='steps[step-1].inputType == "priceSelector"' [valueToken]='price' (done)='price = $event; nextStep(); updateURI();' ></price-selector>
-        <location-selector *ngIf='steps[step-1].inputType == "locationSelector"' class='input-selector' [submitButton]='false' [initialValue]='city' (done)='city = $event; updateURI(); nextStep();'></location-selector>
+        <location-selector *ngIf='steps[step-1].inputType == "locationSelector"' class='input-selector' [submitButton]='isMobile' [initialValue]='city' (done)='city = $event; updateURI(); nextStep();'></location-selector>
     </div>
 
 </div>

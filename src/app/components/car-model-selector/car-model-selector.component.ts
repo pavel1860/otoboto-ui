@@ -13,6 +13,7 @@ export class CarModelSelector {
     
     @Input() initialValue = '';
     @Input() manufacturer; 
+    @Input() submitButton; 
 
     @Output() done: EventEmitter<any> = new EventEmitter();
 

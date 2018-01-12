@@ -5,6 +5,7 @@ import { Locations } from '../../services/locations.service';
 import 'rxjs/add/operator/switchMap';
 
 import { Otoboto } from '../../services/otoboto.service';
+import { DeviceService } from 'app/services/device.service';
 
 @Component({
   selector: 'wizard',
@@ -44,6 +45,8 @@ export class WizardComponent {
 
     steps;
 
+    isMobile; 
+
     @Input() loading = false;
 
     constructor(
@@ -51,10 +54,14 @@ export class WizardComponent {
         private route: ActivatedRoute,
         private zone: NgZone,
         private api: Otoboto,
-        private locations: Locations
+        private locations: Locations,
+        private device: DeviceService
     ) {}
 
     ngOnInit() {
+
+        this.isMobile = this.device.isMobile();
+
         this.route.queryParams.subscribe((params) => {
             if (params.step) {
                 this.step = params.step;
