@@ -63,7 +63,7 @@ export class WelcomeComponent {
       this.api.getFacebookLoginStatus().then(response => {
         console.log(response);
         if (response.status == 'connected') {
-          //console.log('is connected..trying to connect..');
+          console.log('is connected..trying to connect..');
           this.zone.run(() => {
             setTimeout(this.loginWithFacebook,0);
           })
