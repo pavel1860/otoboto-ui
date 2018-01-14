@@ -1,1 +1,1 @@
-<wizard-selector-autocomplete [items]='items' [submitButton]='submitButton' [valueToken]='initialValue' [icon]='icon' [placeholder]='placeholder' (done)='done.emit($event)' (value)='value.emit($event)'></wizard-selector-autocomplete>
+<wizard-selector-autocomplete [items]='items' [suggestOnDemand]='true' [searchSensitivity]='1' [limit]='"20"' [submitButton]='submitButton' [showOptionsMenu]='true' [valueToken]='initialValue' [icon]='icon' [placeholder]='placeholder' (done)='done.emit($event)' (value)='value.emit($event)'></wizard-selector-autocomplete>

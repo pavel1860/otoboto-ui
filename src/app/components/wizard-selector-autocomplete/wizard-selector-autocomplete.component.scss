@@ -115,7 +115,8 @@ input {
 
     .tag {
         background: #FFDA80;
-        border-radius: 10px; 
+        color: #706f6f;
+        border-radius: 200px; 
         margin-left: 10px;
         margin-bottom: 10px;
         padding-left: 15px;
@@ -128,14 +129,14 @@ input {
     }
 
     .list-items-panel {
-        max-height: 45vh;
+        max-height: 24vh;
         margin-top: 30px;
-        overflow: hidden;
+        overflow: auto;
         position: absolute;
-        left: -573px;
+        left: 0px;
         margin-top: 500px;
-        width: 300px;
-        right: 0;
+        width: 500px;
+        right: 0px;
         margin-left: auto;
         margin-right: auto;
         transition: all 1s ease-in-out;
@@ -143,16 +144,20 @@ input {
         flex-wrap: wrap;
     }
 
+    .list-items-panel:hover {
+        //overflow: auto;
+    }
+
     .show-list {
-        margin-top: -53px;
+        margin-top: 53px;
         transition: all 0.3s ease-out;
     }
 
     .tags-list {
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
         width: 100%;
-        overflow: hidden; 
     }
 
     .arrow-down {
@@ -172,7 +177,7 @@ input {
         margin-right: auto;
         height: 135px;
         position: fixed;
-        bottom: 39px;
+        bottom: 0px;
         opacity: 0;
         animation: 1s fadeIn;
         animation-fill-mode: forwards;

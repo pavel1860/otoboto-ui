@@ -6,6 +6,7 @@ $margin-from-caption: 38px;
     justify-content: flex-start;
     flex-direction: column; 
     overflow-x: hidden;   
+    //position: relative;
 }
 
 .pager-panel {
@@ -52,8 +53,8 @@ $margin-from-caption: 38px;
         margin-top: 20px;
     }  
     .pager-panel {  
-        order: 3;
-        margin-top: 52px;             
+        margin-bottom: 37px; 
+
     }
     .caption-panel {
         margin-top: 0;
