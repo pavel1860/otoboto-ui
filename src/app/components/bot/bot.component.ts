@@ -25,6 +25,7 @@ export class BotComponent {
   hiddenCountdown; 
   isMobile = true; 
   currentState; 
+  showBot = false;
 
   jump = false;
 
@@ -61,16 +62,28 @@ export class BotComponent {
 
     this.currentState = state; 
 
+    console.log(state);
+
     switch (state) {
-    
+
       case 'welcomeGuest':
 
-        this.show('defaultBoard');
+        console.log(this.isMobile); 
+        if (this.isMobile) {
+          this.showBot = false;
+        } else {
+          this.show('defaultBoard');
+        }
+        
         break;
     
       case 'welcomeUser':
 
-        this.show('defaultBoard');
+        if (this.isMobile) {
+          this.showBot = false;
+        } else {
+          this.show('defaultBoard');
+        }
         break; 
         
       case 'viewModeSearchResults':
@@ -80,15 +93,24 @@ export class BotComponent {
 
       case 'viewModeSearchFavorites':
 
+        if (this.isMobile) {
+          return;
+        }
+
         this.say('כאן נמצאים הרכבים שאהבת');
         break;   
 
       case 'viewModeUserSettings':
-
+        if (this.isMobile) {
+          return;
+        }
         this.say('כאן אפשר לשחק עם ההגדרות');
         break; 
 
       case 'userSettings': 
+        if (this.isMobile) {
+          return;
+        }
         this.show('userSettings');
         break;
 
@@ -142,7 +164,7 @@ export class BotComponent {
         caption += 'הסתרתי עבורך את כל רכבי ה';
         caption += info.data.manufacturer + ' ' + info.data.model;
         caption += '.';
-        this.say(caption, true);
+        this.say(caption, true, 2);
 
         break; 
 
@@ -152,7 +174,7 @@ export class BotComponent {
         caption += 'הסתרתי עבורך את כל רכבי ה';
         caption += info.data.manufacturer;
         caption += '.';
-        this.say(caption, true);
+        this.say(caption, true, 2);
 
         break;    
 
@@ -180,10 +202,16 @@ export class BotComponent {
   
   }
 
-  say(caption, attention?) {
+  say(caption, attention?, time?) {
     this.userResponseType = undefined;
     this.caption = caption;
     this.captionType = 'question';
+    this.showBot = true;
+    if (time) {
+      setTimeout(() => {
+        this.showBot = false;
+      }, time*1000);
+    }
     if (attention) {
       this.showMe.emit();
     } else {

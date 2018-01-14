@@ -30,13 +30,13 @@ $top-panel-height-mobile: 17vh;
 }
 
 .results-view {
-    margin-top: $top-panel-height-mobile;
-    padding-top: 72px;
+    margin-top: 30px;
+    padding-top: 0px;
 }
 
 .minimized {
     height: $top-panel-height-mobile;
-    top: -100px;
+    top: -200px;
 }
 
 .static {

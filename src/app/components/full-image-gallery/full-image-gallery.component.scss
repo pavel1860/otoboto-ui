@@ -11,17 +11,30 @@
 }
 
 .gallery {
-
-    height: 50%;
-    width: 50%;
     align-self: center;
     background: rgba(255,255,255,0.6);
 }
 
 .close-button {
     position: absolute;
-    top: 19%;
-    right: 22%;
+    top: 20px;
+    right: 20px;
     cursor: pointer;
     z-index: 9999;
+}
+
+@media only screen and (min-width : 768px) {
+    .gallery {
+        height: 50%;
+        width: 50%;
+        align-self: center;
+        background: rgba(255,255,255,0.6);
+    }
+    .close-button {
+        position: absolute;
+        top: 19%;
+        right: 22%;
+        cursor: pointer;
+        z-index: 9999;
+    }
 }

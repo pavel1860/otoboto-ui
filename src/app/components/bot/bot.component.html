@@ -1,5 +1,5 @@
 
-<div *ngIf='isMobile' class='horizontal-wrapper'>
+<div *ngIf='isMobile' class='horizontal-wrapper' [ngClass]='{"show-bot-mobile": showBot}'>
 
     <div class='horizontal-right-panel'>
         <bot-avatar class='bot-avatar'></bot-avatar>
@@ -10,7 +10,7 @@
         
         </div>
         <div class='speach-panel' [ngClass]='{"speach-panel-full": attention}'>
-            <bot-speach [caption]='caption' [captionType]='captionType' [userResponseType]='userResponseType' [operationCode]='operationCode' [placeholder]='inputPlaceholder' (request)='request.emit({code: $event})' (userResponse)='request.emit({code: operationCode, data: operationData})'></bot-speach>
+            <bot-speach [caption]='caption' [captionType]='captionType' [userResponseType]='userResponseType' [operationCode]='operationCode' [placeholder]='inputPlaceholder' (request)='request.emit({code: $event})' (userResponse)='processUserResponse($event)'></bot-speach>
         </div>            
     </div>
         

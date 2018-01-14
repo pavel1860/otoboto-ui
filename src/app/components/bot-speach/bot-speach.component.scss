@@ -30,6 +30,12 @@
     width: 73px;
 }
 
+.buttons-panel-double {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 7px;
+}
+
 @media only screen and (min-width : 768px) {
 
     .wrapper {
