@@ -51,8 +51,10 @@
 }
 
 .action-box {
-    height: 28.5px;
-    width: 28.5px;
+    //height: 28.5px;
+    //width: 28.5px;
+    height: 32px;
+    width: 32px;
     cursor: pointer;
     align-self: center;
 }
@@ -147,7 +149,8 @@ a {
         margin-top: -200px;
 
         .header {
-            height: 79px;
+            height: 57px;
+            padding-top: 6px;
             width: 100%;
             box-sizing: border-box;
             border-top: 3px solid #F6F6F6;
@@ -187,7 +190,7 @@ a {
         z-index: 9;
         right: 20px;    
         justify-content: space-between;
-        height: 61px;
+        height: 74px;
         opacity: 0;
         transition: all 0.3s ease-in-out;
     }
@@ -201,4 +204,3 @@ a {
     }
 
 }
-

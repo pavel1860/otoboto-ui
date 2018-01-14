@@ -13,28 +13,36 @@ export class CarInfoComponent {
     carInfoSpec;
 
     ngOnInit() {
-        this.carInfoSpec = [
-            {
+        this.carInfoSpec = [];
+
+        if (this.data.age) {
+            this.carInfoSpec.push({
                 title: 'גיל הרכב',
-                value: this.data.age >= 1 ? Number((this.data.age).toFixed(1)) + " שנים " : Number((this.data.age/10).toFixed(0)) + " חודשים "
-            },
-            {
+                value: this.data.age >= 1 ? Number((this.data.age).toFixed(1)) + " שנים " : Number((this.data.age/10).toFixed(0)) + " חודשים "                
+            })
+        }
+
+        if (this.data.current_ownership) {
+            this.carInfoSpec.push({
                 title: 'בעלות נוכחית',
-                value: this.data.current_ownership
-            },
-            {
+                value: this.data.current_ownership              
+            })
+        }
+
+        if (this.data.previous_ownership) {
+            this.carInfoSpec.push({
                 title: 'בעלות קודמת',
-                value: this.data.previous_ownership
-            },  
-            {
+                value: this.data.previous_ownership           
+            })
+        }
+        
+        if (this.data.test_expires) {
+            this.carInfoSpec.push({
                 title: 'תאריך תפוגת הטסט',
-                value: this.data.test_expires
-            }    
-            //{
-            //    title: 'חודש עלייה לכביש',
-            //    value: this.data.month_released
-            //}                          
-        ];   
+                value: this.data.test_expires       
+            })
+        }    
+
     }
 
 }
