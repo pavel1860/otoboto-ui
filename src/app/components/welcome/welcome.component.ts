@@ -51,7 +51,8 @@ export class WelcomeComponent {
     private route: ActivatedRoute,
     private api: Otoboto,
     private local: LocalService,
-    private device: DeviceService
+    private device: DeviceService,
+    private zone: NgZone
   ) {
     this.isMobile = device.isMobile();
   }
@@ -62,7 +63,11 @@ export class WelcomeComponent {
       this.api.getFacebookLoginStatus().then(response => {
         console.log(response);
         if (response.status == 'connected') {
-          setTimeout(this.loginWithFacebook,0);
+          //console.log('is connected..trying to connect..');
+          this.zone.run(() => {
+            setTimeout(this.loginWithFacebook,0);
+          })
+            
         } else {
           this.displayWizard();
         }
