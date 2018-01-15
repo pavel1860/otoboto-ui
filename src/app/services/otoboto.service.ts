@@ -67,7 +67,7 @@ export class Otoboto {
         this.requestOptions = new RequestOptions({ headers: headers, withCredentials: true });          
     }  
 
-    loginWithFB = () => {
+    loginWithFB = (token?) => {
 
         const options: LoginOptions = {
             scope: 'public_profile,user_friends,email,pages_show_list',
@@ -75,11 +75,19 @@ export class Otoboto {
             enable_profile_selector: true
         }; 
 
-        return this.fb.login(options).then(userLoginData => {
-            this.local.setAccessToken(userLoginData.authResponse.accessToken);
+        console.log('token is ', token);
+
+        if (token) {
             this.setHeaders(false);
-            return;
-        }).then(this.connect).then(this.getUserFacebookProfile);
+            return this.connect().then(this.getUserFacebookProfile);
+        } else {
+            return this.fb.login(options).then(userLoginData => {
+                console.log(userLoginData);
+                this.local.setAccessToken(userLoginData.authResponse.accessToken);
+                this.setHeaders(false);
+                return;
+            }).then(this.connect).then(this.getUserFacebookProfile);
+        }
 
     }
 
@@ -99,6 +107,7 @@ export class Otoboto {
     }
 
     getUserFacebookProfile = (userData) => {
+        console.log(userData);
         if (userData) {
             return new Promise((resolve, reject) => {
                 this.fb.api('/me?fields=id,picture').then((userProfileData)=> {

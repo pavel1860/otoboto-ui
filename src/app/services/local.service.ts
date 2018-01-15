@@ -9,6 +9,12 @@ export class LocalService {
 
     getAccessToken() {
         return localStorage.getItem('access_token');
+        /*
+        let res = localStorage.getItem('access_token');
+        if (typeof res == 'string') {
+            return res;
+        } 
+        */
     }
 
     setUserProfileData(userLoginData) {

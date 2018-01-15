@@ -59,14 +59,15 @@ export class WelcomeComponent {
 
   ngOnInit() {
 
-    if (this.local.getAccessToken()) {
+    let token = this.local.getAccessToken(); 
+    console.log(token);
+    if (token) {
+      console.log(); 
       this.api.getFacebookLoginStatus().then(response => {
         console.log(response);
         if (response.status == 'connected') {
           console.log('is connected..trying to connect..');
-          this.zone.run(() => {
-            setTimeout(this.loginWithFacebook,0);
-          })
+          this.loginWithFacebook(token);
             
         } else {
           this.displayWizard();
@@ -89,24 +90,78 @@ export class WelcomeComponent {
     
   }
 
-  loginWithFacebook = () => {
+  loginWithFacebook = (token?) => {
+    console.log('sdsds', token);
     this.loading = true; 
-    this.api.loginWithFB().then(response => {
+
+    this.api.loginWithFB(token).then(response => {
+
+      console.log(response); 
+
       this.userProfileData = response['userProfileData'];
+
       if (response['get_search_params']) {
+
+        // User is new. Try to update his wizard results. 
+        console.log('user is new..sending wizard results...');
+
+        this.api.updateUserSearchParams(this.wizardResults, true).subscribe(response => {
+
+          console.log(response);
+
+          if (response['get_search_params'] || response.status == 'fail') {
+
+            console.log('case 1');
+
+            // wizard results are not full. Send him (or keep him) to wizard. 
+            this.loading = false;
+            this.router.navigate(['./welcome'], {
+              queryParams: {isNewUser: true},
+              queryParamsHandling: "merge"
+            });
+            this.displayWizard(); 
+
+          } else if (response['get_results']) {
+
+            //wizard results are full. Show him (or keep him) in results. 
+            console.log('case 2');
+            this.router.navigate(['./welcome']); 
+            this.displayResults();  
+            this.loading = false;             
+
+          }
+
+        })
+
+        /*
         this.loading = false;
         this.router.navigate(['./welcome'], {
           queryParams: {isNewUser: true},
           queryParamsHandling: "merge"
         });
         this.displayWizard(); 
+        */
+
       } else if (response['get_results']) {
-        this.router.navigate(['./welcome']); 
+        
+        // User is known. show him results. 
+        console.log('case 3');
+
         this.displayResults();  
-        this.loading = false;    
+        this.loading = false; 
+        /*
+        setTimeout(() => {
+          this.router.navigate(['./welcome']); 
+        }, 0);
+        */
+
       } else {
+
+        console.log('case 4');
+
         this.loading = false;
         console.log('An unexpected error occured');
+        
       }
     }, e => {
       console.log(e);
@@ -142,6 +197,7 @@ export class WelcomeComponent {
 
   processResults = (wizardResults) => {
     this.loading = true;
+    this.wizardResults = wizardResults;
     if (this.userProfileData) {
       console.log(wizardResults);
       this.api.updateUserSearchParams(wizardResults, this.isNewUser).subscribe(response => {
@@ -166,7 +222,7 @@ export class WelcomeComponent {
     this.showWizard = false;
     this.minimizeControlPanel = true; 
     this.setSearchFilters(); 
-
+    console.log('in displayResults');
     setTimeout(() => {
       this.showResults = true; 
       this.resultsViewMode = 'results';
