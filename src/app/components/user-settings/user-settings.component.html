@@ -2,7 +2,13 @@
 
     <div *ngIf='!isGuest' class='user-settings-menu'>
 
-        <div class='item text-secondary otoboto-frame otoboto-fill-negative disabled' (click)='newSearch.emit()'>
+        <div class='item text-secondary otoboto-frame otoboto-fill-negative' (click)='newSearch.emit()'>
+            <div class='item-title'>
+                חיפוש חדש
+            </div>
+        </div>
+
+        <div class='item text-secondary otoboto-frame otoboto-fill-negative disabled'>
             <div class='item-title'>
                 פרסם מודעה
             </div>
