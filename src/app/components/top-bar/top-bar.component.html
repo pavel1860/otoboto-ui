@@ -1,20 +1,38 @@
 <div class='top-bar'>
-    <div *ngIf='!userProfileData' class='logo-panel'>
+    <div class='logo-panel'>
         otoboto
     </div>
     <div class='login-panel'>
-        <div *ngIf='loading' class='spinner-box'>
-            <div class='spinner'></div>
-        </div>
-        <div *ngIf='!loading'>
-            <button *ngIf='!userProfileData' class='facebook-login-button' (click)='loginRequest.emit($event)'>
+        <div style='position:relative'>
+            <button *ngIf='!loading && !userProfileData' class='facebook-login-button' (click)='loginRequest.emit($event)'>
                 <img class='facebook-login-icon' [src]='"../../assets/facebook.svg"'/>
                 התחבר
             </button>
-            <button *ngIf='userProfileData && viewMode=="wizard"' class='white-button back-button' (click)='showResults.emit($event)'>
+            <button *ngIf='userProfileData && viewMode=="wizard" && haveResults' class='white-button back-button' (click)='showResults.emit($event)'>
                 חזור לתוצאות 
-            </button>            
-            <!--img *ngIf='userProfileData' class='userAvatarImage' [src]='userProfileData.picture.data.url'/-->
+            </button>       
+            <div *ngIf='loading' class='spinner-box'>
+                <div class='spinner white'></div>
+            </div>     
+            <img *ngIf='userProfileData && !loading && viewMode=="wizard"' class='user-avatar-image' [src]='userProfileData.picture.data.url' (click)='block($event);showUserMenu=true'/>
+            <div class='user-menu' [ngClass]='{show:showUserMenu}' [clickOutside] (clickedOutside)='showUserMenu=false'>
+                <div class='item'>
+                    <div class='icon'>
+
+                    </div>
+                    <div class='caption'>
+                        פרסם מודעה
+                    </div>
+                </div>
+                <div class='item' (click)='showUserMenu=false; logoutRequest.emit($event)'>
+                    <div class='icon'>
+
+                    </div>
+                    <div class='caption'>
+                        התנתק
+                    </div>                    
+                </div>
+            </div>
         </div>
     </div>    
 </div> 

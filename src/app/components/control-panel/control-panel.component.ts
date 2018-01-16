@@ -17,8 +17,10 @@ export class ControlPanelComponent {
   @Input() minimize; 
   @Input() viewMode;
   @Input() globalViewMode; 
+  @Input() haveResults; 
 
   @Output() loginRequest: EventEmitter<any> = new EventEmitter();
+  @Output() logoutRequest: EventEmitter<any> = new EventEmitter();
   @Output() viewModeChange: EventEmitter<any> = new EventEmitter();
   @Output() reset: EventEmitter<any> = new EventEmitter();
   @Output() showUserSettingsDropDown: EventEmitter<any> = new EventEmitter();

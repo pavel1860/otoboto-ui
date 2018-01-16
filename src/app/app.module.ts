@@ -55,6 +55,8 @@ import { TimeAgoPipe } from './pipes/timeAgo.pipe';
 import { AuthGuard } from './services/auth-guard.service';
 import { Auth } from './services/auth.service';
 
+import { ClickOutsideDirective } from './directives/click-outside.directive';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FacebookModule } from 'ngx-facebook';
@@ -108,7 +110,8 @@ const SWIPER_CONFIG: SwiperConfigInterface = {
     WizardSelectorAutocomplete,
     CarManufacturerSelector,
     CarModelSelector,
-    FiltersComponent
+    FiltersComponent,
+    ClickOutsideDirective
   ],
   imports: [
     BrowserModule,

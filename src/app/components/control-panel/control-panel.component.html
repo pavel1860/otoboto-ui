@@ -1,7 +1,15 @@
 <div class='control-panel otoboto-blue'>
 
     <div class='top-bar'>
-        <top-bar [loading]='loading' [userProfileData]='userProfileData' [viewMode]='globalViewMode' (loginRequest)='loginRequest.emit()' (showResults)='showResults.emit()'></top-bar>
+        <top-bar 
+            [loading]='loading' 
+            [userProfileData]='userProfileData' 
+            [viewMode]='globalViewMode' 
+            [haveResults]='haveResults' 
+            (loginRequest)='loginRequest.emit()' 
+            (showResults)='showResults.emit()'
+            (logoutRequest)='logoutRequest.emit()'>
+        </top-bar>
     </div>
     
     <img class='cover-desktop desktop' src='../../assets/otoboto-avatar-desktop.svg' (click)='reset.emit()' [ngClass]='{"hidden": minimize}'/>

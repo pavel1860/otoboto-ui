@@ -32,9 +32,11 @@ export class WelcomeComponent {
   userProfileData;
   uid;  
   loading = false; 
+  loadingWizard = false;
   isNewUser;
   isGuest;
   globalViewMode; 
+  haveResults;
 
   showWizard = false;
   showResults = false; 
@@ -84,6 +86,10 @@ export class WelcomeComponent {
       if (params.isGuest) {
         this.isGuest = params.isGuest;
         this.displayResults();
+      } else if (params.myResults) {
+        this.displayResults();
+      } else {
+        this.displayWizard();
       }
       
     });   
@@ -119,15 +125,22 @@ export class WelcomeComponent {
               queryParams: {isNewUser: true},
               queryParamsHandling: "merge"
             });
+            this.haveResults = false;
             this.displayWizard(); 
 
           } else if (response['get_results']) {
 
             //wizard results are full. Show him (or keep him) in results. 
             console.log('case 2');
-            this.router.navigate(['./welcome']); 
-            this.displayResults();  
-            this.loading = false;             
+            this.haveResults = true;
+            this.loading = false;
+            this.router.navigate(['./welcome'], {
+              queryParams: {myResults: true},
+              queryParamsHandling: "merge"
+            }); 
+            
+            //this.displayResults();  
+                         
 
           }
 
@@ -145,10 +158,11 @@ export class WelcomeComponent {
       } else if (response['get_results']) {
         
         // User is known. show him results. 
-        console.log('case 3');
-
-        this.displayResults();  
-        this.loading = false; 
+        this.haveResults = true;
+        this.loading = false;
+        this.router.navigate(['./welcome'], {
+          queryParams: {myResults: true}
+        }); 
         /*
         setTimeout(() => {
           this.router.navigate(['./welcome']); 
@@ -158,6 +172,7 @@ export class WelcomeComponent {
       } else {
 
         console.log('case 4');
+        this.logout();
 
         this.loading = false;
         console.log('An unexpected error occured');
@@ -196,13 +211,13 @@ export class WelcomeComponent {
   }
 
   processResults = (wizardResults) => {
-    this.loading = true;
+    this.loadingWizard = true;
     this.wizardResults = wizardResults;
     if (this.userProfileData) {
       console.log(wizardResults);
       this.api.updateUserSearchParams(wizardResults, this.isNewUser).subscribe(response => {
         //this.router.navigate(['./results']);  
-        this.loading = false;
+        this.loadingWizard = false;
         this.displayResults();
       });
     } else {
@@ -210,8 +225,8 @@ export class WelcomeComponent {
         queryParams: {isGuest: true},
         queryParamsHandling: "merge"
       });
-      this.loading = false;
-      this.displayResults();     
+      this.loadingWizard = false;
+      //this.displayResults();     
     }
     
   }

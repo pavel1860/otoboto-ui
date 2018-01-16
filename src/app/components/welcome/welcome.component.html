@@ -1,6 +1,20 @@
 <div *ngIf='true' class='wrapper'>  
-    <control-panel class='control-panel' [loading]='loading' [userProfileData]='userProfileData' [globalViewMode]='globalViewMode' [minimize]='minimizeControlPanel' [viewMode]='resultsViewMode' (showResults)='displayResults()' (loginRequest)='loginWithFacebook()' (showUserSettingsDropDown)='bot.state("userSettings")' (viewModeChange)='setViewMode($event)' (reset)='reset()' [ngClass]='{minimized: minimizeControlPanel}'></control-panel>
-    <wizard *ngIf='showWizard' class='wizard' [loading]='loading' (done)='processResults($event)'></wizard>
+    <control-panel class='control-panel' 
+        [loading]='loading' 
+        [userProfileData]='userProfileData' 
+        [globalViewMode]='globalViewMode' 
+        [haveResults]='haveResults' 
+        [minimize]='minimizeControlPanel' 
+        [viewMode]='resultsViewMode' 
+        (showResults)='displayResults()' 
+        (loginRequest)='loginWithFacebook()'
+        (logoutRequest)='logout()' 
+        (showUserSettingsDropDown)='bot.state("userSettings")' 
+        (viewModeChange)='setViewMode($event)' 
+        (reset)='reset()' 
+        [ngClass]='{minimized: minimizeControlPanel}'>
+    </control-panel>
+    <wizard *ngIf='showWizard' class='wizard' [loading]='loadingWizard' (done)='processResults($event)'></wizard>
     <results-view #results class='results-view' *ngIf='showResults' (botState)='bot.state($event.state, $event.data)' (userProfileDataChanged)='userProfileData = $event' [@divState]></results-view>
     <user-settings *ngIf='resultsViewMode == "user"' class='user-settigns' [ngClass]='{"user-settings-visible": showUserSettings}' [userProfileData]='userProfileData' (logout)='logout()' (newSearch)='newSearch()'></user-settings>
     <div class='is-hidden' [ngClass]='{visible: minimizeControlPanel}'>

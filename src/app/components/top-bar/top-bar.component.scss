@@ -1,11 +1,15 @@
 .top-bar {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 20px;
 }
 
-.userAvatarImage {
+
+
+.user-avatar-image {
     border-radius: 100%; 
+    width: 42px;
+    cursor: pointer;
 }
 
 .logo-panel {
@@ -22,4 +26,75 @@
     display: flex;
     justify-content: center;
     cursor: pointer;
+    position: absolute;
+    right: -136px;
+    height: 37px;
+    top: 2px;
+}
+
+.user-menu {
+    background: #f6f6f6;
+    padding: 20px;
+    border-radius: 6px;
+    color: #3c3c3c;
+    width: 150px;
+    position: absolute;
+    left: 0;
+    right: -152px;
+    top: 63px;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(-2em);
+
+    transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s, z-index 0s linear 0.01s;
+    opacity: 0;
+    visibility: hidden;
+    .item {
+        display: flex;
+        height: 36px;
+        justify-content: center;
+        cursor: pointer;
+        .caption {
+            line-height: 36px;
+        }
+    }
+
+}
+
+.show {
+    visibility: visible; /* shows sub-menu */
+    opacity: 1;
+    z-index: 9999999;
+    transform: translateY(0%);
+    transition-delay: 0s, 0s, 0.3s; /* this removes the transition delay so the menu will be visible while the other styles transition */
+}
+
+.user-menu:before {
+    left: 115px;
+}
+
+.user-menu:before {
+    border: solid transparent;
+    border-bottom-color: #f6f6f6;
+    border-width: 6px;
+    bottom: 100%;
+    content: " ";
+    height: 0;
+    left: 50%;
+    margin-left: -82px; 
+    pointer-events: none;
+    position: absolute;
+    width: 0;
+}
+
+@media only screen and (min-width : 768px) {
+    .top-bar {
+        justify-content: space-around;
+    }
+    .user-menu {
+        right: -72px;
+    }
+    .user-menu:before {
+        margin-left: -6px;
+    }
 }

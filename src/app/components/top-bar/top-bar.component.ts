@@ -10,8 +10,16 @@ export class TopBarComponent {
 
   @Input() userProfileData; 
   @Input() loading; 
+  @Input() haveResults; 
   @Input() viewMode; 
   @Output() loginRequest: EventEmitter<any> = new EventEmitter();
+  @Output() logoutRequest: EventEmitter<any> = new EventEmitter();
   @Output() showResults: EventEmitter<any> = new EventEmitter();
+
+  showUserMenu = false;
+
+  block(e) {
+    e.stopPropagation();
+  }
 
 }
