@@ -9,7 +9,7 @@
         (showResults)='displayResults()' 
         (loginRequest)='loginWithFacebook()'
         (logoutRequest)='logout()' 
-        (showUserSettingsDropDown)='bot.state("userSettings")' 
+        (showUserSettingsDropDown)='userProfileData ? bot.state("userSettings") : bot.state("suggestLogin")' 
         (viewModeChange)='setViewMode($event)' 
         (reset)='reset()' 
         [ngClass]='{minimized: minimizeControlPanel}'>

@@ -45,7 +45,7 @@ export class BotComponent {
   processUserResponse(answare) {
     if (answare == 'yes') {
       this.request.emit({code: this.operationCode, data: this.operationData}); 
-    }
+    } 
     if (answare == 'no') {
       this.state('welcomeGuest');
     }

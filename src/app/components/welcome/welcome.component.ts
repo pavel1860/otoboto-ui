@@ -288,6 +288,10 @@ export class WelcomeComponent {
       this.logout(); 
       return;
     }
+    if (request.code == 'login') {
+      this.loginWithFacebook(); 
+      return;
+    }    
   }
 
 }

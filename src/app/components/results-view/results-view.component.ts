@@ -85,8 +85,7 @@ export class ResultsViewComponent {
 
         this.operations = {
             hideManufacturer: this.hideManufacturer, 
-            hideModel: this.hideModel,
-            login: this.login
+            hideModel: this.hideModel
         }             
 
     }
