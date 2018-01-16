@@ -10,9 +10,9 @@
             <img class='navigation-icon favorites' [src]='viewMode=="favorites" ? "../../assets/navigation-button-favorites-active.svg" : "../../assets/navigation-button-favorites.svg"'/>
         </div> 
     </div>
-    <div class='navigation-section' (click)='viewMode!="user" && setViewMode.emit("user")'>    
+    <div class='navigation-section' (click)='viewMode!="user" && (userProfileData ? setViewMode.emit("user") : showUserSettingsDropDown.emit())'>    
         <div class='navigation-button'>
-            <img class='avatar' [src]="userProfileData ? userProfileData?.picture?.data?.url : '../../assets/avatar-159236_640.png'" [ngClass]='{adjust: !userProfileData}'/>
+            <img class='avatar' [src]="userProfileData ? userProfileData?.picture?.data?.url : '../../assets/avatar-159236_640.png'"/>
         </div>
     </div>
 
@@ -33,7 +33,7 @@
 
     <div class='navigation-section' (click)='viewMode!="user" && showUserSettingsDropDown.emit()'>    
         <div class='navigation-button'>
-            <img class='avatar' [src]="userProfileData ? userProfileData?.picture?.data?.url : '../../assets/avatar-159236_640.png'" [ngClass]='{adjust: !userProfileData}'/>
+            <img class='avatar' [src]="userProfileData ? userProfileData?.picture?.data?.url : '../../assets/avatar-159236_640.png'"/>
         </div>
     </div>
 
