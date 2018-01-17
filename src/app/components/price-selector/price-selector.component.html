@@ -2,7 +2,7 @@
 
     <div class='input-inner-desktop'>
         <input-box class='input-box' [icon]='"../../assets/price-icon-color.svg"' (keyup.enter)="value && done.emit(value)">
-            <input type="number" pattern="[0-9]*" class='text-primary' placeholder="הכנס מחיר" onkeypress='return event.charCode >= 48 && event.charCode <= 57' [value]="valueToken" [formControl]="valueControler"/>
+            <input class='text-primary' placeholder="הכנס מחיר" onkeypress='return event.charCode >= 48 && event.charCode <= 57' [value]="valueToken" [formControl]="valueControler"/>
         </input-box>
     </div>
 
