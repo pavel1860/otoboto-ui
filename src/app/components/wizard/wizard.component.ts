@@ -133,7 +133,7 @@ export class WizardComponent {
 
         this.steps.push({
             inputType: "priceSelector",
-            caption: "הכנס את התקציב",
+            caption: "הכנס תקציב משוער בשקלים",
             continueButton: true,
             data: 'price'           
         });
@@ -144,7 +144,7 @@ export class WizardComponent {
             continueButton: true,
             data: 'city',
             icon: '../../assets/location-icon-color.svg',
-            placeholder: 'הכנס עיר'         
+            placeholder: 'חפש עיר'         
         });
 
         if (category == 'specific') {

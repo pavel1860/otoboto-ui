@@ -21,13 +21,16 @@ export class PriceSelectorComponent {
     
     ngOnInit() {
         if (this.valueToken){
-            this.value = parseInt(this.valueToken.replace(/\₪|,/g, ''));
+            this.value = parseInt(this.valueToken.toString().replace(/\₪|,/g, ''));
         }
         if(!this.valueToken) {
             this.valueToken = '';
         }
         this.valueControler.valueChanges.subscribe(token => {
-                let stripped = token.replace(/\₪|,/g, '');
+            this.value = token;
+            this.valueToken = token.toString();
+            /*
+                let stripped = token.toString().replace(/\₪|,/g, '');
                 if (isNaN(stripped)) {
                     this.valueToken = '';
                 } else {
@@ -39,7 +42,9 @@ export class PriceSelectorComponent {
                         this.value = as_num;
                     }
                 }
-            });  
+            */  
+            });
+           
     }
 
     block(e) {
