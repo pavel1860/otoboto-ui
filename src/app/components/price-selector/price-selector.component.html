@@ -2,7 +2,7 @@
 
     <div class='input-inner-desktop'>
         <input-box class='input-box' [icon]='"../../assets/price-icon-color.svg"' (keyup.enter)="value && done.emit(value)">
-            <input type='text' class='text-primary' placeholder="הכנס מחיר" onkeypress='return event.charCode >= 48 && event.charCode <= 57' [value]="valueToken" [formControl]="valueControler"/>
+            <input type="number" pattern="[0-9]*" class='text-primary' placeholder="הכנס מחיר" onkeypress='return event.charCode >= 48 && event.charCode <= 57' [value]="valueToken" [formControl]="valueControler"/>
         </input-box>
     </div>
 
@@ -10,14 +10,14 @@
 
         <div class='input-box-panel'>
             <input-box class='input-box' [icon]='"../../assets/price-icon-color.svg"' (click)='openInputPane()'>
-                <input type='text' class='text-primary' placeholder="הכנס מחיר" [value]="valueToken"/>
+                <input type="number" pattern="[0-9]*" class='text-primary' placeholder="הכנס מחיר" [value]="valueToken"/>
             </input-box> 
         </div>   
         
         <input-pane #inputPane (clicked)='inputPane.close()' (keyup.enter)="inputPane.close()">
             <div class='input-box-panel full-size'>
                 <input-box class='input-box' (click)='block($event);'>
-                    <input #input class='text-primary' type='text' placeholder="הכנס מחיר" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="7" [value]="valueToken" [formControl]="valueControler" autofocus/>
+                    <input type="number" pattern="[0-9]*" #input class='text-primary' type='text' placeholder="הכנס מחיר" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="7" [value]="valueToken" [formControl]="valueControler" autofocus/>
                 </input-box>  
             </div>  
 

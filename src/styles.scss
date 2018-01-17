@@ -11,6 +11,8 @@ body {
     padding: 0;
     overflow-y: scroll;
     background: $backdrop;
+    width: 100vw;
+    height: 100vh;
 }
 
 * {
@@ -124,6 +126,11 @@ body {
 
 @media only screen and (min-width : 768px) {
 
+    .body {
+        width: unset;
+        height: unset;
+    }
+    
     .mobile {
         display: none;
     }
