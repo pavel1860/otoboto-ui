@@ -1,8 +1,7 @@
-<div class='wrapper'>
+<div *ngIf='!loading' class='wrapper'>
 
     <div class='pager-panel'>
-        <pager *ngIf='!loading' class='pager' [length]='steps.length' [activeStep]='step' (selectedStep)='goToStep($event)'></pager>
-        <div *ngIf='loading' class="spinner"></div>
+        <pager class='pager' [length]='steps.length' [activeStep]='step' (selectedStep)='goToStep($event)'></pager>
     </div>
 
     <div class='caption-panel'>
@@ -20,3 +19,5 @@
     </div>
 
 </div>
+
+<div *ngIf='loading' class="spinner"></div>
