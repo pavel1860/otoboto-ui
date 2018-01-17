@@ -11,6 +11,7 @@ export class TopBarComponent {
   @Input() userProfileData; 
   @Input() loading; 
   @Input() haveResults; 
+  @Input() showAvatar; 
   @Input() viewMode; 
   @Output() loginRequest: EventEmitter<any> = new EventEmitter();
   @Output() logoutRequest: EventEmitter<any> = new EventEmitter();

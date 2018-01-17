@@ -5,7 +5,7 @@
     width: 100vw;
     height: 100vh;
     background: rgba(131, 151, 172, .88);
-    z-index: 999;
+    z-index: 999999999;
     display: flex;
     justify-content: center;
 }
@@ -20,7 +20,7 @@
     top: 20px;
     right: 20px;
     cursor: pointer;
-    z-index: 9999;
+    z-index: 99999999999;
 }
 
 @media only screen and (min-width : 768px) {
@@ -35,6 +35,6 @@
         top: 19%;
         right: 22%;
         cursor: pointer;
-        z-index: 9999;
+        z-index: 99999999999;
     }
 }

@@ -70,6 +70,23 @@
         box-sizing: border-box;
     }
 
+    .bubble {
+        position: relative;
+    }
+
+    .bubble:before {
+        border: solid transparent;
+        border-bottom-color: #fff;
+        border-width: 16px;
+        bottom: 100%;
+        content: " ";
+        height: 0;
+        left: 46%;
+        pointer-events: none;
+        position: absolute;
+        width: 0;
+    }
+
     .user-response-panel {
         margin-top: 40px;
         display: flex;

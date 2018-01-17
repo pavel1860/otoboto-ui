@@ -16,6 +16,7 @@ export class NavigationComponent {
   @Output() showUserSettingsDropDown: EventEmitter<any> = new EventEmitter();
 
   isMobile;
+  notifyFavorites = false;
 
   constructor(private device: DeviceService) {}
 
@@ -23,6 +24,14 @@ export class NavigationComponent {
 
     this.isMobile = this.device.isMobile();
 
+  }
+
+  notifyAddedToFavorites() {
+    console.log('sd');
+    //this.notifyFavorites = true; 
+    setInterval(() => {
+      //this.notifyFavorites = false;
+    }, 500);
   }
 
 }

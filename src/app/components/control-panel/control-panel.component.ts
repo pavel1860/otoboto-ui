@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { Otoboto } from '../../services/otoboto.service';
 import { DeviceService } from 'app/services/device.service';
 
@@ -10,6 +10,8 @@ import { DeviceService } from 'app/services/device.service';
 
 export class ControlPanelComponent {
 
+  @ViewChild('nav') nav;
+
   isMobile;
   
   @Input() loading; 
@@ -18,7 +20,8 @@ export class ControlPanelComponent {
   @Input() viewMode;
   @Input() globalViewMode; 
   @Input() haveResults; 
-
+  @Input() showAvatar; 
+  
   @Output() loginRequest: EventEmitter<any> = new EventEmitter();
   @Output() logoutRequest: EventEmitter<any> = new EventEmitter();
   @Output() viewModeChange: EventEmitter<any> = new EventEmitter();
@@ -32,6 +35,10 @@ export class ControlPanelComponent {
 
   getAllUsers() {
 
+  }
+
+  notifyAddedToFavorites() {
+    this.nav.notifyAddedToFavorites(); 
   }
 
   clear() {}

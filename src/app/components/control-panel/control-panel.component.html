@@ -6,6 +6,7 @@
             [userProfileData]='userProfileData' 
             [viewMode]='globalViewMode' 
             [haveResults]='haveResults' 
+            [showAvatar]='showAvatar'
             (loginRequest)='loginRequest.emit()' 
             (showResults)='showResults.emit()'
             (logoutRequest)='logoutRequest.emit()'>
@@ -26,7 +27,7 @@
         </div>              
     </div-->
 
-    <navigation class='navigation-bar' [userProfileData]='userProfileData' [viewMode]='viewMode' [ngClass]='{visible: minimize}' (setViewMode)='viewModeChange.emit($event)' (showUserSettingsDropDown)='showUserSettingsDropDown.emit()'></navigation>
+    <navigation #nav class='navigation-bar' [userProfileData]='userProfileData' [viewMode]='viewMode' [ngClass]='{visible: minimize}' (setViewMode)='viewModeChange.emit($event)' (showUserSettingsDropDown)='showUserSettingsDropDown.emit()'></navigation>
 
     <!--div class='fog' [ngClass]='{visible: minimize}'>
         

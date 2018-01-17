@@ -30,6 +30,7 @@ export class ResultsViewComponent {
     } 
 
     @Output() botState: EventEmitter<any> = new EventEmitter();
+    @Output() addToFavorites: EventEmitter<any> = new EventEmitter();
     @Output() viewModeChanged: EventEmitter<any> = new EventEmitter();
     @Output() userProfileDataChanged: EventEmitter<any> = new EventEmitter();
      
@@ -108,10 +109,11 @@ export class ResultsViewComponent {
     loadGuestData(params) {
         this.api.loadGuestData(params).subscribe(response => {
             this.searchResults = response;
-            this.noResults = !response || response.length == 0;
+            this.noResults = !response || this.searchResults.length == 0;
             this.loading = false;
         }, e => {
-            this.noResults = true;
+            this.noResults = this.searchResults.length == 0;
+            this.searchResultsList.close();
             this.loading = false;
         }); 
     }
@@ -120,10 +122,11 @@ export class ResultsViewComponent {
         this.api.loadUserData(this.searchResultsPage).subscribe(response => {
             this.searchResults = this.searchResults.concat(response); 
             this.searchResultsPage++;
-            this.noResults = !response || response.length == 0;
+            this.noResults = !response || this.searchResults.length == 0;
             this.loading = false;
         }, e => {
-            this.noResults = true;
+            this.noResults = this.searchResults.length == 0;
+            this.searchResultsList.close();
             this.loading = false;
         });        
     }
@@ -154,6 +157,7 @@ export class ResultsViewComponent {
         this.api.like(item.car_document_id).subscribe(response => {});
         this.hiddenSearchResults.push(item.car_document_id);
         this.setBotState('welcomeUser');
+        this.addToFavorites.emit(item);
     }
 
     dislikeItem = (item) => {

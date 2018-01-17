@@ -62,7 +62,7 @@ export class FiltersComponent {
                 id: 'category',
                 title: 'סוג הרכב',
                 icon: "../assets/filter-car.svg",
-                allowModify: true,
+                allowModify: false,
                 value: this.config.CAR_TYPES.find(item => item.id == parameters.category).caption               
             });
 
@@ -74,7 +74,7 @@ export class FiltersComponent {
                 id: 'price',
                 title: 'תקציב',
                 icon: "../../assets/filter-price.svg",
-                allowModify: true,
+                allowModify: false,
                 value: parameters.price          
             });
 
@@ -86,7 +86,7 @@ export class FiltersComponent {
                 id: 'city',
                 title: 'מיקום',
                 icon: "../../assets/filter-location.svg",
-                allowModify: true,
+                allowModify: false,
                 value: parameters.city       
             });
 
@@ -98,7 +98,7 @@ export class FiltersComponent {
                 id: 'specific',
                 title: parameters.manufacturer + ' ' + parameters.model,
                 icon: "../assets/filter-car.svg",
-                allowModify: true,
+                allowModify: false,
                 value: parameters.manufacturer + ' ' + parameters.model       
             });
 

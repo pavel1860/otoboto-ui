@@ -1,6 +1,6 @@
 <div class='wrapper'>
 
-    <div *ngIf='captionType == "question"' class='caption-box text-speach'>
+    <div *ngIf='captionType == "question"' class='bubble caption-box text-speach'>
         {{caption}}
         <div *ngIf='userResponseType == "singleAction" && operationCode == "login"' class='user-response-panel nerrow'>
             <div class='buttons-panel'>
@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    <div *ngIf='captionType == "defaultBoard" && !isMobile' class='default-board'>
+    <div *ngIf='captionType == "defaultBoard" && !isMobile' class='bubble default-board'>
         <div class='filters-section'>
             <filters></filters>
         </div>
@@ -26,7 +26,7 @@
         </div>
     </div>
 
-    <div *ngIf='captionType == "userSettings"' class='default-board'>
+    <div *ngIf='captionType == "userSettings"' class='bubble default-board'>
         <user-settings (logout)='request.emit("logout")'></user-settings>
     </div>
     

@@ -39,7 +39,7 @@
 
     <div class='navigation-section' (click)='viewMode!="favorites" && setViewMode.emit("favorites")' [ngClass]='{blocked: !userProfileData}'>
         <div class='navigation-button to-end'>
-            <img class='navigation-icon favorites' [src]='viewMode=="favorites" ? "../../assets/navigation-button-favorites-active.svg" : "../../assets/navigation-button-favorites.svg"'/>
+            <img class='navigation-icon favorites' [src]='viewMode=="favorites" ? "../../assets/navigation-button-favorites-active.svg" : "../../assets/navigation-button-favorites.svg"' [ngClass]='{shake: notifyFavorites}'/>
             <div class='navigation-caption' [ngClass]='{active: viewMode=="favorites"}'>
                 מועדפים
             </div>

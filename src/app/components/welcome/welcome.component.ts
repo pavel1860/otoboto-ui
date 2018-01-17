@@ -37,6 +37,8 @@ export class WelcomeComponent {
   isGuest;
   globalViewMode; 
   haveResults;
+  showHaveResults;
+  showAvatar;
 
   showWizard = false;
   showResults = false; 
@@ -158,8 +160,9 @@ export class WelcomeComponent {
       } else if (response['get_results']) {
         
         // User is known. show him results. 
-        this.haveResults = true;
+        
         this.loading = false;
+        this.haveResults = true;
         this.router.navigate(['./welcome'], {
           queryParams: {myResults: true}
         }); 
@@ -193,6 +196,9 @@ export class WelcomeComponent {
     this.userProfileData = undefined;
     this.resultsViewMode = undefined;
     this.displayWizard();
+    this.haveResults = false;
+    this.showHaveResults = false;
+    this.showAvatar = false;
     this.api.disconnect().subscribe(response => {
 
     });
@@ -205,6 +211,7 @@ export class WelcomeComponent {
     this.bot.reset();
     this.displayWizard();
     this.resultsViewMode = undefined;
+    this.showHaveResults = this.haveResults;
     this.router.navigate(['./welcome'], {
       queryParams: {}
     });   
@@ -243,6 +250,7 @@ export class WelcomeComponent {
       this.resultsViewMode = 'results';
       this.globalViewMode = 'searchResults';
       this.hideBot = false; 
+      //this.haveResults = true;
     }, 800);
     
   }
@@ -253,6 +261,7 @@ export class WelcomeComponent {
     this.minimizeControlPanel = false; 
     this.hideBot = true; 
     this.globalViewMode = 'wizard';
+    this.showAvatar = true;
   }
 
   setViewMode = (viewMode) => {
