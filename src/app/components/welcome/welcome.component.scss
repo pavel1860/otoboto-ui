@@ -84,12 +84,14 @@ $top-panel-height-mobile: 17vh;
 
     .is-hidden {
         opacity: 0;
-        transition: opacity 1s ease-in-out 1s;
+        transition: all 0.3s ease-in-out;
+        z-index: -1;
     }
 
     .visible {
         opacity: 1;
-        
+        transition: all 1s ease-in-out 1s;
+        z-index: 99999;
     }
 
     .show-fast {
