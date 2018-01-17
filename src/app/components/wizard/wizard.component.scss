@@ -47,11 +47,16 @@ $margin-from-caption: 38px;
     margin-right: auto;
 }
 
-@media only screen and (min-width : 768px) {
+.spinner{
+    position: absolute;
+    right: 0;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+    top: 50vh;
+}
 
-    .wrapper { 
-        
-    }
+@media only screen and (min-width : 768px) {
     
     .continue-button-panel {
         position: unset;
@@ -68,12 +73,5 @@ $margin-from-caption: 38px;
         margin-top: 45px;
         z-index: 10;
     }
-    .spinner{
-        position: absolute;
-        right: 0;
-        left: 0;
-        margin-left: auto;
-        margin-right: auto;
-        top: 50vh;
-    }
+
 }
