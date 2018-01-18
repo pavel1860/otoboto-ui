@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { DeviceService } from '../../services/device.service';
 
 @Component({
@@ -8,6 +8,8 @@ import { DeviceService } from '../../services/device.service';
 })
 
 export class BotSpeachComponent {
+
+    @ViewChild('filters') filters;
 
     @Input() captionType; 
     @Input() caption; 
@@ -24,6 +26,10 @@ export class BotSpeachComponent {
 
     ngOnInit() {
       this.isMobile = this.device.isMobile(); 
+    }
+
+    updateFilters() {
+      this.filters.refreshUserFilters();
     }
 
 }

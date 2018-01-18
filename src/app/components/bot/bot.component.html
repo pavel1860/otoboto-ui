@@ -10,16 +10,16 @@
         
         </div>
         <div class='speach-panel' [ngClass]='{"speach-panel-full": attention}'>
-            <bot-speach [caption]='caption' [captionType]='captionType' [userResponseType]='userResponseType' [operationCode]='operationCode' [placeholder]='inputPlaceholder' (request)='request.emit({code: $event})' (userResponse)='processUserResponse($event)'></bot-speach>
+            <bot-speach #speach [caption]='caption' [captionType]='captionType' [userResponseType]='userResponseType' [operationCode]='operationCode' [placeholder]='inputPlaceholder' (request)='request.emit({code: $event})' (userResponse)='processUserResponse($event)'></bot-speach>
         </div>            
     </div>
         
 </div>
 
-<div *ngIf='!isMobile' class='wrapper'>
+<div *ngIf='!isMobile' class='wrapper wrapper-centered'>
 
     <div class='speach-panel'>
-        <bot-speach [caption]='caption' [captionType]='captionType' [userResponseType]='userResponseType' [operationCode]='operationCode' [placeholder]='inputPlaceholder' (request)='request.emit({code: $event})' (userResponse)='processUserResponse($event)'></bot-speach>
+        <bot-speach #speach [caption]='caption' [captionType]='captionType' [userResponseType]='userResponseType' [operationCode]='operationCode' [placeholder]='inputPlaceholder' (request)='request.emit({code: $event})' (userResponse)='processUserResponse($event)'></bot-speach>
     </div>
 
     <div class='figure-panel angry' [ngClass]='{angry: jump}'>

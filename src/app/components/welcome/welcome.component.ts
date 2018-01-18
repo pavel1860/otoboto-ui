@@ -280,9 +280,9 @@ export class WelcomeComponent {
   }
 
   setSearchFilters = () => {
-
     this.api.getUserSearchParameters().subscribe(response => {
       this.parameters = response.data.search_params; 
+      this.bot.updateFilters();
     });
     
   }

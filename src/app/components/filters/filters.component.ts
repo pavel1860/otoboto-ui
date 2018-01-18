@@ -41,15 +41,19 @@ export class FiltersComponent {
             if (params.isGuest) {
                 this.setFilters(params);
             } else {
-                this.api.getUserSearchParameters().subscribe(response => {
-                    let params = response.data.search_params;
-                    params.manufacturer = params.manufacturer ? params.manufacturer[0] : undefined;
-                    params.model = params.model ? params.model[0] : undefined;
-                    this.setFilters(params);
-                });                
+                this.refreshUserFilters();               
             }
         
         });           
+    }
+
+    refreshUserFilters() {
+        this.api.getUserSearchParameters().subscribe(response => {
+            let params = response.data.search_params;
+            params.manufacturer = params.manufacturer ? params.manufacturer[0] : undefined;
+            params.model = params.model ? params.model[0] : undefined;
+            this.setFilters(params);
+        });          
     }
 
     setFilters(parameters) {

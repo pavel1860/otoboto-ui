@@ -173,6 +173,10 @@
         flex-direction: column-reverse;
         justify-content: flex-start;
     }
+
+    .wrapper-centered {
+        right: 687px;
+    }
     
     .vertical-wrapper {
         display: flex;
@@ -201,7 +205,8 @@
     }
 
     .speach-panel {
-        margin-top: 30px;
+        margin-top: 34px;
+
     }
 
 }

@@ -62,7 +62,11 @@ $top-panel-height-mobile: 17vh;
 
     .results-view {
         margin-top: $top-panel-height-desktop;
-        padding-top: 101px;
+        padding-top: 127px;
+    }
+
+    .results-view-centered { 
+        margin-left: 324px;
     }
 
     .minimized {

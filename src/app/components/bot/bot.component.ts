@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { DeviceService } from '../../services/device.service';
 
 @Component({
@@ -9,6 +9,8 @@ import { DeviceService } from '../../services/device.service';
 })
 
 export class BotComponent {
+
+  @ViewChild('speach') speach;
 
   @Output() showMe: EventEmitter<any> = new EventEmitter();
   @Output() hideMe: EventEmitter<any> = new EventEmitter();
@@ -237,6 +239,10 @@ export class BotComponent {
     this.caption = undefined;
     this.captionType = undefined;
     this.userResponseType = undefined; 
+  }
+
+  updateFilters() {
+    this.speach.updateFilters();
   }
 
   /*

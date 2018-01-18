@@ -17,7 +17,7 @@
 
     <div *ngIf='captionType == "defaultBoard" && !isMobile' class='bubble default-board'>
         <div class='filters-section'>
-            <filters></filters>
+            <filters #filters></filters>
         </div>
         <div class='new-search-section'>
             <button class='new-search-button text-secondary otoboto-frame otoboto-fill-negative' (click)='request.emit("newSearch")'>

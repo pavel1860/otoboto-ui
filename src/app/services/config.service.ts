@@ -20,7 +20,7 @@ export class Config {
             icon: '../assets/car-type-icon-sport.svg'
         }, 
         {
-            id: 'land',
+            id: 'crossover',
             caption: 'שטח',
             icon: '../assets/car-type-icon-jeep.svg'
         }, 
