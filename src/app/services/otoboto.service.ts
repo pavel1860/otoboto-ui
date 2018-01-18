@@ -75,18 +75,24 @@ export class Otoboto {
             enable_profile_selector: true
         }; 
 
-       
-
         if (token) {
             this.setHeaders(false);
             return this.connect().then(this.getUserFacebookProfile);
         } else {
             return this.fb.login(options).then(userLoginData => {
-               
                 this.local.setAccessToken(userLoginData.authResponse.accessToken);
                 this.setHeaders(false);
                 return;
-            }).then(this.connect).then(this.getUserFacebookProfile);
+            }, e => {
+                console.log('Error code A');
+                return;
+            }).then(this.connect, e => {
+                console.log('Facebook connection error');
+                return;
+            }).then(this.getUserFacebookProfile, e => {
+                console.log('Error code B');
+                return;                
+            });
         }
 
     }
@@ -97,6 +103,8 @@ export class Otoboto {
             this.http.post(url, null, this.requestOptions).map(res => res.json()).subscribe(response => {
                 this.setHeaders(true); 
                 resolve(response);
+            }, e => {
+                reject();
             }); 
         });  
     }

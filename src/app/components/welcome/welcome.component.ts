@@ -104,7 +104,10 @@ export class WelcomeComponent {
 
     this.api.loginWithFB(token).then(response => {
 
- 
+      if (!response) {
+        this.loading = false;
+        return;
+      }
 
       this.userProfileData = response['userProfileData'];
 
