@@ -25,9 +25,9 @@
             </button>
         </div>
     </div>
-
+ 
     <div *ngIf='captionType == "userSettings"' class='bubble default-board'>
-        <user-settings (logout)='request.emit("logout")'></user-settings>
+        <user-settings (logout)='request.emit("logout")' (click)='request.emit("newSearch")'></user-settings>
     </div>
     
     <div *ngIf='userResponseType == "yesNoQuestion"' class='yes-no-question-panel'>
