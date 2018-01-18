@@ -79,7 +79,7 @@ export class FiltersComponent {
                 title: 'תקציב',
                 icon: "../../assets/filter-price.svg",
                 allowModify: false,
-                value: parameters.price          
+                value: parameters.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")           
             });
 
         }        
