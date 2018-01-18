@@ -173,7 +173,7 @@ export class ResultsComponent {
         }
 
         setTimeout(() => {
-            console.log(this.isGuest);
+
             if (this.isGuest) {
                 return; 
             }
@@ -193,7 +193,7 @@ export class ResultsComponent {
     processFeedback(item, feedback) {
 
         if (feedback.ask_hide_model) {
-            console.log(feedback);
+
             this.bot.state('suggestHideModel', {
                 data: item,
                 counter: feedback.dislike_counter
@@ -272,7 +272,7 @@ export class ResultsComponent {
             this.setViewMode('results');
             if (this.pendingAction) {
                 setTimeout(() => {
-                    console.log(this.pendingAction); 
+
                     this.pendingAction.operation(this.pendingAction.data);
                 }, 0);
             }

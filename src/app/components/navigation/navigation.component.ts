@@ -27,7 +27,7 @@ export class NavigationComponent {
   }
 
   notifyAddedToFavorites() {
-    console.log('sd');
+
     //this.notifyFavorites = true; 
     setInterval(() => {
       //this.notifyFavorites = false;

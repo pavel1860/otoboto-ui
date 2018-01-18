@@ -55,13 +55,11 @@ export class WizardSelectorAutocomplete {
           }
 
         if ((this.showListItems) && (!this.suggestOnDemand)) {
-            console.log(this.items);
+           
             //this.options = this.items;
         } else {
             this.options = [];
         }
-
-        console.log(this.options);
 
           this.valueControler.valueChanges.subscribe(token => {
               

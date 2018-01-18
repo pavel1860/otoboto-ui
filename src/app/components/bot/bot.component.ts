@@ -59,18 +59,15 @@ export class BotComponent {
     if (state == this.currentState) {
       
       this.alert();  
-      console.log(this.jump);
     } 
 
     this.currentState = state; 
 
-    console.log(state);
 
     switch (state) {
 
       case 'welcomeGuest':
 
-        console.log(this.isMobile); 
         if (this.isMobile) {
           this.showBot = false;
         } else {

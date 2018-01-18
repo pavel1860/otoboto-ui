@@ -75,14 +75,14 @@ export class Otoboto {
             enable_profile_selector: true
         }; 
 
-        console.log('token is ', token);
+       
 
         if (token) {
             this.setHeaders(false);
             return this.connect().then(this.getUserFacebookProfile);
         } else {
             return this.fb.login(options).then(userLoginData => {
-                console.log(userLoginData);
+               
                 this.local.setAccessToken(userLoginData.authResponse.accessToken);
                 this.setHeaders(false);
                 return;
@@ -107,7 +107,7 @@ export class Otoboto {
     }
 
     getUserFacebookProfile = (userData) => {
-        console.log(userData);
+
         if (userData) {
             return new Promise((resolve, reject) => {
                 this.fb.api('/me?fields=id,picture').then((userProfileData)=> {

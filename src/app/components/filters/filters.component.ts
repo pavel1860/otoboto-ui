@@ -124,7 +124,6 @@ export class FiltersComponent {
         } 
         */  
 
-        console.log(this.filters);
 
     }
 

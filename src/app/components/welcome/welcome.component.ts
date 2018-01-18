@@ -64,13 +64,13 @@ export class WelcomeComponent {
   ngOnInit() {
 
     let token = this.local.getAccessToken(); 
-    console.log(token);
+
     if (token) {
-      console.log(); 
+
       this.api.getFacebookLoginStatus().then(response => {
-        console.log(response);
+
         if (response.status == 'connected') {
-          console.log('is connected..trying to connect..');
+  
           this.loginWithFacebook(token);
             
         } else {
@@ -99,23 +99,20 @@ export class WelcomeComponent {
   }
 
   loginWithFacebook = (token?) => {
-    console.log('sdsds', token);
+
     this.loading = true; 
 
     this.api.loginWithFB(token).then(response => {
 
-      console.log(response); 
+ 
 
       this.userProfileData = response['userProfileData'];
 
       if (response['get_search_params']) {
 
         // User is new. Try to update his wizard results. 
-        console.log('user is new..sending wizard results...');
 
         this.api.updateUserSearchParams(this.wizardResults, true).subscribe(response => {
-
-          console.log(response);
 
           if (response['get_search_params'] || response.status == 'fail') {
 
@@ -158,6 +155,8 @@ export class WelcomeComponent {
         */
 
       } else if (response['get_results']) {
+
+        console.log('case 3');
         
         // User is known. show him results. 
         
@@ -178,7 +177,6 @@ export class WelcomeComponent {
         this.logout();
 
         this.loading = false;
-        console.log('An unexpected error occured');
         
       }
     }, e => {
@@ -221,7 +219,7 @@ export class WelcomeComponent {
     this.loadingWizard = true;
     this.wizardResults = wizardResults;
     if (this.userProfileData) {
-      console.log(wizardResults);
+
       this.api.updateUserSearchParams(wizardResults, this.isNewUser).subscribe(response => {
         //this.router.navigate(['./results']);  
         this.loadingWizard = false;
@@ -244,7 +242,7 @@ export class WelcomeComponent {
     this.showWizard = false;
     this.minimizeControlPanel = true; 
     this.setSearchFilters(); 
-    console.log('in displayResults');
+
     setTimeout(() => {
       this.showResults = true; 
       this.resultsViewMode = 'results';
@@ -288,7 +286,7 @@ export class WelcomeComponent {
   }
 
   processBotRequest = (request) => {
-    console.log(request);
+
     if (request.code == 'newSearch') {
       this.newSearch(); 
       return;

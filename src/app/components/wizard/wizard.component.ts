@@ -120,7 +120,7 @@ export class WizardComponent {
 
     updateWizardByCategory(category) {
 
-        console.log(category);
+      
 
         this.steps = [];
 
@@ -165,7 +165,7 @@ export class WizardComponent {
 
         }
 
-        console.log(this.steps);
+   
 
     }
 

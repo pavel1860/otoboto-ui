@@ -25,9 +25,9 @@ export class Auth {
             return_scopes: true,
             enable_profile_selector: true
         }; 
-        console.log('hey');
+ 
         return this.fb.login(options).then(userLoginData => {
-            console.log(userLoginData);
+          
             userLoginData['userParams'] = userParams;
             return userLoginData;
         }).then(this.systemLogin).then(this.getUserFacebookProfile); 
