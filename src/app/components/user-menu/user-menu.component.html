@@ -1,0 +1,38 @@
+<div class='user-menu' [ngClass]='{show:isActive}' [clickOutside] (clickedOutside)='isActive=false'>
+
+    <div class='item' (click)='isActive=false; newSearch.emit()'>
+        <div class='icon'>
+
+        </div>
+        <div class='caption'>
+            חיפוש חדש
+        </div>                    
+    </div>    
+    <div class='item soon'>
+        <div class='icon'>
+
+        </div>
+        <div class='caption'>
+            פרסם מודעה
+        </div>
+    </div>
+    
+    <div *ngIf='userProfileData' class='item' (click)='isActive=false; logoutRequest.emit()'>
+        <div class='icon'>
+
+        </div>
+        <div class='caption'>
+            התנתק
+        </div>                    
+    </div>
+
+    <div *ngIf='!userProfileData' class='item' (click)='isActive=false; loginRequest.emit()'>
+        <div class='icon'>
+
+        </div>
+        <div class='caption'>
+            התחבר
+        </div>                    
+    </div>    
+
+</div>

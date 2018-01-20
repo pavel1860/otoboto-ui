@@ -43,6 +43,7 @@ import { WizardSelectorAutocomplete } from './components/wizard-selector-autocom
 import { CarManufacturerSelector } from './components/car-manufacturer-selector/car-manufacturer-selector.component';
 import { CarModelSelector } from './components/car-model-selector/car-model-selector.component';
 import { FiltersComponent } from './components/filters/filters.component';
+import { UserMenuComponent } from './components/user-menu/user-menu.component';
 
 import { Otoboto } from './services/otoboto.service';
 import { LocalService } from './services/local.service';
@@ -111,7 +112,8 @@ const SWIPER_CONFIG: SwiperConfigInterface = {
     CarManufacturerSelector,
     CarModelSelector,
     FiltersComponent,
-    ClickOutsideDirective
+    ClickOutsideDirective,
+    UserMenuComponent
   ],
   imports: [
     BrowserModule,
