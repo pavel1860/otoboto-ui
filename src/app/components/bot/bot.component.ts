@@ -72,6 +72,7 @@ export class BotComponent {
           this.showBot = false;
         } else {
           this.show('defaultBoard');
+          this.updateFilters();
         }
         
         break;
@@ -82,12 +83,14 @@ export class BotComponent {
           this.showBot = false;
         } else {
           this.show('defaultBoard');
+          this.updateFilters();
         }
         break; 
         
       case 'viewModeSearchResults':
 
         this.show('defaultBoard');
+        this.updateFilters();
         break;         
 
       case 'viewModeSearchFavorites':

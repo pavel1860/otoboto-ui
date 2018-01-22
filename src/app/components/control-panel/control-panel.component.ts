@@ -28,6 +28,7 @@ export class ControlPanelComponent {
   @Output() reset: EventEmitter<any> = new EventEmitter();
   @Output() showUserSettingsDropDown: EventEmitter<any> = new EventEmitter();
   @Output() showResults: EventEmitter<any> = new EventEmitter();
+  @Output() newSearch: EventEmitter<any> = new EventEmitter();
 
   constructor(private otoboto: Otoboto, private device: DeviceService) {
     this.isMobile = device.isMobile();

@@ -66,12 +66,26 @@
         display: flex;
         justify-content: center;
         flex-direction: column;
-        padding: 30px;
         box-sizing: border-box;
     }
 
     .bubble {
         position: relative;
+        transform: translateY(-2em);
+        transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s, z-index 0s linear 0.01s;
+        visibility: hidden;
+        opacity: 0;
+        padding: 0px;
+        z-index: -1;
+    }
+
+    .bubble-show {
+        visibility: visible; /* shows sub-menu */
+        opacity: 1;
+        z-index: 9999999;
+        padding: 24px;
+        transform: translateY(0%);
+        transition-delay: 0s, 0s, 0.3s; /* this removes the transition delay so the menu will be visible while the other styles transition */        
     }
 
     .bubble:before {
@@ -126,7 +140,6 @@
     .default-board {
         background: white;
         border-radius: 8px;
-        padding: 24px;
     }
 
     .new-search-section {

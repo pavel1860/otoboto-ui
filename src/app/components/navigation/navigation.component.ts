@@ -15,6 +15,10 @@ export class NavigationComponent {
   @Output() setViewMode: EventEmitter<any> = new EventEmitter();
   @Output() showUserSettingsDropDown: EventEmitter<any> = new EventEmitter();
 
+  @Output() login: EventEmitter<any> = new EventEmitter();
+  @Output() logout: EventEmitter<any> = new EventEmitter();
+  @Output() newSearch: EventEmitter<any> = new EventEmitter();
+
   isMobile;
   notifyFavorites = false;
 
@@ -32,6 +36,10 @@ export class NavigationComponent {
     setInterval(() => {
       //this.notifyFavorites = false;
     }, 500);
+  }
+
+  block(e) {
+    e.stopPropagation();
   }
 
 }

@@ -8,11 +8,11 @@
         <div *ngIf='loading' class="spinner"></div>
         
         <div class='list-view-panel' [style.display]='viewMode == "favorites" ? "block" : "none"'>
-            <list #favoritesList class='list' [items]='userFavorites' [hidden]='hiddenFavorites' [allowLike]='false' (dislike)='removeItemFromFavorites($event)' (ready)='viewMode == "favorites" && loading=false' (loadMore)='(viewMode == "favorites" && !isGuest) && loadUserFavorites()' (gallery)='imageGalleryData=$event'></list>
+            <list #favoritesList class='list' [items]='userFavorites' [hidden]='hiddenFavorites' [allowLike]='false' (dislike)='removeItemFromFavorites($event)' (ready)='viewMode == "favorites" && loading=false' (loadMore)='(viewMode == "favorites" && !isGuest) && loadUserFavorites()' (gallery)='imageGalleryData=$event' (showContact)='contactView.open($event)'></list>
         </div>
 
         <div class='list-view-panel' [style.display]='(viewMode == "results") ? "block" : "none"'>
-            <list #resultsList class='list' [items]='searchResults' [hidden]='hiddenSearchResults' [allowLike]='true' [pager]='isGuest' (like)='likeItem($event)' (dislike)='dislikeItem($event)' (ready)='viewMode == "results" && loading=false' (loadMore)='(viewMode == "results" && !isGuest) && loadUserSearchResults()' (gallery)='imageGalleryData=$event'></list>
+            <list #resultsList class='list' [items]='searchResults' [hidden]='hiddenSearchResults' [allowLike]='true' [pager]='isGuest' (like)='likeItem($event)' (dislike)='dislikeItem($event)' (ready)='viewMode == "results" && loading=false' (loadMore)='(viewMode == "results" && !isGuest) && loadUserSearchResults()' (gallery)='imageGalleryData=$event' (showContact)='contactView.open($event)'></list>
         </div>
 
         <div *ngIf='noResults' class='no-results'>
@@ -26,5 +26,7 @@
         <full-image-gallery *ngIf='imageGalleryData' [images]='imageGalleryData.data.mobile_pics' [index]='imageGalleryData.index' (close)='imageGalleryData=undefined'></full-image-gallery>
 
     </div>
-
+ 
 </div> 
+
+<contact-modal #contactView></contact-modal>

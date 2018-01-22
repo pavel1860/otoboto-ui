@@ -1,0 +1,21 @@
+.wrapper {
+    position: fixed;
+    top: 0;
+    left: 0; 
+    width: 100vw;
+    height: 100vh;
+    background: rgba(131, 151, 172, .88);
+    z-index: -1;
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.show {
+    z-index: 99999999999;
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}

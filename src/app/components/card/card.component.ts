@@ -19,8 +19,10 @@ export class CardComponent {
     @Output() dislike: EventEmitter<any> = new EventEmitter();
     @Output() expand: EventEmitter<any> = new EventEmitter();
     @Output() gallery: EventEmitter<any> = new EventEmitter();
+    @Output() showContact: EventEmitter<any> = new EventEmitter();
 
     isMobile = true;
+    showContactInfo = false;
 
     imageIndex = 0;
     showInfo = false; 

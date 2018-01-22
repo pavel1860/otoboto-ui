@@ -46,7 +46,8 @@
             <div class='phone-number' [ngClass]='{"phone-number-visible": showPhoneNumber}'>
                 {{data.seller_phones[0]}}
             </div>
-            <div class='contact-box text-secondary otoboto-frame otoboto-fill' (click)='block($event); showPhoneNumber=true'>
+            
+            <div class='contact-box text-secondary otoboto-frame otoboto-fill' (click)='block($event); showPhoneNumber=true; showContact.emit(data.seller_phones[0])'>
                 {{data.seller_name}}
             </div>
         </div> 

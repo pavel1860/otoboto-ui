@@ -27,7 +27,16 @@
         </div>              
     </div-->
 
-    <navigation #nav class='navigation-bar' [userProfileData]='userProfileData' [viewMode]='viewMode' [ngClass]='{visible: minimize}' (setViewMode)='viewModeChange.emit($event)' (showUserSettingsDropDown)='showUserSettingsDropDown.emit()'></navigation>
+    <navigation #nav class='navigation-bar' 
+        [userProfileData]='userProfileData' 
+        [viewMode]='viewMode' 
+        [ngClass]='{visible: minimize}' 
+        (setViewMode)='viewModeChange.emit($event)' 
+        (showUserSettingsDropDown)='showUserSettingsDropDown.emit()'
+        (login)='loginRequest.emit()'
+        (logout)='logoutRequest.emit()'
+        (newSearch)='newSearch.emit()'>
+    </navigation>
 
     <!--div class='fog' [ngClass]='{visible: minimize}'>
         

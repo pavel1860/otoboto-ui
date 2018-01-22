@@ -103,6 +103,10 @@ body {
     display: none;
 }
 
+.desktop-block {
+    display: none;
+}
+
 .otoboto-frame {
     border: 1px solid $primary;
     border-radius: 6px;
@@ -137,6 +141,10 @@ body {
 
     .desktop {
         display: flex;
+    }
+
+    .desktop-block {
+        display: block;
     }
 
     .text-weak {

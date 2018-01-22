@@ -37,6 +37,7 @@ export class ListComponent {
     @Output() ready: EventEmitter<any> = new EventEmitter();
     @Output() loadMore: EventEmitter<any> = new EventEmitter();
     @Output() gallery: EventEmitter<any> = new EventEmitter();
+    @Output() showContact: EventEmitter<any> = new EventEmitter();
     
     ngAfterViewInit() {
       if (this.items.length == 0) {

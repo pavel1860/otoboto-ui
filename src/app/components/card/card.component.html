@@ -1,4 +1,4 @@
-<div class='outer-wrapper' (click)='showInfo=!showInfo; expand.emit(showInfo);'>
+<div class='outer-wrapper' (click)='showInfo=!showInfo; showContactInfo=false; expand.emit(showInfo);'>
 
     <div class='wrapper'>
 
@@ -83,7 +83,7 @@
 
                 <div *ngIf='!isMobile' class='content desktop'>
 
-                    <main-details class='main-details' [data]='data'></main-details>
+                    <main-details class='main-details' [data]='data' (showContact)='contact=$event; '></main-details>
 
                 </div>
 
@@ -91,7 +91,7 @@
 
     </div>
 
-    <div *ngIf='!isMobile' class='info-panel desktop otoboto-white' [ngClass]='{visible: showInfo}' (click)='block($event)'>
+    <div *ngIf='!isMobile' class='info-panel desktop otoboto-white' [ngClass]='{visible: showInfo || showContactInfo}' (click)='block($event)'>
 
         <div *ngIf='showInfo' class='header'>
             <section-title class='section-title' [icon]='"../../../assets/seller-comments.svg"' [title]='"דברי המוכר"' (click)='block($event); infoViewMode="sellerComments"'></section-title>
@@ -104,6 +104,14 @@
             <car-info class='info' *ngIf='infoViewMode=="carInfo"' [data]='data'></car-info> 
             <model-info class='info' *ngIf='infoViewMode=="modelInfo"' [data]='data'></model-info>       
         </div>
+
+        <div *ngIf='showContactInfo'>
+            {{contact}}
+        </div>
     
     </div>
+
+
+
+
 </div>

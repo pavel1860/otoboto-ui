@@ -12,6 +12,7 @@ $swipe-speed: 0.2s;
     width: 30px;
     border-radius: 100%;
     align-self: center;
+
 }
 
 .navigation-section {
@@ -128,13 +129,16 @@ $swipe-speed: 0.2s;
         img {
             width: 30px;
         }
+        .navigation-icon {
+            width: 45px;
+        }
     }
 
     .navigation-caption {
         display: flex;
         justify-content: center;
         flex-direction: column;
-        margin-right: 10px;
+
     }
 
     .active {
@@ -147,6 +151,15 @@ $swipe-speed: 0.2s;
 
     .to-end {
         justify-content: flex-end;
+    }
+
+    .user-menu {
+        position: absolute;
+        z-index: 2;
+    }
+
+    .avatar {
+        z-index: 999;
     }
 }
 

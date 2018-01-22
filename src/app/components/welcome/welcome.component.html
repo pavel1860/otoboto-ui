@@ -13,6 +13,7 @@
         (showUserSettingsDropDown)='userProfileData ? bot.state("userSettings") : bot.state("suggestLogin")' 
         (viewModeChange)='setViewMode($event)' 
         (reset)='reset()' 
+        (newSearch)='newSearch()'
         [ngClass]='{minimized: minimizeControlPanel}'>
     </control-panel>
     <wizard *ngIf='showWizard' class='wizard' [loading]='loadingWizard' (done)='processResults($event)'></wizard>

@@ -10,6 +10,8 @@ export class MainDetailsComponent {
 
     @Input() data; 
 
+    @Output() showContact: EventEmitter<any> = new EventEmitter();
+
     normalizedRank;
     properties; 
     showPhoneNumber = false;

@@ -44,6 +44,7 @@ import { CarManufacturerSelector } from './components/car-manufacturer-selector/
 import { CarModelSelector } from './components/car-model-selector/car-model-selector.component';
 import { FiltersComponent } from './components/filters/filters.component';
 import { UserMenuComponent } from './components/user-menu/user-menu.component';
+import { ContactModalComponent } from './components/contact-modal/contact-modal.component';
 
 import { Otoboto } from './services/otoboto.service';
 import { LocalService } from './services/local.service';
@@ -113,7 +114,8 @@ const SWIPER_CONFIG: SwiperConfigInterface = {
     CarModelSelector,
     FiltersComponent,
     ClickOutsideDirective,
-    UserMenuComponent
+    UserMenuComponent,
+    ContactModalComponent
   ],
   imports: [
     BrowserModule,
