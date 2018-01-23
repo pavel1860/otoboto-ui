@@ -9,6 +9,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class MainDetailsComponent {
 
     @Input() data; 
+    @Input() expanded = false; 
 
     @Output() showContact: EventEmitter<any> = new EventEmitter();
 

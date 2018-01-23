@@ -83,7 +83,7 @@
 
                 <div *ngIf='!isMobile' class='content desktop'>
 
-                    <main-details class='main-details' [data]='data' (showContact)='contact=$event; '></main-details>
+                    <main-details class='main-details' [data]='data' [expanded]='showInfo' (showContact)='contact=$event; '></main-details>
 
                 </div>
 
