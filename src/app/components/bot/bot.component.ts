@@ -27,6 +27,7 @@ export class BotComponent {
   hiddenCountdown; 
   isMobile = true; 
   currentState; 
+  images;
   showBot = false;
 
   jump = false;
@@ -50,6 +51,7 @@ export class BotComponent {
     } 
     if (answare == 'no') {
       this.state('welcomeGuest');
+      this.images = undefined;
     }
     
   }
@@ -73,6 +75,7 @@ export class BotComponent {
         } else {
           this.show('defaultBoard');
           this.updateFilters();
+          this.images = undefined;
         }
         
         break;
@@ -84,6 +87,7 @@ export class BotComponent {
         } else {
           this.show('defaultBoard');
           this.updateFilters();
+          this.images = undefined;
         }
         break; 
         
@@ -91,6 +95,7 @@ export class BotComponent {
 
         this.show('defaultBoard');
         this.updateFilters();
+        this.images = undefined;
         break;         
 
       case 'viewModeSearchFavorites':
@@ -98,7 +103,7 @@ export class BotComponent {
         if (this.isMobile) {
           return;
         }
-
+        this.images = undefined;
         this.say('כאן נמצאים הרכבים שאהבת');
         break;   
 
@@ -106,6 +111,7 @@ export class BotComponent {
         if (this.isMobile) {
           return;
         }
+        this.images = undefined;
         this.say('כאן אפשר לשחק עם ההגדרות');
         break; 
 
@@ -113,6 +119,7 @@ export class BotComponent {
         if (this.isMobile) {
           return;
         }
+        this.images = undefined;
         this.show('userSettings');
         break;
 
@@ -133,8 +140,11 @@ export class BotComponent {
         caption += ' ';
         caption += 'להסתיר עבורך את כל הרכבים מדגם זה?';
 
+        console.log(info);
+
         this.say(caption, true);
         this.ask('yesNoQuestion', 'hideModel', info.data); 
+        this.showImages(info.data.mobile_pics[0]); 
 
         break;   
 
@@ -157,6 +167,7 @@ export class BotComponent {
 
         this.say(caption, true);
         this.ask('yesNoQuestion', 'hideManufacturer', info.data); 
+        this.showImages(info.data.mobile_pics[0]);
 
         break;  
 
@@ -183,6 +194,7 @@ export class BotComponent {
       case 'suggestLogin': 
 
         var caption = '';
+        this.images = undefined;
         caption += 'על מנת לבצע פעולה זו, עליך להתחבר אליי';
         this.say(caption, true);
         this.ask('singleAction', 'login'); 
@@ -192,6 +204,7 @@ export class BotComponent {
       case 'setFilter': 
 
         var caption = '';
+        this.images = undefined;
         caption += 'לעדכן ';
         caption += info.title;
         caption += '?';
@@ -219,6 +232,10 @@ export class BotComponent {
     } else {
       this.hideMe.emit();
     }
+  }
+
+  showImages(images) {
+    this.images = images;
   }
 
   ask(inputType, operationCode?, operationData?, placeholder?) {

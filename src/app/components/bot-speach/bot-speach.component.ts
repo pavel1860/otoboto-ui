@@ -16,6 +16,7 @@ export class BotSpeachComponent {
     @Input() userResponseType; 
     @Input() operationCode; 
     @Input() placeholder; 
+    @Input() images; 
 
     @Output() userResponse: EventEmitter<any> = new EventEmitter();
     @Output() request: EventEmitter<any> = new EventEmitter();

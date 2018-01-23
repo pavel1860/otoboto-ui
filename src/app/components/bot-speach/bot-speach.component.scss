@@ -64,6 +64,7 @@
         color: gray;
         font-size: 20px;
         display: flex;
+        width: 248.5px;
         justify-content: center;
         flex-direction: column;
         box-sizing: border-box;
@@ -154,5 +155,14 @@
 
     .nerrow {
         margin-top: -12px;
+    }
+
+    .image-box {
+        height: 154px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        margin-top: 11px;
+        border-radius: 12px;
     }
 }

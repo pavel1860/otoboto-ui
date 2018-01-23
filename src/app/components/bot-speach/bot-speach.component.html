@@ -2,6 +2,11 @@
 
     <div class='bubble caption-box text-speach' [ngClass]='{"bubble-show": captionType == "question"}'>
         {{caption}}
+
+        <div *ngIf='images' class='image-box' [style.backgroundImage]="'url('+ images +')'">
+
+        </div>
+
         <div *ngIf='userResponseType == "singleAction" && operationCode == "login"' class='user-response-panel nerrow'>
             <div class='buttons-panel'>
                 <button class='facebook-login-button' (click)='request.emit("login")'>
@@ -11,6 +16,16 @@
                 <!--button class="loginBtn loginBtn--facebook" (click)='userResponse.emit()'>
                     התחבר
                 </button-->
+            </div>
+        </div>
+        <div *ngIf='userResponseType == "yesNoQuestion"' class='yes-no-question-panel'>
+            <div class='buttons-panel-double'>
+                <button class='response-button text-secondary otoboto-frame otoboto-fill-negative' (click)='userResponse.emit("yes")'>
+                    כן
+                </button>
+                <button class='response-button text-secondary otoboto-frame otoboto-fill-negative' (click)='userResponse.emit("no")'>
+                    לא
+                </button>
             </div>
         </div>
     </div>
@@ -30,16 +45,7 @@
         <user-settings (logout)='request.emit("logout")' (click)='request.emit("newSearch")'></user-settings>
     </div>
      
-    <div *ngIf='userResponseType == "yesNoQuestion"' class='yes-no-question-panel'>
-        <div class='buttons-panel-double'>
-            <button class='response-button text-weak' (click)='userResponse.emit("yes")'>
-                כן
-            </button>
-            <button class='response-button text-weak' (click)='userResponse.emit("no")'>
-                לא
-            </button>
-        </div>
-    </div>
+
 
 
 
