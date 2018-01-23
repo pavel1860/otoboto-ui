@@ -34,6 +34,7 @@
     display: flex;
     justify-content: space-around;
     margin-top: 7px;
+   
 }
 
 @media only screen and (min-width : 768px) {
@@ -44,11 +45,16 @@
     
     .buttons-panel-double {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         justify-content: space-between;
-        height: 100px;
+
         margin-top: 20px;
         align-self: center;
+        width: 207px;
+        button {
+            width: 90px;
+            height: 35px;
+        }
     }
 
     .yes-no-question-panel {
@@ -61,10 +67,10 @@
         border: 1px solid white;
         border-radius: 22px;
         //height: 136px;
-        color: gray;
-        font-size: 20px;
+        color: #3c3c3b;
+        font-size: 18px;
         display: flex;
-        width: 248.5px;
+        width: 300px;
         justify-content: center;
         flex-direction: column;
         box-sizing: border-box;
