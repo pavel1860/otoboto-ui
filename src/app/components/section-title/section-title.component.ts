@@ -10,5 +10,6 @@ export class SectionTitleComponent {
 
     @Input() icon; 
     @Input() title; 
+    @Input() active; 
 
 }

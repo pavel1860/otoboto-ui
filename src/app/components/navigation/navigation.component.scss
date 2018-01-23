@@ -119,7 +119,7 @@ $swipe-speed: 0.2s;
     }
 
     .centered {
-        margin-left: 322px;
+        margin-left: 355px;
     }
  
     .navigation-button {
@@ -160,6 +160,10 @@ $swipe-speed: 0.2s;
 
     .avatar {
         z-index: 999;
+    }
+
+    .avatar:hover {
+        border: 1px solid #14C6C6;
     }
 }
 

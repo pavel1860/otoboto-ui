@@ -5,7 +5,7 @@
 
     <div class='main-content-panel'>
 
-        <div *ngIf='loading' class="spinner"></div>
+        <div *ngIf='true' class="spinner"></div>
         
         <div class='list-view-panel' [style.display]='viewMode == "favorites" ? "block" : "none"'>
             <list #favoritesList class='list' [items]='userFavorites' [hidden]='hiddenFavorites' [allowLike]='false' (dislike)='removeItemFromFavorites($event)' (ready)='viewMode == "favorites" && loading=false' (loadMore)='(viewMode == "favorites" && !isGuest) && loadUserFavorites()' (gallery)='imageGalleryData=$event' (showContact)='contactView.open($event)'></list>

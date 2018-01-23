@@ -94,9 +94,9 @@
     <div *ngIf='!isMobile' class='info-panel desktop otoboto-white' [ngClass]='{visible: showInfo || showContactInfo}' (click)='block($event)'>
 
         <div *ngIf='showInfo' class='header'>
-            <section-title class='section-title' [icon]='"../../../assets/seller-comments.svg"' [title]='"דברי המוכר"' (click)='block($event); infoViewMode="sellerComments"'></section-title>
-            <section-title class='section-title' [icon]='"../../../assets/car-info.svg"' [title]='"הרכב"' (click)='block($event); infoViewMode="carInfo"'></section-title>
-            <section-title class='section-title' [icon]='"../../../assets/model-info.svg"' [title]='"הדגם"' (click)='block($event); infoViewMode="modelInfo"'></section-title>
+            <section-title class='section-title' [icon]='"../../../assets/seller-comments.svg"' [title]='"דברי המוכר"' [active]='infoViewMode=="sellerComments"' (click)='block($event); infoViewMode="sellerComments"'></section-title>
+            <section-title class='section-title' [icon]='"../../../assets/car-info.svg"' [title]='"הרכב"' [active]='infoViewMode=="carInfo"' (click)='block($event); infoViewMode="carInfo"'></section-title>
+            <section-title class='section-title' [icon]='"../../../assets/model-info.svg"' [title]='"הדגם"' [active]='infoViewMode=="modelInfo"' (click)='block($event); infoViewMode="modelInfo"'></section-title>
         </div>
 
         <div *ngIf='showInfo' class='content'>
