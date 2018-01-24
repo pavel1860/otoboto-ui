@@ -8,13 +8,13 @@
                 <img class='facebook-login-icon' [src]='"../../assets/facebook.svg"'/>
                 התחבר
             </button>
-            <button *ngIf='userProfileData && viewMode=="wizard" && haveResults' class='white-button back-button' (click)='showResults.emit($event)'>
+            <button class='white-button back-button' (click)='showResults.emit($event); hideBackButton=true;' [ngClass]='{"show-back-button": userProfileData && viewMode=="wizard" && haveResults && !hideBackButton}'>
                 חזור לתוצאות 
             </button>       
             <div *ngIf='loading' class='spinner-box'>
                 <div class='spinner white'></div>
             </div>     
-            <img *ngIf='userProfileData && !loading && viewMode=="wizard" && showAvatar' class='user-avatar-image' [src]='userProfileData.picture.data.url' (click)='block($event);showUserMenu=true'/>
+            <img *ngIf='userProfileData && !loading && viewMode=="wizard" && showAvatar' [ngClass]='{"show-back-button": !hideBackButton}' class='user-avatar-image' [src]='userProfileData.picture.data.url' (click)='block($event);showUserMenu=true'/>
             <div class='user-menu' [ngClass]='{show:showUserMenu}' [clickOutside] (clickedOutside)='showUserMenu=false'>
                 <div class='item'>
                     <div class='icon'>

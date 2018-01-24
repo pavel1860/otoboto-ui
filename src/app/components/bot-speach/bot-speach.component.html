@@ -32,7 +32,7 @@
 
     <div class='desktop-block bubble default-board' [ngClass]='{"bubble-show": captionType == "defaultBoard" && !isMobile}'>
         <div class='filters-section'>
-            <filters #filters></filters>
+            <filters #filters [userProfileData]='userProfileData'></filters>
         </div>
         <div class='new-search-section'>
             <button class='new-search-button text-secondary otoboto-frame otoboto-fill-negative' (click)='request.emit("newSearch")'>

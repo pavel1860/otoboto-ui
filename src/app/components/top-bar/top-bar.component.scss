@@ -10,6 +10,7 @@
     border-radius: 100%; 
     width: 42px;
     cursor: pointer;
+    visibility: hidden;
 }
 
 .logo-panel {
@@ -30,6 +31,11 @@
     right: -136px;
     height: 37px;
     top: 2px;
+    visibility: hidden;
+}
+
+.show-back-button {
+    visibility: visible;
 }
 
 .user-menu {
@@ -87,9 +93,12 @@
     width: 0;
 }
 
+
+
 @media only screen and (min-width : 768px) {
     .top-bar {
-        justify-content: space-around;
+        justify-content: space-between;
+        height: 47px;
     }
     .user-menu {
         right: -72px;

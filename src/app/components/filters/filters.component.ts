@@ -28,32 +28,35 @@ export class FiltersComponent {
     }
     */
 
+    @Input() userProfileData;
     @Output() setFilter: EventEmitter<any> = new EventEmitter();
 
     filters;
 
     constructor(private api: Otoboto, private config: Config, private route: ActivatedRoute) {}
 
-    ngOnInit() {
-
-        this.route.queryParams.subscribe((params) => {
-
-            if (params.isGuest) {
+    refreshUserFilters() {
+        if (this.userProfileData) {
+            this.api.getUserSearchParameters().subscribe(response => {
+                let params = response.data.search_params;
+                params.manufacturer = params.manufacturer ? params.manufacturer[0] : undefined;
+                params.model = params.model ? params.model[0] : undefined;
                 this.setFilters(params);
-            } else {
-                this.refreshUserFilters();               
-            }
-        
-        });           
+            });  
+        } else {
+            this.route.queryParams.subscribe((params) => {
+                this.setFilters(params);
+            });   
+        }
     }
 
-    refreshUserFilters() {
-        this.api.getUserSearchParameters().subscribe(response => {
-            let params = response.data.search_params;
-            params.manufacturer = params.manufacturer ? params.manufacturer[0] : undefined;
-            params.model = params.model ? params.model[0] : undefined;
-            this.setFilters(params);
-        });          
+    setValueCaption(price) {
+        if (price < 10000) {
+            return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");   
+        } else {
+            let num = price/1000;
+            return num + ' אלף';
+        }
     }
 
     setFilters(parameters) {
@@ -79,7 +82,7 @@ export class FiltersComponent {
                 title: 'תקציב',
                 icon: "../../assets/filter-price.svg",
                 allowModify: false,
-                value: parameters.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")           
+                value: this.setValueCaption(parameters.price)     
             });
 
         }        

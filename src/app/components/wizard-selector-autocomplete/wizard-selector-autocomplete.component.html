@@ -3,7 +3,7 @@
     <div class='input-inner-desktop'>
 
         <input-box class='input-box' [icon]='icon'>
-            <input type='text' class='text-primary' placeholder="{{placeholder}}" [value]="valueToken || ''" [formControl]="valueControler"/>
+            <input type='text' class='text-primary' placeholder="{{placeholder}}" [value]="valueToken || ''" [formControl]="valueControler" autofocus/>
         </input-box>
 
         <div class='list-items-panel scroll-list' [ngClass]='{"show-list": options.length > 0 && showList}'>

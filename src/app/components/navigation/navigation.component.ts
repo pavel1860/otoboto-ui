@@ -32,9 +32,10 @@ export class NavigationComponent {
 
   notifyAddedToFavorites() {
 
-    //this.notifyFavorites = true; 
-    setInterval(() => {
-      //this.notifyFavorites = false;
+    this.notifyFavorites = true; 
+    setTimeout(() => {
+      this.notifyFavorites = false;
+      console.log('sd');
     }, 500);
   }
 

@@ -12,8 +12,22 @@ export class PriceSelectorComponent {
     @ViewChild('inputPane') inputPane;
     @ViewChild('input') input;
 
-    @Input() valueToken;
     @Output() done: EventEmitter<any> = new EventEmitter();
+
+    _valueToken;
+    get valueToken() {
+        return this._valueToken;
+    }
+    
+    @Input('valueToken')
+    set valueToken(value) {
+        if (!value) {
+            this._valueToken = '';
+        } else {
+            this._valueToken = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        
+    }
 
     valueControler = new FormControl();
     value; 
@@ -27,9 +41,9 @@ export class PriceSelectorComponent {
             this.valueToken = '';
         }
         this.valueControler.valueChanges.subscribe(token => {
-            this.value = token;
-            this.valueToken = token.toString();
-            /*
+            //this.value = token;
+            //this.valueToken = token.toString();
+
                 let stripped = token.toString().replace(/\₪|,/g, '');
                 if (isNaN(stripped)) {
                     this.valueToken = '';
@@ -42,7 +56,7 @@ export class PriceSelectorComponent {
                         this.value = as_num;
                     }
                 }
-            */  
+      
             });
            
     }

@@ -89,6 +89,7 @@ export class WelcomeComponent {
         this.isGuest = params.isGuest;
         this.displayResults();
       } else if (params.myResults) {
+        
         this.displayResults();
       } else {
         this.displayWizard();
@@ -257,6 +258,7 @@ export class WelcomeComponent {
   }
 
   displayWizard = () => {
+
     this.showWizard = true; 
     this.showResults = false; 
     this.minimizeControlPanel = false; 

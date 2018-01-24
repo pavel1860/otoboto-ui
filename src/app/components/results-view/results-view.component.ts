@@ -122,7 +122,10 @@ export class ResultsViewComponent {
         this.api.loadUserData(this.searchResultsPage).subscribe(response => {
             this.searchResults = this.searchResults.concat(response); 
             this.searchResultsPage++;
-            this.noResults = !response || this.searchResults.length == 0;
+            this.noResults = !response || this.searchResults.length == 0; 
+            if (this.noResults) {
+                this.searchResultsList.close();
+            }
             this.loading = false;
         }, e => {
             this.noResults = this.searchResults.length == 0;
@@ -179,7 +182,7 @@ export class ResultsViewComponent {
     removeItemFromFavorites(item) {
         this.api.removeItemFromFavorites(item).subscribe(response => {});
         this.hiddenFavorites.push(item.car_document_id);  
-        this.setBotState('welcomeUser');           
+        this.setBotState('removedFromFavorites');           
     }
 
     setViewMode(viewMode) {

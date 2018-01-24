@@ -12,6 +12,8 @@ export class BotComponent {
 
   @ViewChild('speach') speach;
 
+  @Input() userProfileData; 
+
   @Output() showMe: EventEmitter<any> = new EventEmitter();
   @Output() hideMe: EventEmitter<any> = new EventEmitter();
   @Output() request: EventEmitter<any> = new EventEmitter();
@@ -59,8 +61,7 @@ export class BotComponent {
   state(state, info?) {
 
     if (state == this.currentState) {
-      
-      this.alert();  
+      //this.alert();  
     } 
 
     this.currentState = state; 
@@ -114,6 +115,14 @@ export class BotComponent {
         this.images = undefined;
         this.say('כאן אפשר לשחק עם ההגדרות');
         break; 
+
+      case 'removedFromFavorites':
+      if (this.isMobile) {
+        return;
+      }
+      this.images = undefined;
+      this.say('כאן נמצאים הרכבים שאהבת');
+      break;       
 
       case 'userSettings': 
         if (this.isMobile) {

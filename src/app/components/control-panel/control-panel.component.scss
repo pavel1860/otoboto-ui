@@ -98,6 +98,21 @@
         display: flex;
     }  
 
+    .top-bar {
+        width: 660px;
+        right: 0;
+        left: 0;
+        top: 0;
+        margin-left: auto;
+        margin-right: auto;
+        transition: all 0.8s ease-in-out;
+    }
+
+    .expended {
+        width: 1026px;
+        transition: all 0.8s ease-in-out;
+    }
+
     .cover-mobile {
         display: none;
     }

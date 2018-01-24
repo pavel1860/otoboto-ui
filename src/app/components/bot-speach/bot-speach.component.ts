@@ -18,6 +18,8 @@ export class BotSpeachComponent {
     @Input() placeholder; 
     @Input() images; 
 
+    @Input() userProfileData;
+
     @Output() userResponse: EventEmitter<any> = new EventEmitter();
     @Output() request: EventEmitter<any> = new EventEmitter();
 
@@ -30,7 +32,10 @@ export class BotSpeachComponent {
     }
 
     updateFilters() {
-      this.filters.refreshUserFilters();
+      if (this.filters) {
+        this.filters.refreshUserFilters();
+      }
+      
     }
 
 }
