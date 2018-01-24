@@ -11,24 +11,32 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 export class FiltersComponent {
 
-    //_parameters;
+    _userProfileData;
     isGuest;
 
-    /*
-    get parameters() {
-        return this._parameters;
+
+    get userProfileData() {
+        return this._userProfileData;
     }
     
-    @Input('parameters')
-    set parameters(value) {
-        this._parameters = value || undefined;
-        if (this._parameters) {
-            this.setFilters();
+    @Input('userProfileData')
+    set userProfileData(value) {
+        if (value) {
+            this.api.getUserSearchParameters().subscribe(response => {
+                let params = response.data.search_params;
+                params.manufacturer = params.manufacturer ? params.manufacturer[0] : undefined;
+                params.model = params.model ? params.model[0] : undefined;
+                this.setFilters(params);
+            });  
+        } else {
+            this.route.queryParams.subscribe((params) => {
+                this.setFilters(params);
+            });   
         }
     }
-    */
 
-    @Input() userProfileData;
+
+
     @Output() setFilter: EventEmitter<any> = new EventEmitter();
 
     filters;
@@ -44,9 +52,7 @@ export class FiltersComponent {
                 this.setFilters(params);
             });  
         } else {
-            this.route.queryParams.subscribe((params) => {
-                this.setFilters(params);
-            });   
+
         }
     }
 

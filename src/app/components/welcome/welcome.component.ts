@@ -245,13 +245,14 @@ export class WelcomeComponent {
     this.showResults = false;
     this.showWizard = false;
     this.minimizeControlPanel = true; 
-    this.setSearchFilters(); 
+     
 
     setTimeout(() => {
       this.showResults = true; 
       this.resultsViewMode = 'results';
       this.globalViewMode = 'searchResults';
       this.hideBot = false; 
+      this.setSearchFilters();
       //this.haveResults = true;
     }, 800);
     
@@ -283,11 +284,7 @@ export class WelcomeComponent {
   }
 
   setSearchFilters = () => {
-    this.api.getUserSearchParameters().subscribe(response => {
-      this.parameters = response.data.search_params; 
-      this.bot.updateFilters();
-    });
-    
+    this.bot.updateFilters();
   }
 
   processBotRequest = (request) => {
