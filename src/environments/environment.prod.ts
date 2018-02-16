@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  BOT_URI: 'https://otoboto-backend-8080.chatboard.io/',
+  BOT_URI: 'https://api.otoboto.co.il/',
   APP_ID: '330654467329622'
 };
