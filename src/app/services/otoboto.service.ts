@@ -77,7 +77,10 @@ export class Otoboto {
 
         if (token) {
             this.setHeaders(false);
-            return this.connect().then(this.getUserFacebookProfile);
+            return this.connect().then(this.getUserFacebookProfile, e => {
+                console.log('Error code C');
+                return;
+            });
         } else {
             return this.fb.login(options).then(userLoginData => {
                 this.local.setAccessToken(userLoginData.authResponse.accessToken);

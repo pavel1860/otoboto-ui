@@ -32,7 +32,7 @@ export class BotSpeachComponent {
     }
 
     updateFilters() {
-      //this.filters.refreshUserFilters();
+      this.filters.refreshUserFilters();
     }
 
 }

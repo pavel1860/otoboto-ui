@@ -21,6 +21,7 @@ export class FiltersComponent {
     
     @Input('userProfileData')
     set userProfileData(value) {
+        this._userProfileData = value;
         if (value) {
             this.api.getUserSearchParameters().subscribe(response => {
                 let params = response.data.search_params;
