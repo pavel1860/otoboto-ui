@@ -9,6 +9,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class PagerComponent {
 
     @Input() activeStep = 1; 
+    @Input() allowed; 
 
     _length: boolean;
     get length(): boolean {
@@ -24,5 +25,15 @@ export class PagerComponent {
     @Output() selectedStep: EventEmitter<any> = new EventEmitter();
 
     steps;
+
+    isAllowed(step) {
+    
+        if (this.allowed.indexOf(step) != -1) {
+     
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 }

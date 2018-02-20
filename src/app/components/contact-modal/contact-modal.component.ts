@@ -9,6 +9,7 @@ import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core
 export class ContactModalComponent {
     
     isActive = false;
+    data;
     
     constructor() {}
 
@@ -20,7 +21,18 @@ export class ContactModalComponent {
 
     open(data) {
         this.isActive = true;
+        this.data = data;
         console.log(data);
     }
-  
+
+    close() {
+        this.isActive = false;
+    }
+    
+    block(e) {
+      e.stopPropagation(); 
+    }  
+
+
+
 }

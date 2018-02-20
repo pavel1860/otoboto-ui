@@ -40,6 +40,7 @@ export class WizardComponent {
     price;
     manufacturer;
     model;
+    allowedSteps = [1];
 
     next;
 
@@ -99,7 +100,9 @@ export class WizardComponent {
             return; 
         }
         if (this.step < this.steps.length) {
-            this.step++; 
+            this.step++;
+            this.allowedSteps.push(this.step); 
+           
         } else {
             let descriptor = {
                 category: this.category,

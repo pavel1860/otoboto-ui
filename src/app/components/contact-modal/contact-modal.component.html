@@ -1,1 +1,27 @@
-<div class='wrapper' [ngClass]='{show: isActive}'></div>
+<div class='wrapper' [ngClass]='{show: isActive}' (click)='close()'>
+
+    <div class='inner-wrapper' (click)='block($event)'>
+
+        <div class='phone' ngxClipboard [cbContent]="data?.seller_phones[0]">
+            {{data?.seller_phones[0]}}
+        </div>
+        <!--div class='click-to-copy'>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAS7SURBVGhD3VpLiBxVFG2NRmOMcXq68oFoQIWgbowaIqKYiJ+FIKKICzfBhWBAMW4imp1/A4EsYtAQcGFAGmYhhCi4aJOq+6ondnQinWxENDKKHxCDBkeNmZxbudNzq7q633s91R88cOju99499533qW+XUpidvSiIoscqRBPgdMWYf8HZThwnOoN2H41H0TpRGD7K9fqacWMor8M2Im4mMOZZkRoe2ARG9vu8TnpyJ8+qyA4YSAwT9bZOEZ3GSH+Bz0YnYmkdx+d/Og4x7w3FTDmOH9UdQcf+wedLpUbjUmnSFZU4fiEVDw7FDDo+keoI0Q6pcsKyycnxVLwQs7WvVK0ukmb9B5L+0OoAlpPrTGjwZm9paBIdGJgZJNSH2M+l2Avo8O9KY87ENDhRjqIHpFl/oZNjOYRS7AVtBLMzhX13/+D3SJFGiN4vNZuLpZiPiBcHRHei/Dlov4Y2b3ZkHL+ME+vtEukPiBRiBDNxUO8HdOwJ6H2r9a0kOged/cvDcExk3KGFejWC5N+siOOVyQ8+LxmzR+t6k+jk1URrEz1XaIGeZ8SYW+Urm3pFa/ZK6Pw4FoY3i6wdqeAejcwBm/xG6KQuNHm2oLuVDwBlY+7rRMzCQ2h3LBP7My6fbhL57kgFLtAIOrNX6+F3beXU1FKptgKbfXMqHkSffnIykwlKGcGIPJmMqI1RtIzbQ+NUSw+XOlga1yZCjljdaFRa8YrI8Qv01kuzfKQCskbi+Bld34ljjcbyUq12CZLNX0ASTYqMO3DU07oZ/lap12+Tlu3QjRdihKnLMIoHRcYLWiOHnc3ohlkjGNWnkmALsYavGpARZr4Z3ShrxAcDNMJsN6MbZI2sOnIk4AAbeW0P2EhyAFgRhtdJWHcjQ9kjRCe0Tjeiv1/hSHfFhcB0xdCNJCdVog/AT9toTBOffAc7n5/o9SRQF46CERuSByXGfKfyzHDurkZQdg8avmvjGmOW2IwEUXQLRu/pXoh+3SsyCaC9W+fCLG7sasQHNiPQflHXe5FvmRVQ9oauD+L4ru4zgssClG238YZDhy4baSNF7pH/jZEi9wj0h2ekSEDfzwhG8frAmMdt5GdhDkvrEZRVXYhZeEfCcgF9PyM+cDDis0dOSVguUN9uBAn/mivA9ylp643hGyH6eq4AyWf4Lk3ae2EUjOzThVifB3p5SmgzsrZWu5yfV7mQtSQsF9DPNbIBnT+nK1D2McrW84lOYq2wGSkS0G83wkDS/brCl2yi4KWVpssJkcEXfUj0ma704cgYSdBsLkbAW+DfupELR8uIYOzo0WtQuQ2JPwRDiOS+P9QMarUrbUaQbEterAvRj1dFJgH07UZ6hc1IkYD+QI18IlWFA7P0ts5VqBEGEszvL6KTUlw4MEhVbaTwf14gwZc6AT9ll6rCwBey2DN/tkwY84fP+c4JmIUd2gh+T5fD8A6pXjD4ORZMHNM5+KAk1cWB9wmEf9WJwLO88VG+C9/z3x/auZOXk54J4Vnn9ye+CIge5ASZhP3i85K2P8Cd5cNYVqdzEhdFfiu2TdL1F5XDh1cj2Z6cpdYzeWPznujbcuqKanURb9JKFN2dfW/oSszwJn6UmnqHn0KpdB4UWtipYQAZVAAAAABJRU5ErkJggg==">
+        </div-->
+
+        <div class='seller-name text-primary'>
+            {{data?.seller_name}}
+        </div>
+
+        <div class='location text-weak'>
+            <img class='location-icon' src='../../../assets/location-icon-gray.svg'/>
+            <label>{{data?.city}}</label>
+        </div>
+
+
+        
+    </div>
+
+
+
+</div>

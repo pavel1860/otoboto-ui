@@ -145,6 +145,7 @@
         line-height: 32px;
         box-sizing: border-box;
         cursor: pointer;
+        padding-right: 14px;
     }
 
     .price-box {
@@ -153,7 +154,14 @@
         display: flex;
         justify-content: center;
         line-height: 40px;
+        font-size: 20px;
         box-sizing: border-box;        
+    }
+
+    .contact-panel-centered {
+        justify-content: center;
+        position: relative;
+        margin-bottom: 16px;
     }
 
     .contact-panel {
@@ -232,5 +240,35 @@
         /* IE8 and below */
         filter: progid:DXImageTransform.Microsoft.Matrix(M11=-1, M12=0, M21=0, M22=-1, DX=0, DY=0, SizingMethod='auto expand');        
     }
+
+    .call-seller-image {
+        -moz-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+        filter: FlipH;
+        -ms-filter: "FlipH";
+        width: 20px;
+        align-self: center;
+    }
+
+    .call-button {
+        border-radius: 100%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        position: absolute;
+        left: 0px;
+        transition: all 0.3 ease-in-out;
+        opacity: 0;
+    }
+
+    .wrapper:hover .call-button {
+        opacity: 1;
+        left: 26px;
+        transition: all 0.3s ease-in-out; 
+    }    
 
 }

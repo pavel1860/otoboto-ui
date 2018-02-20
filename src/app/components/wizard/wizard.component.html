@@ -1,7 +1,7 @@
 <div *ngIf='!loading' class='wrapper'>
 
     <div class='pager-panel'>
-        <pager class='pager' [length]='steps.length' [activeStep]='step' (selectedStep)='goToStep($event)'></pager>
+        <pager class='pager' [length]='steps.length' [activeStep]='step' [allowed]='allowedSteps' (selectedStep)='goToStep($event)'></pager>
     </div>
 
     <div class='caption-panel'>

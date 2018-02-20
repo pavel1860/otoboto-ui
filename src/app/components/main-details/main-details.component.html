@@ -41,8 +41,8 @@
 
 
 
-    <div class='contact-panel desktop'>
-        <div class='contact-name-phone'>
+    <div class='contact-panel-centered desktop'>
+        <!--div class='contact-name-phone'>
             <div class='phone-number' [ngClass]='{"phone-number-visible": showPhoneNumber}'>
                 {{data.seller_phones[0]}}
             </div>
@@ -50,7 +50,10 @@
             <div class='contact-box text-secondary otoboto-frame otoboto-fill' (click)='block($event); showPhoneNumber=true; showContact.emit(data.seller_phones[0])'>
                 {{data.seller_name}}
             </div>
-        </div> 
+        </div--> 
+        <div class='call-button otoboto-frame' (click)='block($event); showPhoneNumber=true; showContact.emit(data)'>
+            <img class='call-seller-image' src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAOUSURBVGhD5VpJaBRBFB13ETRk0jMxeHAHERXBgyCCJzdccLl4cDmoF5dDTgpKULyIgqfBg+BBEhciKopGEMOQTP+qESYiEgnEU0C8GInghhIdX8kfSKZ/Z7ozPekSHzxmq//r/apfa08iKNK53KIGpS44SmWSrruJv/63kFTqYAPRVwRRLBFBXU+0t0/hIpajWJyEAM45RL9HBjGCGS5pL+ZnszPR6rcE8aOYct29bGIhkDLohYeScIFDSL15bGkXIC5TJrYSH7CpPUA67RCEVqSxYxcWoLd3OkQNlIsMRKI3iWx2KnuKF47rHhVFBucRdhUv0KovBHGBiam6h13Fh8Z8fqEkLizndnen2GU8aHDd/ZKwsEwrtZJdxgOkxRVJWFjGvqYgkDuSsJBU7C4+YKA/E4QFJ9GneqIV7C4+QEynR1xQEg2miNaxq3iBlfmuKLICkZL9jtZL2U38QKtelYRWYCtmu9nswg6gZY8LQv1JdM+cV9jcHjj5/BpRsA9xDlnNppYBGz6Mk8+SaIlW9kYJSJebkmiJaa0b2cw+IJBtkmiRRPvYzEIUCtOQXu9F4V52spWdwOx1ShAtEz3IZvYhmc/Pgcghj2iBZjFc0tExg03tA0S2lIsegy1sZh+aCoVZEBj07D6MfdZmNrUPSa33CKJlEn00J0w2tQ8YA09F4QIx2700PcmmdsHp6mpCaw9KwiUimCfmSonN7QKOrrsl0b40m8lx3NKjNx3YN8P+Bl4zpt7IGwUtfW2U2EokagsTDMpvRxp/KPeD795irG7kYtXD3Myjsnx5RWOS6H6Qs0pKqZMoP+yxL5HoF14vRnaLaW5H4PSdp6Kx2YdWXcYuPMDvYdarzrpcrp5NqwO6eS3S7LtQiS8RyBcchc/UFwp17KZ0x3y5vGwA9jVqvYC9VAcI2wWH/qngw78BKfUcvfoI7z3jIQQHcKhbzHKqA5wdhiC/x3G1J1I8yp4JvkuuAVG/y1KqB5ydliqZQG5gKdUDwRyLK80wk55gGdEAwRxAMD+kymrJlNbrWUJ0MFemIY7JUbCVq44evGiG2wGMg2iw27XfnGIrgWDO1izViC5N6J2aeXIVae8Q/TT7MnY/wTD/ZdF6JyaD16K4gIR9T1rrVew1RhSLk7Hf2opWbYOob5JYiRgLrzDuDlnz/H4kzHUTUmQLAjoPoY9N+uF9vyHEK3w217bNKLecTf4nJBJ/AB2p6aXGrUtxAAAAAElFTkSuQmCC">
+        </div>
         <div class='price-box text-secondary' style='color: #14C6C6'>
             {{data.price | nis}}
         </div>      

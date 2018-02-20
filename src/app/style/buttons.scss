@@ -11,6 +11,14 @@
     box-sizing: border-box;
 }
 
+.button-wizard-next:hover {
+  background-color: #5ad7d7;
+}
+
+.bright-on-hover:hover{
+  background-color: #5ad7d7;
+}
+
 .response-button {
     background: white; 
     color: $warm-gray;

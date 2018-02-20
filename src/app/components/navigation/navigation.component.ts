@@ -35,7 +35,6 @@ export class NavigationComponent {
     this.notifyFavorites = true; 
     setTimeout(() => {
       this.notifyFavorites = false;
-      console.log('sd');
     }, 500);
   }
 

@@ -66,6 +66,7 @@ import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { GaugeModule } from "ng-gauge";
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { ClipboardModule } from 'ngx-clipboard';
 
 const SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -127,6 +128,7 @@ const SWIPER_CONFIG: SwiperConfigInterface = {
     BrowserAnimationsModule,
     SwiperModule,
     GaugeModule,
+    ClipboardModule,
     FacebookModule.forRoot(),
     SwiperModule.forRoot(SWIPER_CONFIG)
   ],

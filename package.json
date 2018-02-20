@@ -29,6 +29,7 @@
     "express": "^4.16.1",
     "ng-gauge": "^1.0.0",
     "ng2-socket-io": "^0.1.7",
+    "ngx-clipboard": "8.1.1",
     "ngx-facebook": "^2.4.0",
     "ngx-infinite-scroll": "^0.5.2",
     "ngx-swiper-wrapper": "^4.6.6",
