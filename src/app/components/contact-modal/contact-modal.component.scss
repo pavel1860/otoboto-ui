@@ -30,14 +30,13 @@
 .seller-name {
     display: flex;
     justify-content: center;
-    margin-top: 30px;
 }
 
 .location {
     display: flex;
     justify-content: center;
     height: 20px;
-    margin-top: 10px;
+    margin-top: 4px;
 }
 
 .location-icon {
@@ -51,6 +50,8 @@
     font-size: 36px;
     cursor: pointer;
     position: relative;
+    width: 400px;
+    align-self: center;
 }
 
 .click-to-copy-hint {
@@ -110,5 +111,22 @@
     top: 46%;
     opacity: 1;
     transition: all 0.3s ease-in-out 0.3s;
+}
+
+.seller-info {
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+    width: 200px;
+}
+
+.close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color:#14c6c6;
+    width: 20px;
+    border-radius: 100%;
+    cursor: pointer;
 }
 
