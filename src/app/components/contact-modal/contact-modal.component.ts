@@ -10,7 +10,9 @@ export class ContactModalComponent {
     
     isActive = false;
     data;
-    
+    numberHint = 'העתק מספר';
+    showHint = false;
+
     constructor() {}
 
     ngOnInit() {
